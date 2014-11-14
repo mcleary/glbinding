@@ -11,524 +11,196 @@ namespace gl33core
 
 // import enums to namespace
 
-
-// AlphaFunction
-
-static const gl::GLenum GL_NEVER = gl::GLenum::GL_NEVER;
-static const gl::GLenum GL_LESS = gl::GLenum::GL_LESS;
-static const gl::GLenum GL_EQUAL = gl::GLenum::GL_EQUAL;
-static const gl::GLenum GL_LEQUAL = gl::GLenum::GL_LEQUAL;
-static const gl::GLenum GL_GREATER = gl::GLenum::GL_GREATER;
-static const gl::GLenum GL_NOTEQUAL = gl::GLenum::GL_NOTEQUAL;
-static const gl::GLenum GL_GEQUAL = gl::GLenum::GL_GEQUAL;
-static const gl::GLenum GL_ALWAYS = gl::GLenum::GL_ALWAYS;
-
-// BlendingFactorDest
-
-static const gl::GLenum GL_ZERO = gl::GLenum::GL_ZERO;
-static const gl::GLenum GL_SRC_COLOR = gl::GLenum::GL_SRC_COLOR;
-static const gl::GLenum GL_ONE_MINUS_SRC_COLOR = gl::GLenum::GL_ONE_MINUS_SRC_COLOR;
-static const gl::GLenum GL_SRC_ALPHA = gl::GLenum::GL_SRC_ALPHA;
-static const gl::GLenum GL_ONE_MINUS_SRC_ALPHA = gl::GLenum::GL_ONE_MINUS_SRC_ALPHA;
-static const gl::GLenum GL_DST_ALPHA = gl::GLenum::GL_DST_ALPHA;
-static const gl::GLenum GL_ONE_MINUS_DST_ALPHA = gl::GLenum::GL_ONE_MINUS_DST_ALPHA;
-static const gl::GLenum GL_ONE = gl::GLenum::GL_ONE;
-
-// BlendingFactorSrc
-
-// static const gl::GLenum GL_ZERO = gl::GLenum::GL_ZERO; // reuse BlendingFactorDest
-// static const gl::GLenum GL_SRC_ALPHA = gl::GLenum::GL_SRC_ALPHA; // reuse BlendingFactorDest
-// static const gl::GLenum GL_ONE_MINUS_SRC_ALPHA = gl::GLenum::GL_ONE_MINUS_SRC_ALPHA; // reuse BlendingFactorDest
-// static const gl::GLenum GL_DST_ALPHA = gl::GLenum::GL_DST_ALPHA; // reuse BlendingFactorDest
-// static const gl::GLenum GL_ONE_MINUS_DST_ALPHA = gl::GLenum::GL_ONE_MINUS_DST_ALPHA; // reuse BlendingFactorDest
-static const gl::GLenum GL_DST_COLOR = gl::GLenum::GL_DST_COLOR;
-static const gl::GLenum GL_ONE_MINUS_DST_COLOR = gl::GLenum::GL_ONE_MINUS_DST_COLOR;
-static const gl::GLenum GL_SRC_ALPHA_SATURATE = gl::GLenum::GL_SRC_ALPHA_SATURATE;
-// static const gl::GLenum GL_ONE = gl::GLenum::GL_ONE; // reuse BlendingFactorDest
-
-// ClipPlaneName
-
-static const gl::GLenum GL_CLIP_DISTANCE0 = gl::GLenum::GL_CLIP_DISTANCE0;
-static const gl::GLenum GL_CLIP_DISTANCE1 = gl::GLenum::GL_CLIP_DISTANCE1;
-static const gl::GLenum GL_CLIP_DISTANCE2 = gl::GLenum::GL_CLIP_DISTANCE2;
-static const gl::GLenum GL_CLIP_DISTANCE3 = gl::GLenum::GL_CLIP_DISTANCE3;
-static const gl::GLenum GL_CLIP_DISTANCE4 = gl::GLenum::GL_CLIP_DISTANCE4;
-static const gl::GLenum GL_CLIP_DISTANCE5 = gl::GLenum::GL_CLIP_DISTANCE5;
-static const gl::GLenum GL_CLIP_DISTANCE6 = gl::GLenum::GL_CLIP_DISTANCE6;
-static const gl::GLenum GL_CLIP_DISTANCE7 = gl::GLenum::GL_CLIP_DISTANCE7;
-
-// ColorMaterialFace
-
-static const gl::GLenum GL_FRONT = gl::GLenum::GL_FRONT;
-static const gl::GLenum GL_BACK = gl::GLenum::GL_BACK;
-static const gl::GLenum GL_FRONT_AND_BACK = gl::GLenum::GL_FRONT_AND_BACK;
-
-// ColorPointerType
-
-static const gl::GLenum GL_BYTE = gl::GLenum::GL_BYTE;
-static const gl::GLenum GL_UNSIGNED_BYTE = gl::GLenum::GL_UNSIGNED_BYTE;
-static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT;
-static const gl::GLenum GL_UNSIGNED_SHORT = gl::GLenum::GL_UNSIGNED_SHORT;
-static const gl::GLenum GL_INT = gl::GLenum::GL_INT;
-static const gl::GLenum GL_UNSIGNED_INT = gl::GLenum::GL_UNSIGNED_INT;
-static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT;
-static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE;
-
-// CullFaceMode
-
-// static const gl::GLenum GL_FRONT = gl::GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const gl::GLenum GL_BACK = gl::GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const gl::GLenum GL_FRONT_AND_BACK = gl::GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-
-// DepthFunction
-
-// static const gl::GLenum GL_NEVER = gl::GLenum::GL_NEVER; // reuse AlphaFunction
-// static const gl::GLenum GL_LESS = gl::GLenum::GL_LESS; // reuse AlphaFunction
-// static const gl::GLenum GL_EQUAL = gl::GLenum::GL_EQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_LEQUAL = gl::GLenum::GL_LEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_GREATER = gl::GLenum::GL_GREATER; // reuse AlphaFunction
-// static const gl::GLenum GL_NOTEQUAL = gl::GLenum::GL_NOTEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_GEQUAL = gl::GLenum::GL_GEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_ALWAYS = gl::GLenum::GL_ALWAYS; // reuse AlphaFunction
-
-// DrawBufferMode
-
-static const gl::GLenum GL_NONE = gl::GLenum::GL_NONE;
-static const gl::GLenum GL_FRONT_LEFT = gl::GLenum::GL_FRONT_LEFT;
-static const gl::GLenum GL_FRONT_RIGHT = gl::GLenum::GL_FRONT_RIGHT;
-static const gl::GLenum GL_BACK_LEFT = gl::GLenum::GL_BACK_LEFT;
-static const gl::GLenum GL_BACK_RIGHT = gl::GLenum::GL_BACK_RIGHT;
-// static const gl::GLenum GL_FRONT = gl::GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const gl::GLenum GL_BACK = gl::GLenum::GL_BACK; // reuse ColorMaterialFace
-static const gl::GLenum GL_LEFT = gl::GLenum::GL_LEFT;
-static const gl::GLenum GL_RIGHT = gl::GLenum::GL_RIGHT;
-// static const gl::GLenum GL_FRONT_AND_BACK = gl::GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-
-// EnableCap
-
-static const gl::GLenum GL_LINE_SMOOTH = gl::GLenum::GL_LINE_SMOOTH;
-static const gl::GLenum GL_POLYGON_SMOOTH = gl::GLenum::GL_POLYGON_SMOOTH;
-static const gl::GLenum GL_CULL_FACE = gl::GLenum::GL_CULL_FACE;
-static const gl::GLenum GL_DEPTH_TEST = gl::GLenum::GL_DEPTH_TEST;
-static const gl::GLenum GL_STENCIL_TEST = gl::GLenum::GL_STENCIL_TEST;
-static const gl::GLenum GL_DITHER = gl::GLenum::GL_DITHER;
-static const gl::GLenum GL_BLEND = gl::GLenum::GL_BLEND;
-static const gl::GLenum GL_COLOR_LOGIC_OP = gl::GLenum::GL_COLOR_LOGIC_OP;
-static const gl::GLenum GL_SCISSOR_TEST = gl::GLenum::GL_SCISSOR_TEST;
-static const gl::GLenum GL_TEXTURE_1D = gl::GLenum::GL_TEXTURE_1D;
-static const gl::GLenum GL_TEXTURE_2D = gl::GLenum::GL_TEXTURE_2D;
-static const gl::GLenum GL_POLYGON_OFFSET_POINT = gl::GLenum::GL_POLYGON_OFFSET_POINT;
-static const gl::GLenum GL_POLYGON_OFFSET_LINE = gl::GLenum::GL_POLYGON_OFFSET_LINE;
-static const gl::GLenum GL_POLYGON_OFFSET_FILL = gl::GLenum::GL_POLYGON_OFFSET_FILL;
-
-// ErrorCode
-
-static const gl::GLenum GL_NO_ERROR = gl::GLenum::GL_NO_ERROR;
-static const gl::GLenum GL_INVALID_ENUM = gl::GLenum::GL_INVALID_ENUM;
-static const gl::GLenum GL_INVALID_VALUE = gl::GLenum::GL_INVALID_VALUE;
-static const gl::GLenum GL_INVALID_OPERATION = gl::GLenum::GL_INVALID_OPERATION;
-static const gl::GLenum GL_OUT_OF_MEMORY = gl::GLenum::GL_OUT_OF_MEMORY;
-static const gl::GLenum GL_INVALID_FRAMEBUFFER_OPERATION = gl::GLenum::GL_INVALID_FRAMEBUFFER_OPERATION;
-
-// FogCoordinatePointerType
-
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FogMode
-
-static const gl::GLenum GL_LINEAR = gl::GLenum::GL_LINEAR;
-
-// FogPointerTypeEXT
-
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FogPointerTypeIBM
-
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FrontFaceDirection
-
-static const gl::GLenum GL_CW = gl::GLenum::GL_CW;
-static const gl::GLenum GL_CCW = gl::GLenum::GL_CCW;
-
-// GetPName
-
-static const gl::GLenum GL_POINT_SIZE = gl::GLenum::GL_POINT_SIZE;
-static const gl::GLenum GL_POINT_SIZE_RANGE = gl::GLenum::GL_POINT_SIZE_RANGE;
-static const gl::GLenum GL_SMOOTH_POINT_SIZE_RANGE = gl::GLenum::GL_SMOOTH_POINT_SIZE_RANGE;
-static const gl::GLenum GL_POINT_SIZE_GRANULARITY = gl::GLenum::GL_POINT_SIZE_GRANULARITY;
-static const gl::GLenum GL_SMOOTH_POINT_SIZE_GRANULARITY = gl::GLenum::GL_SMOOTH_POINT_SIZE_GRANULARITY;
-// static const gl::GLenum GL_LINE_SMOOTH = gl::GLenum::GL_LINE_SMOOTH; // reuse EnableCap
-static const gl::GLenum GL_LINE_WIDTH = gl::GLenum::GL_LINE_WIDTH;
-static const gl::GLenum GL_LINE_WIDTH_RANGE = gl::GLenum::GL_LINE_WIDTH_RANGE;
-static const gl::GLenum GL_SMOOTH_LINE_WIDTH_RANGE = gl::GLenum::GL_SMOOTH_LINE_WIDTH_RANGE;
-static const gl::GLenum GL_LINE_WIDTH_GRANULARITY = gl::GLenum::GL_LINE_WIDTH_GRANULARITY;
-static const gl::GLenum GL_SMOOTH_LINE_WIDTH_GRANULARITY = gl::GLenum::GL_SMOOTH_LINE_WIDTH_GRANULARITY;
-static const gl::GLenum GL_POLYGON_MODE = gl::GLenum::GL_POLYGON_MODE;
-// static const gl::GLenum GL_POLYGON_SMOOTH = gl::GLenum::GL_POLYGON_SMOOTH; // reuse EnableCap
-// static const gl::GLenum GL_CULL_FACE = gl::GLenum::GL_CULL_FACE; // reuse EnableCap
-static const gl::GLenum GL_CULL_FACE_MODE = gl::GLenum::GL_CULL_FACE_MODE;
-static const gl::GLenum GL_FRONT_FACE = gl::GLenum::GL_FRONT_FACE;
-static const gl::GLenum GL_DEPTH_RANGE = gl::GLenum::GL_DEPTH_RANGE;
-// static const gl::GLenum GL_DEPTH_TEST = gl::GLenum::GL_DEPTH_TEST; // reuse EnableCap
-static const gl::GLenum GL_DEPTH_WRITEMASK = gl::GLenum::GL_DEPTH_WRITEMASK;
-static const gl::GLenum GL_DEPTH_CLEAR_VALUE = gl::GLenum::GL_DEPTH_CLEAR_VALUE;
-static const gl::GLenum GL_DEPTH_FUNC = gl::GLenum::GL_DEPTH_FUNC;
-// static const gl::GLenum GL_STENCIL_TEST = gl::GLenum::GL_STENCIL_TEST; // reuse EnableCap
-static const gl::GLenum GL_STENCIL_CLEAR_VALUE = gl::GLenum::GL_STENCIL_CLEAR_VALUE;
-static const gl::GLenum GL_STENCIL_FUNC = gl::GLenum::GL_STENCIL_FUNC;
-static const gl::GLenum GL_STENCIL_VALUE_MASK = gl::GLenum::GL_STENCIL_VALUE_MASK;
-static const gl::GLenum GL_STENCIL_FAIL = gl::GLenum::GL_STENCIL_FAIL;
-static const gl::GLenum GL_STENCIL_PASS_DEPTH_FAIL = gl::GLenum::GL_STENCIL_PASS_DEPTH_FAIL;
-static const gl::GLenum GL_STENCIL_PASS_DEPTH_PASS = gl::GLenum::GL_STENCIL_PASS_DEPTH_PASS;
-static const gl::GLenum GL_STENCIL_REF = gl::GLenum::GL_STENCIL_REF;
-static const gl::GLenum GL_STENCIL_WRITEMASK = gl::GLenum::GL_STENCIL_WRITEMASK;
-static const gl::GLenum GL_VIEWPORT = gl::GLenum::GL_VIEWPORT;
-// static const gl::GLenum GL_DITHER = gl::GLenum::GL_DITHER; // reuse EnableCap
-static const gl::GLenum GL_BLEND_DST = gl::GLenum::GL_BLEND_DST;
-static const gl::GLenum GL_BLEND_SRC = gl::GLenum::GL_BLEND_SRC;
-// static const gl::GLenum GL_BLEND = gl::GLenum::GL_BLEND; // reuse EnableCap
-static const gl::GLenum GL_LOGIC_OP_MODE = gl::GLenum::GL_LOGIC_OP_MODE;
-// static const gl::GLenum GL_COLOR_LOGIC_OP = gl::GLenum::GL_COLOR_LOGIC_OP; // reuse EnableCap
-static const gl::GLenum GL_DRAW_BUFFER = gl::GLenum::GL_DRAW_BUFFER;
-static const gl::GLenum GL_READ_BUFFER = gl::GLenum::GL_READ_BUFFER;
-static const gl::GLenum GL_SCISSOR_BOX = gl::GLenum::GL_SCISSOR_BOX;
-// static const gl::GLenum GL_SCISSOR_TEST = gl::GLenum::GL_SCISSOR_TEST; // reuse EnableCap
-static const gl::GLenum GL_COLOR_CLEAR_VALUE = gl::GLenum::GL_COLOR_CLEAR_VALUE;
-static const gl::GLenum GL_COLOR_WRITEMASK = gl::GLenum::GL_COLOR_WRITEMASK;
-static const gl::GLenum GL_DOUBLEBUFFER = gl::GLenum::GL_DOUBLEBUFFER;
-static const gl::GLenum GL_STEREO = gl::GLenum::GL_STEREO;
-static const gl::GLenum GL_LINE_SMOOTH_HINT = gl::GLenum::GL_LINE_SMOOTH_HINT;
-static const gl::GLenum GL_POLYGON_SMOOTH_HINT = gl::GLenum::GL_POLYGON_SMOOTH_HINT;
-static const gl::GLenum GL_UNPACK_SWAP_BYTES = gl::GLenum::GL_UNPACK_SWAP_BYTES;
-static const gl::GLenum GL_UNPACK_LSB_FIRST = gl::GLenum::GL_UNPACK_LSB_FIRST;
-static const gl::GLenum GL_UNPACK_ROW_LENGTH = gl::GLenum::GL_UNPACK_ROW_LENGTH;
-static const gl::GLenum GL_UNPACK_SKIP_ROWS = gl::GLenum::GL_UNPACK_SKIP_ROWS;
-static const gl::GLenum GL_UNPACK_SKIP_PIXELS = gl::GLenum::GL_UNPACK_SKIP_PIXELS;
-static const gl::GLenum GL_UNPACK_ALIGNMENT = gl::GLenum::GL_UNPACK_ALIGNMENT;
-static const gl::GLenum GL_PACK_SWAP_BYTES = gl::GLenum::GL_PACK_SWAP_BYTES;
-static const gl::GLenum GL_PACK_LSB_FIRST = gl::GLenum::GL_PACK_LSB_FIRST;
-static const gl::GLenum GL_PACK_ROW_LENGTH = gl::GLenum::GL_PACK_ROW_LENGTH;
-static const gl::GLenum GL_PACK_SKIP_ROWS = gl::GLenum::GL_PACK_SKIP_ROWS;
-static const gl::GLenum GL_PACK_SKIP_PIXELS = gl::GLenum::GL_PACK_SKIP_PIXELS;
-static const gl::GLenum GL_PACK_ALIGNMENT = gl::GLenum::GL_PACK_ALIGNMENT;
-static const gl::GLenum GL_MAX_CLIP_DISTANCES = gl::GLenum::GL_MAX_CLIP_DISTANCES;
-static const gl::GLenum GL_MAX_TEXTURE_SIZE = gl::GLenum::GL_MAX_TEXTURE_SIZE;
-static const gl::GLenum GL_MAX_VIEWPORT_DIMS = gl::GLenum::GL_MAX_VIEWPORT_DIMS;
-static const gl::GLenum GL_SUBPIXEL_BITS = gl::GLenum::GL_SUBPIXEL_BITS;
-// static const gl::GLenum GL_TEXTURE_1D = gl::GLenum::GL_TEXTURE_1D; // reuse EnableCap
-// static const gl::GLenum GL_TEXTURE_2D = gl::GLenum::GL_TEXTURE_2D; // reuse EnableCap
-static const gl::GLenum GL_POLYGON_OFFSET_UNITS = gl::GLenum::GL_POLYGON_OFFSET_UNITS;
-// static const gl::GLenum GL_POLYGON_OFFSET_POINT = gl::GLenum::GL_POLYGON_OFFSET_POINT; // reuse EnableCap
-// static const gl::GLenum GL_POLYGON_OFFSET_LINE = gl::GLenum::GL_POLYGON_OFFSET_LINE; // reuse EnableCap
-// static const gl::GLenum GL_POLYGON_OFFSET_FILL = gl::GLenum::GL_POLYGON_OFFSET_FILL; // reuse EnableCap
-static const gl::GLenum GL_POLYGON_OFFSET_FACTOR = gl::GLenum::GL_POLYGON_OFFSET_FACTOR;
-static const gl::GLenum GL_TEXTURE_BINDING_1D = gl::GLenum::GL_TEXTURE_BINDING_1D;
-static const gl::GLenum GL_TEXTURE_BINDING_2D = gl::GLenum::GL_TEXTURE_BINDING_2D;
-static const gl::GLenum GL_TEXTURE_BINDING_3D = gl::GLenum::GL_TEXTURE_BINDING_3D;
-static const gl::GLenum GL_ALIASED_LINE_WIDTH_RANGE = gl::GLenum::GL_ALIASED_LINE_WIDTH_RANGE;
-
-// GetTextureParameter
-
-static const gl::GLenum GL_TEXTURE_WIDTH = gl::GLenum::GL_TEXTURE_WIDTH;
-static const gl::GLenum GL_TEXTURE_HEIGHT = gl::GLenum::GL_TEXTURE_HEIGHT;
-static const gl::GLenum GL_TEXTURE_INTERNAL_FORMAT = gl::GLenum::GL_TEXTURE_INTERNAL_FORMAT;
-static const gl::GLenum GL_TEXTURE_BORDER_COLOR = gl::GLenum::GL_TEXTURE_BORDER_COLOR;
-static const gl::GLenum GL_TEXTURE_MAG_FILTER = gl::GLenum::GL_TEXTURE_MAG_FILTER;
-static const gl::GLenum GL_TEXTURE_MIN_FILTER = gl::GLenum::GL_TEXTURE_MIN_FILTER;
-static const gl::GLenum GL_TEXTURE_WRAP_S = gl::GLenum::GL_TEXTURE_WRAP_S;
-static const gl::GLenum GL_TEXTURE_WRAP_T = gl::GLenum::GL_TEXTURE_WRAP_T;
-static const gl::GLenum GL_TEXTURE_RED_SIZE = gl::GLenum::GL_TEXTURE_RED_SIZE;
-static const gl::GLenum GL_TEXTURE_GREEN_SIZE = gl::GLenum::GL_TEXTURE_GREEN_SIZE;
-static const gl::GLenum GL_TEXTURE_BLUE_SIZE = gl::GLenum::GL_TEXTURE_BLUE_SIZE;
-static const gl::GLenum GL_TEXTURE_ALPHA_SIZE = gl::GLenum::GL_TEXTURE_ALPHA_SIZE;
-
-// HintMode
-
-static const gl::GLenum GL_DONT_CARE = gl::GLenum::GL_DONT_CARE;
-static const gl::GLenum GL_FASTEST = gl::GLenum::GL_FASTEST;
-static const gl::GLenum GL_NICEST = gl::GLenum::GL_NICEST;
-
-// HintTarget
-
-// static const gl::GLenum GL_LINE_SMOOTH_HINT = gl::GLenum::GL_LINE_SMOOTH_HINT; // reuse GetPName
-// static const gl::GLenum GL_POLYGON_SMOOTH_HINT = gl::GLenum::GL_POLYGON_SMOOTH_HINT; // reuse GetPName
-static const gl::GLenum GL_TEXTURE_COMPRESSION_HINT = gl::GLenum::GL_TEXTURE_COMPRESSION_HINT;
-static const gl::GLenum GL_FRAGMENT_SHADER_DERIVATIVE_HINT = gl::GLenum::GL_FRAGMENT_SHADER_DERIVATIVE_HINT;
-
-// IndexPointerType
-
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// InternalFormat
-
-static const gl::GLenum GL_R3_G3_B2 = gl::GLenum::GL_R3_G3_B2;
-static const gl::GLenum GL_RGB4 = gl::GLenum::GL_RGB4;
-static const gl::GLenum GL_RGB5 = gl::GLenum::GL_RGB5;
-static const gl::GLenum GL_RGB8 = gl::GLenum::GL_RGB8;
-static const gl::GLenum GL_RGB10 = gl::GLenum::GL_RGB10;
-static const gl::GLenum GL_RGB12 = gl::GLenum::GL_RGB12;
-static const gl::GLenum GL_RGB16 = gl::GLenum::GL_RGB16;
-static const gl::GLenum GL_RGBA2 = gl::GLenum::GL_RGBA2;
-static const gl::GLenum GL_RGBA4 = gl::GLenum::GL_RGBA4;
-static const gl::GLenum GL_RGB5_A1 = gl::GLenum::GL_RGB5_A1;
-static const gl::GLenum GL_RGBA8 = gl::GLenum::GL_RGBA8;
-static const gl::GLenum GL_RGB10_A2 = gl::GLenum::GL_RGB10_A2;
-static const gl::GLenum GL_RGBA12 = gl::GLenum::GL_RGBA12;
-static const gl::GLenum GL_RGBA16 = gl::GLenum::GL_RGBA16;
-
-// LightEnvModeSGIX
-
-static const gl::GLenum GL_REPLACE = gl::GLenum::GL_REPLACE;
-
-// ListNameType
-
-// static const gl::GLenum GL_BYTE = gl::GLenum::GL_BYTE; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_BYTE = gl::GLenum::GL_UNSIGNED_BYTE; // reuse ColorPointerType
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_SHORT = gl::GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_INT = gl::GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-
-// LogicOp
-
-static const gl::GLenum GL_CLEAR = gl::GLenum::GL_CLEAR;
-static const gl::GLenum GL_AND = gl::GLenum::GL_AND;
-static const gl::GLenum GL_AND_REVERSE = gl::GLenum::GL_AND_REVERSE;
-static const gl::GLenum GL_COPY = gl::GLenum::GL_COPY;
-static const gl::GLenum GL_AND_INVERTED = gl::GLenum::GL_AND_INVERTED;
-static const gl::GLenum GL_NOOP = gl::GLenum::GL_NOOP;
-static const gl::GLenum GL_XOR = gl::GLenum::GL_XOR;
-static const gl::GLenum GL_OR = gl::GLenum::GL_OR;
-static const gl::GLenum GL_NOR = gl::GLenum::GL_NOR;
-static const gl::GLenum GL_EQUIV = gl::GLenum::GL_EQUIV;
-static const gl::GLenum GL_INVERT = gl::GLenum::GL_INVERT;
-static const gl::GLenum GL_OR_REVERSE = gl::GLenum::GL_OR_REVERSE;
-static const gl::GLenum GL_COPY_INVERTED = gl::GLenum::GL_COPY_INVERTED;
-static const gl::GLenum GL_OR_INVERTED = gl::GLenum::GL_OR_INVERTED;
-static const gl::GLenum GL_NAND = gl::GLenum::GL_NAND;
-static const gl::GLenum GL_SET = gl::GLenum::GL_SET;
-
-// MaterialFace
-
-// static const gl::GLenum GL_FRONT = gl::GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const gl::GLenum GL_BACK = gl::GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const gl::GLenum GL_FRONT_AND_BACK = gl::GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-
-// MatrixMode
-
-static const gl::GLenum GL_TEXTURE = gl::GLenum::GL_TEXTURE;
-
-// MeshMode1
-
-static const gl::GLenum GL_POINT = gl::GLenum::GL_POINT;
-static const gl::GLenum GL_LINE = gl::GLenum::GL_LINE;
-
-// MeshMode2
-
-// static const gl::GLenum GL_POINT = gl::GLenum::GL_POINT; // reuse MeshMode1
-// static const gl::GLenum GL_LINE = gl::GLenum::GL_LINE; // reuse MeshMode1
-static const gl::GLenum GL_FILL = gl::GLenum::GL_FILL;
-
-// NormalPointerType
-
-// static const gl::GLenum GL_BYTE = gl::GLenum::GL_BYTE; // reuse ColorPointerType
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// PixelCopyType
-
-static const gl::GLenum GL_COLOR = gl::GLenum::GL_COLOR;
-static const gl::GLenum GL_DEPTH = gl::GLenum::GL_DEPTH;
-static const gl::GLenum GL_STENCIL = gl::GLenum::GL_STENCIL;
-
-// PixelFormat
-
-// static const gl::GLenum GL_UNSIGNED_SHORT = gl::GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_INT = gl::GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-static const gl::GLenum GL_STENCIL_INDEX = gl::GLenum::GL_STENCIL_INDEX;
-static const gl::GLenum GL_DEPTH_COMPONENT = gl::GLenum::GL_DEPTH_COMPONENT;
-static const gl::GLenum GL_RED = gl::GLenum::GL_RED;
-static const gl::GLenum GL_GREEN = gl::GLenum::GL_GREEN;
-static const gl::GLenum GL_BLUE = gl::GLenum::GL_BLUE;
-static const gl::GLenum GL_ALPHA = gl::GLenum::GL_ALPHA;
-static const gl::GLenum GL_RGB = gl::GLenum::GL_RGB;
-static const gl::GLenum GL_RGBA = gl::GLenum::GL_RGBA;
-
-// PixelStoreParameter
-
-// static const gl::GLenum GL_UNPACK_SWAP_BYTES = gl::GLenum::GL_UNPACK_SWAP_BYTES; // reuse GetPName
-// static const gl::GLenum GL_UNPACK_LSB_FIRST = gl::GLenum::GL_UNPACK_LSB_FIRST; // reuse GetPName
-// static const gl::GLenum GL_UNPACK_ROW_LENGTH = gl::GLenum::GL_UNPACK_ROW_LENGTH; // reuse GetPName
-// static const gl::GLenum GL_UNPACK_SKIP_ROWS = gl::GLenum::GL_UNPACK_SKIP_ROWS; // reuse GetPName
-// static const gl::GLenum GL_UNPACK_SKIP_PIXELS = gl::GLenum::GL_UNPACK_SKIP_PIXELS; // reuse GetPName
-// static const gl::GLenum GL_UNPACK_ALIGNMENT = gl::GLenum::GL_UNPACK_ALIGNMENT; // reuse GetPName
-// static const gl::GLenum GL_PACK_SWAP_BYTES = gl::GLenum::GL_PACK_SWAP_BYTES; // reuse GetPName
-// static const gl::GLenum GL_PACK_LSB_FIRST = gl::GLenum::GL_PACK_LSB_FIRST; // reuse GetPName
-// static const gl::GLenum GL_PACK_ROW_LENGTH = gl::GLenum::GL_PACK_ROW_LENGTH; // reuse GetPName
-// static const gl::GLenum GL_PACK_SKIP_ROWS = gl::GLenum::GL_PACK_SKIP_ROWS; // reuse GetPName
-// static const gl::GLenum GL_PACK_SKIP_PIXELS = gl::GLenum::GL_PACK_SKIP_PIXELS; // reuse GetPName
-// static const gl::GLenum GL_PACK_ALIGNMENT = gl::GLenum::GL_PACK_ALIGNMENT; // reuse GetPName
-static const gl::GLenum GL_PACK_SKIP_IMAGES = gl::GLenum::GL_PACK_SKIP_IMAGES;
-static const gl::GLenum GL_PACK_IMAGE_HEIGHT = gl::GLenum::GL_PACK_IMAGE_HEIGHT;
-static const gl::GLenum GL_UNPACK_SKIP_IMAGES = gl::GLenum::GL_UNPACK_SKIP_IMAGES;
-static const gl::GLenum GL_UNPACK_IMAGE_HEIGHT = gl::GLenum::GL_UNPACK_IMAGE_HEIGHT;
-
-// PixelTexGenMode
-
-// static const gl::GLenum GL_NONE = gl::GLenum::GL_NONE; // reuse DrawBufferMode
-// static const gl::GLenum GL_RGB = gl::GLenum::GL_RGB; // reuse PixelFormat
-// static const gl::GLenum GL_RGBA = gl::GLenum::GL_RGBA; // reuse PixelFormat
-
-// PixelType
-
-// static const gl::GLenum GL_BYTE = gl::GLenum::GL_BYTE; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_BYTE = gl::GLenum::GL_UNSIGNED_BYTE; // reuse ColorPointerType
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_SHORT = gl::GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_UNSIGNED_INT = gl::GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-static const gl::GLenum GL_UNSIGNED_BYTE_3_3_2 = gl::GLenum::GL_UNSIGNED_BYTE_3_3_2;
-static const gl::GLenum GL_UNSIGNED_SHORT_4_4_4_4 = gl::GLenum::GL_UNSIGNED_SHORT_4_4_4_4;
-static const gl::GLenum GL_UNSIGNED_SHORT_5_5_5_1 = gl::GLenum::GL_UNSIGNED_SHORT_5_5_5_1;
-static const gl::GLenum GL_UNSIGNED_INT_8_8_8_8 = gl::GLenum::GL_UNSIGNED_INT_8_8_8_8;
-static const gl::GLenum GL_UNSIGNED_INT_10_10_10_2 = gl::GLenum::GL_UNSIGNED_INT_10_10_10_2;
-
-// PointParameterNameSGIS
-
-static const gl::GLenum GL_POINT_FADE_THRESHOLD_SIZE = gl::GLenum::GL_POINT_FADE_THRESHOLD_SIZE;
-
-// PolygonMode
-
-// static const gl::GLenum GL_POINT = gl::GLenum::GL_POINT; // reuse MeshMode1
-// static const gl::GLenum GL_LINE = gl::GLenum::GL_LINE; // reuse MeshMode1
-// static const gl::GLenum GL_FILL = gl::GLenum::GL_FILL; // reuse MeshMode2
-
-// PrimitiveType
-
-static const gl::GLenum GL_POINTS = gl::GLenum::GL_POINTS;
-static const gl::GLenum GL_LINES = gl::GLenum::GL_LINES;
-static const gl::GLenum GL_LINE_LOOP = gl::GLenum::GL_LINE_LOOP;
-static const gl::GLenum GL_LINE_STRIP = gl::GLenum::GL_LINE_STRIP;
-static const gl::GLenum GL_TRIANGLES = gl::GLenum::GL_TRIANGLES;
-static const gl::GLenum GL_TRIANGLE_STRIP = gl::GLenum::GL_TRIANGLE_STRIP;
-static const gl::GLenum GL_TRIANGLE_FAN = gl::GLenum::GL_TRIANGLE_FAN;
-static const gl::GLenum GL_LINES_ADJACENCY = gl::GLenum::GL_LINES_ADJACENCY;
-static const gl::GLenum GL_LINE_STRIP_ADJACENCY = gl::GLenum::GL_LINE_STRIP_ADJACENCY;
-static const gl::GLenum GL_TRIANGLES_ADJACENCY = gl::GLenum::GL_TRIANGLES_ADJACENCY;
-static const gl::GLenum GL_TRIANGLE_STRIP_ADJACENCY = gl::GLenum::GL_TRIANGLE_STRIP_ADJACENCY;
-
-// ReadBufferMode
-
-// static const gl::GLenum GL_FRONT_LEFT = gl::GLenum::GL_FRONT_LEFT; // reuse DrawBufferMode
-// static const gl::GLenum GL_FRONT_RIGHT = gl::GLenum::GL_FRONT_RIGHT; // reuse DrawBufferMode
-// static const gl::GLenum GL_BACK_LEFT = gl::GLenum::GL_BACK_LEFT; // reuse DrawBufferMode
-// static const gl::GLenum GL_BACK_RIGHT = gl::GLenum::GL_BACK_RIGHT; // reuse DrawBufferMode
-// static const gl::GLenum GL_FRONT = gl::GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const gl::GLenum GL_BACK = gl::GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const gl::GLenum GL_LEFT = gl::GLenum::GL_LEFT; // reuse DrawBufferMode
-// static const gl::GLenum GL_RIGHT = gl::GLenum::GL_RIGHT; // reuse DrawBufferMode
-
-// StencilFunction
-
-// static const gl::GLenum GL_NEVER = gl::GLenum::GL_NEVER; // reuse AlphaFunction
-// static const gl::GLenum GL_LESS = gl::GLenum::GL_LESS; // reuse AlphaFunction
-// static const gl::GLenum GL_EQUAL = gl::GLenum::GL_EQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_LEQUAL = gl::GLenum::GL_LEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_GREATER = gl::GLenum::GL_GREATER; // reuse AlphaFunction
-// static const gl::GLenum GL_NOTEQUAL = gl::GLenum::GL_NOTEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_GEQUAL = gl::GLenum::GL_GEQUAL; // reuse AlphaFunction
-// static const gl::GLenum GL_ALWAYS = gl::GLenum::GL_ALWAYS; // reuse AlphaFunction
-
-// StencilOp
-
-// static const gl::GLenum GL_ZERO = gl::GLenum::GL_ZERO; // reuse BlendingFactorDest
-// static const gl::GLenum GL_INVERT = gl::GLenum::GL_INVERT; // reuse LogicOp
-static const gl::GLenum GL_KEEP = gl::GLenum::GL_KEEP;
-// static const gl::GLenum GL_REPLACE = gl::GLenum::GL_REPLACE; // reuse LightEnvModeSGIX
-static const gl::GLenum GL_INCR = gl::GLenum::GL_INCR;
-static const gl::GLenum GL_DECR = gl::GLenum::GL_DECR;
-
-// StringName
-
-static const gl::GLenum GL_VENDOR = gl::GLenum::GL_VENDOR;
-static const gl::GLenum GL_RENDERER = gl::GLenum::GL_RENDERER;
-static const gl::GLenum GL_VERSION = gl::GLenum::GL_VERSION;
-static const gl::GLenum GL_EXTENSIONS = gl::GLenum::GL_EXTENSIONS;
-
-// TexCoordPointerType
-
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// TextureEnvMode
-
-// static const gl::GLenum GL_BLEND = gl::GLenum::GL_BLEND; // reuse EnableCap
-
-// TextureMagFilter
-
-static const gl::GLenum GL_NEAREST = gl::GLenum::GL_NEAREST;
-// static const gl::GLenum GL_LINEAR = gl::GLenum::GL_LINEAR; // reuse FogMode
-
-// TextureMinFilter
-
-// static const gl::GLenum GL_NEAREST = gl::GLenum::GL_NEAREST; // reuse TextureMagFilter
-// static const gl::GLenum GL_LINEAR = gl::GLenum::GL_LINEAR; // reuse FogMode
-static const gl::GLenum GL_NEAREST_MIPMAP_NEAREST = gl::GLenum::GL_NEAREST_MIPMAP_NEAREST;
-static const gl::GLenum GL_LINEAR_MIPMAP_NEAREST = gl::GLenum::GL_LINEAR_MIPMAP_NEAREST;
-static const gl::GLenum GL_NEAREST_MIPMAP_LINEAR = gl::GLenum::GL_NEAREST_MIPMAP_LINEAR;
-static const gl::GLenum GL_LINEAR_MIPMAP_LINEAR = gl::GLenum::GL_LINEAR_MIPMAP_LINEAR;
-
-// TextureParameterName
-
-// static const gl::GLenum GL_TEXTURE_BORDER_COLOR = gl::GLenum::GL_TEXTURE_BORDER_COLOR; // reuse GetTextureParameter
-// static const gl::GLenum GL_TEXTURE_MAG_FILTER = gl::GLenum::GL_TEXTURE_MAG_FILTER; // reuse GetTextureParameter
-// static const gl::GLenum GL_TEXTURE_MIN_FILTER = gl::GLenum::GL_TEXTURE_MIN_FILTER; // reuse GetTextureParameter
-// static const gl::GLenum GL_TEXTURE_WRAP_S = gl::GLenum::GL_TEXTURE_WRAP_S; // reuse GetTextureParameter
-// static const gl::GLenum GL_TEXTURE_WRAP_T = gl::GLenum::GL_TEXTURE_WRAP_T; // reuse GetTextureParameter
-static const gl::GLenum GL_TEXTURE_WRAP_R = gl::GLenum::GL_TEXTURE_WRAP_R;
-
-// TextureTarget
-
-// static const gl::GLenum GL_TEXTURE_1D = gl::GLenum::GL_TEXTURE_1D; // reuse EnableCap
-// static const gl::GLenum GL_TEXTURE_2D = gl::GLenum::GL_TEXTURE_2D; // reuse EnableCap
-static const gl::GLenum GL_PROXY_TEXTURE_1D = gl::GLenum::GL_PROXY_TEXTURE_1D;
-static const gl::GLenum GL_PROXY_TEXTURE_2D = gl::GLenum::GL_PROXY_TEXTURE_2D;
-static const gl::GLenum GL_TEXTURE_3D = gl::GLenum::GL_TEXTURE_3D;
-static const gl::GLenum GL_PROXY_TEXTURE_3D = gl::GLenum::GL_PROXY_TEXTURE_3D;
-static const gl::GLenum GL_TEXTURE_MIN_LOD = gl::GLenum::GL_TEXTURE_MIN_LOD;
-static const gl::GLenum GL_TEXTURE_MAX_LOD = gl::GLenum::GL_TEXTURE_MAX_LOD;
-static const gl::GLenum GL_TEXTURE_BASE_LEVEL = gl::GLenum::GL_TEXTURE_BASE_LEVEL;
-static const gl::GLenum GL_TEXTURE_MAX_LEVEL = gl::GLenum::GL_TEXTURE_MAX_LEVEL;
-
-// TextureWrapMode
-
-static const gl::GLenum GL_REPEAT = gl::GLenum::GL_REPEAT;
-static const gl::GLenum GL_CLAMP_TO_BORDER = gl::GLenum::GL_CLAMP_TO_BORDER;
-static const gl::GLenum GL_CLAMP_TO_EDGE = gl::GLenum::GL_CLAMP_TO_EDGE;
-
-// VertexPointerType
-
-// static const gl::GLenum GL_SHORT = gl::GLenum::GL_SHORT; // reuse ColorPointerType
-// static const gl::GLenum GL_INT = gl::GLenum::GL_INT; // reuse ColorPointerType
-// static const gl::GLenum GL_FLOAT = gl::GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const gl::GLenum GL_DOUBLE = gl::GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// __UNGROUPED__
-
+static const gl::DrawBufferMode GL_NONE = gl::DrawBufferMode::GL_NONE;
+static const gl::ErrorCode GL_NO_ERROR = gl::ErrorCode::GL_NO_ERROR;
+static const gl::BlendingFactorDest GL_ZERO = gl::BlendingFactorDest::GL_ZERO;
+static const gl::PrimitiveType GL_POINTS = gl::PrimitiveType::GL_POINTS;
+static const gl::PrimitiveType GL_LINES = gl::PrimitiveType::GL_LINES;
+static const gl::PrimitiveType GL_LINE_LOOP = gl::PrimitiveType::GL_LINE_LOOP;
+static const gl::PrimitiveType GL_LINE_STRIP = gl::PrimitiveType::GL_LINE_STRIP;
+static const gl::PrimitiveType GL_TRIANGLES = gl::PrimitiveType::GL_TRIANGLES;
+static const gl::PrimitiveType GL_TRIANGLE_STRIP = gl::PrimitiveType::GL_TRIANGLE_STRIP;
+static const gl::PrimitiveType GL_TRIANGLE_FAN = gl::PrimitiveType::GL_TRIANGLE_FAN;
+static const gl::PrimitiveType GL_LINES_ADJACENCY = gl::PrimitiveType::GL_LINES_ADJACENCY;
+static const gl::PrimitiveType GL_LINE_STRIP_ADJACENCY = gl::PrimitiveType::GL_LINE_STRIP_ADJACENCY;
+static const gl::PrimitiveType GL_TRIANGLES_ADJACENCY = gl::PrimitiveType::GL_TRIANGLES_ADJACENCY;
+static const gl::PrimitiveType GL_TRIANGLE_STRIP_ADJACENCY = gl::PrimitiveType::GL_TRIANGLE_STRIP_ADJACENCY;
+static const gl::AlphaFunction GL_NEVER = gl::AlphaFunction::GL_NEVER;
+static const gl::AlphaFunction GL_LESS = gl::AlphaFunction::GL_LESS;
+static const gl::AlphaFunction GL_EQUAL = gl::AlphaFunction::GL_EQUAL;
+static const gl::AlphaFunction GL_LEQUAL = gl::AlphaFunction::GL_LEQUAL;
+static const gl::AlphaFunction GL_GREATER = gl::AlphaFunction::GL_GREATER;
+static const gl::AlphaFunction GL_NOTEQUAL = gl::AlphaFunction::GL_NOTEQUAL;
+static const gl::AlphaFunction GL_GEQUAL = gl::AlphaFunction::GL_GEQUAL;
+static const gl::AlphaFunction GL_ALWAYS = gl::AlphaFunction::GL_ALWAYS;
+static const gl::BlendingFactorDest GL_SRC_COLOR = gl::BlendingFactorDest::GL_SRC_COLOR;
+static const gl::BlendingFactorDest GL_ONE_MINUS_SRC_COLOR = gl::BlendingFactorDest::GL_ONE_MINUS_SRC_COLOR;
+static const gl::BlendingFactorDest GL_SRC_ALPHA = gl::BlendingFactorDest::GL_SRC_ALPHA;
+static const gl::BlendingFactorDest GL_ONE_MINUS_SRC_ALPHA = gl::BlendingFactorDest::GL_ONE_MINUS_SRC_ALPHA;
+static const gl::BlendingFactorDest GL_DST_ALPHA = gl::BlendingFactorDest::GL_DST_ALPHA;
+static const gl::BlendingFactorDest GL_ONE_MINUS_DST_ALPHA = gl::BlendingFactorDest::GL_ONE_MINUS_DST_ALPHA;
+static const gl::BlendingFactorSrc GL_DST_COLOR = gl::BlendingFactorSrc::GL_DST_COLOR;
+static const gl::BlendingFactorSrc GL_ONE_MINUS_DST_COLOR = gl::BlendingFactorSrc::GL_ONE_MINUS_DST_COLOR;
+static const gl::BlendingFactorSrc GL_SRC_ALPHA_SATURATE = gl::BlendingFactorSrc::GL_SRC_ALPHA_SATURATE;
+static const gl::DrawBufferMode GL_FRONT_LEFT = gl::DrawBufferMode::GL_FRONT_LEFT;
+static const gl::DrawBufferMode GL_FRONT_RIGHT = gl::DrawBufferMode::GL_FRONT_RIGHT;
+static const gl::DrawBufferMode GL_BACK_LEFT = gl::DrawBufferMode::GL_BACK_LEFT;
+static const gl::DrawBufferMode GL_BACK_RIGHT = gl::DrawBufferMode::GL_BACK_RIGHT;
+static const gl::ColorMaterialFace GL_FRONT = gl::ColorMaterialFace::GL_FRONT;
+static const gl::ColorMaterialFace GL_BACK = gl::ColorMaterialFace::GL_BACK;
+static const gl::DrawBufferMode GL_LEFT = gl::DrawBufferMode::GL_LEFT;
+static const gl::DrawBufferMode GL_RIGHT = gl::DrawBufferMode::GL_RIGHT;
+static const gl::ColorMaterialFace GL_FRONT_AND_BACK = gl::ColorMaterialFace::GL_FRONT_AND_BACK;
+static const gl::ErrorCode GL_INVALID_ENUM = gl::ErrorCode::GL_INVALID_ENUM;
+static const gl::ErrorCode GL_INVALID_VALUE = gl::ErrorCode::GL_INVALID_VALUE;
+static const gl::ErrorCode GL_INVALID_OPERATION = gl::ErrorCode::GL_INVALID_OPERATION;
+static const gl::ErrorCode GL_OUT_OF_MEMORY = gl::ErrorCode::GL_OUT_OF_MEMORY;
+static const gl::ErrorCode GL_INVALID_FRAMEBUFFER_OPERATION = gl::ErrorCode::GL_INVALID_FRAMEBUFFER_OPERATION;
+static const gl::FrontFaceDirection GL_CW = gl::FrontFaceDirection::GL_CW;
+static const gl::FrontFaceDirection GL_CCW = gl::FrontFaceDirection::GL_CCW;
+static const gl::GetPName GL_POINT_SIZE = gl::GetPName::GL_POINT_SIZE;
+static const gl::GetPName GL_POINT_SIZE_RANGE = gl::GetPName::GL_POINT_SIZE_RANGE;
+static const gl::GetPName GL_SMOOTH_POINT_SIZE_RANGE = gl::GetPName::GL_SMOOTH_POINT_SIZE_RANGE;
+static const gl::GetPName GL_POINT_SIZE_GRANULARITY = gl::GetPName::GL_POINT_SIZE_GRANULARITY;
+static const gl::GetPName GL_SMOOTH_POINT_SIZE_GRANULARITY = gl::GetPName::GL_SMOOTH_POINT_SIZE_GRANULARITY;
+static const gl::EnableCap GL_LINE_SMOOTH = gl::EnableCap::GL_LINE_SMOOTH;
+static const gl::GetPName GL_LINE_WIDTH = gl::GetPName::GL_LINE_WIDTH;
+static const gl::GetPName GL_LINE_WIDTH_RANGE = gl::GetPName::GL_LINE_WIDTH_RANGE;
+static const gl::GetPName GL_SMOOTH_LINE_WIDTH_RANGE = gl::GetPName::GL_SMOOTH_LINE_WIDTH_RANGE;
+static const gl::GetPName GL_LINE_WIDTH_GRANULARITY = gl::GetPName::GL_LINE_WIDTH_GRANULARITY;
+static const gl::GetPName GL_SMOOTH_LINE_WIDTH_GRANULARITY = gl::GetPName::GL_SMOOTH_LINE_WIDTH_GRANULARITY;
+static const gl::GetPName GL_POLYGON_MODE = gl::GetPName::GL_POLYGON_MODE;
+static const gl::EnableCap GL_POLYGON_SMOOTH = gl::EnableCap::GL_POLYGON_SMOOTH;
+static const gl::EnableCap GL_CULL_FACE = gl::EnableCap::GL_CULL_FACE;
+static const gl::GetPName GL_CULL_FACE_MODE = gl::GetPName::GL_CULL_FACE_MODE;
+static const gl::GetPName GL_FRONT_FACE = gl::GetPName::GL_FRONT_FACE;
+static const gl::GetPName GL_DEPTH_RANGE = gl::GetPName::GL_DEPTH_RANGE;
+static const gl::EnableCap GL_DEPTH_TEST = gl::EnableCap::GL_DEPTH_TEST;
+static const gl::GetPName GL_DEPTH_WRITEMASK = gl::GetPName::GL_DEPTH_WRITEMASK;
+static const gl::GetPName GL_DEPTH_CLEAR_VALUE = gl::GetPName::GL_DEPTH_CLEAR_VALUE;
+static const gl::GetPName GL_DEPTH_FUNC = gl::GetPName::GL_DEPTH_FUNC;
+static const gl::EnableCap GL_STENCIL_TEST = gl::EnableCap::GL_STENCIL_TEST;
+static const gl::GetPName GL_STENCIL_CLEAR_VALUE = gl::GetPName::GL_STENCIL_CLEAR_VALUE;
+static const gl::GetPName GL_STENCIL_FUNC = gl::GetPName::GL_STENCIL_FUNC;
+static const gl::GetPName GL_STENCIL_VALUE_MASK = gl::GetPName::GL_STENCIL_VALUE_MASK;
+static const gl::GetPName GL_STENCIL_FAIL = gl::GetPName::GL_STENCIL_FAIL;
+static const gl::GetPName GL_STENCIL_PASS_DEPTH_FAIL = gl::GetPName::GL_STENCIL_PASS_DEPTH_FAIL;
+static const gl::GetPName GL_STENCIL_PASS_DEPTH_PASS = gl::GetPName::GL_STENCIL_PASS_DEPTH_PASS;
+static const gl::GetPName GL_STENCIL_REF = gl::GetPName::GL_STENCIL_REF;
+static const gl::GetPName GL_STENCIL_WRITEMASK = gl::GetPName::GL_STENCIL_WRITEMASK;
+static const gl::GetPName GL_VIEWPORT = gl::GetPName::GL_VIEWPORT;
+static const gl::EnableCap GL_DITHER = gl::EnableCap::GL_DITHER;
+static const gl::GetPName GL_BLEND_DST = gl::GetPName::GL_BLEND_DST;
+static const gl::GetPName GL_BLEND_SRC = gl::GetPName::GL_BLEND_SRC;
+static const gl::EnableCap GL_BLEND = gl::EnableCap::GL_BLEND;
+static const gl::GetPName GL_LOGIC_OP_MODE = gl::GetPName::GL_LOGIC_OP_MODE;
+static const gl::EnableCap GL_COLOR_LOGIC_OP = gl::EnableCap::GL_COLOR_LOGIC_OP;
+static const gl::GetPName GL_DRAW_BUFFER = gl::GetPName::GL_DRAW_BUFFER;
+static const gl::GetPName GL_READ_BUFFER = gl::GetPName::GL_READ_BUFFER;
+static const gl::GetPName GL_SCISSOR_BOX = gl::GetPName::GL_SCISSOR_BOX;
+static const gl::EnableCap GL_SCISSOR_TEST = gl::EnableCap::GL_SCISSOR_TEST;
+static const gl::GetPName GL_COLOR_CLEAR_VALUE = gl::GetPName::GL_COLOR_CLEAR_VALUE;
+static const gl::GetPName GL_COLOR_WRITEMASK = gl::GetPName::GL_COLOR_WRITEMASK;
+static const gl::GetPName GL_DOUBLEBUFFER = gl::GetPName::GL_DOUBLEBUFFER;
+static const gl::GetPName GL_STEREO = gl::GetPName::GL_STEREO;
+static const gl::GetPName GL_LINE_SMOOTH_HINT = gl::GetPName::GL_LINE_SMOOTH_HINT;
+static const gl::GetPName GL_POLYGON_SMOOTH_HINT = gl::GetPName::GL_POLYGON_SMOOTH_HINT;
+static const gl::GetPName GL_UNPACK_SWAP_BYTES = gl::GetPName::GL_UNPACK_SWAP_BYTES;
+static const gl::GetPName GL_UNPACK_LSB_FIRST = gl::GetPName::GL_UNPACK_LSB_FIRST;
+static const gl::GetPName GL_UNPACK_ROW_LENGTH = gl::GetPName::GL_UNPACK_ROW_LENGTH;
+static const gl::GetPName GL_UNPACK_SKIP_ROWS = gl::GetPName::GL_UNPACK_SKIP_ROWS;
+static const gl::GetPName GL_UNPACK_SKIP_PIXELS = gl::GetPName::GL_UNPACK_SKIP_PIXELS;
+static const gl::GetPName GL_UNPACK_ALIGNMENT = gl::GetPName::GL_UNPACK_ALIGNMENT;
+static const gl::GetPName GL_PACK_SWAP_BYTES = gl::GetPName::GL_PACK_SWAP_BYTES;
+static const gl::GetPName GL_PACK_LSB_FIRST = gl::GetPName::GL_PACK_LSB_FIRST;
+static const gl::GetPName GL_PACK_ROW_LENGTH = gl::GetPName::GL_PACK_ROW_LENGTH;
+static const gl::GetPName GL_PACK_SKIP_ROWS = gl::GetPName::GL_PACK_SKIP_ROWS;
+static const gl::GetPName GL_PACK_SKIP_PIXELS = gl::GetPName::GL_PACK_SKIP_PIXELS;
+static const gl::GetPName GL_PACK_ALIGNMENT = gl::GetPName::GL_PACK_ALIGNMENT;
+static const gl::GetPName GL_MAX_CLIP_DISTANCES = gl::GetPName::GL_MAX_CLIP_DISTANCES;
+static const gl::GetPName GL_MAX_TEXTURE_SIZE = gl::GetPName::GL_MAX_TEXTURE_SIZE;
+static const gl::GetPName GL_MAX_VIEWPORT_DIMS = gl::GetPName::GL_MAX_VIEWPORT_DIMS;
+static const gl::GetPName GL_SUBPIXEL_BITS = gl::GetPName::GL_SUBPIXEL_BITS;
+static const gl::EnableCap GL_TEXTURE_1D = gl::EnableCap::GL_TEXTURE_1D;
+static const gl::EnableCap GL_TEXTURE_2D = gl::EnableCap::GL_TEXTURE_2D;
+static const gl::GetTextureParameter GL_TEXTURE_WIDTH = gl::GetTextureParameter::GL_TEXTURE_WIDTH;
+static const gl::GetTextureParameter GL_TEXTURE_HEIGHT = gl::GetTextureParameter::GL_TEXTURE_HEIGHT;
+static const gl::GetTextureParameter GL_TEXTURE_INTERNAL_FORMAT = gl::GetTextureParameter::GL_TEXTURE_INTERNAL_FORMAT;
+static const gl::GetTextureParameter GL_TEXTURE_BORDER_COLOR = gl::GetTextureParameter::GL_TEXTURE_BORDER_COLOR;
+static const gl::HintMode GL_DONT_CARE = gl::HintMode::GL_DONT_CARE;
+static const gl::HintMode GL_FASTEST = gl::HintMode::GL_FASTEST;
+static const gl::HintMode GL_NICEST = gl::HintMode::GL_NICEST;
+static const gl::ColorPointerType GL_BYTE = gl::ColorPointerType::GL_BYTE;
+static const gl::ColorPointerType GL_UNSIGNED_BYTE = gl::ColorPointerType::GL_UNSIGNED_BYTE;
+static const gl::ColorPointerType GL_SHORT = gl::ColorPointerType::GL_SHORT;
+static const gl::ColorPointerType GL_UNSIGNED_SHORT = gl::ColorPointerType::GL_UNSIGNED_SHORT;
+static const gl::ColorPointerType GL_INT = gl::ColorPointerType::GL_INT;
+static const gl::ColorPointerType GL_UNSIGNED_INT = gl::ColorPointerType::GL_UNSIGNED_INT;
+static const gl::ColorPointerType GL_FLOAT = gl::ColorPointerType::GL_FLOAT;
+static const gl::ColorPointerType GL_DOUBLE = gl::ColorPointerType::GL_DOUBLE;
 static const gl::GLenum GL_HALF_FLOAT = gl::GLenum::GL_HALF_FLOAT;
+static const gl::LogicOp GL_CLEAR = gl::LogicOp::GL_CLEAR;
+static const gl::LogicOp GL_AND = gl::LogicOp::GL_AND;
+static const gl::LogicOp GL_AND_REVERSE = gl::LogicOp::GL_AND_REVERSE;
+static const gl::LogicOp GL_COPY = gl::LogicOp::GL_COPY;
+static const gl::LogicOp GL_AND_INVERTED = gl::LogicOp::GL_AND_INVERTED;
+static const gl::LogicOp GL_NOOP = gl::LogicOp::GL_NOOP;
+static const gl::LogicOp GL_XOR = gl::LogicOp::GL_XOR;
+static const gl::LogicOp GL_OR = gl::LogicOp::GL_OR;
+static const gl::LogicOp GL_NOR = gl::LogicOp::GL_NOR;
+static const gl::LogicOp GL_EQUIV = gl::LogicOp::GL_EQUIV;
+static const gl::LogicOp GL_INVERT = gl::LogicOp::GL_INVERT;
+static const gl::LogicOp GL_OR_REVERSE = gl::LogicOp::GL_OR_REVERSE;
+static const gl::LogicOp GL_COPY_INVERTED = gl::LogicOp::GL_COPY_INVERTED;
+static const gl::LogicOp GL_OR_INVERTED = gl::LogicOp::GL_OR_INVERTED;
+static const gl::LogicOp GL_NAND = gl::LogicOp::GL_NAND;
+static const gl::LogicOp GL_SET = gl::LogicOp::GL_SET;
+static const gl::MatrixMode GL_TEXTURE = gl::MatrixMode::GL_TEXTURE;
+static const gl::PixelCopyType GL_COLOR = gl::PixelCopyType::GL_COLOR;
+static const gl::PixelCopyType GL_DEPTH = gl::PixelCopyType::GL_DEPTH;
+static const gl::PixelCopyType GL_STENCIL = gl::PixelCopyType::GL_STENCIL;
+static const gl::PixelFormat GL_STENCIL_INDEX = gl::PixelFormat::GL_STENCIL_INDEX;
+static const gl::PixelFormat GL_DEPTH_COMPONENT = gl::PixelFormat::GL_DEPTH_COMPONENT;
+static const gl::PixelFormat GL_RED = gl::PixelFormat::GL_RED;
+static const gl::PixelFormat GL_GREEN = gl::PixelFormat::GL_GREEN;
+static const gl::PixelFormat GL_BLUE = gl::PixelFormat::GL_BLUE;
+static const gl::PixelFormat GL_ALPHA = gl::PixelFormat::GL_ALPHA;
+static const gl::PixelFormat GL_RGB = gl::PixelFormat::GL_RGB;
+static const gl::PixelFormat GL_RGBA = gl::PixelFormat::GL_RGBA;
+static const gl::MeshMode1 GL_POINT = gl::MeshMode1::GL_POINT;
+static const gl::MeshMode1 GL_LINE = gl::MeshMode1::GL_LINE;
+static const gl::MeshMode2 GL_FILL = gl::MeshMode2::GL_FILL;
+static const gl::StencilOp GL_KEEP = gl::StencilOp::GL_KEEP;
+static const gl::LightEnvModeSGIX GL_REPLACE = gl::LightEnvModeSGIX::GL_REPLACE;
+static const gl::StencilOp GL_INCR = gl::StencilOp::GL_INCR;
+static const gl::StencilOp GL_DECR = gl::StencilOp::GL_DECR;
+static const gl::StringName GL_VENDOR = gl::StringName::GL_VENDOR;
+static const gl::StringName GL_RENDERER = gl::StringName::GL_RENDERER;
+static const gl::StringName GL_VERSION = gl::StringName::GL_VERSION;
+static const gl::StringName GL_EXTENSIONS = gl::StringName::GL_EXTENSIONS;
+static const gl::TextureMagFilter GL_NEAREST = gl::TextureMagFilter::GL_NEAREST;
+static const gl::FogMode GL_LINEAR = gl::FogMode::GL_LINEAR;
+static const gl::TextureMinFilter GL_NEAREST_MIPMAP_NEAREST = gl::TextureMinFilter::GL_NEAREST_MIPMAP_NEAREST;
+static const gl::TextureMinFilter GL_LINEAR_MIPMAP_NEAREST = gl::TextureMinFilter::GL_LINEAR_MIPMAP_NEAREST;
+static const gl::TextureMinFilter GL_NEAREST_MIPMAP_LINEAR = gl::TextureMinFilter::GL_NEAREST_MIPMAP_LINEAR;
+static const gl::TextureMinFilter GL_LINEAR_MIPMAP_LINEAR = gl::TextureMinFilter::GL_LINEAR_MIPMAP_LINEAR;
+static const gl::GetTextureParameter GL_TEXTURE_MAG_FILTER = gl::GetTextureParameter::GL_TEXTURE_MAG_FILTER;
+static const gl::GetTextureParameter GL_TEXTURE_MIN_FILTER = gl::GetTextureParameter::GL_TEXTURE_MIN_FILTER;
+static const gl::GetTextureParameter GL_TEXTURE_WRAP_S = gl::GetTextureParameter::GL_TEXTURE_WRAP_S;
+static const gl::GetTextureParameter GL_TEXTURE_WRAP_T = gl::GetTextureParameter::GL_TEXTURE_WRAP_T;
+static const gl::TextureWrapMode GL_REPEAT = gl::TextureWrapMode::GL_REPEAT;
+static const gl::GetPName GL_POLYGON_OFFSET_UNITS = gl::GetPName::GL_POLYGON_OFFSET_UNITS;
+static const gl::EnableCap GL_POLYGON_OFFSET_POINT = gl::EnableCap::GL_POLYGON_OFFSET_POINT;
+static const gl::EnableCap GL_POLYGON_OFFSET_LINE = gl::EnableCap::GL_POLYGON_OFFSET_LINE;
+static const gl::InternalFormat GL_R3_G3_B2 = gl::InternalFormat::GL_R3_G3_B2;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE0 = gl::ClipPlaneName::GL_CLIP_DISTANCE0;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE1 = gl::ClipPlaneName::GL_CLIP_DISTANCE1;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE2 = gl::ClipPlaneName::GL_CLIP_DISTANCE2;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE3 = gl::ClipPlaneName::GL_CLIP_DISTANCE3;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE4 = gl::ClipPlaneName::GL_CLIP_DISTANCE4;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE5 = gl::ClipPlaneName::GL_CLIP_DISTANCE5;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE6 = gl::ClipPlaneName::GL_CLIP_DISTANCE6;
+static const gl::ClipPlaneName GL_CLIP_DISTANCE7 = gl::ClipPlaneName::GL_CLIP_DISTANCE7;
 static const gl::GLenum GL_CONSTANT_COLOR = gl::GLenum::GL_CONSTANT_COLOR;
 static const gl::GLenum GL_ONE_MINUS_CONSTANT_COLOR = gl::GLenum::GL_ONE_MINUS_CONSTANT_COLOR;
 static const gl::GLenum GL_CONSTANT_ALPHA = gl::GLenum::GL_CONSTANT_ALPHA;
@@ -539,7 +211,43 @@ static const gl::GLenum GL_MAX = gl::GLenum::GL_MAX;
 static const gl::GLenum GL_BLEND_EQUATION_RGB = gl::GLenum::GL_BLEND_EQUATION_RGB;
 static const gl::GLenum GL_FUNC_SUBTRACT = gl::GLenum::GL_FUNC_SUBTRACT;
 static const gl::GLenum GL_FUNC_REVERSE_SUBTRACT = gl::GLenum::GL_FUNC_REVERSE_SUBTRACT;
+static const gl::PixelType GL_UNSIGNED_BYTE_3_3_2 = gl::PixelType::GL_UNSIGNED_BYTE_3_3_2;
+static const gl::PixelType GL_UNSIGNED_SHORT_4_4_4_4 = gl::PixelType::GL_UNSIGNED_SHORT_4_4_4_4;
+static const gl::PixelType GL_UNSIGNED_SHORT_5_5_5_1 = gl::PixelType::GL_UNSIGNED_SHORT_5_5_5_1;
+static const gl::PixelType GL_UNSIGNED_INT_8_8_8_8 = gl::PixelType::GL_UNSIGNED_INT_8_8_8_8;
+static const gl::PixelType GL_UNSIGNED_INT_10_10_10_2 = gl::PixelType::GL_UNSIGNED_INT_10_10_10_2;
+static const gl::EnableCap GL_POLYGON_OFFSET_FILL = gl::EnableCap::GL_POLYGON_OFFSET_FILL;
+static const gl::GetPName GL_POLYGON_OFFSET_FACTOR = gl::GetPName::GL_POLYGON_OFFSET_FACTOR;
+static const gl::InternalFormat GL_RGB4 = gl::InternalFormat::GL_RGB4;
+static const gl::InternalFormat GL_RGB5 = gl::InternalFormat::GL_RGB5;
+static const gl::InternalFormat GL_RGB8 = gl::InternalFormat::GL_RGB8;
+static const gl::InternalFormat GL_RGB10 = gl::InternalFormat::GL_RGB10;
+static const gl::InternalFormat GL_RGB12 = gl::InternalFormat::GL_RGB12;
+static const gl::InternalFormat GL_RGB16 = gl::InternalFormat::GL_RGB16;
+static const gl::InternalFormat GL_RGBA2 = gl::InternalFormat::GL_RGBA2;
+static const gl::InternalFormat GL_RGBA4 = gl::InternalFormat::GL_RGBA4;
+static const gl::InternalFormat GL_RGB5_A1 = gl::InternalFormat::GL_RGB5_A1;
+static const gl::InternalFormat GL_RGBA8 = gl::InternalFormat::GL_RGBA8;
+static const gl::InternalFormat GL_RGB10_A2 = gl::InternalFormat::GL_RGB10_A2;
+static const gl::InternalFormat GL_RGBA12 = gl::InternalFormat::GL_RGBA12;
+static const gl::InternalFormat GL_RGBA16 = gl::InternalFormat::GL_RGBA16;
+static const gl::GetTextureParameter GL_TEXTURE_RED_SIZE = gl::GetTextureParameter::GL_TEXTURE_RED_SIZE;
+static const gl::GetTextureParameter GL_TEXTURE_GREEN_SIZE = gl::GetTextureParameter::GL_TEXTURE_GREEN_SIZE;
+static const gl::GetTextureParameter GL_TEXTURE_BLUE_SIZE = gl::GetTextureParameter::GL_TEXTURE_BLUE_SIZE;
+static const gl::GetTextureParameter GL_TEXTURE_ALPHA_SIZE = gl::GetTextureParameter::GL_TEXTURE_ALPHA_SIZE;
+static const gl::TextureTarget GL_PROXY_TEXTURE_1D = gl::TextureTarget::GL_PROXY_TEXTURE_1D;
+static const gl::TextureTarget GL_PROXY_TEXTURE_2D = gl::TextureTarget::GL_PROXY_TEXTURE_2D;
+static const gl::GetPName GL_TEXTURE_BINDING_1D = gl::GetPName::GL_TEXTURE_BINDING_1D;
+static const gl::GetPName GL_TEXTURE_BINDING_2D = gl::GetPName::GL_TEXTURE_BINDING_2D;
+static const gl::GetPName GL_TEXTURE_BINDING_3D = gl::GetPName::GL_TEXTURE_BINDING_3D;
+static const gl::PixelStoreParameter GL_PACK_SKIP_IMAGES = gl::PixelStoreParameter::GL_PACK_SKIP_IMAGES;
+static const gl::PixelStoreParameter GL_PACK_IMAGE_HEIGHT = gl::PixelStoreParameter::GL_PACK_IMAGE_HEIGHT;
+static const gl::PixelStoreParameter GL_UNPACK_SKIP_IMAGES = gl::PixelStoreParameter::GL_UNPACK_SKIP_IMAGES;
+static const gl::PixelStoreParameter GL_UNPACK_IMAGE_HEIGHT = gl::PixelStoreParameter::GL_UNPACK_IMAGE_HEIGHT;
+static const gl::TextureTarget GL_TEXTURE_3D = gl::TextureTarget::GL_TEXTURE_3D;
+static const gl::TextureTarget GL_PROXY_TEXTURE_3D = gl::TextureTarget::GL_PROXY_TEXTURE_3D;
 static const gl::GLenum GL_TEXTURE_DEPTH = gl::GLenum::GL_TEXTURE_DEPTH;
+static const gl::TextureParameterName GL_TEXTURE_WRAP_R = gl::TextureParameterName::GL_TEXTURE_WRAP_R;
 static const gl::GLenum GL_MAX_3D_TEXTURE_SIZE = gl::GLenum::GL_MAX_3D_TEXTURE_SIZE;
 static const gl::GLenum GL_MULTISAMPLE = gl::GLenum::GL_MULTISAMPLE;
 static const gl::GLenum GL_SAMPLE_ALPHA_TO_COVERAGE = gl::GLenum::GL_SAMPLE_ALPHA_TO_COVERAGE;
@@ -557,6 +265,13 @@ static const gl::GLenum GL_BGR = gl::GLenum::GL_BGR;
 static const gl::GLenum GL_BGRA = gl::GLenum::GL_BGRA;
 static const gl::GLenum GL_MAX_ELEMENTS_VERTICES = gl::GLenum::GL_MAX_ELEMENTS_VERTICES;
 static const gl::GLenum GL_MAX_ELEMENTS_INDICES = gl::GLenum::GL_MAX_ELEMENTS_INDICES;
+static const gl::PointParameterNameSGIS GL_POINT_FADE_THRESHOLD_SIZE = gl::PointParameterNameSGIS::GL_POINT_FADE_THRESHOLD_SIZE;
+static const gl::TextureWrapMode GL_CLAMP_TO_BORDER = gl::TextureWrapMode::GL_CLAMP_TO_BORDER;
+static const gl::TextureWrapMode GL_CLAMP_TO_EDGE = gl::TextureWrapMode::GL_CLAMP_TO_EDGE;
+static const gl::TextureTarget GL_TEXTURE_MIN_LOD = gl::TextureTarget::GL_TEXTURE_MIN_LOD;
+static const gl::TextureTarget GL_TEXTURE_MAX_LOD = gl::TextureTarget::GL_TEXTURE_MAX_LOD;
+static const gl::TextureTarget GL_TEXTURE_BASE_LEVEL = gl::TextureTarget::GL_TEXTURE_BASE_LEVEL;
+static const gl::TextureTarget GL_TEXTURE_MAX_LEVEL = gl::TextureTarget::GL_TEXTURE_MAX_LEVEL;
 static const gl::GLenum GL_DEPTH_COMPONENT16 = gl::GLenum::GL_DEPTH_COMPONENT16;
 static const gl::GLenum GL_DEPTH_COMPONENT24 = gl::GLenum::GL_DEPTH_COMPONENT24;
 static const gl::GLenum GL_DEPTH_COMPONENT32 = gl::GLenum::GL_DEPTH_COMPONENT32;
@@ -608,6 +323,7 @@ static const gl::GLenum GL_UNSIGNED_SHORT_1_5_5_5_REV = gl::GLenum::GL_UNSIGNED_
 static const gl::GLenum GL_UNSIGNED_INT_8_8_8_8_REV = gl::GLenum::GL_UNSIGNED_INT_8_8_8_8_REV;
 static const gl::GLenum GL_UNSIGNED_INT_2_10_10_10_REV = gl::GLenum::GL_UNSIGNED_INT_2_10_10_10_REV;
 static const gl::GLenum GL_MIRRORED_REPEAT = gl::GLenum::GL_MIRRORED_REPEAT;
+static const gl::GetPName GL_ALIASED_LINE_WIDTH_RANGE = gl::GetPName::GL_ALIASED_LINE_WIDTH_RANGE;
 static const gl::GLenum GL_TEXTURE0 = gl::GLenum::GL_TEXTURE0;
 static const gl::GLenum GL_TEXTURE1 = gl::GLenum::GL_TEXTURE1;
 static const gl::GLenum GL_TEXTURE2 = gl::GLenum::GL_TEXTURE2;
@@ -644,6 +360,7 @@ static const gl::GLenum GL_ACTIVE_TEXTURE = gl::GLenum::GL_ACTIVE_TEXTURE;
 static const gl::GLenum GL_MAX_RENDERBUFFER_SIZE = gl::GLenum::GL_MAX_RENDERBUFFER_SIZE;
 static const gl::GLenum GL_COMPRESSED_RGB = gl::GLenum::GL_COMPRESSED_RGB;
 static const gl::GLenum GL_COMPRESSED_RGBA = gl::GLenum::GL_COMPRESSED_RGBA;
+static const gl::HintTarget GL_TEXTURE_COMPRESSION_HINT = gl::HintTarget::GL_TEXTURE_COMPRESSION_HINT;
 static const gl::GLenum GL_TEXTURE_RECTANGLE = gl::GLenum::GL_TEXTURE_RECTANGLE;
 static const gl::GLenum GL_TEXTURE_BINDING_RECTANGLE = gl::GLenum::GL_TEXTURE_BINDING_RECTANGLE;
 static const gl::GLenum GL_PROXY_TEXTURE_RECTANGLE = gl::GLenum::GL_PROXY_TEXTURE_RECTANGLE;
@@ -841,6 +558,7 @@ static const gl::GLenum GL_ACTIVE_UNIFORM_MAX_LENGTH = gl::GLenum::GL_ACTIVE_UNI
 static const gl::GLenum GL_SHADER_SOURCE_LENGTH = gl::GLenum::GL_SHADER_SOURCE_LENGTH;
 static const gl::GLenum GL_ACTIVE_ATTRIBUTES = gl::GLenum::GL_ACTIVE_ATTRIBUTES;
 static const gl::GLenum GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = gl::GLenum::GL_ACTIVE_ATTRIBUTE_MAX_LENGTH;
+static const gl::HintTarget GL_FRAGMENT_SHADER_DERIVATIVE_HINT = gl::HintTarget::GL_FRAGMENT_SHADER_DERIVATIVE_HINT;
 static const gl::GLenum GL_SHADING_LANGUAGE_VERSION = gl::GLenum::GL_SHADING_LANGUAGE_VERSION;
 static const gl::GLenum GL_ACTIVE_PROGRAM_EXT = gl::GLenum::GL_ACTIVE_PROGRAM_EXT;
 static const gl::GLenum GL_CURRENT_PROGRAM = gl::GLenum::GL_CURRENT_PROGRAM;
@@ -1079,5 +797,6 @@ static const gl::GLenum GL_MAX_GEOMETRY_INPUT_COMPONENTS = gl::GLenum::GL_MAX_GE
 static const gl::GLenum GL_MAX_GEOMETRY_OUTPUT_COMPONENTS = gl::GLenum::GL_MAX_GEOMETRY_OUTPUT_COMPONENTS;
 static const gl::GLenum GL_MAX_FRAGMENT_INPUT_COMPONENTS = gl::GLenum::GL_MAX_FRAGMENT_INPUT_COMPONENTS;
 static const gl::GLenum GL_CONTEXT_PROFILE_MASK = gl::GLenum::GL_CONTEXT_PROFILE_MASK;
+static const gl::BlendingFactorDest GL_ONE = gl::BlendingFactorDest::GL_ONE;
 
 } // namespace gl33core

@@ -17,12 +17,12 @@ def multilineConvertTypedef(type):
     return "\n".join([ convertTypedefLine(line, type.name) for line in type.value.split('\n') ])
 
 
-enum_classes = [ "GLboolean", "GLenum" ]
+enum_classes = [ "GLboolean" ]
 
 type_integration_map = {
     "GLextension" : [ "hashable", "streamable" ], 
     "GLboolean"   : [ "hashable", "streamable" ],
-    "GLenum"      : [ "hashable", "streamable", "addable", "comparable" ]
+  # "GLenum"      : [ "hashable", "streamable", "addable", "comparable" ]
 }
 
 

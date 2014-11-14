@@ -53,10 +53,10 @@ enum class BufferAccessMask : unsigned int
 
 enum class ClearBufferMask : unsigned int
 {
-    GL_DEPTH_BUFFER_BIT       = 0x00000100, // reuse from AttribMask
-    GL_ACCUM_BUFFER_BIT       = 0x00000200, // reuse from AttribMask
-    GL_STENCIL_BUFFER_BIT     = 0x00000400, // reuse from AttribMask
-    GL_COLOR_BUFFER_BIT       = 0x00004000, // reuse from AttribMask
+    GL_DEPTH_BUFFER_BIT       = 0x00000100, // reuse AttribMask
+    GL_ACCUM_BUFFER_BIT       = 0x00000200, // reuse AttribMask
+    GL_STENCIL_BUFFER_BIT     = 0x00000400, // reuse AttribMask
+    GL_COLOR_BUFFER_BIT       = 0x00004000, // reuse AttribMask
     GL_COVERAGE_BUFFER_BIT_NV = 0x00008000,
 };
 
@@ -122,14 +122,14 @@ enum class FragmentShaderDestModMaskATI : unsigned int
 
 enum class MapBufferUsageMask : unsigned int
 {
-    GL_MAP_READ_BIT              = 0x0001, // reuse from BufferAccessMask
-    GL_MAP_WRITE_BIT             = 0x0002, // reuse from BufferAccessMask
-    GL_MAP_INVALIDATE_RANGE_BIT  = 0x0004, // reuse from BufferAccessMask
-    GL_MAP_INVALIDATE_BUFFER_BIT = 0x0008, // reuse from BufferAccessMask
-    GL_MAP_FLUSH_EXPLICIT_BIT    = 0x0010, // reuse from BufferAccessMask
-    GL_MAP_UNSYNCHRONIZED_BIT    = 0x0020, // reuse from BufferAccessMask
-    GL_MAP_PERSISTENT_BIT        = 0x0040, // reuse from BufferAccessMask
-    GL_MAP_COHERENT_BIT          = 0x0080, // reuse from BufferAccessMask
+    GL_MAP_READ_BIT              = 0x0001, // reuse BufferAccessMask
+    GL_MAP_WRITE_BIT             = 0x0002, // reuse BufferAccessMask
+    GL_MAP_INVALIDATE_RANGE_BIT  = 0x0004, // reuse BufferAccessMask
+    GL_MAP_INVALIDATE_BUFFER_BIT = 0x0008, // reuse BufferAccessMask
+    GL_MAP_FLUSH_EXPLICIT_BIT    = 0x0010, // reuse BufferAccessMask
+    GL_MAP_UNSYNCHRONIZED_BIT    = 0x0020, // reuse BufferAccessMask
+    GL_MAP_PERSISTENT_BIT        = 0x0040, // reuse BufferAccessMask
+    GL_MAP_COHERENT_BIT          = 0x0080, // reuse BufferAccessMask
     GL_DYNAMIC_STORAGE_BIT       = 0x0100,
     GL_CLIENT_STORAGE_BIT        = 0x0200,
     GL_SPARSE_STORAGE_BIT_ARB    = 0x0400,
@@ -189,11 +189,11 @@ enum class PathRenderingMaskNV : unsigned int
     GL_FONT_ASCENDER_BIT_NV                    = 0x00200000,
     GL_FONT_DESCENDER_BIT_NV                   = 0x00400000,
     GL_FONT_HEIGHT_BIT_NV                      = 0x00800000,
-    GL_BOLD_BIT_NV                             = 0x01, // reuse from PathFontStyle
+    GL_BOLD_BIT_NV                             = 0x01, // reuse PathFontStyle
     GL_GLYPH_WIDTH_BIT_NV                      = 0x01,
     GL_FONT_MAX_ADVANCE_WIDTH_BIT_NV           = 0x01000000,
     GL_GLYPH_HEIGHT_BIT_NV                     = 0x02,
-    GL_ITALIC_BIT_NV                           = 0x02, // reuse from PathFontStyle
+    GL_ITALIC_BIT_NV                           = 0x02, // reuse PathFontStyle
     GL_FONT_MAX_ADVANCE_HEIGHT_BIT_NV          = 0x02000000,
     GL_GLYPH_HORIZONTAL_BEARING_X_BIT_NV       = 0x04,
     GL_FONT_UNDERLINE_POSITION_BIT_NV          = 0x04000000,

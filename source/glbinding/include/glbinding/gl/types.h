@@ -22,7 +22,7 @@ namespace gl
 {
 
 enum class GLextension : int;
-enum class GLenum : unsigned int;
+using GLenum = unsigned int;
 enum class GLboolean : unsigned char;
 using GLbitfield = unsigned int;
 using GLvoid = void;
@@ -98,61 +98,6 @@ namespace std
 {
 
 template<>
-struct hash<gl::GLextension>
-{
-    hash<std::underlying_type<gl::GLextension>::type>::result_type operator()(const gl::GLextension & t) const
-    {
-        return hash<std::underlying_type<gl::GLextension>::type>()(static_cast<std::underlying_type<gl::GLextension>::type>(t));
-    }
-};
-
-}
-
-
-GLBINDING_API std::ostream & operator<<(std::ostream & stream, const gl::GLextension & value);
-
-
-namespace std
-{
-
-template<>
-struct hash<gl::GLenum>
-{
-    hash<std::underlying_type<gl::GLenum>::type>::result_type operator()(const gl::GLenum & t) const
-    {
-        return hash<std::underlying_type<gl::GLenum>::type>()(static_cast<std::underlying_type<gl::GLenum>::type>(t));
-    }
-};
-
-}
-
-
-GLBINDING_API std::ostream & operator<<(std::ostream & stream, const gl::GLenum & value);
-
-
-GLBINDING_API gl::GLenum operator+(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API gl::GLenum operator-(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-
-
-GLBINDING_API bool operator==(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API bool operator!=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API bool operator< (const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API bool operator<=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API bool operator> (const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-GLBINDING_API bool operator>=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b);
-
-GLBINDING_API bool operator==(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-GLBINDING_API bool operator!=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-GLBINDING_API bool operator< (std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-GLBINDING_API bool operator<=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-GLBINDING_API bool operator> (std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-GLBINDING_API bool operator>=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b);
-
-
-namespace std
-{
-
-template<>
 struct hash<gl::GLboolean>
 {
     hash<std::underlying_type<gl::GLboolean>::type>::result_type operator()(const gl::GLboolean & t) const
@@ -165,6 +110,24 @@ struct hash<gl::GLboolean>
 
 
 GLBINDING_API std::ostream & operator<<(std::ostream & stream, const gl::GLboolean & value);
+
+
+namespace std
+{
+
+template<>
+struct hash<gl::GLextension>
+{
+    hash<std::underlying_type<gl::GLextension>::type>::result_type operator()(const gl::GLextension & t) const
+    {
+        return hash<std::underlying_type<gl::GLextension>::type>()(static_cast<std::underlying_type<gl::GLextension>::type>(t));
+    }
+};
+
+}
+
+
+GLBINDING_API std::ostream & operator<<(std::ostream & stream, const gl::GLextension & value);
 
 
 namespace std

@@ -35,6 +35,8 @@ class Enum:
         elif groupType == "bitmask":
             self.type = "GLbitfield"
             self.groupString = groupString
+        elif groupType == "enum":
+            self.groupString = groupString
 
         self.reqFeatures   = []
         self.remFeatures   = [] # len(remF) should always be < 2
@@ -331,8 +333,8 @@ def groupEnumsByGroup(enums):
 
     d = dict()
     
-    ungroupedName = "__UNGROUPED__"
-    
+    ungroupedName = "GLenum"
+
     for e in enums:
         if len(e.groups)==0:
             if not ungroupedName in d:

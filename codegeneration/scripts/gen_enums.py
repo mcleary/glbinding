@@ -2,9 +2,11 @@ from binding import *
 from classes.Enum import *
 from classes.Feature import *
 
-enumGroupTemplate = """    // %s
-
+enumGroupTemplate = """enum class %s : unsigned int
+{
 %s
+};
+
 """
 
 
@@ -16,7 +18,7 @@ def castEnumValue(value):
         return "static_cast<unsigned int>(%s)" % value    
 
 
-def enumDefinition(group, enum, maxlen, usedEnumsByName):
+def enumDefinition(enum, group, maxlen, usedEnumsByName):
 
     spaces = " " * (maxlen - len(enumBID(enum)))
     if enum.name not in usedEnumsByName:
@@ -24,21 +26,29 @@ def enumDefinition(group, enum, maxlen, usedEnumsByName):
         return "    %s %s= %s," % (enumBID(enum), spaces, castEnumValue(enum.value))
     else:
         reuse = usedEnumsByName[enum.name]
-        return "//  %s %s= %s, // reuse %s" % (enumBID(enum), spaces, castEnumValue(enum.value), reuse)
+        return "    %s %s= %s, // reuse %s" % (enumBID(enum), spaces, castEnumValue(enum.value), reuse)
 
 
-def enumImportDefinition(api, enum, group, usedEnumsByName, feature):
+def enumImportDefinition(api, enum, usedEnumsByName, feature):
 
-    qualifier = "GLenum" if feature is None else api + "::GLenum"
+    if not enum.groups:
 
-    if enum.name not in usedEnumsByName:
-        usedEnumsByName[enum.name] = group
-        return "static const %s %s = %s::%s;" % (
-            qualifier, enumBID(enum), qualifier, enumBID(enum))
+        qualifier = "GLenum" if feature is None else api + "::GLenum"
+        group = "GLenum"
+
+        if enum.name not in usedEnumsByName:
+            usedEnumsByName[enum.name] = group
+            return "static const %s %s = %s::%s;" % (
+                qualifier, enumBID(enum), qualifier, enumBID(enum))
+        else:
+            reuse = usedEnumsByName[enum.name]
+            return "// static const %s %s = %s::%s; // reuse %s" % (
+                qualifier, enumBID(enum), qualifier, enumBID(enum), reuse)
     else:
-        reuse = usedEnumsByName[enum.name]
-        return "// static const %s %s = %s::%s; // reuse %s" % (
-            qualifier, enumBID(enum), qualifier, enumBID(enum), reuse)
+        qualifier = "" if feature is None else api + "::"
+
+        group = sorted(enum.groups)[0].name
+        return "static const %s %s = %s::%s;" % (qualifier+group, enumBID(enum), qualifier+group, enumBID(enum))
 
 
 def enumGroup(group, enums, usedEnumsByName):
@@ -49,7 +59,7 @@ def enumGroup(group, enums, usedEnumsByName):
     maxlen = max([len(enum.name) for enum in enums]) if len(enums) > 0 else 0
 
     return enumGroupTemplate % (group, "\n".join(
-        [ enumDefinition(group, e, maxlen, usedEnumsByName) for e in sorted(enums, key = lambda e: e.value) ]))
+        [ enumDefinition(e, group, maxlen, usedEnumsByName) for e in sorted(enums, key = lambda e: e.value) ]))
 
 
 def genEnumsAll(api, enums, outputdir, outputfile):
@@ -70,6 +80,9 @@ def genEnumsFeatureGrouped(api, enums, features, outputdir, outputfile):
 
 def genFeatureEnums(api, enums, feature, outputdir, outputfile, core = False, ext = False):
 
+    if core and ext:
+        return 
+
     of_all = outputfile.replace("?", "F")
 
     version = versionBID(feature, core, ext)
@@ -87,9 +100,11 @@ def genFeatureEnums(api, enums, feature, outputdir, outputfile, core = False, ex
 
     usedEnumsByName = dict()
     
-    importToNamespace = [ ("\n// %s\n\n" + "%s") % (group, "\n".join(
-      [ enumImportDefinition(api, e, group, usedEnumsByName, feature) for e in enums ]))  
-        for group, enums in sorted(groupedEnums.items()) ]
+    #~ importToNamespace = [ ("\n// %s\n\n" + "%s") % (group, "\n".join(
+      #~ [ enumImportDefinition(api, e, group, usedEnumsByName, feature) for e in enums ]))  
+        #~ for group, enums in sorted(groupedEnums.items()) ]
+
+    importToNamespace = [ enumImportDefinition(api, e, usedEnumsByName, feature) for e in sorted(pureEnums) ]
 
     usedEnumsByName.clear()
 
@@ -97,7 +112,10 @@ def genFeatureEnums(api, enums, feature, outputdir, outputfile, core = False, ex
         if not feature:
 
             definitions = [ enumGroup(group, enums, usedEnumsByName) 
-                for group, enums in sorted(groupedEnums.items(), key = lambda x: x[0]) ]
+                for group, enums in sorted(groupedEnums.items()) ]
+
+            #~ definitions = [ enumGroup(group, enums, usedEnumsByName) 
+                #~ for group, enums in sorted(groupedEnums.items(), key = lambda x: x[0]) ]
 
             file.write(t % ("\n".join(definitions), ("\n") .join(importToNamespace)))
 

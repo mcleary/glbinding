@@ -19,7 +19,7 @@ def bitfieldDefinition(enum, group, maxlen, usedBitfsByName):
         return "    %s %s= %s," % (enumBID(enum), spaces, enum.value)
     else:
         reuse = usedBitfsByName[enum.name]
-        return "    %s %s= %s, // reuse from %s" % (enumBID(enum), spaces, enum.value, reuse)
+        return "    %s %s= %s, // reuse %s" % (enumBID(enum), spaces, enum.value, reuse)
 
 
 def bitfieldImportDefinition(api, enum, feature):

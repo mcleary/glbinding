@@ -1,4 +1,11 @@
 
 using GLextension = %a::GLextension;
 %s
+
+// GLbitfields
+
+%s
+
+// GLenums
+
 %s

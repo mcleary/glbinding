@@ -7,18 +7,18 @@
 namespace gl
 {
 
-enum class GLenum : unsigned int
+enum class AccumOp : unsigned int
 {
-    // AccumOp
-
     GL_ACCUM  = 0x0100,
     GL_LOAD   = 0x0101,
     GL_RETURN = 0x0102,
     GL_MULT   = 0x0103,
     GL_ADD    = 0x0104,
+};
 
-    // AlphaFunction
 
+enum class AlphaFunction : unsigned int
+{
     GL_NEVER    = 0x0200,
     GL_LESS     = 0x0201,
     GL_EQUAL    = 0x0202,
@@ -27,9 +27,11 @@ enum class GLenum : unsigned int
     GL_NOTEQUAL = 0x0205,
     GL_GEQUAL   = 0x0206,
     GL_ALWAYS   = 0x0207,
+};
 
-    // BlendEquationModeEXT
 
+enum class BlendEquationModeEXT : unsigned int
+{
     GL_LOGIC_OP                  = 0x0BF1,
     GL_FUNC_ADD_EXT              = 0x8006,
     GL_MIN_EXT                   = 0x8007,
@@ -38,9 +40,11 @@ enum class GLenum : unsigned int
     GL_FUNC_REVERSE_SUBTRACT_EXT = 0x800B,
     GL_ALPHA_MIN_SGIX            = 0x8320,
     GL_ALPHA_MAX_SGIX            = 0x8321,
+};
 
-    // BlendingFactorDest
 
+enum class BlendingFactorDest : unsigned int
+{
     GL_ZERO                         = 0,
     GL_SRC_COLOR                    = 0x0300,
     GL_ONE_MINUS_SRC_COLOR          = 0x0301,
@@ -53,25 +57,29 @@ enum class GLenum : unsigned int
     GL_CONSTANT_ALPHA_EXT           = 0x8003,
     GL_ONE_MINUS_CONSTANT_ALPHA_EXT = 0x8004,
     GL_ONE                          = 1,
+};
 
-    // BlendingFactorSrc
 
-//  GL_ZERO                         = 0, // reuse BlendingFactorDest
-//  GL_SRC_ALPHA                    = 0x0302, // reuse BlendingFactorDest
-//  GL_ONE_MINUS_SRC_ALPHA          = 0x0303, // reuse BlendingFactorDest
-//  GL_DST_ALPHA                    = 0x0304, // reuse BlendingFactorDest
-//  GL_ONE_MINUS_DST_ALPHA          = 0x0305, // reuse BlendingFactorDest
+enum class BlendingFactorSrc : unsigned int
+{
+    GL_ZERO                         = 0, // reuse BlendingFactorDest
+    GL_SRC_ALPHA                    = 0x0302, // reuse BlendingFactorDest
+    GL_ONE_MINUS_SRC_ALPHA          = 0x0303, // reuse BlendingFactorDest
+    GL_DST_ALPHA                    = 0x0304, // reuse BlendingFactorDest
+    GL_ONE_MINUS_DST_ALPHA          = 0x0305, // reuse BlendingFactorDest
     GL_DST_COLOR                    = 0x0306,
     GL_ONE_MINUS_DST_COLOR          = 0x0307,
     GL_SRC_ALPHA_SATURATE           = 0x0308,
-//  GL_CONSTANT_COLOR_EXT           = 0x8001, // reuse BlendingFactorDest
-//  GL_ONE_MINUS_CONSTANT_COLOR_EXT = 0x8002, // reuse BlendingFactorDest
-//  GL_CONSTANT_ALPHA_EXT           = 0x8003, // reuse BlendingFactorDest
-//  GL_ONE_MINUS_CONSTANT_ALPHA_EXT = 0x8004, // reuse BlendingFactorDest
-//  GL_ONE                          = 1, // reuse BlendingFactorDest
+    GL_CONSTANT_COLOR_EXT           = 0x8001, // reuse BlendingFactorDest
+    GL_ONE_MINUS_CONSTANT_COLOR_EXT = 0x8002, // reuse BlendingFactorDest
+    GL_CONSTANT_ALPHA_EXT           = 0x8003, // reuse BlendingFactorDest
+    GL_ONE_MINUS_CONSTANT_ALPHA_EXT = 0x8004, // reuse BlendingFactorDest
+    GL_ONE                          = 1, // reuse BlendingFactorDest
+};
 
-    // ClipPlaneName
 
+enum class ClipPlaneName : unsigned int
+{
     GL_CLIP_DISTANCE0 = 0x3000,
     GL_CLIP_PLANE0    = 0x3000,
     GL_CLIP_DISTANCE1 = 0x3001,
@@ -86,23 +94,29 @@ enum class GLenum : unsigned int
     GL_CLIP_PLANE5    = 0x3005,
     GL_CLIP_DISTANCE6 = 0x3006,
     GL_CLIP_DISTANCE7 = 0x3007,
+};
 
-    // ColorMaterialFace
 
+enum class ColorMaterialFace : unsigned int
+{
     GL_FRONT          = 0x0404,
     GL_BACK           = 0x0405,
     GL_FRONT_AND_BACK = 0x0408,
+};
 
-    // ColorMaterialParameter
 
+enum class ColorMaterialParameter : unsigned int
+{
     GL_AMBIENT             = 0x1200,
     GL_DIFFUSE             = 0x1201,
     GL_SPECULAR            = 0x1202,
     GL_EMISSION            = 0x1600,
     GL_AMBIENT_AND_DIFFUSE = 0x1602,
+};
 
-    // ColorPointerType
 
+enum class ColorPointerType : unsigned int
+{
     GL_BYTE           = 0x1400,
     GL_UNSIGNED_BYTE  = 0x1401,
     GL_SHORT          = 0x1402,
@@ -111,16 +125,20 @@ enum class GLenum : unsigned int
     GL_UNSIGNED_INT   = 0x1405,
     GL_FLOAT          = 0x1406,
     GL_DOUBLE         = 0x140A,
+};
 
-    // ColorTableParameterPNameSGI
 
+enum class ColorTableParameterPNameSGI : unsigned int
+{
     GL_COLOR_TABLE_SCALE     = 0x80D6,
     GL_COLOR_TABLE_SCALE_SGI = 0x80D6,
     GL_COLOR_TABLE_BIAS      = 0x80D7,
     GL_COLOR_TABLE_BIAS_SGI  = 0x80D7,
+};
 
-    // ColorTableTargetSGI
 
+enum class ColorTableTargetSGI : unsigned int
+{
     GL_TEXTURE_COLOR_TABLE_SGI                 = 0x80BC,
     GL_PROXY_TEXTURE_COLOR_TABLE_SGI           = 0x80BD,
     GL_COLOR_TABLE                             = 0x80D0,
@@ -135,64 +153,78 @@ enum class GLenum : unsigned int
     GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI  = 0x80D4,
     GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE     = 0x80D5,
     GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI = 0x80D5,
+};
 
-    // ConvolutionBorderModeEXT
 
+enum class ConvolutionBorderModeEXT : unsigned int
+{
     GL_REDUCE     = 0x8016,
     GL_REDUCE_EXT = 0x8016,
+};
 
-    // ConvolutionParameterEXT
 
+enum class ConvolutionParameterEXT : unsigned int
+{
     GL_CONVOLUTION_BORDER_MODE      = 0x8013,
     GL_CONVOLUTION_BORDER_MODE_EXT  = 0x8013,
     GL_CONVOLUTION_FILTER_SCALE     = 0x8014,
     GL_CONVOLUTION_FILTER_SCALE_EXT = 0x8014,
     GL_CONVOLUTION_FILTER_BIAS      = 0x8015,
     GL_CONVOLUTION_FILTER_BIAS_EXT  = 0x8015,
+};
 
-    // ConvolutionTargetEXT
 
+enum class ConvolutionTargetEXT : unsigned int
+{
     GL_CONVOLUTION_1D     = 0x8010,
     GL_CONVOLUTION_1D_EXT = 0x8010,
     GL_CONVOLUTION_2D     = 0x8011,
     GL_CONVOLUTION_2D_EXT = 0x8011,
+};
 
-    // CullFaceMode
 
-//  GL_FRONT          = 0x0404, // reuse ColorMaterialFace
-//  GL_BACK           = 0x0405, // reuse ColorMaterialFace
-//  GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
+enum class CullFaceMode : unsigned int
+{
+    GL_FRONT          = 0x0404, // reuse ColorMaterialFace
+    GL_BACK           = 0x0405, // reuse ColorMaterialFace
+    GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
+};
 
-    // DepthFunction
 
-//  GL_NEVER    = 0x0200, // reuse AlphaFunction
-//  GL_LESS     = 0x0201, // reuse AlphaFunction
-//  GL_EQUAL    = 0x0202, // reuse AlphaFunction
-//  GL_LEQUAL   = 0x0203, // reuse AlphaFunction
-//  GL_GREATER  = 0x0204, // reuse AlphaFunction
-//  GL_NOTEQUAL = 0x0205, // reuse AlphaFunction
-//  GL_GEQUAL   = 0x0206, // reuse AlphaFunction
-//  GL_ALWAYS   = 0x0207, // reuse AlphaFunction
+enum class DepthFunction : unsigned int
+{
+    GL_NEVER    = 0x0200, // reuse AlphaFunction
+    GL_LESS     = 0x0201, // reuse AlphaFunction
+    GL_EQUAL    = 0x0202, // reuse AlphaFunction
+    GL_LEQUAL   = 0x0203, // reuse AlphaFunction
+    GL_GREATER  = 0x0204, // reuse AlphaFunction
+    GL_NOTEQUAL = 0x0205, // reuse AlphaFunction
+    GL_GEQUAL   = 0x0206, // reuse AlphaFunction
+    GL_ALWAYS   = 0x0207, // reuse AlphaFunction
+};
 
-    // DrawBufferMode
 
+enum class DrawBufferMode : unsigned int
+{
     GL_NONE           = 0,
     GL_FRONT_LEFT     = 0x0400,
     GL_FRONT_RIGHT    = 0x0401,
     GL_BACK_LEFT      = 0x0402,
     GL_BACK_RIGHT     = 0x0403,
-//  GL_FRONT          = 0x0404, // reuse ColorMaterialFace
-//  GL_BACK           = 0x0405, // reuse ColorMaterialFace
+    GL_FRONT          = 0x0404, // reuse ColorMaterialFace
+    GL_BACK           = 0x0405, // reuse ColorMaterialFace
     GL_LEFT           = 0x0406,
     GL_RIGHT          = 0x0407,
-//  GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
+    GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
     GL_AUX0           = 0x0409,
     GL_AUX1           = 0x040A,
     GL_AUX2           = 0x040B,
     GL_AUX3           = 0x040C,
+};
 
-    // EnableCap
 
+enum class EnableCap : unsigned int
+{
     GL_POINT_SMOOTH                      = 0x0B10,
     GL_LINE_SMOOTH                       = 0x0B20,
     GL_LINE_STIPPLE                      = 0x0B24,
@@ -238,12 +270,12 @@ enum class GLenum : unsigned int
     GL_TEXTURE_2D                        = 0x0DE1,
     GL_POLYGON_OFFSET_POINT              = 0x2A01,
     GL_POLYGON_OFFSET_LINE               = 0x2A02,
-//  GL_CLIP_PLANE0                       = 0x3000, // reuse ClipPlaneName
-//  GL_CLIP_PLANE1                       = 0x3001, // reuse ClipPlaneName
-//  GL_CLIP_PLANE2                       = 0x3002, // reuse ClipPlaneName
-//  GL_CLIP_PLANE3                       = 0x3003, // reuse ClipPlaneName
-//  GL_CLIP_PLANE4                       = 0x3004, // reuse ClipPlaneName
-//  GL_CLIP_PLANE5                       = 0x3005, // reuse ClipPlaneName
+    GL_CLIP_PLANE0                       = 0x3000, // reuse ClipPlaneName
+    GL_CLIP_PLANE1                       = 0x3001, // reuse ClipPlaneName
+    GL_CLIP_PLANE2                       = 0x3002, // reuse ClipPlaneName
+    GL_CLIP_PLANE3                       = 0x3003, // reuse ClipPlaneName
+    GL_CLIP_PLANE4                       = 0x3004, // reuse ClipPlaneName
+    GL_CLIP_PLANE5                       = 0x3005, // reuse ClipPlaneName
     GL_LIGHT0                            = 0x4000,
     GL_LIGHT1                            = 0x4001,
     GL_LIGHT2                            = 0x4002,
@@ -252,8 +284,8 @@ enum class GLenum : unsigned int
     GL_LIGHT5                            = 0x4005,
     GL_LIGHT6                            = 0x4006,
     GL_LIGHT7                            = 0x4007,
-//  GL_CONVOLUTION_1D_EXT                = 0x8010, // reuse ConvolutionTargetEXT
-//  GL_CONVOLUTION_2D_EXT                = 0x8011, // reuse ConvolutionTargetEXT
+    GL_CONVOLUTION_1D_EXT                = 0x8010, // reuse ConvolutionTargetEXT
+    GL_CONVOLUTION_2D_EXT                = 0x8011, // reuse ConvolutionTargetEXT
     GL_SEPARABLE_2D_EXT                  = 0x8012,
     GL_HISTOGRAM_EXT                     = 0x8024,
     GL_MINMAX_EXT                        = 0x802E,
@@ -271,10 +303,10 @@ enum class GLenum : unsigned int
     GL_SAMPLE_ALPHA_TO_MASK_SGIS         = 0x809E,
     GL_SAMPLE_ALPHA_TO_ONE_SGIS          = 0x809F,
     GL_SAMPLE_MASK_SGIS                  = 0x80A0,
-//  GL_TEXTURE_COLOR_TABLE_SGI           = 0x80BC, // reuse ColorTableTargetSGI
-//  GL_COLOR_TABLE_SGI                   = 0x80D0, // reuse ColorTableTargetSGI
-//  GL_POST_CONVOLUTION_COLOR_TABLE_SGI  = 0x80D1, // reuse ColorTableTargetSGI
-//  GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = 0x80D2, // reuse ColorTableTargetSGI
+    GL_TEXTURE_COLOR_TABLE_SGI           = 0x80BC, // reuse ColorTableTargetSGI
+    GL_COLOR_TABLE_SGI                   = 0x80D0, // reuse ColorTableTargetSGI
+    GL_POST_CONVOLUTION_COLOR_TABLE_SGI  = 0x80D1, // reuse ColorTableTargetSGI
+    GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = 0x80D2, // reuse ColorTableTargetSGI
     GL_TEXTURE_4D_SGIS                   = 0x8134,
     GL_PIXEL_TEX_GEN_SGIX                = 0x8139,
     GL_SPRITE_SGIX                       = 0x8148,
@@ -299,9 +331,11 @@ enum class GLenum : unsigned int
     GL_FRAGMENT_LIGHT5_SGIX              = 0x8411,
     GL_FRAGMENT_LIGHT6_SGIX              = 0x8412,
     GL_FRAGMENT_LIGHT7_SGIX              = 0x8413,
+};
 
-    // ErrorCode
 
+enum class ErrorCode : unsigned int
+{
     GL_NO_ERROR                          = 0,
     GL_INVALID_ENUM                      = 0x0500,
     GL_INVALID_VALUE                     = 0x0501,
@@ -314,9 +348,11 @@ enum class GLenum : unsigned int
     GL_TABLE_TOO_LARGE                   = 0x8031,
     GL_TABLE_TOO_LARGE_EXT               = 0x8031,
     GL_TEXTURE_TOO_LARGE_EXT             = 0x8065,
+};
 
-    // FeedBackToken
 
+enum class FeedBackToken : unsigned int
+{
     GL_PASS_THROUGH_TOKEN = 0x0700,
     GL_POINT_TOKEN        = 0x0701,
     GL_LINE_TOKEN         = 0x0702,
@@ -325,34 +361,44 @@ enum class GLenum : unsigned int
     GL_DRAW_PIXEL_TOKEN   = 0x0705,
     GL_COPY_PIXEL_TOKEN   = 0x0706,
     GL_LINE_RESET_TOKEN   = 0x0707,
+};
 
-    // FeedbackType
 
+enum class FeedbackType : unsigned int
+{
     GL_2D               = 0x0600,
     GL_3D               = 0x0601,
     GL_3D_COLOR         = 0x0602,
     GL_3D_COLOR_TEXTURE = 0x0603,
     GL_4D_COLOR_TEXTURE = 0x0604,
+};
 
-    // FfdTargetSGIX
 
+enum class FfdTargetSGIX : unsigned int
+{
     GL_GEOMETRY_DEFORMATION_SGIX = 0x8194,
     GL_TEXTURE_DEFORMATION_SGIX  = 0x8195,
+};
 
-    // FogCoordinatePointerType
 
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
+enum class FogCoordinatePointerType : unsigned int
+{
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
 
-    // FogMode
 
+enum class FogMode : unsigned int
+{
     GL_EXP           = 0x0800,
     GL_EXP2          = 0x0801,
     GL_LINEAR        = 0x2601,
     GL_FOG_FUNC_SGIS = 0x812A,
+};
 
-    // FogParameter
 
+enum class FogParameter : unsigned int
+{
     GL_FOG_INDEX             = 0x0B61,
     GL_FOG_DENSITY           = 0x0B62,
     GL_FOG_START             = 0x0B63,
@@ -360,1338 +406,41 @@ enum class GLenum : unsigned int
     GL_FOG_MODE              = 0x0B65,
     GL_FOG_COLOR             = 0x0B66,
     GL_FOG_OFFSET_VALUE_SGIX = 0x8199,
+};
 
-    // FogPointerTypeEXT
 
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
+enum class FogPointerTypeEXT : unsigned int
+{
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
 
-    // FogPointerTypeIBM
 
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
+enum class FogPointerTypeIBM : unsigned int
+{
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
 
-    // FragmentLightModelParameterSGIX
 
+enum class FragmentLightModelParameterSGIX : unsigned int
+{
     GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX         = 0x8408,
     GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX             = 0x8409,
     GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX              = 0x840A,
     GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = 0x840B,
+};
 
-    // FrontFaceDirection
 
+enum class FrontFaceDirection : unsigned int
+{
     GL_CW  = 0x0900,
     GL_CCW = 0x0901,
+};
 
-    // GetColorTableParameterPNameSGI
 
-//  GL_COLOR_TABLE_SCALE_SGI          = 0x80D6, // reuse ColorTableParameterPNameSGI
-//  GL_COLOR_TABLE_BIAS_SGI           = 0x80D7, // reuse ColorTableParameterPNameSGI
-    GL_COLOR_TABLE_FORMAT_SGI         = 0x80D8,
-    GL_COLOR_TABLE_WIDTH_SGI          = 0x80D9,
-    GL_COLOR_TABLE_RED_SIZE_SGI       = 0x80DA,
-    GL_COLOR_TABLE_GREEN_SIZE_SGI     = 0x80DB,
-    GL_COLOR_TABLE_BLUE_SIZE_SGI      = 0x80DC,
-    GL_COLOR_TABLE_ALPHA_SIZE_SGI     = 0x80DD,
-    GL_COLOR_TABLE_LUMINANCE_SIZE_SGI = 0x80DE,
-    GL_COLOR_TABLE_INTENSITY_SIZE_SGI = 0x80DF,
-
-    // GetConvolutionParameter
-
-//  GL_CONVOLUTION_BORDER_MODE_EXT  = 0x8013, // reuse ConvolutionParameterEXT
-//  GL_CONVOLUTION_FILTER_SCALE_EXT = 0x8014, // reuse ConvolutionParameterEXT
-//  GL_CONVOLUTION_FILTER_BIAS_EXT  = 0x8015, // reuse ConvolutionParameterEXT
-    GL_CONVOLUTION_FORMAT_EXT       = 0x8017,
-    GL_CONVOLUTION_WIDTH_EXT        = 0x8018,
-    GL_CONVOLUTION_HEIGHT_EXT       = 0x8019,
-    GL_MAX_CONVOLUTION_WIDTH_EXT    = 0x801A,
-    GL_MAX_CONVOLUTION_HEIGHT_EXT   = 0x801B,
-
-    // GetHistogramParameterPNameEXT
-
-    GL_HISTOGRAM_WIDTH_EXT          = 0x8026,
-    GL_HISTOGRAM_FORMAT_EXT         = 0x8027,
-    GL_HISTOGRAM_RED_SIZE_EXT       = 0x8028,
-    GL_HISTOGRAM_GREEN_SIZE_EXT     = 0x8029,
-    GL_HISTOGRAM_BLUE_SIZE_EXT      = 0x802A,
-    GL_HISTOGRAM_ALPHA_SIZE_EXT     = 0x802B,
-    GL_HISTOGRAM_LUMINANCE_SIZE_EXT = 0x802C,
-    GL_HISTOGRAM_SINK_EXT           = 0x802D,
-
-    // GetMapQuery
-
-    GL_COEFF  = 0x0A00,
-    GL_ORDER  = 0x0A01,
-    GL_DOMAIN = 0x0A02,
-
-    // GetMinmaxParameterPNameEXT
-
-    GL_MINMAX_FORMAT     = 0x802F,
-    GL_MINMAX_FORMAT_EXT = 0x802F,
-    GL_MINMAX_SINK       = 0x8030,
-    GL_MINMAX_SINK_EXT   = 0x8030,
-
-    // GetPName
-
-    GL_CURRENT_COLOR                                  = 0x0B00,
-    GL_CURRENT_INDEX                                  = 0x0B01,
-    GL_CURRENT_NORMAL                                 = 0x0B02,
-    GL_CURRENT_TEXTURE_COORDS                         = 0x0B03,
-    GL_CURRENT_RASTER_COLOR                           = 0x0B04,
-    GL_CURRENT_RASTER_INDEX                           = 0x0B05,
-    GL_CURRENT_RASTER_TEXTURE_COORDS                  = 0x0B06,
-    GL_CURRENT_RASTER_POSITION                        = 0x0B07,
-    GL_CURRENT_RASTER_POSITION_VALID                  = 0x0B08,
-    GL_CURRENT_RASTER_DISTANCE                        = 0x0B09,
-//  GL_POINT_SMOOTH                                   = 0x0B10, // reuse EnableCap
-    GL_POINT_SIZE                                     = 0x0B11,
-    GL_POINT_SIZE_RANGE                               = 0x0B12,
-    GL_SMOOTH_POINT_SIZE_RANGE                        = 0x0B12,
-    GL_POINT_SIZE_GRANULARITY                         = 0x0B13,
-    GL_SMOOTH_POINT_SIZE_GRANULARITY                  = 0x0B13,
-//  GL_LINE_SMOOTH                                    = 0x0B20, // reuse EnableCap
-    GL_LINE_WIDTH                                     = 0x0B21,
-    GL_LINE_WIDTH_RANGE                               = 0x0B22,
-    GL_SMOOTH_LINE_WIDTH_RANGE                        = 0x0B22,
-    GL_LINE_WIDTH_GRANULARITY                         = 0x0B23,
-    GL_SMOOTH_LINE_WIDTH_GRANULARITY                  = 0x0B23,
-//  GL_LINE_STIPPLE                                   = 0x0B24, // reuse EnableCap
-    GL_LINE_STIPPLE_PATTERN                           = 0x0B25,
-    GL_LINE_STIPPLE_REPEAT                            = 0x0B26,
-    GL_LIST_MODE                                      = 0x0B30,
-    GL_MAX_LIST_NESTING                               = 0x0B31,
-    GL_LIST_BASE                                      = 0x0B32,
-    GL_LIST_INDEX                                     = 0x0B33,
-    GL_POLYGON_MODE                                   = 0x0B40,
-//  GL_POLYGON_SMOOTH                                 = 0x0B41, // reuse EnableCap
-//  GL_POLYGON_STIPPLE                                = 0x0B42, // reuse EnableCap
-    GL_EDGE_FLAG                                      = 0x0B43,
-//  GL_CULL_FACE                                      = 0x0B44, // reuse EnableCap
-    GL_CULL_FACE_MODE                                 = 0x0B45,
-    GL_FRONT_FACE                                     = 0x0B46,
-//  GL_LIGHTING                                       = 0x0B50, // reuse EnableCap
-    GL_LIGHT_MODEL_LOCAL_VIEWER                       = 0x0B51,
-    GL_LIGHT_MODEL_TWO_SIDE                           = 0x0B52,
-    GL_LIGHT_MODEL_AMBIENT                            = 0x0B53,
-    GL_SHADE_MODEL                                    = 0x0B54,
-    GL_COLOR_MATERIAL_FACE                            = 0x0B55,
-    GL_COLOR_MATERIAL_PARAMETER                       = 0x0B56,
-//  GL_COLOR_MATERIAL                                 = 0x0B57, // reuse EnableCap
-//  GL_FOG                                            = 0x0B60, // reuse EnableCap
-//  GL_FOG_INDEX                                      = 0x0B61, // reuse FogParameter
-//  GL_FOG_DENSITY                                    = 0x0B62, // reuse FogParameter
-//  GL_FOG_START                                      = 0x0B63, // reuse FogParameter
-//  GL_FOG_END                                        = 0x0B64, // reuse FogParameter
-//  GL_FOG_MODE                                       = 0x0B65, // reuse FogParameter
-//  GL_FOG_COLOR                                      = 0x0B66, // reuse FogParameter
-    GL_DEPTH_RANGE                                    = 0x0B70,
-//  GL_DEPTH_TEST                                     = 0x0B71, // reuse EnableCap
-    GL_DEPTH_WRITEMASK                                = 0x0B72,
-    GL_DEPTH_CLEAR_VALUE                              = 0x0B73,
-    GL_DEPTH_FUNC                                     = 0x0B74,
-    GL_ACCUM_CLEAR_VALUE                              = 0x0B80,
-//  GL_STENCIL_TEST                                   = 0x0B90, // reuse EnableCap
-    GL_STENCIL_CLEAR_VALUE                            = 0x0B91,
-    GL_STENCIL_FUNC                                   = 0x0B92,
-    GL_STENCIL_VALUE_MASK                             = 0x0B93,
-    GL_STENCIL_FAIL                                   = 0x0B94,
-    GL_STENCIL_PASS_DEPTH_FAIL                        = 0x0B95,
-    GL_STENCIL_PASS_DEPTH_PASS                        = 0x0B96,
-    GL_STENCIL_REF                                    = 0x0B97,
-    GL_STENCIL_WRITEMASK                              = 0x0B98,
-    GL_MATRIX_MODE                                    = 0x0BA0,
-//  GL_NORMALIZE                                      = 0x0BA1, // reuse EnableCap
-    GL_VIEWPORT                                       = 0x0BA2,
-    GL_MODELVIEW0_STACK_DEPTH_EXT                     = 0x0BA3,
-    GL_MODELVIEW_STACK_DEPTH                          = 0x0BA3,
-    GL_PROJECTION_STACK_DEPTH                         = 0x0BA4,
-    GL_TEXTURE_STACK_DEPTH                            = 0x0BA5,
-    GL_MODELVIEW0_MATRIX_EXT                          = 0x0BA6,
-    GL_MODELVIEW_MATRIX                               = 0x0BA6,
-    GL_PROJECTION_MATRIX                              = 0x0BA7,
-    GL_TEXTURE_MATRIX                                 = 0x0BA8,
-    GL_ATTRIB_STACK_DEPTH                             = 0x0BB0,
-    GL_CLIENT_ATTRIB_STACK_DEPTH                      = 0x0BB1,
-//  GL_ALPHA_TEST                                     = 0x0BC0, // reuse EnableCap
-    GL_ALPHA_TEST_FUNC                                = 0x0BC1,
-    GL_ALPHA_TEST_REF                                 = 0x0BC2,
-//  GL_DITHER                                         = 0x0BD0, // reuse EnableCap
-    GL_BLEND_DST                                      = 0x0BE0,
-    GL_BLEND_SRC                                      = 0x0BE1,
-//  GL_BLEND                                          = 0x0BE2, // reuse EnableCap
-    GL_LOGIC_OP_MODE                                  = 0x0BF0,
-//  GL_INDEX_LOGIC_OP                                 = 0x0BF1, // reuse EnableCap
-//  GL_LOGIC_OP                                       = 0x0BF1, // reuse BlendEquationModeEXT
-//  GL_COLOR_LOGIC_OP                                 = 0x0BF2, // reuse EnableCap
-    GL_AUX_BUFFERS                                    = 0x0C00,
-    GL_DRAW_BUFFER                                    = 0x0C01,
-    GL_READ_BUFFER                                    = 0x0C02,
-    GL_SCISSOR_BOX                                    = 0x0C10,
-//  GL_SCISSOR_TEST                                   = 0x0C11, // reuse EnableCap
-    GL_INDEX_CLEAR_VALUE                              = 0x0C20,
-    GL_INDEX_WRITEMASK                                = 0x0C21,
-    GL_COLOR_CLEAR_VALUE                              = 0x0C22,
-    GL_COLOR_WRITEMASK                                = 0x0C23,
-    GL_INDEX_MODE                                     = 0x0C30,
-    GL_RGBA_MODE                                      = 0x0C31,
-    GL_DOUBLEBUFFER                                   = 0x0C32,
-    GL_STEREO                                         = 0x0C33,
-    GL_RENDER_MODE                                    = 0x0C40,
-    GL_PERSPECTIVE_CORRECTION_HINT                    = 0x0C50,
-    GL_POINT_SMOOTH_HINT                              = 0x0C51,
-    GL_LINE_SMOOTH_HINT                               = 0x0C52,
-    GL_POLYGON_SMOOTH_HINT                            = 0x0C53,
-    GL_FOG_HINT                                       = 0x0C54,
-//  GL_TEXTURE_GEN_S                                  = 0x0C60, // reuse EnableCap
-//  GL_TEXTURE_GEN_T                                  = 0x0C61, // reuse EnableCap
-//  GL_TEXTURE_GEN_R                                  = 0x0C62, // reuse EnableCap
-//  GL_TEXTURE_GEN_Q                                  = 0x0C63, // reuse EnableCap
-    GL_PIXEL_MAP_I_TO_I_SIZE                          = 0x0CB0,
-    GL_PIXEL_MAP_S_TO_S_SIZE                          = 0x0CB1,
-    GL_PIXEL_MAP_I_TO_R_SIZE                          = 0x0CB2,
-    GL_PIXEL_MAP_I_TO_G_SIZE                          = 0x0CB3,
-    GL_PIXEL_MAP_I_TO_B_SIZE                          = 0x0CB4,
-    GL_PIXEL_MAP_I_TO_A_SIZE                          = 0x0CB5,
-    GL_PIXEL_MAP_R_TO_R_SIZE                          = 0x0CB6,
-    GL_PIXEL_MAP_G_TO_G_SIZE                          = 0x0CB7,
-    GL_PIXEL_MAP_B_TO_B_SIZE                          = 0x0CB8,
-    GL_PIXEL_MAP_A_TO_A_SIZE                          = 0x0CB9,
-    GL_UNPACK_SWAP_BYTES                              = 0x0CF0,
-    GL_UNPACK_LSB_FIRST                               = 0x0CF1,
-    GL_UNPACK_ROW_LENGTH                              = 0x0CF2,
-    GL_UNPACK_SKIP_ROWS                               = 0x0CF3,
-    GL_UNPACK_SKIP_PIXELS                             = 0x0CF4,
-    GL_UNPACK_ALIGNMENT                               = 0x0CF5,
-    GL_PACK_SWAP_BYTES                                = 0x0D00,
-    GL_PACK_LSB_FIRST                                 = 0x0D01,
-    GL_PACK_ROW_LENGTH                                = 0x0D02,
-    GL_PACK_SKIP_ROWS                                 = 0x0D03,
-    GL_PACK_SKIP_PIXELS                               = 0x0D04,
-    GL_PACK_ALIGNMENT                                 = 0x0D05,
-    GL_MAP_COLOR                                      = 0x0D10,
-    GL_MAP_STENCIL                                    = 0x0D11,
-    GL_INDEX_SHIFT                                    = 0x0D12,
-    GL_INDEX_OFFSET                                   = 0x0D13,
-    GL_RED_SCALE                                      = 0x0D14,
-    GL_RED_BIAS                                       = 0x0D15,
-    GL_ZOOM_X                                         = 0x0D16,
-    GL_ZOOM_Y                                         = 0x0D17,
-    GL_GREEN_SCALE                                    = 0x0D18,
-    GL_GREEN_BIAS                                     = 0x0D19,
-    GL_BLUE_SCALE                                     = 0x0D1A,
-    GL_BLUE_BIAS                                      = 0x0D1B,
-    GL_ALPHA_SCALE                                    = 0x0D1C,
-    GL_ALPHA_BIAS                                     = 0x0D1D,
-    GL_DEPTH_SCALE                                    = 0x0D1E,
-    GL_DEPTH_BIAS                                     = 0x0D1F,
-    GL_MAX_EVAL_ORDER                                 = 0x0D30,
-    GL_MAX_LIGHTS                                     = 0x0D31,
-    GL_MAX_CLIP_DISTANCES                             = 0x0D32,
-    GL_MAX_CLIP_PLANES                                = 0x0D32,
-    GL_MAX_TEXTURE_SIZE                               = 0x0D33,
-    GL_MAX_PIXEL_MAP_TABLE                            = 0x0D34,
-    GL_MAX_ATTRIB_STACK_DEPTH                         = 0x0D35,
-    GL_MAX_MODELVIEW_STACK_DEPTH                      = 0x0D36,
-    GL_MAX_NAME_STACK_DEPTH                           = 0x0D37,
-    GL_MAX_PROJECTION_STACK_DEPTH                     = 0x0D38,
-    GL_MAX_TEXTURE_STACK_DEPTH                        = 0x0D39,
-    GL_MAX_VIEWPORT_DIMS                              = 0x0D3A,
-    GL_MAX_CLIENT_ATTRIB_STACK_DEPTH                  = 0x0D3B,
-    GL_SUBPIXEL_BITS                                  = 0x0D50,
-    GL_INDEX_BITS                                     = 0x0D51,
-    GL_RED_BITS                                       = 0x0D52,
-    GL_GREEN_BITS                                     = 0x0D53,
-    GL_BLUE_BITS                                      = 0x0D54,
-    GL_ALPHA_BITS                                     = 0x0D55,
-    GL_DEPTH_BITS                                     = 0x0D56,
-    GL_STENCIL_BITS                                   = 0x0D57,
-    GL_ACCUM_RED_BITS                                 = 0x0D58,
-    GL_ACCUM_GREEN_BITS                               = 0x0D59,
-    GL_ACCUM_BLUE_BITS                                = 0x0D5A,
-    GL_ACCUM_ALPHA_BITS                               = 0x0D5B,
-    GL_NAME_STACK_DEPTH                               = 0x0D70,
-//  GL_AUTO_NORMAL                                    = 0x0D80, // reuse EnableCap
-//  GL_MAP1_COLOR_4                                   = 0x0D90, // reuse EnableCap
-//  GL_MAP1_INDEX                                     = 0x0D91, // reuse EnableCap
-//  GL_MAP1_NORMAL                                    = 0x0D92, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_1                           = 0x0D93, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_2                           = 0x0D94, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_3                           = 0x0D95, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_4                           = 0x0D96, // reuse EnableCap
-//  GL_MAP1_VERTEX_3                                  = 0x0D97, // reuse EnableCap
-//  GL_MAP1_VERTEX_4                                  = 0x0D98, // reuse EnableCap
-//  GL_MAP2_COLOR_4                                   = 0x0DB0, // reuse EnableCap
-//  GL_MAP2_INDEX                                     = 0x0DB1, // reuse EnableCap
-//  GL_MAP2_NORMAL                                    = 0x0DB2, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_1                           = 0x0DB3, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_2                           = 0x0DB4, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_3                           = 0x0DB5, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_4                           = 0x0DB6, // reuse EnableCap
-//  GL_MAP2_VERTEX_3                                  = 0x0DB7, // reuse EnableCap
-//  GL_MAP2_VERTEX_4                                  = 0x0DB8, // reuse EnableCap
-    GL_MAP1_GRID_DOMAIN                               = 0x0DD0,
-    GL_MAP1_GRID_SEGMENTS                             = 0x0DD1,
-    GL_MAP2_GRID_DOMAIN                               = 0x0DD2,
-    GL_MAP2_GRID_SEGMENTS                             = 0x0DD3,
-//  GL_TEXTURE_1D                                     = 0x0DE0, // reuse EnableCap
-//  GL_TEXTURE_2D                                     = 0x0DE1, // reuse EnableCap
-    GL_FEEDBACK_BUFFER_SIZE                           = 0x0DF1,
-    GL_FEEDBACK_BUFFER_TYPE                           = 0x0DF2,
-    GL_SELECTION_BUFFER_SIZE                          = 0x0DF4,
-    GL_POLYGON_OFFSET_UNITS                           = 0x2A00,
-//  GL_POLYGON_OFFSET_POINT                           = 0x2A01, // reuse EnableCap
-//  GL_POLYGON_OFFSET_LINE                            = 0x2A02, // reuse EnableCap
-//  GL_CLIP_PLANE0                                    = 0x3000, // reuse ClipPlaneName
-//  GL_CLIP_PLANE1                                    = 0x3001, // reuse ClipPlaneName
-//  GL_CLIP_PLANE2                                    = 0x3002, // reuse ClipPlaneName
-//  GL_CLIP_PLANE3                                    = 0x3003, // reuse ClipPlaneName
-//  GL_CLIP_PLANE4                                    = 0x3004, // reuse ClipPlaneName
-//  GL_CLIP_PLANE5                                    = 0x3005, // reuse ClipPlaneName
-//  GL_LIGHT0                                         = 0x4000, // reuse EnableCap
-//  GL_LIGHT1                                         = 0x4001, // reuse EnableCap
-//  GL_LIGHT2                                         = 0x4002, // reuse EnableCap
-//  GL_LIGHT3                                         = 0x4003, // reuse EnableCap
-//  GL_LIGHT4                                         = 0x4004, // reuse EnableCap
-//  GL_LIGHT5                                         = 0x4005, // reuse EnableCap
-//  GL_LIGHT6                                         = 0x4006, // reuse EnableCap
-//  GL_LIGHT7                                         = 0x4007, // reuse EnableCap
-    GL_BLEND_COLOR_EXT                                = 0x8005,
-    GL_BLEND_EQUATION_EXT                             = 0x8009,
-    GL_PACK_CMYK_HINT_EXT                             = 0x800E,
-    GL_UNPACK_CMYK_HINT_EXT                           = 0x800F,
-//  GL_CONVOLUTION_1D_EXT                             = 0x8010, // reuse ConvolutionTargetEXT
-//  GL_CONVOLUTION_2D_EXT                             = 0x8011, // reuse ConvolutionTargetEXT
-//  GL_SEPARABLE_2D_EXT                               = 0x8012, // reuse EnableCap
-    GL_POST_CONVOLUTION_RED_SCALE_EXT                 = 0x801C,
-    GL_POST_CONVOLUTION_GREEN_SCALE_EXT               = 0x801D,
-    GL_POST_CONVOLUTION_BLUE_SCALE_EXT                = 0x801E,
-    GL_POST_CONVOLUTION_ALPHA_SCALE_EXT               = 0x801F,
-    GL_POST_CONVOLUTION_RED_BIAS_EXT                  = 0x8020,
-    GL_POST_CONVOLUTION_GREEN_BIAS_EXT                = 0x8021,
-    GL_POST_CONVOLUTION_BLUE_BIAS_EXT                 = 0x8022,
-    GL_POST_CONVOLUTION_ALPHA_BIAS_EXT                = 0x8023,
-//  GL_HISTOGRAM_EXT                                  = 0x8024, // reuse EnableCap
-//  GL_MINMAX_EXT                                     = 0x802E, // reuse EnableCap
-//  GL_POLYGON_OFFSET_FILL                            = 0x8037, // reuse EnableCap
-    GL_POLYGON_OFFSET_FACTOR                          = 0x8038,
-    GL_POLYGON_OFFSET_BIAS_EXT                        = 0x8039,
-//  GL_RESCALE_NORMAL_EXT                             = 0x803A, // reuse EnableCap
-    GL_TEXTURE_BINDING_1D                             = 0x8068,
-    GL_TEXTURE_BINDING_2D                             = 0x8069,
-    GL_TEXTURE_3D_BINDING_EXT                         = 0x806A,
-    GL_TEXTURE_BINDING_3D                             = 0x806A,
-    GL_PACK_SKIP_IMAGES_EXT                           = 0x806B,
-    GL_PACK_IMAGE_HEIGHT_EXT                          = 0x806C,
-    GL_UNPACK_SKIP_IMAGES_EXT                         = 0x806D,
-    GL_UNPACK_IMAGE_HEIGHT_EXT                        = 0x806E,
-//  GL_TEXTURE_3D_EXT                                 = 0x806F, // reuse EnableCap
-    GL_MAX_3D_TEXTURE_SIZE_EXT                        = 0x8073,
-//  GL_VERTEX_ARRAY                                   = 0x8074, // reuse EnableCap
-//  GL_NORMAL_ARRAY                                   = 0x8075, // reuse EnableCap
-//  GL_COLOR_ARRAY                                    = 0x8076, // reuse EnableCap
-//  GL_INDEX_ARRAY                                    = 0x8077, // reuse EnableCap
-//  GL_TEXTURE_COORD_ARRAY                            = 0x8078, // reuse EnableCap
-//  GL_EDGE_FLAG_ARRAY                                = 0x8079, // reuse EnableCap
-    GL_VERTEX_ARRAY_SIZE                              = 0x807A,
-    GL_VERTEX_ARRAY_TYPE                              = 0x807B,
-    GL_VERTEX_ARRAY_STRIDE                            = 0x807C,
-    GL_VERTEX_ARRAY_COUNT_EXT                         = 0x807D,
-    GL_NORMAL_ARRAY_TYPE                              = 0x807E,
-    GL_NORMAL_ARRAY_STRIDE                            = 0x807F,
-    GL_NORMAL_ARRAY_COUNT_EXT                         = 0x8080,
-    GL_COLOR_ARRAY_SIZE                               = 0x8081,
-    GL_COLOR_ARRAY_TYPE                               = 0x8082,
-    GL_COLOR_ARRAY_STRIDE                             = 0x8083,
-    GL_COLOR_ARRAY_COUNT_EXT                          = 0x8084,
-    GL_INDEX_ARRAY_TYPE                               = 0x8085,
-    GL_INDEX_ARRAY_STRIDE                             = 0x8086,
-    GL_INDEX_ARRAY_COUNT_EXT                          = 0x8087,
-    GL_TEXTURE_COORD_ARRAY_SIZE                       = 0x8088,
-    GL_TEXTURE_COORD_ARRAY_TYPE                       = 0x8089,
-    GL_TEXTURE_COORD_ARRAY_STRIDE                     = 0x808A,
-    GL_TEXTURE_COORD_ARRAY_COUNT_EXT                  = 0x808B,
-    GL_EDGE_FLAG_ARRAY_STRIDE                         = 0x808C,
-    GL_EDGE_FLAG_ARRAY_COUNT_EXT                      = 0x808D,
-//  GL_INTERLACE_SGIX                                 = 0x8094, // reuse EnableCap
-    GL_DETAIL_TEXTURE_2D_BINDING_SGIS                 = 0x8096,
-//  GL_MULTISAMPLE_SGIS                               = 0x809D, // reuse EnableCap
-//  GL_SAMPLE_ALPHA_TO_MASK_SGIS                      = 0x809E, // reuse EnableCap
-//  GL_SAMPLE_ALPHA_TO_ONE_SGIS                       = 0x809F, // reuse EnableCap
-//  GL_SAMPLE_MASK_SGIS                               = 0x80A0, // reuse EnableCap
-    GL_SAMPLE_BUFFERS_SGIS                            = 0x80A8,
-    GL_SAMPLES_SGIS                                   = 0x80A9,
-    GL_SAMPLE_MASK_VALUE_SGIS                         = 0x80AA,
-    GL_SAMPLE_MASK_INVERT_SGIS                        = 0x80AB,
-    GL_SAMPLE_PATTERN_SGIS                            = 0x80AC,
-    GL_COLOR_MATRIX_SGI                               = 0x80B1,
-    GL_COLOR_MATRIX_STACK_DEPTH_SGI                   = 0x80B2,
-    GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI               = 0x80B3,
-    GL_POST_COLOR_MATRIX_RED_SCALE_SGI                = 0x80B4,
-    GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI              = 0x80B5,
-    GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI               = 0x80B6,
-    GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI              = 0x80B7,
-    GL_POST_COLOR_MATRIX_RED_BIAS_SGI                 = 0x80B8,
-    GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI               = 0x80B9,
-    GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI                = 0x80BA,
-    GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI               = 0x80BB,
-//  GL_TEXTURE_COLOR_TABLE_SGI                        = 0x80BC, // reuse ColorTableTargetSGI
-//  GL_COLOR_TABLE_SGI                                = 0x80D0, // reuse ColorTableTargetSGI
-//  GL_POST_CONVOLUTION_COLOR_TABLE_SGI               = 0x80D1, // reuse ColorTableTargetSGI
-//  GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI              = 0x80D2, // reuse ColorTableTargetSGI
-    GL_POINT_SIZE_MIN_SGIS                            = 0x8126,
-    GL_POINT_SIZE_MAX_SGIS                            = 0x8127,
-    GL_POINT_FADE_THRESHOLD_SIZE_SGIS                 = 0x8128,
-    GL_DISTANCE_ATTENUATION_SGIS                      = 0x8129,
-    GL_FOG_FUNC_POINTS_SGIS                           = 0x812B,
-    GL_MAX_FOG_FUNC_POINTS_SGIS                       = 0x812C,
-    GL_PACK_SKIP_VOLUMES_SGIS                         = 0x8130,
-    GL_PACK_IMAGE_DEPTH_SGIS                          = 0x8131,
-    GL_UNPACK_SKIP_VOLUMES_SGIS                       = 0x8132,
-    GL_UNPACK_IMAGE_DEPTH_SGIS                        = 0x8133,
-//  GL_TEXTURE_4D_SGIS                                = 0x8134, // reuse EnableCap
-    GL_MAX_4D_TEXTURE_SIZE_SGIS                       = 0x8138,
-//  GL_PIXEL_TEX_GEN_SGIX                             = 0x8139, // reuse EnableCap
-    GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX                 = 0x813E,
-    GL_PIXEL_TILE_CACHE_INCREMENT_SGIX                = 0x813F,
-    GL_PIXEL_TILE_WIDTH_SGIX                          = 0x8140,
-    GL_PIXEL_TILE_HEIGHT_SGIX                         = 0x8141,
-    GL_PIXEL_TILE_GRID_WIDTH_SGIX                     = 0x8142,
-    GL_PIXEL_TILE_GRID_HEIGHT_SGIX                    = 0x8143,
-    GL_PIXEL_TILE_GRID_DEPTH_SGIX                     = 0x8144,
-    GL_PIXEL_TILE_CACHE_SIZE_SGIX                     = 0x8145,
-//  GL_SPRITE_SGIX                                    = 0x8148, // reuse EnableCap
-    GL_SPRITE_MODE_SGIX                               = 0x8149,
-    GL_SPRITE_AXIS_SGIX                               = 0x814A,
-    GL_SPRITE_TRANSLATION_SGIX                        = 0x814B,
-    GL_TEXTURE_4D_BINDING_SGIS                        = 0x814F,
-    GL_MAX_CLIPMAP_DEPTH_SGIX                         = 0x8177,
-    GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX                 = 0x8178,
-    GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX            = 0x817B,
-    GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX           = 0x817C,
-//  GL_REFERENCE_PLANE_SGIX                           = 0x817D, // reuse EnableCap
-    GL_REFERENCE_PLANE_EQUATION_SGIX                  = 0x817E,
-//  GL_IR_INSTRUMENT1_SGIX                            = 0x817F, // reuse EnableCap
-    GL_INSTRUMENT_MEASUREMENTS_SGIX                   = 0x8181,
-//  GL_CALLIGRAPHIC_FRAGMENT_SGIX                     = 0x8183, // reuse EnableCap
-//  GL_FRAMEZOOM_SGIX                                 = 0x818B, // reuse EnableCap
-    GL_FRAMEZOOM_FACTOR_SGIX                          = 0x818C,
-    GL_MAX_FRAMEZOOM_FACTOR_SGIX                      = 0x818D,
-    GL_GENERATE_MIPMAP_HINT_SGIS                      = 0x8192,
-    GL_DEFORMATIONS_MASK_SGIX                         = 0x8196,
-//  GL_FOG_OFFSET_SGIX                                = 0x8198, // reuse EnableCap
-//  GL_FOG_OFFSET_VALUE_SGIX                          = 0x8199, // reuse FogParameter
-    GL_LIGHT_MODEL_COLOR_CONTROL                      = 0x81F8,
-//  GL_SHARED_TEXTURE_PALETTE_EXT                     = 0x81FB, // reuse EnableCap
-    GL_CONVOLUTION_HINT_SGIX                          = 0x8316,
-    GL_ASYNC_MARKER_SGIX                              = 0x8329,
-    GL_PIXEL_TEX_GEN_MODE_SGIX                        = 0x832B,
-//  GL_ASYNC_HISTOGRAM_SGIX                           = 0x832C, // reuse EnableCap
-    GL_MAX_ASYNC_HISTOGRAM_SGIX                       = 0x832D,
-//  GL_PIXEL_TEXTURE_SGIS                             = 0x8353, // reuse EnableCap
-//  GL_ASYNC_TEX_IMAGE_SGIX                           = 0x835C, // reuse EnableCap
-//  GL_ASYNC_DRAW_PIXELS_SGIX                         = 0x835D, // reuse EnableCap
-//  GL_ASYNC_READ_PIXELS_SGIX                         = 0x835E, // reuse EnableCap
-    GL_MAX_ASYNC_TEX_IMAGE_SGIX                       = 0x835F,
-    GL_MAX_ASYNC_DRAW_PIXELS_SGIX                     = 0x8360,
-    GL_MAX_ASYNC_READ_PIXELS_SGIX                     = 0x8361,
-    GL_VERTEX_PRECLIP_SGIX                            = 0x83EE,
-    GL_VERTEX_PRECLIP_HINT_SGIX                       = 0x83EF,
-//  GL_FRAGMENT_LIGHTING_SGIX                         = 0x8400, // reuse EnableCap
-//  GL_FRAGMENT_COLOR_MATERIAL_SGIX                   = 0x8401, // reuse EnableCap
-    GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX              = 0x8402,
-    GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX         = 0x8403,
-    GL_MAX_FRAGMENT_LIGHTS_SGIX                       = 0x8404,
-    GL_MAX_ACTIVE_LIGHTS_SGIX                         = 0x8405,
-    GL_LIGHT_ENV_MODE_SGIX                            = 0x8407,
-//  GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX         = 0x8408, // reuse FragmentLightModelParameterSGIX
-//  GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX             = 0x8409, // reuse FragmentLightModelParameterSGIX
-//  GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX              = 0x840A, // reuse FragmentLightModelParameterSGIX
-//  GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = 0x840B, // reuse FragmentLightModelParameterSGIX
-//  GL_FRAGMENT_LIGHT0_SGIX                           = 0x840C, // reuse EnableCap
-    GL_PACK_RESAMPLE_SGIX                             = 0x842C,
-    GL_UNPACK_RESAMPLE_SGIX                           = 0x842D,
-    GL_ALIASED_POINT_SIZE_RANGE                       = 0x846D,
-    GL_ALIASED_LINE_WIDTH_RANGE                       = 0x846E,
-    GL_PACK_SUBSAMPLE_RATE_SGIX                       = 0x85A0,
-    GL_UNPACK_SUBSAMPLE_RATE_SGIX                     = 0x85A1,
-
-    // GetPixelMap
-
-    GL_PIXEL_MAP_I_TO_I = 0x0C70,
-    GL_PIXEL_MAP_S_TO_S = 0x0C71,
-    GL_PIXEL_MAP_I_TO_R = 0x0C72,
-    GL_PIXEL_MAP_I_TO_G = 0x0C73,
-    GL_PIXEL_MAP_I_TO_B = 0x0C74,
-    GL_PIXEL_MAP_I_TO_A = 0x0C75,
-    GL_PIXEL_MAP_R_TO_R = 0x0C76,
-    GL_PIXEL_MAP_G_TO_G = 0x0C77,
-    GL_PIXEL_MAP_B_TO_B = 0x0C78,
-    GL_PIXEL_MAP_A_TO_A = 0x0C79,
-
-    // GetPointervPName
-
-    GL_FEEDBACK_BUFFER_POINTER         = 0x0DF0,
-    GL_SELECTION_BUFFER_POINTER        = 0x0DF3,
-    GL_VERTEX_ARRAY_POINTER            = 0x808E,
-    GL_VERTEX_ARRAY_POINTER_EXT        = 0x808E,
-    GL_NORMAL_ARRAY_POINTER            = 0x808F,
-    GL_NORMAL_ARRAY_POINTER_EXT        = 0x808F,
-    GL_COLOR_ARRAY_POINTER             = 0x8090,
-    GL_COLOR_ARRAY_POINTER_EXT         = 0x8090,
-    GL_INDEX_ARRAY_POINTER             = 0x8091,
-    GL_INDEX_ARRAY_POINTER_EXT         = 0x8091,
-    GL_TEXTURE_COORD_ARRAY_POINTER     = 0x8092,
-    GL_TEXTURE_COORD_ARRAY_POINTER_EXT = 0x8092,
-    GL_EDGE_FLAG_ARRAY_POINTER         = 0x8093,
-    GL_EDGE_FLAG_ARRAY_POINTER_EXT     = 0x8093,
-    GL_INSTRUMENT_BUFFER_POINTER_SGIX  = 0x8180,
-
-    // GetTextureParameter
-
-    GL_TEXTURE_WIDTH                      = 0x1000,
-    GL_TEXTURE_HEIGHT                     = 0x1001,
-    GL_TEXTURE_COMPONENTS                 = 0x1003,
-    GL_TEXTURE_INTERNAL_FORMAT            = 0x1003,
-    GL_TEXTURE_BORDER_COLOR               = 0x1004,
-    GL_TEXTURE_BORDER                     = 0x1005,
-    GL_TEXTURE_MAG_FILTER                 = 0x2800,
-    GL_TEXTURE_MIN_FILTER                 = 0x2801,
-    GL_TEXTURE_WRAP_S                     = 0x2802,
-    GL_TEXTURE_WRAP_T                     = 0x2803,
-    GL_TEXTURE_RED_SIZE                   = 0x805C,
-    GL_TEXTURE_GREEN_SIZE                 = 0x805D,
-    GL_TEXTURE_BLUE_SIZE                  = 0x805E,
-    GL_TEXTURE_ALPHA_SIZE                 = 0x805F,
-    GL_TEXTURE_LUMINANCE_SIZE             = 0x8060,
-    GL_TEXTURE_INTENSITY_SIZE             = 0x8061,
-    GL_TEXTURE_PRIORITY                   = 0x8066,
-    GL_TEXTURE_RESIDENT                   = 0x8067,
-    GL_TEXTURE_DEPTH_EXT                  = 0x8071,
-    GL_TEXTURE_WRAP_R_EXT                 = 0x8072,
-    GL_DETAIL_TEXTURE_LEVEL_SGIS          = 0x809A,
-    GL_DETAIL_TEXTURE_MODE_SGIS           = 0x809B,
-    GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS    = 0x809C,
-    GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS   = 0x80B0,
-    GL_SHADOW_AMBIENT_SGIX                = 0x80BF,
-    GL_DUAL_TEXTURE_SELECT_SGIS           = 0x8124,
-    GL_QUAD_TEXTURE_SELECT_SGIS           = 0x8125,
-    GL_TEXTURE_4DSIZE_SGIS                = 0x8136,
-    GL_TEXTURE_WRAP_Q_SGIS                = 0x8137,
-    GL_TEXTURE_MIN_LOD_SGIS               = 0x813A,
-    GL_TEXTURE_MAX_LOD_SGIS               = 0x813B,
-    GL_TEXTURE_BASE_LEVEL_SGIS            = 0x813C,
-    GL_TEXTURE_MAX_LEVEL_SGIS             = 0x813D,
-    GL_TEXTURE_FILTER4_SIZE_SGIS          = 0x8147,
-    GL_TEXTURE_CLIPMAP_CENTER_SGIX        = 0x8171,
-    GL_TEXTURE_CLIPMAP_FRAME_SGIX         = 0x8172,
-    GL_TEXTURE_CLIPMAP_OFFSET_SGIX        = 0x8173,
-    GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = 0x8174,
-    GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX    = 0x8175,
-    GL_TEXTURE_CLIPMAP_DEPTH_SGIX         = 0x8176,
-    GL_POST_TEXTURE_FILTER_BIAS_SGIX      = 0x8179,
-    GL_POST_TEXTURE_FILTER_SCALE_SGIX     = 0x817A,
-    GL_TEXTURE_LOD_BIAS_S_SGIX            = 0x818E,
-    GL_TEXTURE_LOD_BIAS_T_SGIX            = 0x818F,
-    GL_TEXTURE_LOD_BIAS_R_SGIX            = 0x8190,
-    GL_GENERATE_MIPMAP_SGIS               = 0x8191,
-    GL_TEXTURE_COMPARE_SGIX               = 0x819A,
-    GL_TEXTURE_COMPARE_OPERATOR_SGIX      = 0x819B,
-    GL_TEXTURE_LEQUAL_R_SGIX              = 0x819C,
-    GL_TEXTURE_GEQUAL_R_SGIX              = 0x819D,
-    GL_TEXTURE_MAX_CLAMP_S_SGIX           = 0x8369,
-    GL_TEXTURE_MAX_CLAMP_T_SGIX           = 0x836A,
-    GL_TEXTURE_MAX_CLAMP_R_SGIX           = 0x836B,
-
-    // HintMode
-
-    GL_DONT_CARE = 0x1100,
-    GL_FASTEST   = 0x1101,
-    GL_NICEST    = 0x1102,
-
-    // HintTarget
-
-//  GL_PERSPECTIVE_CORRECTION_HINT         = 0x0C50, // reuse GetPName
-//  GL_POINT_SMOOTH_HINT                   = 0x0C51, // reuse GetPName
-//  GL_LINE_SMOOTH_HINT                    = 0x0C52, // reuse GetPName
-//  GL_POLYGON_SMOOTH_HINT                 = 0x0C53, // reuse GetPName
-//  GL_FOG_HINT                            = 0x0C54, // reuse GetPName
-    GL_PREFER_DOUBLEBUFFER_HINT_PGI        = 0x1A1F8,
-    GL_CONSERVE_MEMORY_HINT_PGI            = 0x1A1FD,
-    GL_RECLAIM_MEMORY_HINT_PGI             = 0x1A1FE,
-    GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI      = 0x1A203,
-    GL_NATIVE_GRAPHICS_END_HINT_PGI        = 0x1A204,
-    GL_ALWAYS_FAST_HINT_PGI                = 0x1A20C,
-    GL_ALWAYS_SOFT_HINT_PGI                = 0x1A20D,
-    GL_ALLOW_DRAW_OBJ_HINT_PGI             = 0x1A20E,
-    GL_ALLOW_DRAW_WIN_HINT_PGI             = 0x1A20F,
-    GL_ALLOW_DRAW_FRG_HINT_PGI             = 0x1A210,
-    GL_ALLOW_DRAW_MEM_HINT_PGI             = 0x1A211,
-    GL_STRICT_DEPTHFUNC_HINT_PGI           = 0x1A216,
-    GL_STRICT_LIGHTING_HINT_PGI            = 0x1A217,
-    GL_STRICT_SCISSOR_HINT_PGI             = 0x1A218,
-    GL_FULL_STIPPLE_HINT_PGI               = 0x1A219,
-    GL_CLIP_NEAR_HINT_PGI                  = 0x1A220,
-    GL_CLIP_FAR_HINT_PGI                   = 0x1A221,
-    GL_WIDE_LINE_HINT_PGI                  = 0x1A222,
-    GL_BACK_NORMALS_HINT_PGI               = 0x1A223,
-    GL_VERTEX_DATA_HINT_PGI                = 0x1A22A,
-    GL_VERTEX_CONSISTENT_HINT_PGI          = 0x1A22B,
-    GL_MATERIAL_SIDE_HINT_PGI              = 0x1A22C,
-    GL_MAX_VERTEX_HINT_PGI                 = 0x1A22D,
-//  GL_PACK_CMYK_HINT_EXT                  = 0x800E, // reuse GetPName
-//  GL_UNPACK_CMYK_HINT_EXT                = 0x800F, // reuse GetPName
-    GL_PHONG_HINT_WIN                      = 0x80EB,
-    GL_CLIP_VOLUME_CLIPPING_HINT_EXT       = 0x80F0,
-    GL_TEXTURE_MULTI_BUFFER_HINT_SGIX      = 0x812E,
-    GL_GENERATE_MIPMAP_HINT                = 0x8192,
-//  GL_GENERATE_MIPMAP_HINT_SGIS           = 0x8192, // reuse GetPName
-    GL_PROGRAM_BINARY_RETRIEVABLE_HINT     = 0x8257,
-//  GL_CONVOLUTION_HINT_SGIX               = 0x8316, // reuse GetPName
-    GL_SCALEBIAS_HINT_SGIX                 = 0x8322,
-//  GL_VERTEX_PRECLIP_SGIX                 = 0x83EE, // reuse GetPName
-//  GL_VERTEX_PRECLIP_HINT_SGIX            = 0x83EF, // reuse GetPName
-    GL_TEXTURE_COMPRESSION_HINT            = 0x84EF,
-    GL_TEXTURE_COMPRESSION_HINT_ARB        = 0x84EF,
-    GL_VERTEX_ARRAY_STORAGE_HINT_APPLE     = 0x851F,
-    GL_MULTISAMPLE_FILTER_HINT_NV          = 0x8534,
-    GL_TRANSFORM_HINT_APPLE                = 0x85B1,
-    GL_TEXTURE_STORAGE_HINT_APPLE          = 0x85BC,
-    GL_FRAGMENT_SHADER_DERIVATIVE_HINT     = 0x8B8B,
-    GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B,
-
-    // HistogramTargetEXT
-
-    GL_HISTOGRAM           = 0x8024,
-//  GL_HISTOGRAM_EXT       = 0x8024, // reuse EnableCap
-    GL_PROXY_HISTOGRAM     = 0x8025,
-    GL_PROXY_HISTOGRAM_EXT = 0x8025,
-
-    // IndexPointerType
-
-//  GL_SHORT  = 0x1402, // reuse ColorPointerType
-//  GL_INT    = 0x1404, // reuse ColorPointerType
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
-
-    // InterleavedArrayFormat
-
-    GL_V2F             = 0x2A20,
-    GL_V3F             = 0x2A21,
-    GL_C4UB_V2F        = 0x2A22,
-    GL_C4UB_V3F        = 0x2A23,
-    GL_C3F_V3F         = 0x2A24,
-    GL_N3F_V3F         = 0x2A25,
-    GL_C4F_N3F_V3F     = 0x2A26,
-    GL_T2F_V3F         = 0x2A27,
-    GL_T4F_V4F         = 0x2A28,
-    GL_T2F_C4UB_V3F    = 0x2A29,
-    GL_T2F_C3F_V3F     = 0x2A2A,
-    GL_T2F_N3F_V3F     = 0x2A2B,
-    GL_T2F_C4F_N3F_V3F = 0x2A2C,
-    GL_T4F_C4F_N3F_V4F = 0x2A2D,
-
-    // InternalFormat
-
-    GL_R3_G3_B2                   = 0x2A10,
-    GL_ALPHA4                     = 0x803B,
-    GL_ALPHA8                     = 0x803C,
-    GL_ALPHA12                    = 0x803D,
-    GL_ALPHA16                    = 0x803E,
-    GL_LUMINANCE4                 = 0x803F,
-    GL_LUMINANCE8                 = 0x8040,
-    GL_LUMINANCE12                = 0x8041,
-    GL_LUMINANCE16                = 0x8042,
-    GL_LUMINANCE4_ALPHA4          = 0x8043,
-    GL_LUMINANCE6_ALPHA2          = 0x8044,
-    GL_LUMINANCE8_ALPHA8          = 0x8045,
-    GL_LUMINANCE12_ALPHA4         = 0x8046,
-    GL_LUMINANCE12_ALPHA12        = 0x8047,
-    GL_LUMINANCE16_ALPHA16        = 0x8048,
-    GL_INTENSITY                  = 0x8049,
-    GL_INTENSITY4                 = 0x804A,
-    GL_INTENSITY8                 = 0x804B,
-    GL_INTENSITY12                = 0x804C,
-    GL_INTENSITY16                = 0x804D,
-    GL_RGB2_EXT                   = 0x804E,
-    GL_RGB4                       = 0x804F,
-    GL_RGB5                       = 0x8050,
-    GL_RGB8                       = 0x8051,
-    GL_RGB10                      = 0x8052,
-    GL_RGB12                      = 0x8053,
-    GL_RGB16                      = 0x8054,
-    GL_RGBA2                      = 0x8055,
-    GL_RGBA4                      = 0x8056,
-    GL_RGB5_A1                    = 0x8057,
-    GL_RGBA8                      = 0x8058,
-    GL_RGB10_A2                   = 0x8059,
-    GL_RGBA12                     = 0x805A,
-    GL_RGBA16                     = 0x805B,
-    GL_DUAL_ALPHA4_SGIS           = 0x8110,
-    GL_DUAL_ALPHA8_SGIS           = 0x8111,
-    GL_DUAL_ALPHA12_SGIS          = 0x8112,
-    GL_DUAL_ALPHA16_SGIS          = 0x8113,
-    GL_DUAL_LUMINANCE4_SGIS       = 0x8114,
-    GL_DUAL_LUMINANCE8_SGIS       = 0x8115,
-    GL_DUAL_LUMINANCE12_SGIS      = 0x8116,
-    GL_DUAL_LUMINANCE16_SGIS      = 0x8117,
-    GL_DUAL_INTENSITY4_SGIS       = 0x8118,
-    GL_DUAL_INTENSITY8_SGIS       = 0x8119,
-    GL_DUAL_INTENSITY12_SGIS      = 0x811A,
-    GL_DUAL_INTENSITY16_SGIS      = 0x811B,
-    GL_DUAL_LUMINANCE_ALPHA4_SGIS = 0x811C,
-    GL_DUAL_LUMINANCE_ALPHA8_SGIS = 0x811D,
-    GL_QUAD_ALPHA4_SGIS           = 0x811E,
-    GL_QUAD_ALPHA8_SGIS           = 0x811F,
-    GL_QUAD_LUMINANCE4_SGIS       = 0x8120,
-    GL_QUAD_LUMINANCE8_SGIS       = 0x8121,
-    GL_QUAD_INTENSITY4_SGIS       = 0x8122,
-    GL_QUAD_INTENSITY8_SGIS       = 0x8123,
-    GL_DEPTH_COMPONENT16_SGIX     = 0x81A5,
-    GL_DEPTH_COMPONENT24_SGIX     = 0x81A6,
-    GL_DEPTH_COMPONENT32_SGIX     = 0x81A7,
-
-    // LightEnvModeSGIX
-
-//  GL_ADD      = 0x0104, // reuse AccumOp
-    GL_REPLACE  = 0x1E01,
-    GL_MODULATE = 0x2100,
-
-    // LightEnvParameterSGIX
-
-//  GL_LIGHT_ENV_MODE_SGIX = 0x8407, // reuse GetPName
-
-    // LightModelColorControl
-
-    GL_SINGLE_COLOR                = 0x81F9,
-    GL_SINGLE_COLOR_EXT            = 0x81F9,
-    GL_SEPARATE_SPECULAR_COLOR     = 0x81FA,
-    GL_SEPARATE_SPECULAR_COLOR_EXT = 0x81FA,
-
-    // LightModelParameter
-
-//  GL_LIGHT_MODEL_LOCAL_VIEWER      = 0x0B51, // reuse GetPName
-//  GL_LIGHT_MODEL_TWO_SIDE          = 0x0B52, // reuse GetPName
-//  GL_LIGHT_MODEL_AMBIENT           = 0x0B53, // reuse GetPName
-//  GL_LIGHT_MODEL_COLOR_CONTROL     = 0x81F8, // reuse GetPName
-    GL_LIGHT_MODEL_COLOR_CONTROL_EXT = 0x81F8,
-
-    // LightName
-
-//  GL_LIGHT0               = 0x4000, // reuse EnableCap
-//  GL_LIGHT1               = 0x4001, // reuse EnableCap
-//  GL_LIGHT2               = 0x4002, // reuse EnableCap
-//  GL_LIGHT3               = 0x4003, // reuse EnableCap
-//  GL_LIGHT4               = 0x4004, // reuse EnableCap
-//  GL_LIGHT5               = 0x4005, // reuse EnableCap
-//  GL_LIGHT6               = 0x4006, // reuse EnableCap
-//  GL_LIGHT7               = 0x4007, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT0_SGIX = 0x840C, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT1_SGIX = 0x840D, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT2_SGIX = 0x840E, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT3_SGIX = 0x840F, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT4_SGIX = 0x8410, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT5_SGIX = 0x8411, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT6_SGIX = 0x8412, // reuse EnableCap
-//  GL_FRAGMENT_LIGHT7_SGIX = 0x8413, // reuse EnableCap
-
-    // LightParameter
-
-//  GL_AMBIENT               = 0x1200, // reuse ColorMaterialParameter
-//  GL_DIFFUSE               = 0x1201, // reuse ColorMaterialParameter
-//  GL_SPECULAR              = 0x1202, // reuse ColorMaterialParameter
-    GL_POSITION              = 0x1203,
-    GL_SPOT_DIRECTION        = 0x1204,
-    GL_SPOT_EXPONENT         = 0x1205,
-    GL_SPOT_CUTOFF           = 0x1206,
-    GL_CONSTANT_ATTENUATION  = 0x1207,
-    GL_LINEAR_ATTENUATION    = 0x1208,
-    GL_QUADRATIC_ATTENUATION = 0x1209,
-
-    // ListMode
-
-    GL_COMPILE             = 0x1300,
-    GL_COMPILE_AND_EXECUTE = 0x1301,
-
-    // ListNameType
-
-//  GL_BYTE           = 0x1400, // reuse ColorPointerType
-//  GL_UNSIGNED_BYTE  = 0x1401, // reuse ColorPointerType
-//  GL_SHORT          = 0x1402, // reuse ColorPointerType
-//  GL_UNSIGNED_SHORT = 0x1403, // reuse ColorPointerType
-//  GL_INT            = 0x1404, // reuse ColorPointerType
-//  GL_UNSIGNED_INT   = 0x1405, // reuse ColorPointerType
-//  GL_FLOAT          = 0x1406, // reuse ColorPointerType
-    GL_2_BYTES        = 0x1407,
-    GL_3_BYTES        = 0x1408,
-    GL_4_BYTES        = 0x1409,
-
-    // ListParameterName
-
-    GL_LIST_PRIORITY_SGIX = 0x8182,
-
-    // LogicOp
-
-    GL_CLEAR         = 0x1500,
-    GL_AND           = 0x1501,
-    GL_AND_REVERSE   = 0x1502,
-    GL_COPY          = 0x1503,
-    GL_AND_INVERTED  = 0x1504,
-    GL_NOOP          = 0x1505,
-    GL_XOR           = 0x1506,
-    GL_OR            = 0x1507,
-    GL_NOR           = 0x1508,
-    GL_EQUIV         = 0x1509,
-    GL_INVERT        = 0x150A,
-    GL_OR_REVERSE    = 0x150B,
-    GL_COPY_INVERTED = 0x150C,
-    GL_OR_INVERTED   = 0x150D,
-    GL_NAND          = 0x150E,
-    GL_SET           = 0x150F,
-
-    // MapTarget
-
-//  GL_MAP1_COLOR_4              = 0x0D90, // reuse EnableCap
-//  GL_MAP1_INDEX                = 0x0D91, // reuse EnableCap
-//  GL_MAP1_NORMAL               = 0x0D92, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_1      = 0x0D93, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_2      = 0x0D94, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_3      = 0x0D95, // reuse EnableCap
-//  GL_MAP1_TEXTURE_COORD_4      = 0x0D96, // reuse EnableCap
-//  GL_MAP1_VERTEX_3             = 0x0D97, // reuse EnableCap
-//  GL_MAP1_VERTEX_4             = 0x0D98, // reuse EnableCap
-//  GL_MAP2_COLOR_4              = 0x0DB0, // reuse EnableCap
-//  GL_MAP2_INDEX                = 0x0DB1, // reuse EnableCap
-//  GL_MAP2_NORMAL               = 0x0DB2, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_1      = 0x0DB3, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_2      = 0x0DB4, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_3      = 0x0DB5, // reuse EnableCap
-//  GL_MAP2_TEXTURE_COORD_4      = 0x0DB6, // reuse EnableCap
-//  GL_MAP2_VERTEX_3             = 0x0DB7, // reuse EnableCap
-//  GL_MAP2_VERTEX_4             = 0x0DB8, // reuse EnableCap
-//  GL_GEOMETRY_DEFORMATION_SGIX = 0x8194, // reuse FfdTargetSGIX
-//  GL_TEXTURE_DEFORMATION_SGIX  = 0x8195, // reuse FfdTargetSGIX
-
-    // MapTextureFormatINTEL
-
-    GL_LAYOUT_DEFAULT_INTEL           = 0,
-    GL_LAYOUT_LINEAR_INTEL            = 1,
-    GL_LAYOUT_LINEAR_CPU_CACHED_INTEL = 2,
-
-    // MaterialFace
-
-//  GL_FRONT          = 0x0404, // reuse ColorMaterialFace
-//  GL_BACK           = 0x0405, // reuse ColorMaterialFace
-//  GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
-
-    // MaterialParameter
-
-//  GL_AMBIENT             = 0x1200, // reuse ColorMaterialParameter
-//  GL_DIFFUSE             = 0x1201, // reuse ColorMaterialParameter
-//  GL_SPECULAR            = 0x1202, // reuse ColorMaterialParameter
-//  GL_EMISSION            = 0x1600, // reuse ColorMaterialParameter
-    GL_SHININESS           = 0x1601,
-//  GL_AMBIENT_AND_DIFFUSE = 0x1602, // reuse ColorMaterialParameter
-    GL_COLOR_INDEXES       = 0x1603,
-
-    // MatrixMode
-
-    GL_MODELVIEW      = 0x1700,
-    GL_MODELVIEW0_EXT = 0x1700,
-    GL_PROJECTION     = 0x1701,
-    GL_TEXTURE        = 0x1702,
-
-    // MeshMode1
-
-    GL_POINT = 0x1B00,
-    GL_LINE  = 0x1B01,
-
-    // MeshMode2
-
-//  GL_POINT = 0x1B00, // reuse MeshMode1
-//  GL_LINE  = 0x1B01, // reuse MeshMode1
-    GL_FILL  = 0x1B02,
-
-    // MinmaxTargetEXT
-
-    GL_MINMAX     = 0x802E,
-//  GL_MINMAX_EXT = 0x802E, // reuse EnableCap
-
-    // NormalPointerType
-
-//  GL_BYTE   = 0x1400, // reuse ColorPointerType
-//  GL_SHORT  = 0x1402, // reuse ColorPointerType
-//  GL_INT    = 0x1404, // reuse ColorPointerType
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
-
-    // OcclusionQueryEventMaskAMD
-
-    GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD        = 0x00000001,
-    GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD        = 0x00000002,
-    GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD      = 0x00000004,
-    GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD = 0x00000008,
-    GL_QUERY_ALL_EVENT_BITS_AMD              = 0xFFFFFFFF,
-
-    // PixelCopyType
-
-    GL_COLOR   = 0x1800,
-    GL_DEPTH   = 0x1801,
-    GL_STENCIL = 0x1802,
-
-    // PixelFormat
-
-//  GL_UNSIGNED_SHORT  = 0x1403, // reuse ColorPointerType
-//  GL_UNSIGNED_INT    = 0x1405, // reuse ColorPointerType
-    GL_COLOR_INDEX     = 0x1900,
-    GL_STENCIL_INDEX   = 0x1901,
-    GL_DEPTH_COMPONENT = 0x1902,
-    GL_RED             = 0x1903,
-    GL_GREEN           = 0x1904,
-    GL_BLUE            = 0x1905,
-    GL_ALPHA           = 0x1906,
-    GL_RGB             = 0x1907,
-    GL_RGBA            = 0x1908,
-    GL_LUMINANCE       = 0x1909,
-    GL_LUMINANCE_ALPHA = 0x190A,
-    GL_ABGR_EXT        = 0x8000,
-    GL_CMYK_EXT        = 0x800C,
-    GL_CMYKA_EXT       = 0x800D,
-    GL_YCRCB_422_SGIX  = 0x81BB,
-    GL_YCRCB_444_SGIX  = 0x81BC,
-
-    // PixelMap
-
-//  GL_PIXEL_MAP_I_TO_I = 0x0C70, // reuse GetPixelMap
-//  GL_PIXEL_MAP_S_TO_S = 0x0C71, // reuse GetPixelMap
-//  GL_PIXEL_MAP_I_TO_R = 0x0C72, // reuse GetPixelMap
-//  GL_PIXEL_MAP_I_TO_G = 0x0C73, // reuse GetPixelMap
-//  GL_PIXEL_MAP_I_TO_B = 0x0C74, // reuse GetPixelMap
-//  GL_PIXEL_MAP_I_TO_A = 0x0C75, // reuse GetPixelMap
-//  GL_PIXEL_MAP_R_TO_R = 0x0C76, // reuse GetPixelMap
-//  GL_PIXEL_MAP_G_TO_G = 0x0C77, // reuse GetPixelMap
-//  GL_PIXEL_MAP_B_TO_B = 0x0C78, // reuse GetPixelMap
-//  GL_PIXEL_MAP_A_TO_A = 0x0C79, // reuse GetPixelMap
-
-    // PixelStoreParameter
-
-//  GL_UNPACK_SWAP_BYTES           = 0x0CF0, // reuse GetPName
-//  GL_UNPACK_LSB_FIRST            = 0x0CF1, // reuse GetPName
-//  GL_UNPACK_ROW_LENGTH           = 0x0CF2, // reuse GetPName
-//  GL_UNPACK_SKIP_ROWS            = 0x0CF3, // reuse GetPName
-//  GL_UNPACK_SKIP_PIXELS          = 0x0CF4, // reuse GetPName
-//  GL_UNPACK_ALIGNMENT            = 0x0CF5, // reuse GetPName
-//  GL_PACK_SWAP_BYTES             = 0x0D00, // reuse GetPName
-//  GL_PACK_LSB_FIRST              = 0x0D01, // reuse GetPName
-//  GL_PACK_ROW_LENGTH             = 0x0D02, // reuse GetPName
-//  GL_PACK_SKIP_ROWS              = 0x0D03, // reuse GetPName
-//  GL_PACK_SKIP_PIXELS            = 0x0D04, // reuse GetPName
-//  GL_PACK_ALIGNMENT              = 0x0D05, // reuse GetPName
-    GL_PACK_SKIP_IMAGES            = 0x806B,
-//  GL_PACK_SKIP_IMAGES_EXT        = 0x806B, // reuse GetPName
-    GL_PACK_IMAGE_HEIGHT           = 0x806C,
-//  GL_PACK_IMAGE_HEIGHT_EXT       = 0x806C, // reuse GetPName
-    GL_UNPACK_SKIP_IMAGES          = 0x806D,
-//  GL_UNPACK_SKIP_IMAGES_EXT      = 0x806D, // reuse GetPName
-    GL_UNPACK_IMAGE_HEIGHT         = 0x806E,
-//  GL_UNPACK_IMAGE_HEIGHT_EXT     = 0x806E, // reuse GetPName
-//  GL_PACK_SKIP_VOLUMES_SGIS      = 0x8130, // reuse GetPName
-//  GL_PACK_IMAGE_DEPTH_SGIS       = 0x8131, // reuse GetPName
-//  GL_UNPACK_SKIP_VOLUMES_SGIS    = 0x8132, // reuse GetPName
-//  GL_UNPACK_IMAGE_DEPTH_SGIS     = 0x8133, // reuse GetPName
-//  GL_PIXEL_TILE_WIDTH_SGIX       = 0x8140, // reuse GetPName
-//  GL_PIXEL_TILE_HEIGHT_SGIX      = 0x8141, // reuse GetPName
-//  GL_PIXEL_TILE_GRID_WIDTH_SGIX  = 0x8142, // reuse GetPName
-//  GL_PIXEL_TILE_GRID_HEIGHT_SGIX = 0x8143, // reuse GetPName
-//  GL_PIXEL_TILE_GRID_DEPTH_SGIX  = 0x8144, // reuse GetPName
-//  GL_PIXEL_TILE_CACHE_SIZE_SGIX  = 0x8145, // reuse GetPName
-//  GL_PACK_RESAMPLE_SGIX          = 0x842C, // reuse GetPName
-//  GL_UNPACK_RESAMPLE_SGIX        = 0x842D, // reuse GetPName
-//  GL_PACK_SUBSAMPLE_RATE_SGIX    = 0x85A0, // reuse GetPName
-//  GL_UNPACK_SUBSAMPLE_RATE_SGIX  = 0x85A1, // reuse GetPName
-    GL_PACK_RESAMPLE_OML           = 0x8984,
-    GL_UNPACK_RESAMPLE_OML         = 0x8985,
-
-    // PixelStoreResampleMode
-
-    GL_RESAMPLE_REPLICATE_SGIX = 0x842E,
-    GL_RESAMPLE_ZERO_FILL_SGIX = 0x842F,
-    GL_RESAMPLE_DECIMATE_SGIX  = 0x8430,
-
-    // PixelStoreSubsampleRate
-
-    GL_PIXEL_SUBSAMPLE_4444_SGIX = 0x85A2,
-    GL_PIXEL_SUBSAMPLE_2424_SGIX = 0x85A3,
-    GL_PIXEL_SUBSAMPLE_4242_SGIX = 0x85A4,
-
-    // PixelTexGenMode
-
-//  GL_NONE            = 0, // reuse DrawBufferMode
-//  GL_RGB             = 0x1907, // reuse PixelFormat
-//  GL_RGBA            = 0x1908, // reuse PixelFormat
-//  GL_LUMINANCE       = 0x1909, // reuse PixelFormat
-//  GL_LUMINANCE_ALPHA = 0x190A, // reuse PixelFormat
-
-    // PixelTexGenParameterNameSGIS
-
-    GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS   = 0x8354,
-    GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS = 0x8355,
-
-    // PixelTransferParameter
-
-//  GL_MAP_COLOR                         = 0x0D10, // reuse GetPName
-//  GL_MAP_STENCIL                       = 0x0D11, // reuse GetPName
-//  GL_INDEX_SHIFT                       = 0x0D12, // reuse GetPName
-//  GL_INDEX_OFFSET                      = 0x0D13, // reuse GetPName
-//  GL_RED_SCALE                         = 0x0D14, // reuse GetPName
-//  GL_RED_BIAS                          = 0x0D15, // reuse GetPName
-//  GL_GREEN_SCALE                       = 0x0D18, // reuse GetPName
-//  GL_GREEN_BIAS                        = 0x0D19, // reuse GetPName
-//  GL_BLUE_SCALE                        = 0x0D1A, // reuse GetPName
-//  GL_BLUE_BIAS                         = 0x0D1B, // reuse GetPName
-//  GL_ALPHA_SCALE                       = 0x0D1C, // reuse GetPName
-//  GL_ALPHA_BIAS                        = 0x0D1D, // reuse GetPName
-//  GL_DEPTH_SCALE                       = 0x0D1E, // reuse GetPName
-//  GL_DEPTH_BIAS                        = 0x0D1F, // reuse GetPName
-    GL_POST_CONVOLUTION_RED_SCALE        = 0x801C,
-//  GL_POST_CONVOLUTION_RED_SCALE_EXT    = 0x801C, // reuse GetPName
-    GL_POST_CONVOLUTION_GREEN_SCALE      = 0x801D,
-//  GL_POST_CONVOLUTION_GREEN_SCALE_EXT  = 0x801D, // reuse GetPName
-    GL_POST_CONVOLUTION_BLUE_SCALE       = 0x801E,
-//  GL_POST_CONVOLUTION_BLUE_SCALE_EXT   = 0x801E, // reuse GetPName
-    GL_POST_CONVOLUTION_ALPHA_SCALE      = 0x801F,
-//  GL_POST_CONVOLUTION_ALPHA_SCALE_EXT  = 0x801F, // reuse GetPName
-    GL_POST_CONVOLUTION_RED_BIAS         = 0x8020,
-//  GL_POST_CONVOLUTION_RED_BIAS_EXT     = 0x8020, // reuse GetPName
-    GL_POST_CONVOLUTION_GREEN_BIAS       = 0x8021,
-//  GL_POST_CONVOLUTION_GREEN_BIAS_EXT   = 0x8021, // reuse GetPName
-    GL_POST_CONVOLUTION_BLUE_BIAS        = 0x8022,
-//  GL_POST_CONVOLUTION_BLUE_BIAS_EXT    = 0x8022, // reuse GetPName
-    GL_POST_CONVOLUTION_ALPHA_BIAS       = 0x8023,
-//  GL_POST_CONVOLUTION_ALPHA_BIAS_EXT   = 0x8023, // reuse GetPName
-    GL_POST_COLOR_MATRIX_RED_SCALE       = 0x80B4,
-//  GL_POST_COLOR_MATRIX_RED_SCALE_SGI   = 0x80B4, // reuse GetPName
-    GL_POST_COLOR_MATRIX_GREEN_SCALE     = 0x80B5,
-//  GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = 0x80B5, // reuse GetPName
-    GL_POST_COLOR_MATRIX_BLUE_SCALE      = 0x80B6,
-//  GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI  = 0x80B6, // reuse GetPName
-    GL_POST_COLOR_MATRIX_ALPHA_SCALE     = 0x80B7,
-//  GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = 0x80B7, // reuse GetPName
-    GL_POST_COLOR_MATRIX_RED_BIAS        = 0x80B8,
-//  GL_POST_COLOR_MATRIX_RED_BIAS_SGI    = 0x80B8, // reuse GetPName
-    GL_POST_COLOR_MATRIX_GREEN_BIAS      = 0x80B9,
-//  GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI  = 0x80B9, // reuse GetPName
-    GL_POST_COLOR_MATRIX_BLUE_BIAS       = 0x80BA,
-//  GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI   = 0x80BA, // reuse GetPName
-    GL_POST_COLOR_MATRIX_ALPHA_BIAS      = 0x80BB,
-//  GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI  = 0x80BB, // reuse GetPName
-
-    // PixelType
-
-//  GL_BYTE                        = 0x1400, // reuse ColorPointerType
-//  GL_UNSIGNED_BYTE               = 0x1401, // reuse ColorPointerType
-//  GL_SHORT                       = 0x1402, // reuse ColorPointerType
-//  GL_UNSIGNED_SHORT              = 0x1403, // reuse ColorPointerType
-//  GL_INT                         = 0x1404, // reuse ColorPointerType
-//  GL_UNSIGNED_INT                = 0x1405, // reuse ColorPointerType
-//  GL_FLOAT                       = 0x1406, // reuse ColorPointerType
-    GL_BITMAP                      = 0x1A00,
-    GL_UNSIGNED_BYTE_3_3_2         = 0x8032,
-    GL_UNSIGNED_BYTE_3_3_2_EXT     = 0x8032,
-    GL_UNSIGNED_SHORT_4_4_4_4      = 0x8033,
-    GL_UNSIGNED_SHORT_4_4_4_4_EXT  = 0x8033,
-    GL_UNSIGNED_SHORT_5_5_5_1      = 0x8034,
-    GL_UNSIGNED_SHORT_5_5_5_1_EXT  = 0x8034,
-    GL_UNSIGNED_INT_8_8_8_8        = 0x8035,
-    GL_UNSIGNED_INT_8_8_8_8_EXT    = 0x8035,
-    GL_UNSIGNED_INT_10_10_10_2     = 0x8036,
-    GL_UNSIGNED_INT_10_10_10_2_EXT = 0x8036,
-
-    // PointParameterNameSGIS
-
-    GL_POINT_SIZE_MIN                 = 0x8126,
-    GL_POINT_SIZE_MIN_ARB             = 0x8126,
-    GL_POINT_SIZE_MIN_EXT             = 0x8126,
-//  GL_POINT_SIZE_MIN_SGIS            = 0x8126, // reuse GetPName
-    GL_POINT_SIZE_MAX                 = 0x8127,
-    GL_POINT_SIZE_MAX_ARB             = 0x8127,
-    GL_POINT_SIZE_MAX_EXT             = 0x8127,
-//  GL_POINT_SIZE_MAX_SGIS            = 0x8127, // reuse GetPName
-    GL_POINT_FADE_THRESHOLD_SIZE      = 0x8128,
-    GL_POINT_FADE_THRESHOLD_SIZE_ARB  = 0x8128,
-    GL_POINT_FADE_THRESHOLD_SIZE_EXT  = 0x8128,
-//  GL_POINT_FADE_THRESHOLD_SIZE_SGIS = 0x8128, // reuse GetPName
-    GL_DISTANCE_ATTENUATION_EXT       = 0x8129,
-//  GL_DISTANCE_ATTENUATION_SGIS      = 0x8129, // reuse GetPName
-    GL_POINT_DISTANCE_ATTENUATION     = 0x8129,
-    GL_POINT_DISTANCE_ATTENUATION_ARB = 0x8129,
-
-    // PolygonMode
-
-//  GL_POINT = 0x1B00, // reuse MeshMode1
-//  GL_LINE  = 0x1B01, // reuse MeshMode1
-//  GL_FILL  = 0x1B02, // reuse MeshMode2
-
-    // PrimitiveType
-
-    GL_POINTS                       = 0x0000,
-    GL_LINES                        = 0x0001,
-    GL_LINE_LOOP                    = 0x0002,
-    GL_LINE_STRIP                   = 0x0003,
-    GL_TRIANGLES                    = 0x0004,
-    GL_TRIANGLE_STRIP               = 0x0005,
-    GL_TRIANGLE_FAN                 = 0x0006,
-    GL_QUADS                        = 0x0007,
-    GL_QUAD_STRIP                   = 0x0008,
-    GL_POLYGON                      = 0x0009,
-    GL_LINES_ADJACENCY              = 0x000A,
-    GL_LINES_ADJACENCY_ARB          = 0x000A,
-    GL_LINES_ADJACENCY_EXT          = 0x000A,
-    GL_LINE_STRIP_ADJACENCY         = 0x000B,
-    GL_LINE_STRIP_ADJACENCY_ARB     = 0x000B,
-    GL_LINE_STRIP_ADJACENCY_EXT     = 0x000B,
-    GL_TRIANGLES_ADJACENCY          = 0x000C,
-    GL_TRIANGLES_ADJACENCY_ARB      = 0x000C,
-    GL_TRIANGLES_ADJACENCY_EXT      = 0x000C,
-    GL_TRIANGLE_STRIP_ADJACENCY     = 0x000D,
-    GL_TRIANGLE_STRIP_ADJACENCY_ARB = 0x000D,
-    GL_TRIANGLE_STRIP_ADJACENCY_EXT = 0x000D,
-    GL_PATCHES                      = 0x000E,
-
-    // ReadBufferMode
-
-//  GL_FRONT_LEFT  = 0x0400, // reuse DrawBufferMode
-//  GL_FRONT_RIGHT = 0x0401, // reuse DrawBufferMode
-//  GL_BACK_LEFT   = 0x0402, // reuse DrawBufferMode
-//  GL_BACK_RIGHT  = 0x0403, // reuse DrawBufferMode
-//  GL_FRONT       = 0x0404, // reuse ColorMaterialFace
-//  GL_BACK        = 0x0405, // reuse ColorMaterialFace
-//  GL_LEFT        = 0x0406, // reuse DrawBufferMode
-//  GL_RIGHT       = 0x0407, // reuse DrawBufferMode
-//  GL_AUX0        = 0x0409, // reuse DrawBufferMode
-//  GL_AUX1        = 0x040A, // reuse DrawBufferMode
-//  GL_AUX2        = 0x040B, // reuse DrawBufferMode
-//  GL_AUX3        = 0x040C, // reuse DrawBufferMode
-
-    // RenderingMode
-
-    GL_RENDER   = 0x1C00,
-    GL_FEEDBACK = 0x1C01,
-    GL_SELECT   = 0x1C02,
-
-    // SamplePatternSGIS
-
-    GL_1PASS_EXT    = 0x80A1,
-    GL_1PASS_SGIS   = 0x80A1,
-    GL_2PASS_0_EXT  = 0x80A2,
-    GL_2PASS_0_SGIS = 0x80A2,
-    GL_2PASS_1_EXT  = 0x80A3,
-    GL_2PASS_1_SGIS = 0x80A3,
-    GL_4PASS_0_EXT  = 0x80A4,
-    GL_4PASS_0_SGIS = 0x80A4,
-    GL_4PASS_1_EXT  = 0x80A5,
-    GL_4PASS_1_SGIS = 0x80A5,
-    GL_4PASS_2_EXT  = 0x80A6,
-    GL_4PASS_2_SGIS = 0x80A6,
-    GL_4PASS_3_EXT  = 0x80A7,
-    GL_4PASS_3_SGIS = 0x80A7,
-
-    // SeparableTargetEXT
-
-    GL_SEPARABLE_2D     = 0x8012,
-//  GL_SEPARABLE_2D_EXT = 0x8012, // reuse EnableCap
-
-    // ShadingModel
-
-    GL_FLAT   = 0x1D00,
-    GL_SMOOTH = 0x1D01,
-
-    // StencilFunction
-
-//  GL_NEVER    = 0x0200, // reuse AlphaFunction
-//  GL_LESS     = 0x0201, // reuse AlphaFunction
-//  GL_EQUAL    = 0x0202, // reuse AlphaFunction
-//  GL_LEQUAL   = 0x0203, // reuse AlphaFunction
-//  GL_GREATER  = 0x0204, // reuse AlphaFunction
-//  GL_NOTEQUAL = 0x0205, // reuse AlphaFunction
-//  GL_GEQUAL   = 0x0206, // reuse AlphaFunction
-//  GL_ALWAYS   = 0x0207, // reuse AlphaFunction
-
-    // StencilOp
-
-//  GL_ZERO    = 0, // reuse BlendingFactorDest
-//  GL_INVERT  = 0x150A, // reuse LogicOp
-    GL_KEEP    = 0x1E00,
-//  GL_REPLACE = 0x1E01, // reuse LightEnvModeSGIX
-    GL_INCR    = 0x1E02,
-    GL_DECR    = 0x1E03,
-
-    // StringName
-
-    GL_VENDOR     = 0x1F00,
-    GL_RENDERER   = 0x1F01,
-    GL_VERSION    = 0x1F02,
-    GL_EXTENSIONS = 0x1F03,
-
-    // TexCoordPointerType
-
-//  GL_SHORT  = 0x1402, // reuse ColorPointerType
-//  GL_INT    = 0x1404, // reuse ColorPointerType
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
-
-    // TextureCoordName
-
-    GL_S = 0x2000,
-    GL_T = 0x2001,
-    GL_R = 0x2002,
-    GL_Q = 0x2003,
-
-    // TextureEnvMode
-
-//  GL_ADD                   = 0x0104, // reuse AccumOp
-//  GL_BLEND                 = 0x0BE2, // reuse EnableCap
-//  GL_MODULATE              = 0x2100, // reuse LightEnvModeSGIX
-    GL_DECAL                 = 0x2101,
-    GL_REPLACE_EXT           = 0x8062,
-    GL_TEXTURE_ENV_BIAS_SGIX = 0x80BE,
-
-    // TextureEnvParameter
-
-    GL_TEXTURE_ENV_MODE  = 0x2200,
-    GL_TEXTURE_ENV_COLOR = 0x2201,
-
-    // TextureEnvTarget
-
-    GL_TEXTURE_ENV = 0x2300,
-
-    // TextureFilterFuncSGIS
-
-    GL_FILTER4_SGIS = 0x8146,
-
-    // TextureGenMode
-
-    GL_EYE_LINEAR                    = 0x2400,
-    GL_OBJECT_LINEAR                 = 0x2401,
-    GL_SPHERE_MAP                    = 0x2402,
-    GL_EYE_DISTANCE_TO_POINT_SGIS    = 0x81F0,
-    GL_OBJECT_DISTANCE_TO_POINT_SGIS = 0x81F1,
-    GL_EYE_DISTANCE_TO_LINE_SGIS     = 0x81F2,
-    GL_OBJECT_DISTANCE_TO_LINE_SGIS  = 0x81F3,
-
-    // TextureGenParameter
-
-    GL_TEXTURE_GEN_MODE  = 0x2500,
-    GL_OBJECT_PLANE      = 0x2501,
-    GL_EYE_PLANE         = 0x2502,
-    GL_EYE_POINT_SGIS    = 0x81F4,
-    GL_OBJECT_POINT_SGIS = 0x81F5,
-    GL_EYE_LINE_SGIS     = 0x81F6,
-    GL_OBJECT_LINE_SGIS  = 0x81F7,
-
-    // TextureMagFilter
-
-    GL_NEAREST                   = 0x2600,
-//  GL_LINEAR                    = 0x2601, // reuse FogMode
-    GL_LINEAR_DETAIL_SGIS        = 0x8097,
-    GL_LINEAR_DETAIL_ALPHA_SGIS  = 0x8098,
-    GL_LINEAR_DETAIL_COLOR_SGIS  = 0x8099,
-    GL_LINEAR_SHARPEN_SGIS       = 0x80AD,
-    GL_LINEAR_SHARPEN_ALPHA_SGIS = 0x80AE,
-    GL_LINEAR_SHARPEN_COLOR_SGIS = 0x80AF,
-//  GL_FILTER4_SGIS              = 0x8146, // reuse TextureFilterFuncSGIS
-
-    // TextureMinFilter
-
-//  GL_NEAREST                      = 0x2600, // reuse TextureMagFilter
-//  GL_LINEAR                       = 0x2601, // reuse FogMode
-    GL_NEAREST_MIPMAP_NEAREST       = 0x2700,
-    GL_LINEAR_MIPMAP_NEAREST        = 0x2701,
-    GL_NEAREST_MIPMAP_LINEAR        = 0x2702,
-    GL_LINEAR_MIPMAP_LINEAR         = 0x2703,
-//  GL_FILTER4_SGIS                 = 0x8146, // reuse TextureFilterFuncSGIS
-    GL_LINEAR_CLIPMAP_LINEAR_SGIX   = 0x8170,
-    GL_NEAREST_CLIPMAP_NEAREST_SGIX = 0x844D,
-    GL_NEAREST_CLIPMAP_LINEAR_SGIX  = 0x844E,
-    GL_LINEAR_CLIPMAP_NEAREST_SGIX  = 0x844F,
-
-    // TextureParameterName
-
-//  GL_TEXTURE_BORDER_COLOR               = 0x1004, // reuse GetTextureParameter
-//  GL_TEXTURE_MAG_FILTER                 = 0x2800, // reuse GetTextureParameter
-//  GL_TEXTURE_MIN_FILTER                 = 0x2801, // reuse GetTextureParameter
-//  GL_TEXTURE_WRAP_S                     = 0x2802, // reuse GetTextureParameter
-//  GL_TEXTURE_WRAP_T                     = 0x2803, // reuse GetTextureParameter
-//  GL_TEXTURE_PRIORITY                   = 0x8066, // reuse GetTextureParameter
-    GL_TEXTURE_PRIORITY_EXT               = 0x8066,
-    GL_TEXTURE_WRAP_R                     = 0x8072,
-//  GL_TEXTURE_WRAP_R_EXT                 = 0x8072, // reuse GetTextureParameter
-//  GL_DETAIL_TEXTURE_LEVEL_SGIS          = 0x809A, // reuse GetTextureParameter
-//  GL_DETAIL_TEXTURE_MODE_SGIS           = 0x809B, // reuse GetTextureParameter
-//  GL_SHADOW_AMBIENT_SGIX                = 0x80BF, // reuse GetTextureParameter
-//  GL_DUAL_TEXTURE_SELECT_SGIS           = 0x8124, // reuse GetTextureParameter
-//  GL_QUAD_TEXTURE_SELECT_SGIS           = 0x8125, // reuse GetTextureParameter
-//  GL_TEXTURE_WRAP_Q_SGIS                = 0x8137, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_CENTER_SGIX        = 0x8171, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_FRAME_SGIX         = 0x8172, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_OFFSET_SGIX        = 0x8173, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = 0x8174, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX    = 0x8175, // reuse GetTextureParameter
-//  GL_TEXTURE_CLIPMAP_DEPTH_SGIX         = 0x8176, // reuse GetTextureParameter
-//  GL_POST_TEXTURE_FILTER_BIAS_SGIX      = 0x8179, // reuse GetTextureParameter
-//  GL_POST_TEXTURE_FILTER_SCALE_SGIX     = 0x817A, // reuse GetTextureParameter
-//  GL_TEXTURE_LOD_BIAS_S_SGIX            = 0x818E, // reuse GetTextureParameter
-//  GL_TEXTURE_LOD_BIAS_T_SGIX            = 0x818F, // reuse GetTextureParameter
-//  GL_TEXTURE_LOD_BIAS_R_SGIX            = 0x8190, // reuse GetTextureParameter
-    GL_GENERATE_MIPMAP                    = 0x8191,
-//  GL_GENERATE_MIPMAP_SGIS               = 0x8191, // reuse GetTextureParameter
-//  GL_TEXTURE_COMPARE_SGIX               = 0x819A, // reuse GetTextureParameter
-//  GL_TEXTURE_MAX_CLAMP_S_SGIX           = 0x8369, // reuse GetTextureParameter
-//  GL_TEXTURE_MAX_CLAMP_T_SGIX           = 0x836A, // reuse GetTextureParameter
-//  GL_TEXTURE_MAX_CLAMP_R_SGIX           = 0x836B, // reuse GetTextureParameter
-
-    // TextureTarget
-
-//  GL_TEXTURE_1D              = 0x0DE0, // reuse EnableCap
-//  GL_TEXTURE_2D              = 0x0DE1, // reuse EnableCap
-    GL_PROXY_TEXTURE_1D        = 0x8063,
-    GL_PROXY_TEXTURE_1D_EXT    = 0x8063,
-    GL_PROXY_TEXTURE_2D        = 0x8064,
-    GL_PROXY_TEXTURE_2D_EXT    = 0x8064,
-    GL_TEXTURE_3D              = 0x806F,
-//  GL_TEXTURE_3D_EXT          = 0x806F, // reuse EnableCap
-    GL_PROXY_TEXTURE_3D        = 0x8070,
-    GL_PROXY_TEXTURE_3D_EXT    = 0x8070,
-    GL_DETAIL_TEXTURE_2D_SGIS  = 0x8095,
-//  GL_TEXTURE_4D_SGIS         = 0x8134, // reuse EnableCap
-    GL_PROXY_TEXTURE_4D_SGIS   = 0x8135,
-    GL_TEXTURE_MIN_LOD         = 0x813A,
-//  GL_TEXTURE_MIN_LOD_SGIS    = 0x813A, // reuse GetTextureParameter
-    GL_TEXTURE_MAX_LOD         = 0x813B,
-//  GL_TEXTURE_MAX_LOD_SGIS    = 0x813B, // reuse GetTextureParameter
-    GL_TEXTURE_BASE_LEVEL      = 0x813C,
-//  GL_TEXTURE_BASE_LEVEL_SGIS = 0x813C, // reuse GetTextureParameter
-    GL_TEXTURE_MAX_LEVEL       = 0x813D,
-//  GL_TEXTURE_MAX_LEVEL_SGIS  = 0x813D, // reuse GetTextureParameter
-
-    // TextureWrapMode
-
-    GL_CLAMP                = 0x2900,
-    GL_REPEAT               = 0x2901,
-    GL_CLAMP_TO_BORDER      = 0x812D,
-    GL_CLAMP_TO_BORDER_ARB  = 0x812D,
-    GL_CLAMP_TO_BORDER_SGIS = 0x812D,
-    GL_CLAMP_TO_EDGE        = 0x812F,
-    GL_CLAMP_TO_EDGE_SGIS   = 0x812F,
-
-    // VertexPointerType
-
-//  GL_SHORT  = 0x1402, // reuse ColorPointerType
-//  GL_INT    = 0x1404, // reuse ColorPointerType
-//  GL_FLOAT  = 0x1406, // reuse ColorPointerType
-//  GL_DOUBLE = 0x140A, // reuse ColorPointerType
-
-    // __UNGROUPED__
-
+enum class GLenum : unsigned int
+{
     GL_NEXT_BUFFER_NV                                             = static_cast<unsigned int>(-2),
     GL_SKIP_COMPONENTS4_NV                                        = static_cast<unsigned int>(-3),
     GL_SKIP_COMPONENTS3_NV                                        = static_cast<unsigned int>(-4),
@@ -5231,1734 +3980,1841 @@ enum class GLenum : unsigned int
     GL_EDGE_FLAG_ARRAY_LIST_STRIDE_IBM                            = 103085,
     GL_FOG_COORDINATE_ARRAY_LIST_STRIDE_IBM                       = 103086,
     GL_SECONDARY_COLOR_ARRAY_LIST_STRIDE_IBM                      = 103087,
-
 };
 
+
+enum class GetColorTableParameterPNameSGI : unsigned int
+{
+    GL_COLOR_TABLE_SCALE_SGI          = 0x80D6, // reuse ColorTableParameterPNameSGI
+    GL_COLOR_TABLE_BIAS_SGI           = 0x80D7, // reuse ColorTableParameterPNameSGI
+    GL_COLOR_TABLE_FORMAT_SGI         = 0x80D8,
+    GL_COLOR_TABLE_WIDTH_SGI          = 0x80D9,
+    GL_COLOR_TABLE_RED_SIZE_SGI       = 0x80DA,
+    GL_COLOR_TABLE_GREEN_SIZE_SGI     = 0x80DB,
+    GL_COLOR_TABLE_BLUE_SIZE_SGI      = 0x80DC,
+    GL_COLOR_TABLE_ALPHA_SIZE_SGI     = 0x80DD,
+    GL_COLOR_TABLE_LUMINANCE_SIZE_SGI = 0x80DE,
+    GL_COLOR_TABLE_INTENSITY_SIZE_SGI = 0x80DF,
+};
+
+
+enum class GetConvolutionParameter : unsigned int
+{
+    GL_CONVOLUTION_BORDER_MODE_EXT  = 0x8013, // reuse ConvolutionParameterEXT
+    GL_CONVOLUTION_FILTER_SCALE_EXT = 0x8014, // reuse ConvolutionParameterEXT
+    GL_CONVOLUTION_FILTER_BIAS_EXT  = 0x8015, // reuse ConvolutionParameterEXT
+    GL_CONVOLUTION_FORMAT_EXT       = 0x8017,
+    GL_CONVOLUTION_WIDTH_EXT        = 0x8018,
+    GL_CONVOLUTION_HEIGHT_EXT       = 0x8019,
+    GL_MAX_CONVOLUTION_WIDTH_EXT    = 0x801A,
+    GL_MAX_CONVOLUTION_HEIGHT_EXT   = 0x801B,
+};
+
+
+enum class GetHistogramParameterPNameEXT : unsigned int
+{
+    GL_HISTOGRAM_WIDTH_EXT          = 0x8026,
+    GL_HISTOGRAM_FORMAT_EXT         = 0x8027,
+    GL_HISTOGRAM_RED_SIZE_EXT       = 0x8028,
+    GL_HISTOGRAM_GREEN_SIZE_EXT     = 0x8029,
+    GL_HISTOGRAM_BLUE_SIZE_EXT      = 0x802A,
+    GL_HISTOGRAM_ALPHA_SIZE_EXT     = 0x802B,
+    GL_HISTOGRAM_LUMINANCE_SIZE_EXT = 0x802C,
+    GL_HISTOGRAM_SINK_EXT           = 0x802D,
+};
+
+
+enum class GetMapQuery : unsigned int
+{
+    GL_COEFF  = 0x0A00,
+    GL_ORDER  = 0x0A01,
+    GL_DOMAIN = 0x0A02,
+};
+
+
+enum class GetMinmaxParameterPNameEXT : unsigned int
+{
+    GL_MINMAX_FORMAT     = 0x802F,
+    GL_MINMAX_FORMAT_EXT = 0x802F,
+    GL_MINMAX_SINK       = 0x8030,
+    GL_MINMAX_SINK_EXT   = 0x8030,
+};
+
+
+enum class GetPName : unsigned int
+{
+    GL_CURRENT_COLOR                                  = 0x0B00,
+    GL_CURRENT_INDEX                                  = 0x0B01,
+    GL_CURRENT_NORMAL                                 = 0x0B02,
+    GL_CURRENT_TEXTURE_COORDS                         = 0x0B03,
+    GL_CURRENT_RASTER_COLOR                           = 0x0B04,
+    GL_CURRENT_RASTER_INDEX                           = 0x0B05,
+    GL_CURRENT_RASTER_TEXTURE_COORDS                  = 0x0B06,
+    GL_CURRENT_RASTER_POSITION                        = 0x0B07,
+    GL_CURRENT_RASTER_POSITION_VALID                  = 0x0B08,
+    GL_CURRENT_RASTER_DISTANCE                        = 0x0B09,
+    GL_POINT_SMOOTH                                   = 0x0B10, // reuse EnableCap
+    GL_POINT_SIZE                                     = 0x0B11,
+    GL_POINT_SIZE_RANGE                               = 0x0B12,
+    GL_SMOOTH_POINT_SIZE_RANGE                        = 0x0B12,
+    GL_POINT_SIZE_GRANULARITY                         = 0x0B13,
+    GL_SMOOTH_POINT_SIZE_GRANULARITY                  = 0x0B13,
+    GL_LINE_SMOOTH                                    = 0x0B20, // reuse EnableCap
+    GL_LINE_WIDTH                                     = 0x0B21,
+    GL_LINE_WIDTH_RANGE                               = 0x0B22,
+    GL_SMOOTH_LINE_WIDTH_RANGE                        = 0x0B22,
+    GL_LINE_WIDTH_GRANULARITY                         = 0x0B23,
+    GL_SMOOTH_LINE_WIDTH_GRANULARITY                  = 0x0B23,
+    GL_LINE_STIPPLE                                   = 0x0B24, // reuse EnableCap
+    GL_LINE_STIPPLE_PATTERN                           = 0x0B25,
+    GL_LINE_STIPPLE_REPEAT                            = 0x0B26,
+    GL_LIST_MODE                                      = 0x0B30,
+    GL_MAX_LIST_NESTING                               = 0x0B31,
+    GL_LIST_BASE                                      = 0x0B32,
+    GL_LIST_INDEX                                     = 0x0B33,
+    GL_POLYGON_MODE                                   = 0x0B40,
+    GL_POLYGON_SMOOTH                                 = 0x0B41, // reuse EnableCap
+    GL_POLYGON_STIPPLE                                = 0x0B42, // reuse EnableCap
+    GL_EDGE_FLAG                                      = 0x0B43,
+    GL_CULL_FACE                                      = 0x0B44, // reuse EnableCap
+    GL_CULL_FACE_MODE                                 = 0x0B45,
+    GL_FRONT_FACE                                     = 0x0B46,
+    GL_LIGHTING                                       = 0x0B50, // reuse EnableCap
+    GL_LIGHT_MODEL_LOCAL_VIEWER                       = 0x0B51,
+    GL_LIGHT_MODEL_TWO_SIDE                           = 0x0B52,
+    GL_LIGHT_MODEL_AMBIENT                            = 0x0B53,
+    GL_SHADE_MODEL                                    = 0x0B54,
+    GL_COLOR_MATERIAL_FACE                            = 0x0B55,
+    GL_COLOR_MATERIAL_PARAMETER                       = 0x0B56,
+    GL_COLOR_MATERIAL                                 = 0x0B57, // reuse EnableCap
+    GL_FOG                                            = 0x0B60, // reuse EnableCap
+    GL_FOG_INDEX                                      = 0x0B61, // reuse FogParameter
+    GL_FOG_DENSITY                                    = 0x0B62, // reuse FogParameter
+    GL_FOG_START                                      = 0x0B63, // reuse FogParameter
+    GL_FOG_END                                        = 0x0B64, // reuse FogParameter
+    GL_FOG_MODE                                       = 0x0B65, // reuse FogParameter
+    GL_FOG_COLOR                                      = 0x0B66, // reuse FogParameter
+    GL_DEPTH_RANGE                                    = 0x0B70,
+    GL_DEPTH_TEST                                     = 0x0B71, // reuse EnableCap
+    GL_DEPTH_WRITEMASK                                = 0x0B72,
+    GL_DEPTH_CLEAR_VALUE                              = 0x0B73,
+    GL_DEPTH_FUNC                                     = 0x0B74,
+    GL_ACCUM_CLEAR_VALUE                              = 0x0B80,
+    GL_STENCIL_TEST                                   = 0x0B90, // reuse EnableCap
+    GL_STENCIL_CLEAR_VALUE                            = 0x0B91,
+    GL_STENCIL_FUNC                                   = 0x0B92,
+    GL_STENCIL_VALUE_MASK                             = 0x0B93,
+    GL_STENCIL_FAIL                                   = 0x0B94,
+    GL_STENCIL_PASS_DEPTH_FAIL                        = 0x0B95,
+    GL_STENCIL_PASS_DEPTH_PASS                        = 0x0B96,
+    GL_STENCIL_REF                                    = 0x0B97,
+    GL_STENCIL_WRITEMASK                              = 0x0B98,
+    GL_MATRIX_MODE                                    = 0x0BA0,
+    GL_NORMALIZE                                      = 0x0BA1, // reuse EnableCap
+    GL_VIEWPORT                                       = 0x0BA2,
+    GL_MODELVIEW0_STACK_DEPTH_EXT                     = 0x0BA3,
+    GL_MODELVIEW_STACK_DEPTH                          = 0x0BA3,
+    GL_PROJECTION_STACK_DEPTH                         = 0x0BA4,
+    GL_TEXTURE_STACK_DEPTH                            = 0x0BA5,
+    GL_MODELVIEW0_MATRIX_EXT                          = 0x0BA6,
+    GL_MODELVIEW_MATRIX                               = 0x0BA6,
+    GL_PROJECTION_MATRIX                              = 0x0BA7,
+    GL_TEXTURE_MATRIX                                 = 0x0BA8,
+    GL_ATTRIB_STACK_DEPTH                             = 0x0BB0,
+    GL_CLIENT_ATTRIB_STACK_DEPTH                      = 0x0BB1,
+    GL_ALPHA_TEST                                     = 0x0BC0, // reuse EnableCap
+    GL_ALPHA_TEST_FUNC                                = 0x0BC1,
+    GL_ALPHA_TEST_REF                                 = 0x0BC2,
+    GL_DITHER                                         = 0x0BD0, // reuse EnableCap
+    GL_BLEND_DST                                      = 0x0BE0,
+    GL_BLEND_SRC                                      = 0x0BE1,
+    GL_BLEND                                          = 0x0BE2, // reuse EnableCap
+    GL_LOGIC_OP_MODE                                  = 0x0BF0,
+    GL_INDEX_LOGIC_OP                                 = 0x0BF1, // reuse EnableCap
+    GL_LOGIC_OP                                       = 0x0BF1, // reuse BlendEquationModeEXT
+    GL_COLOR_LOGIC_OP                                 = 0x0BF2, // reuse EnableCap
+    GL_AUX_BUFFERS                                    = 0x0C00,
+    GL_DRAW_BUFFER                                    = 0x0C01,
+    GL_READ_BUFFER                                    = 0x0C02,
+    GL_SCISSOR_BOX                                    = 0x0C10,
+    GL_SCISSOR_TEST                                   = 0x0C11, // reuse EnableCap
+    GL_INDEX_CLEAR_VALUE                              = 0x0C20,
+    GL_INDEX_WRITEMASK                                = 0x0C21,
+    GL_COLOR_CLEAR_VALUE                              = 0x0C22,
+    GL_COLOR_WRITEMASK                                = 0x0C23,
+    GL_INDEX_MODE                                     = 0x0C30,
+    GL_RGBA_MODE                                      = 0x0C31,
+    GL_DOUBLEBUFFER                                   = 0x0C32,
+    GL_STEREO                                         = 0x0C33,
+    GL_RENDER_MODE                                    = 0x0C40,
+    GL_PERSPECTIVE_CORRECTION_HINT                    = 0x0C50,
+    GL_POINT_SMOOTH_HINT                              = 0x0C51,
+    GL_LINE_SMOOTH_HINT                               = 0x0C52,
+    GL_POLYGON_SMOOTH_HINT                            = 0x0C53,
+    GL_FOG_HINT                                       = 0x0C54,
+    GL_TEXTURE_GEN_S                                  = 0x0C60, // reuse EnableCap
+    GL_TEXTURE_GEN_T                                  = 0x0C61, // reuse EnableCap
+    GL_TEXTURE_GEN_R                                  = 0x0C62, // reuse EnableCap
+    GL_TEXTURE_GEN_Q                                  = 0x0C63, // reuse EnableCap
+    GL_PIXEL_MAP_I_TO_I_SIZE                          = 0x0CB0,
+    GL_PIXEL_MAP_S_TO_S_SIZE                          = 0x0CB1,
+    GL_PIXEL_MAP_I_TO_R_SIZE                          = 0x0CB2,
+    GL_PIXEL_MAP_I_TO_G_SIZE                          = 0x0CB3,
+    GL_PIXEL_MAP_I_TO_B_SIZE                          = 0x0CB4,
+    GL_PIXEL_MAP_I_TO_A_SIZE                          = 0x0CB5,
+    GL_PIXEL_MAP_R_TO_R_SIZE                          = 0x0CB6,
+    GL_PIXEL_MAP_G_TO_G_SIZE                          = 0x0CB7,
+    GL_PIXEL_MAP_B_TO_B_SIZE                          = 0x0CB8,
+    GL_PIXEL_MAP_A_TO_A_SIZE                          = 0x0CB9,
+    GL_UNPACK_SWAP_BYTES                              = 0x0CF0,
+    GL_UNPACK_LSB_FIRST                               = 0x0CF1,
+    GL_UNPACK_ROW_LENGTH                              = 0x0CF2,
+    GL_UNPACK_SKIP_ROWS                               = 0x0CF3,
+    GL_UNPACK_SKIP_PIXELS                             = 0x0CF4,
+    GL_UNPACK_ALIGNMENT                               = 0x0CF5,
+    GL_PACK_SWAP_BYTES                                = 0x0D00,
+    GL_PACK_LSB_FIRST                                 = 0x0D01,
+    GL_PACK_ROW_LENGTH                                = 0x0D02,
+    GL_PACK_SKIP_ROWS                                 = 0x0D03,
+    GL_PACK_SKIP_PIXELS                               = 0x0D04,
+    GL_PACK_ALIGNMENT                                 = 0x0D05,
+    GL_MAP_COLOR                                      = 0x0D10,
+    GL_MAP_STENCIL                                    = 0x0D11,
+    GL_INDEX_SHIFT                                    = 0x0D12,
+    GL_INDEX_OFFSET                                   = 0x0D13,
+    GL_RED_SCALE                                      = 0x0D14,
+    GL_RED_BIAS                                       = 0x0D15,
+    GL_ZOOM_X                                         = 0x0D16,
+    GL_ZOOM_Y                                         = 0x0D17,
+    GL_GREEN_SCALE                                    = 0x0D18,
+    GL_GREEN_BIAS                                     = 0x0D19,
+    GL_BLUE_SCALE                                     = 0x0D1A,
+    GL_BLUE_BIAS                                      = 0x0D1B,
+    GL_ALPHA_SCALE                                    = 0x0D1C,
+    GL_ALPHA_BIAS                                     = 0x0D1D,
+    GL_DEPTH_SCALE                                    = 0x0D1E,
+    GL_DEPTH_BIAS                                     = 0x0D1F,
+    GL_MAX_EVAL_ORDER                                 = 0x0D30,
+    GL_MAX_LIGHTS                                     = 0x0D31,
+    GL_MAX_CLIP_DISTANCES                             = 0x0D32,
+    GL_MAX_CLIP_PLANES                                = 0x0D32,
+    GL_MAX_TEXTURE_SIZE                               = 0x0D33,
+    GL_MAX_PIXEL_MAP_TABLE                            = 0x0D34,
+    GL_MAX_ATTRIB_STACK_DEPTH                         = 0x0D35,
+    GL_MAX_MODELVIEW_STACK_DEPTH                      = 0x0D36,
+    GL_MAX_NAME_STACK_DEPTH                           = 0x0D37,
+    GL_MAX_PROJECTION_STACK_DEPTH                     = 0x0D38,
+    GL_MAX_TEXTURE_STACK_DEPTH                        = 0x0D39,
+    GL_MAX_VIEWPORT_DIMS                              = 0x0D3A,
+    GL_MAX_CLIENT_ATTRIB_STACK_DEPTH                  = 0x0D3B,
+    GL_SUBPIXEL_BITS                                  = 0x0D50,
+    GL_INDEX_BITS                                     = 0x0D51,
+    GL_RED_BITS                                       = 0x0D52,
+    GL_GREEN_BITS                                     = 0x0D53,
+    GL_BLUE_BITS                                      = 0x0D54,
+    GL_ALPHA_BITS                                     = 0x0D55,
+    GL_DEPTH_BITS                                     = 0x0D56,
+    GL_STENCIL_BITS                                   = 0x0D57,
+    GL_ACCUM_RED_BITS                                 = 0x0D58,
+    GL_ACCUM_GREEN_BITS                               = 0x0D59,
+    GL_ACCUM_BLUE_BITS                                = 0x0D5A,
+    GL_ACCUM_ALPHA_BITS                               = 0x0D5B,
+    GL_NAME_STACK_DEPTH                               = 0x0D70,
+    GL_AUTO_NORMAL                                    = 0x0D80, // reuse EnableCap
+    GL_MAP1_COLOR_4                                   = 0x0D90, // reuse EnableCap
+    GL_MAP1_INDEX                                     = 0x0D91, // reuse EnableCap
+    GL_MAP1_NORMAL                                    = 0x0D92, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_1                           = 0x0D93, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_2                           = 0x0D94, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_3                           = 0x0D95, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_4                           = 0x0D96, // reuse EnableCap
+    GL_MAP1_VERTEX_3                                  = 0x0D97, // reuse EnableCap
+    GL_MAP1_VERTEX_4                                  = 0x0D98, // reuse EnableCap
+    GL_MAP2_COLOR_4                                   = 0x0DB0, // reuse EnableCap
+    GL_MAP2_INDEX                                     = 0x0DB1, // reuse EnableCap
+    GL_MAP2_NORMAL                                    = 0x0DB2, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_1                           = 0x0DB3, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_2                           = 0x0DB4, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_3                           = 0x0DB5, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_4                           = 0x0DB6, // reuse EnableCap
+    GL_MAP2_VERTEX_3                                  = 0x0DB7, // reuse EnableCap
+    GL_MAP2_VERTEX_4                                  = 0x0DB8, // reuse EnableCap
+    GL_MAP1_GRID_DOMAIN                               = 0x0DD0,
+    GL_MAP1_GRID_SEGMENTS                             = 0x0DD1,
+    GL_MAP2_GRID_DOMAIN                               = 0x0DD2,
+    GL_MAP2_GRID_SEGMENTS                             = 0x0DD3,
+    GL_TEXTURE_1D                                     = 0x0DE0, // reuse EnableCap
+    GL_TEXTURE_2D                                     = 0x0DE1, // reuse EnableCap
+    GL_FEEDBACK_BUFFER_SIZE                           = 0x0DF1,
+    GL_FEEDBACK_BUFFER_TYPE                           = 0x0DF2,
+    GL_SELECTION_BUFFER_SIZE                          = 0x0DF4,
+    GL_POLYGON_OFFSET_UNITS                           = 0x2A00,
+    GL_POLYGON_OFFSET_POINT                           = 0x2A01, // reuse EnableCap
+    GL_POLYGON_OFFSET_LINE                            = 0x2A02, // reuse EnableCap
+    GL_CLIP_PLANE0                                    = 0x3000, // reuse ClipPlaneName
+    GL_CLIP_PLANE1                                    = 0x3001, // reuse ClipPlaneName
+    GL_CLIP_PLANE2                                    = 0x3002, // reuse ClipPlaneName
+    GL_CLIP_PLANE3                                    = 0x3003, // reuse ClipPlaneName
+    GL_CLIP_PLANE4                                    = 0x3004, // reuse ClipPlaneName
+    GL_CLIP_PLANE5                                    = 0x3005, // reuse ClipPlaneName
+    GL_LIGHT0                                         = 0x4000, // reuse EnableCap
+    GL_LIGHT1                                         = 0x4001, // reuse EnableCap
+    GL_LIGHT2                                         = 0x4002, // reuse EnableCap
+    GL_LIGHT3                                         = 0x4003, // reuse EnableCap
+    GL_LIGHT4                                         = 0x4004, // reuse EnableCap
+    GL_LIGHT5                                         = 0x4005, // reuse EnableCap
+    GL_LIGHT6                                         = 0x4006, // reuse EnableCap
+    GL_LIGHT7                                         = 0x4007, // reuse EnableCap
+    GL_BLEND_COLOR_EXT                                = 0x8005,
+    GL_BLEND_EQUATION_EXT                             = 0x8009,
+    GL_PACK_CMYK_HINT_EXT                             = 0x800E,
+    GL_UNPACK_CMYK_HINT_EXT                           = 0x800F,
+    GL_CONVOLUTION_1D_EXT                             = 0x8010, // reuse ConvolutionTargetEXT
+    GL_CONVOLUTION_2D_EXT                             = 0x8011, // reuse ConvolutionTargetEXT
+    GL_SEPARABLE_2D_EXT                               = 0x8012, // reuse EnableCap
+    GL_POST_CONVOLUTION_RED_SCALE_EXT                 = 0x801C,
+    GL_POST_CONVOLUTION_GREEN_SCALE_EXT               = 0x801D,
+    GL_POST_CONVOLUTION_BLUE_SCALE_EXT                = 0x801E,
+    GL_POST_CONVOLUTION_ALPHA_SCALE_EXT               = 0x801F,
+    GL_POST_CONVOLUTION_RED_BIAS_EXT                  = 0x8020,
+    GL_POST_CONVOLUTION_GREEN_BIAS_EXT                = 0x8021,
+    GL_POST_CONVOLUTION_BLUE_BIAS_EXT                 = 0x8022,
+    GL_POST_CONVOLUTION_ALPHA_BIAS_EXT                = 0x8023,
+    GL_HISTOGRAM_EXT                                  = 0x8024, // reuse EnableCap
+    GL_MINMAX_EXT                                     = 0x802E, // reuse EnableCap
+    GL_POLYGON_OFFSET_FILL                            = 0x8037, // reuse EnableCap
+    GL_POLYGON_OFFSET_FACTOR                          = 0x8038,
+    GL_POLYGON_OFFSET_BIAS_EXT                        = 0x8039,
+    GL_RESCALE_NORMAL_EXT                             = 0x803A, // reuse EnableCap
+    GL_TEXTURE_BINDING_1D                             = 0x8068,
+    GL_TEXTURE_BINDING_2D                             = 0x8069,
+    GL_TEXTURE_3D_BINDING_EXT                         = 0x806A,
+    GL_TEXTURE_BINDING_3D                             = 0x806A,
+    GL_PACK_SKIP_IMAGES_EXT                           = 0x806B,
+    GL_PACK_IMAGE_HEIGHT_EXT                          = 0x806C,
+    GL_UNPACK_SKIP_IMAGES_EXT                         = 0x806D,
+    GL_UNPACK_IMAGE_HEIGHT_EXT                        = 0x806E,
+    GL_TEXTURE_3D_EXT                                 = 0x806F, // reuse EnableCap
+    GL_MAX_3D_TEXTURE_SIZE_EXT                        = 0x8073,
+    GL_VERTEX_ARRAY                                   = 0x8074, // reuse EnableCap
+    GL_NORMAL_ARRAY                                   = 0x8075, // reuse EnableCap
+    GL_COLOR_ARRAY                                    = 0x8076, // reuse EnableCap
+    GL_INDEX_ARRAY                                    = 0x8077, // reuse EnableCap
+    GL_TEXTURE_COORD_ARRAY                            = 0x8078, // reuse EnableCap
+    GL_EDGE_FLAG_ARRAY                                = 0x8079, // reuse EnableCap
+    GL_VERTEX_ARRAY_SIZE                              = 0x807A,
+    GL_VERTEX_ARRAY_TYPE                              = 0x807B,
+    GL_VERTEX_ARRAY_STRIDE                            = 0x807C,
+    GL_VERTEX_ARRAY_COUNT_EXT                         = 0x807D,
+    GL_NORMAL_ARRAY_TYPE                              = 0x807E,
+    GL_NORMAL_ARRAY_STRIDE                            = 0x807F,
+    GL_NORMAL_ARRAY_COUNT_EXT                         = 0x8080,
+    GL_COLOR_ARRAY_SIZE                               = 0x8081,
+    GL_COLOR_ARRAY_TYPE                               = 0x8082,
+    GL_COLOR_ARRAY_STRIDE                             = 0x8083,
+    GL_COLOR_ARRAY_COUNT_EXT                          = 0x8084,
+    GL_INDEX_ARRAY_TYPE                               = 0x8085,
+    GL_INDEX_ARRAY_STRIDE                             = 0x8086,
+    GL_INDEX_ARRAY_COUNT_EXT                          = 0x8087,
+    GL_TEXTURE_COORD_ARRAY_SIZE                       = 0x8088,
+    GL_TEXTURE_COORD_ARRAY_TYPE                       = 0x8089,
+    GL_TEXTURE_COORD_ARRAY_STRIDE                     = 0x808A,
+    GL_TEXTURE_COORD_ARRAY_COUNT_EXT                  = 0x808B,
+    GL_EDGE_FLAG_ARRAY_STRIDE                         = 0x808C,
+    GL_EDGE_FLAG_ARRAY_COUNT_EXT                      = 0x808D,
+    GL_INTERLACE_SGIX                                 = 0x8094, // reuse EnableCap
+    GL_DETAIL_TEXTURE_2D_BINDING_SGIS                 = 0x8096,
+    GL_MULTISAMPLE_SGIS                               = 0x809D, // reuse EnableCap
+    GL_SAMPLE_ALPHA_TO_MASK_SGIS                      = 0x809E, // reuse EnableCap
+    GL_SAMPLE_ALPHA_TO_ONE_SGIS                       = 0x809F, // reuse EnableCap
+    GL_SAMPLE_MASK_SGIS                               = 0x80A0, // reuse EnableCap
+    GL_SAMPLE_BUFFERS_SGIS                            = 0x80A8,
+    GL_SAMPLES_SGIS                                   = 0x80A9,
+    GL_SAMPLE_MASK_VALUE_SGIS                         = 0x80AA,
+    GL_SAMPLE_MASK_INVERT_SGIS                        = 0x80AB,
+    GL_SAMPLE_PATTERN_SGIS                            = 0x80AC,
+    GL_COLOR_MATRIX_SGI                               = 0x80B1,
+    GL_COLOR_MATRIX_STACK_DEPTH_SGI                   = 0x80B2,
+    GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI               = 0x80B3,
+    GL_POST_COLOR_MATRIX_RED_SCALE_SGI                = 0x80B4,
+    GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI              = 0x80B5,
+    GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI               = 0x80B6,
+    GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI              = 0x80B7,
+    GL_POST_COLOR_MATRIX_RED_BIAS_SGI                 = 0x80B8,
+    GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI               = 0x80B9,
+    GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI                = 0x80BA,
+    GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI               = 0x80BB,
+    GL_TEXTURE_COLOR_TABLE_SGI                        = 0x80BC, // reuse ColorTableTargetSGI
+    GL_COLOR_TABLE_SGI                                = 0x80D0, // reuse ColorTableTargetSGI
+    GL_POST_CONVOLUTION_COLOR_TABLE_SGI               = 0x80D1, // reuse ColorTableTargetSGI
+    GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI              = 0x80D2, // reuse ColorTableTargetSGI
+    GL_POINT_SIZE_MIN_SGIS                            = 0x8126,
+    GL_POINT_SIZE_MAX_SGIS                            = 0x8127,
+    GL_POINT_FADE_THRESHOLD_SIZE_SGIS                 = 0x8128,
+    GL_DISTANCE_ATTENUATION_SGIS                      = 0x8129,
+    GL_FOG_FUNC_POINTS_SGIS                           = 0x812B,
+    GL_MAX_FOG_FUNC_POINTS_SGIS                       = 0x812C,
+    GL_PACK_SKIP_VOLUMES_SGIS                         = 0x8130,
+    GL_PACK_IMAGE_DEPTH_SGIS                          = 0x8131,
+    GL_UNPACK_SKIP_VOLUMES_SGIS                       = 0x8132,
+    GL_UNPACK_IMAGE_DEPTH_SGIS                        = 0x8133,
+    GL_TEXTURE_4D_SGIS                                = 0x8134, // reuse EnableCap
+    GL_MAX_4D_TEXTURE_SIZE_SGIS                       = 0x8138,
+    GL_PIXEL_TEX_GEN_SGIX                             = 0x8139, // reuse EnableCap
+    GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX                 = 0x813E,
+    GL_PIXEL_TILE_CACHE_INCREMENT_SGIX                = 0x813F,
+    GL_PIXEL_TILE_WIDTH_SGIX                          = 0x8140,
+    GL_PIXEL_TILE_HEIGHT_SGIX                         = 0x8141,
+    GL_PIXEL_TILE_GRID_WIDTH_SGIX                     = 0x8142,
+    GL_PIXEL_TILE_GRID_HEIGHT_SGIX                    = 0x8143,
+    GL_PIXEL_TILE_GRID_DEPTH_SGIX                     = 0x8144,
+    GL_PIXEL_TILE_CACHE_SIZE_SGIX                     = 0x8145,
+    GL_SPRITE_SGIX                                    = 0x8148, // reuse EnableCap
+    GL_SPRITE_MODE_SGIX                               = 0x8149,
+    GL_SPRITE_AXIS_SGIX                               = 0x814A,
+    GL_SPRITE_TRANSLATION_SGIX                        = 0x814B,
+    GL_TEXTURE_4D_BINDING_SGIS                        = 0x814F,
+    GL_MAX_CLIPMAP_DEPTH_SGIX                         = 0x8177,
+    GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX                 = 0x8178,
+    GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX            = 0x817B,
+    GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX           = 0x817C,
+    GL_REFERENCE_PLANE_SGIX                           = 0x817D, // reuse EnableCap
+    GL_REFERENCE_PLANE_EQUATION_SGIX                  = 0x817E,
+    GL_IR_INSTRUMENT1_SGIX                            = 0x817F, // reuse EnableCap
+    GL_INSTRUMENT_MEASUREMENTS_SGIX                   = 0x8181,
+    GL_CALLIGRAPHIC_FRAGMENT_SGIX                     = 0x8183, // reuse EnableCap
+    GL_FRAMEZOOM_SGIX                                 = 0x818B, // reuse EnableCap
+    GL_FRAMEZOOM_FACTOR_SGIX                          = 0x818C,
+    GL_MAX_FRAMEZOOM_FACTOR_SGIX                      = 0x818D,
+    GL_GENERATE_MIPMAP_HINT_SGIS                      = 0x8192,
+    GL_DEFORMATIONS_MASK_SGIX                         = 0x8196,
+    GL_FOG_OFFSET_SGIX                                = 0x8198, // reuse EnableCap
+    GL_FOG_OFFSET_VALUE_SGIX                          = 0x8199, // reuse FogParameter
+    GL_LIGHT_MODEL_COLOR_CONTROL                      = 0x81F8,
+    GL_SHARED_TEXTURE_PALETTE_EXT                     = 0x81FB, // reuse EnableCap
+    GL_CONVOLUTION_HINT_SGIX                          = 0x8316,
+    GL_ASYNC_MARKER_SGIX                              = 0x8329,
+    GL_PIXEL_TEX_GEN_MODE_SGIX                        = 0x832B,
+    GL_ASYNC_HISTOGRAM_SGIX                           = 0x832C, // reuse EnableCap
+    GL_MAX_ASYNC_HISTOGRAM_SGIX                       = 0x832D,
+    GL_PIXEL_TEXTURE_SGIS                             = 0x8353, // reuse EnableCap
+    GL_ASYNC_TEX_IMAGE_SGIX                           = 0x835C, // reuse EnableCap
+    GL_ASYNC_DRAW_PIXELS_SGIX                         = 0x835D, // reuse EnableCap
+    GL_ASYNC_READ_PIXELS_SGIX                         = 0x835E, // reuse EnableCap
+    GL_MAX_ASYNC_TEX_IMAGE_SGIX                       = 0x835F,
+    GL_MAX_ASYNC_DRAW_PIXELS_SGIX                     = 0x8360,
+    GL_MAX_ASYNC_READ_PIXELS_SGIX                     = 0x8361,
+    GL_VERTEX_PRECLIP_SGIX                            = 0x83EE,
+    GL_VERTEX_PRECLIP_HINT_SGIX                       = 0x83EF,
+    GL_FRAGMENT_LIGHTING_SGIX                         = 0x8400, // reuse EnableCap
+    GL_FRAGMENT_COLOR_MATERIAL_SGIX                   = 0x8401, // reuse EnableCap
+    GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX              = 0x8402,
+    GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX         = 0x8403,
+    GL_MAX_FRAGMENT_LIGHTS_SGIX                       = 0x8404,
+    GL_MAX_ACTIVE_LIGHTS_SGIX                         = 0x8405,
+    GL_LIGHT_ENV_MODE_SGIX                            = 0x8407,
+    GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX         = 0x8408, // reuse FragmentLightModelParameterSGIX
+    GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX             = 0x8409, // reuse FragmentLightModelParameterSGIX
+    GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX              = 0x840A, // reuse FragmentLightModelParameterSGIX
+    GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = 0x840B, // reuse FragmentLightModelParameterSGIX
+    GL_FRAGMENT_LIGHT0_SGIX                           = 0x840C, // reuse EnableCap
+    GL_PACK_RESAMPLE_SGIX                             = 0x842C,
+    GL_UNPACK_RESAMPLE_SGIX                           = 0x842D,
+    GL_ALIASED_POINT_SIZE_RANGE                       = 0x846D,
+    GL_ALIASED_LINE_WIDTH_RANGE                       = 0x846E,
+    GL_PACK_SUBSAMPLE_RATE_SGIX                       = 0x85A0,
+    GL_UNPACK_SUBSAMPLE_RATE_SGIX                     = 0x85A1,
+};
+
+
+enum class GetPixelMap : unsigned int
+{
+    GL_PIXEL_MAP_I_TO_I = 0x0C70,
+    GL_PIXEL_MAP_S_TO_S = 0x0C71,
+    GL_PIXEL_MAP_I_TO_R = 0x0C72,
+    GL_PIXEL_MAP_I_TO_G = 0x0C73,
+    GL_PIXEL_MAP_I_TO_B = 0x0C74,
+    GL_PIXEL_MAP_I_TO_A = 0x0C75,
+    GL_PIXEL_MAP_R_TO_R = 0x0C76,
+    GL_PIXEL_MAP_G_TO_G = 0x0C77,
+    GL_PIXEL_MAP_B_TO_B = 0x0C78,
+    GL_PIXEL_MAP_A_TO_A = 0x0C79,
+};
+
+
+enum class GetPointervPName : unsigned int
+{
+    GL_FEEDBACK_BUFFER_POINTER         = 0x0DF0,
+    GL_SELECTION_BUFFER_POINTER        = 0x0DF3,
+    GL_VERTEX_ARRAY_POINTER            = 0x808E,
+    GL_VERTEX_ARRAY_POINTER_EXT        = 0x808E,
+    GL_NORMAL_ARRAY_POINTER            = 0x808F,
+    GL_NORMAL_ARRAY_POINTER_EXT        = 0x808F,
+    GL_COLOR_ARRAY_POINTER             = 0x8090,
+    GL_COLOR_ARRAY_POINTER_EXT         = 0x8090,
+    GL_INDEX_ARRAY_POINTER             = 0x8091,
+    GL_INDEX_ARRAY_POINTER_EXT         = 0x8091,
+    GL_TEXTURE_COORD_ARRAY_POINTER     = 0x8092,
+    GL_TEXTURE_COORD_ARRAY_POINTER_EXT = 0x8092,
+    GL_EDGE_FLAG_ARRAY_POINTER         = 0x8093,
+    GL_EDGE_FLAG_ARRAY_POINTER_EXT     = 0x8093,
+    GL_INSTRUMENT_BUFFER_POINTER_SGIX  = 0x8180,
+};
+
+
+enum class GetTextureParameter : unsigned int
+{
+    GL_TEXTURE_WIDTH                      = 0x1000,
+    GL_TEXTURE_HEIGHT                     = 0x1001,
+    GL_TEXTURE_COMPONENTS                 = 0x1003,
+    GL_TEXTURE_INTERNAL_FORMAT            = 0x1003,
+    GL_TEXTURE_BORDER_COLOR               = 0x1004,
+    GL_TEXTURE_BORDER                     = 0x1005,
+    GL_TEXTURE_MAG_FILTER                 = 0x2800,
+    GL_TEXTURE_MIN_FILTER                 = 0x2801,
+    GL_TEXTURE_WRAP_S                     = 0x2802,
+    GL_TEXTURE_WRAP_T                     = 0x2803,
+    GL_TEXTURE_RED_SIZE                   = 0x805C,
+    GL_TEXTURE_GREEN_SIZE                 = 0x805D,
+    GL_TEXTURE_BLUE_SIZE                  = 0x805E,
+    GL_TEXTURE_ALPHA_SIZE                 = 0x805F,
+    GL_TEXTURE_LUMINANCE_SIZE             = 0x8060,
+    GL_TEXTURE_INTENSITY_SIZE             = 0x8061,
+    GL_TEXTURE_PRIORITY                   = 0x8066,
+    GL_TEXTURE_RESIDENT                   = 0x8067,
+    GL_TEXTURE_DEPTH_EXT                  = 0x8071,
+    GL_TEXTURE_WRAP_R_EXT                 = 0x8072,
+    GL_DETAIL_TEXTURE_LEVEL_SGIS          = 0x809A,
+    GL_DETAIL_TEXTURE_MODE_SGIS           = 0x809B,
+    GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS    = 0x809C,
+    GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS   = 0x80B0,
+    GL_SHADOW_AMBIENT_SGIX                = 0x80BF,
+    GL_DUAL_TEXTURE_SELECT_SGIS           = 0x8124,
+    GL_QUAD_TEXTURE_SELECT_SGIS           = 0x8125,
+    GL_TEXTURE_4DSIZE_SGIS                = 0x8136,
+    GL_TEXTURE_WRAP_Q_SGIS                = 0x8137,
+    GL_TEXTURE_MIN_LOD_SGIS               = 0x813A,
+    GL_TEXTURE_MAX_LOD_SGIS               = 0x813B,
+    GL_TEXTURE_BASE_LEVEL_SGIS            = 0x813C,
+    GL_TEXTURE_MAX_LEVEL_SGIS             = 0x813D,
+    GL_TEXTURE_FILTER4_SIZE_SGIS          = 0x8147,
+    GL_TEXTURE_CLIPMAP_CENTER_SGIX        = 0x8171,
+    GL_TEXTURE_CLIPMAP_FRAME_SGIX         = 0x8172,
+    GL_TEXTURE_CLIPMAP_OFFSET_SGIX        = 0x8173,
+    GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = 0x8174,
+    GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX    = 0x8175,
+    GL_TEXTURE_CLIPMAP_DEPTH_SGIX         = 0x8176,
+    GL_POST_TEXTURE_FILTER_BIAS_SGIX      = 0x8179,
+    GL_POST_TEXTURE_FILTER_SCALE_SGIX     = 0x817A,
+    GL_TEXTURE_LOD_BIAS_S_SGIX            = 0x818E,
+    GL_TEXTURE_LOD_BIAS_T_SGIX            = 0x818F,
+    GL_TEXTURE_LOD_BIAS_R_SGIX            = 0x8190,
+    GL_GENERATE_MIPMAP_SGIS               = 0x8191,
+    GL_TEXTURE_COMPARE_SGIX               = 0x819A,
+    GL_TEXTURE_COMPARE_OPERATOR_SGIX      = 0x819B,
+    GL_TEXTURE_LEQUAL_R_SGIX              = 0x819C,
+    GL_TEXTURE_GEQUAL_R_SGIX              = 0x819D,
+    GL_TEXTURE_MAX_CLAMP_S_SGIX           = 0x8369,
+    GL_TEXTURE_MAX_CLAMP_T_SGIX           = 0x836A,
+    GL_TEXTURE_MAX_CLAMP_R_SGIX           = 0x836B,
+};
+
+
+enum class HintMode : unsigned int
+{
+    GL_DONT_CARE = 0x1100,
+    GL_FASTEST   = 0x1101,
+    GL_NICEST    = 0x1102,
+};
+
+
+enum class HintTarget : unsigned int
+{
+    GL_PERSPECTIVE_CORRECTION_HINT         = 0x0C50, // reuse GetPName
+    GL_POINT_SMOOTH_HINT                   = 0x0C51, // reuse GetPName
+    GL_LINE_SMOOTH_HINT                    = 0x0C52, // reuse GetPName
+    GL_POLYGON_SMOOTH_HINT                 = 0x0C53, // reuse GetPName
+    GL_FOG_HINT                            = 0x0C54, // reuse GetPName
+    GL_PREFER_DOUBLEBUFFER_HINT_PGI        = 0x1A1F8,
+    GL_CONSERVE_MEMORY_HINT_PGI            = 0x1A1FD,
+    GL_RECLAIM_MEMORY_HINT_PGI             = 0x1A1FE,
+    GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI      = 0x1A203,
+    GL_NATIVE_GRAPHICS_END_HINT_PGI        = 0x1A204,
+    GL_ALWAYS_FAST_HINT_PGI                = 0x1A20C,
+    GL_ALWAYS_SOFT_HINT_PGI                = 0x1A20D,
+    GL_ALLOW_DRAW_OBJ_HINT_PGI             = 0x1A20E,
+    GL_ALLOW_DRAW_WIN_HINT_PGI             = 0x1A20F,
+    GL_ALLOW_DRAW_FRG_HINT_PGI             = 0x1A210,
+    GL_ALLOW_DRAW_MEM_HINT_PGI             = 0x1A211,
+    GL_STRICT_DEPTHFUNC_HINT_PGI           = 0x1A216,
+    GL_STRICT_LIGHTING_HINT_PGI            = 0x1A217,
+    GL_STRICT_SCISSOR_HINT_PGI             = 0x1A218,
+    GL_FULL_STIPPLE_HINT_PGI               = 0x1A219,
+    GL_CLIP_NEAR_HINT_PGI                  = 0x1A220,
+    GL_CLIP_FAR_HINT_PGI                   = 0x1A221,
+    GL_WIDE_LINE_HINT_PGI                  = 0x1A222,
+    GL_BACK_NORMALS_HINT_PGI               = 0x1A223,
+    GL_VERTEX_DATA_HINT_PGI                = 0x1A22A,
+    GL_VERTEX_CONSISTENT_HINT_PGI          = 0x1A22B,
+    GL_MATERIAL_SIDE_HINT_PGI              = 0x1A22C,
+    GL_MAX_VERTEX_HINT_PGI                 = 0x1A22D,
+    GL_PACK_CMYK_HINT_EXT                  = 0x800E, // reuse GetPName
+    GL_UNPACK_CMYK_HINT_EXT                = 0x800F, // reuse GetPName
+    GL_PHONG_HINT_WIN                      = 0x80EB,
+    GL_CLIP_VOLUME_CLIPPING_HINT_EXT       = 0x80F0,
+    GL_TEXTURE_MULTI_BUFFER_HINT_SGIX      = 0x812E,
+    GL_GENERATE_MIPMAP_HINT                = 0x8192,
+    GL_GENERATE_MIPMAP_HINT_SGIS           = 0x8192, // reuse GetPName
+    GL_PROGRAM_BINARY_RETRIEVABLE_HINT     = 0x8257,
+    GL_CONVOLUTION_HINT_SGIX               = 0x8316, // reuse GetPName
+    GL_SCALEBIAS_HINT_SGIX                 = 0x8322,
+    GL_VERTEX_PRECLIP_SGIX                 = 0x83EE, // reuse GetPName
+    GL_VERTEX_PRECLIP_HINT_SGIX            = 0x83EF, // reuse GetPName
+    GL_TEXTURE_COMPRESSION_HINT            = 0x84EF,
+    GL_TEXTURE_COMPRESSION_HINT_ARB        = 0x84EF,
+    GL_VERTEX_ARRAY_STORAGE_HINT_APPLE     = 0x851F,
+    GL_MULTISAMPLE_FILTER_HINT_NV          = 0x8534,
+    GL_TRANSFORM_HINT_APPLE                = 0x85B1,
+    GL_TEXTURE_STORAGE_HINT_APPLE          = 0x85BC,
+    GL_FRAGMENT_SHADER_DERIVATIVE_HINT     = 0x8B8B,
+    GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B,
+};
+
+
+enum class HistogramTargetEXT : unsigned int
+{
+    GL_HISTOGRAM           = 0x8024,
+    GL_HISTOGRAM_EXT       = 0x8024, // reuse EnableCap
+    GL_PROXY_HISTOGRAM     = 0x8025,
+    GL_PROXY_HISTOGRAM_EXT = 0x8025,
+};
+
+
+enum class IndexPointerType : unsigned int
+{
+    GL_SHORT  = 0x1402, // reuse ColorPointerType
+    GL_INT    = 0x1404, // reuse ColorPointerType
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
+
+
+enum class InterleavedArrayFormat : unsigned int
+{
+    GL_V2F             = 0x2A20,
+    GL_V3F             = 0x2A21,
+    GL_C4UB_V2F        = 0x2A22,
+    GL_C4UB_V3F        = 0x2A23,
+    GL_C3F_V3F         = 0x2A24,
+    GL_N3F_V3F         = 0x2A25,
+    GL_C4F_N3F_V3F     = 0x2A26,
+    GL_T2F_V3F         = 0x2A27,
+    GL_T4F_V4F         = 0x2A28,
+    GL_T2F_C4UB_V3F    = 0x2A29,
+    GL_T2F_C3F_V3F     = 0x2A2A,
+    GL_T2F_N3F_V3F     = 0x2A2B,
+    GL_T2F_C4F_N3F_V3F = 0x2A2C,
+    GL_T4F_C4F_N3F_V4F = 0x2A2D,
+};
+
+
+enum class InternalFormat : unsigned int
+{
+    GL_R3_G3_B2                   = 0x2A10,
+    GL_ALPHA4                     = 0x803B,
+    GL_ALPHA8                     = 0x803C,
+    GL_ALPHA12                    = 0x803D,
+    GL_ALPHA16                    = 0x803E,
+    GL_LUMINANCE4                 = 0x803F,
+    GL_LUMINANCE8                 = 0x8040,
+    GL_LUMINANCE12                = 0x8041,
+    GL_LUMINANCE16                = 0x8042,
+    GL_LUMINANCE4_ALPHA4          = 0x8043,
+    GL_LUMINANCE6_ALPHA2          = 0x8044,
+    GL_LUMINANCE8_ALPHA8          = 0x8045,
+    GL_LUMINANCE12_ALPHA4         = 0x8046,
+    GL_LUMINANCE12_ALPHA12        = 0x8047,
+    GL_LUMINANCE16_ALPHA16        = 0x8048,
+    GL_INTENSITY                  = 0x8049,
+    GL_INTENSITY4                 = 0x804A,
+    GL_INTENSITY8                 = 0x804B,
+    GL_INTENSITY12                = 0x804C,
+    GL_INTENSITY16                = 0x804D,
+    GL_RGB2_EXT                   = 0x804E,
+    GL_RGB4                       = 0x804F,
+    GL_RGB5                       = 0x8050,
+    GL_RGB8                       = 0x8051,
+    GL_RGB10                      = 0x8052,
+    GL_RGB12                      = 0x8053,
+    GL_RGB16                      = 0x8054,
+    GL_RGBA2                      = 0x8055,
+    GL_RGBA4                      = 0x8056,
+    GL_RGB5_A1                    = 0x8057,
+    GL_RGBA8                      = 0x8058,
+    GL_RGB10_A2                   = 0x8059,
+    GL_RGBA12                     = 0x805A,
+    GL_RGBA16                     = 0x805B,
+    GL_DUAL_ALPHA4_SGIS           = 0x8110,
+    GL_DUAL_ALPHA8_SGIS           = 0x8111,
+    GL_DUAL_ALPHA12_SGIS          = 0x8112,
+    GL_DUAL_ALPHA16_SGIS          = 0x8113,
+    GL_DUAL_LUMINANCE4_SGIS       = 0x8114,
+    GL_DUAL_LUMINANCE8_SGIS       = 0x8115,
+    GL_DUAL_LUMINANCE12_SGIS      = 0x8116,
+    GL_DUAL_LUMINANCE16_SGIS      = 0x8117,
+    GL_DUAL_INTENSITY4_SGIS       = 0x8118,
+    GL_DUAL_INTENSITY8_SGIS       = 0x8119,
+    GL_DUAL_INTENSITY12_SGIS      = 0x811A,
+    GL_DUAL_INTENSITY16_SGIS      = 0x811B,
+    GL_DUAL_LUMINANCE_ALPHA4_SGIS = 0x811C,
+    GL_DUAL_LUMINANCE_ALPHA8_SGIS = 0x811D,
+    GL_QUAD_ALPHA4_SGIS           = 0x811E,
+    GL_QUAD_ALPHA8_SGIS           = 0x811F,
+    GL_QUAD_LUMINANCE4_SGIS       = 0x8120,
+    GL_QUAD_LUMINANCE8_SGIS       = 0x8121,
+    GL_QUAD_INTENSITY4_SGIS       = 0x8122,
+    GL_QUAD_INTENSITY8_SGIS       = 0x8123,
+    GL_DEPTH_COMPONENT16_SGIX     = 0x81A5,
+    GL_DEPTH_COMPONENT24_SGIX     = 0x81A6,
+    GL_DEPTH_COMPONENT32_SGIX     = 0x81A7,
+};
+
+
+enum class LightEnvModeSGIX : unsigned int
+{
+    GL_ADD      = 0x0104, // reuse AccumOp
+    GL_REPLACE  = 0x1E01,
+    GL_MODULATE = 0x2100,
+};
+
+
+enum class LightEnvParameterSGIX : unsigned int
+{
+    GL_LIGHT_ENV_MODE_SGIX = 0x8407, // reuse GetPName
+};
+
+
+enum class LightModelColorControl : unsigned int
+{
+    GL_SINGLE_COLOR                = 0x81F9,
+    GL_SINGLE_COLOR_EXT            = 0x81F9,
+    GL_SEPARATE_SPECULAR_COLOR     = 0x81FA,
+    GL_SEPARATE_SPECULAR_COLOR_EXT = 0x81FA,
+};
+
+
+enum class LightModelParameter : unsigned int
+{
+    GL_LIGHT_MODEL_LOCAL_VIEWER      = 0x0B51, // reuse GetPName
+    GL_LIGHT_MODEL_TWO_SIDE          = 0x0B52, // reuse GetPName
+    GL_LIGHT_MODEL_AMBIENT           = 0x0B53, // reuse GetPName
+    GL_LIGHT_MODEL_COLOR_CONTROL     = 0x81F8, // reuse GetPName
+    GL_LIGHT_MODEL_COLOR_CONTROL_EXT = 0x81F8,
+};
+
+
+enum class LightName : unsigned int
+{
+    GL_LIGHT0               = 0x4000, // reuse EnableCap
+    GL_LIGHT1               = 0x4001, // reuse EnableCap
+    GL_LIGHT2               = 0x4002, // reuse EnableCap
+    GL_LIGHT3               = 0x4003, // reuse EnableCap
+    GL_LIGHT4               = 0x4004, // reuse EnableCap
+    GL_LIGHT5               = 0x4005, // reuse EnableCap
+    GL_LIGHT6               = 0x4006, // reuse EnableCap
+    GL_LIGHT7               = 0x4007, // reuse EnableCap
+    GL_FRAGMENT_LIGHT0_SGIX = 0x840C, // reuse EnableCap
+    GL_FRAGMENT_LIGHT1_SGIX = 0x840D, // reuse EnableCap
+    GL_FRAGMENT_LIGHT2_SGIX = 0x840E, // reuse EnableCap
+    GL_FRAGMENT_LIGHT3_SGIX = 0x840F, // reuse EnableCap
+    GL_FRAGMENT_LIGHT4_SGIX = 0x8410, // reuse EnableCap
+    GL_FRAGMENT_LIGHT5_SGIX = 0x8411, // reuse EnableCap
+    GL_FRAGMENT_LIGHT6_SGIX = 0x8412, // reuse EnableCap
+    GL_FRAGMENT_LIGHT7_SGIX = 0x8413, // reuse EnableCap
+};
+
+
+enum class LightParameter : unsigned int
+{
+    GL_AMBIENT               = 0x1200, // reuse ColorMaterialParameter
+    GL_DIFFUSE               = 0x1201, // reuse ColorMaterialParameter
+    GL_SPECULAR              = 0x1202, // reuse ColorMaterialParameter
+    GL_POSITION              = 0x1203,
+    GL_SPOT_DIRECTION        = 0x1204,
+    GL_SPOT_EXPONENT         = 0x1205,
+    GL_SPOT_CUTOFF           = 0x1206,
+    GL_CONSTANT_ATTENUATION  = 0x1207,
+    GL_LINEAR_ATTENUATION    = 0x1208,
+    GL_QUADRATIC_ATTENUATION = 0x1209,
+};
+
+
+enum class ListMode : unsigned int
+{
+    GL_COMPILE             = 0x1300,
+    GL_COMPILE_AND_EXECUTE = 0x1301,
+};
+
+
+enum class ListNameType : unsigned int
+{
+    GL_BYTE           = 0x1400, // reuse ColorPointerType
+    GL_UNSIGNED_BYTE  = 0x1401, // reuse ColorPointerType
+    GL_SHORT          = 0x1402, // reuse ColorPointerType
+    GL_UNSIGNED_SHORT = 0x1403, // reuse ColorPointerType
+    GL_INT            = 0x1404, // reuse ColorPointerType
+    GL_UNSIGNED_INT   = 0x1405, // reuse ColorPointerType
+    GL_FLOAT          = 0x1406, // reuse ColorPointerType
+    GL_2_BYTES        = 0x1407,
+    GL_3_BYTES        = 0x1408,
+    GL_4_BYTES        = 0x1409,
+};
+
+
+enum class ListParameterName : unsigned int
+{
+    GL_LIST_PRIORITY_SGIX = 0x8182,
+};
+
+
+enum class LogicOp : unsigned int
+{
+    GL_CLEAR         = 0x1500,
+    GL_AND           = 0x1501,
+    GL_AND_REVERSE   = 0x1502,
+    GL_COPY          = 0x1503,
+    GL_AND_INVERTED  = 0x1504,
+    GL_NOOP          = 0x1505,
+    GL_XOR           = 0x1506,
+    GL_OR            = 0x1507,
+    GL_NOR           = 0x1508,
+    GL_EQUIV         = 0x1509,
+    GL_INVERT        = 0x150A,
+    GL_OR_REVERSE    = 0x150B,
+    GL_COPY_INVERTED = 0x150C,
+    GL_OR_INVERTED   = 0x150D,
+    GL_NAND          = 0x150E,
+    GL_SET           = 0x150F,
+};
+
+
+enum class MapTarget : unsigned int
+{
+    GL_MAP1_COLOR_4              = 0x0D90, // reuse EnableCap
+    GL_MAP1_INDEX                = 0x0D91, // reuse EnableCap
+    GL_MAP1_NORMAL               = 0x0D92, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_1      = 0x0D93, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_2      = 0x0D94, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_3      = 0x0D95, // reuse EnableCap
+    GL_MAP1_TEXTURE_COORD_4      = 0x0D96, // reuse EnableCap
+    GL_MAP1_VERTEX_3             = 0x0D97, // reuse EnableCap
+    GL_MAP1_VERTEX_4             = 0x0D98, // reuse EnableCap
+    GL_MAP2_COLOR_4              = 0x0DB0, // reuse EnableCap
+    GL_MAP2_INDEX                = 0x0DB1, // reuse EnableCap
+    GL_MAP2_NORMAL               = 0x0DB2, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_1      = 0x0DB3, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_2      = 0x0DB4, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_3      = 0x0DB5, // reuse EnableCap
+    GL_MAP2_TEXTURE_COORD_4      = 0x0DB6, // reuse EnableCap
+    GL_MAP2_VERTEX_3             = 0x0DB7, // reuse EnableCap
+    GL_MAP2_VERTEX_4             = 0x0DB8, // reuse EnableCap
+    GL_GEOMETRY_DEFORMATION_SGIX = 0x8194, // reuse FfdTargetSGIX
+    GL_TEXTURE_DEFORMATION_SGIX  = 0x8195, // reuse FfdTargetSGIX
+};
+
+
+enum class MapTextureFormatINTEL : unsigned int
+{
+    GL_LAYOUT_DEFAULT_INTEL           = 0,
+    GL_LAYOUT_LINEAR_INTEL            = 1,
+    GL_LAYOUT_LINEAR_CPU_CACHED_INTEL = 2,
+};
+
+
+enum class MaterialFace : unsigned int
+{
+    GL_FRONT          = 0x0404, // reuse ColorMaterialFace
+    GL_BACK           = 0x0405, // reuse ColorMaterialFace
+    GL_FRONT_AND_BACK = 0x0408, // reuse ColorMaterialFace
+};
+
+
+enum class MaterialParameter : unsigned int
+{
+    GL_AMBIENT             = 0x1200, // reuse ColorMaterialParameter
+    GL_DIFFUSE             = 0x1201, // reuse ColorMaterialParameter
+    GL_SPECULAR            = 0x1202, // reuse ColorMaterialParameter
+    GL_EMISSION            = 0x1600, // reuse ColorMaterialParameter
+    GL_SHININESS           = 0x1601,
+    GL_AMBIENT_AND_DIFFUSE = 0x1602, // reuse ColorMaterialParameter
+    GL_COLOR_INDEXES       = 0x1603,
+};
+
+
+enum class MatrixMode : unsigned int
+{
+    GL_MODELVIEW      = 0x1700,
+    GL_MODELVIEW0_EXT = 0x1700,
+    GL_PROJECTION     = 0x1701,
+    GL_TEXTURE        = 0x1702,
+};
+
+
+enum class MeshMode1 : unsigned int
+{
+    GL_POINT = 0x1B00,
+    GL_LINE  = 0x1B01,
+};
+
+
+enum class MeshMode2 : unsigned int
+{
+    GL_POINT = 0x1B00, // reuse MeshMode1
+    GL_LINE  = 0x1B01, // reuse MeshMode1
+    GL_FILL  = 0x1B02,
+};
+
+
+enum class MinmaxTargetEXT : unsigned int
+{
+    GL_MINMAX     = 0x802E,
+    GL_MINMAX_EXT = 0x802E, // reuse EnableCap
+};
+
+
+enum class NormalPointerType : unsigned int
+{
+    GL_BYTE   = 0x1400, // reuse ColorPointerType
+    GL_SHORT  = 0x1402, // reuse ColorPointerType
+    GL_INT    = 0x1404, // reuse ColorPointerType
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
+
+
+enum class OcclusionQueryEventMaskAMD : unsigned int
+{
+    GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD        = 0x00000001,
+    GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD        = 0x00000002,
+    GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD      = 0x00000004,
+    GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD = 0x00000008,
+    GL_QUERY_ALL_EVENT_BITS_AMD              = 0xFFFFFFFF,
+};
+
+
+enum class PixelCopyType : unsigned int
+{
+    GL_COLOR   = 0x1800,
+    GL_DEPTH   = 0x1801,
+    GL_STENCIL = 0x1802,
+};
+
+
+enum class PixelFormat : unsigned int
+{
+    GL_UNSIGNED_SHORT  = 0x1403, // reuse ColorPointerType
+    GL_UNSIGNED_INT    = 0x1405, // reuse ColorPointerType
+    GL_COLOR_INDEX     = 0x1900,
+    GL_STENCIL_INDEX   = 0x1901,
+    GL_DEPTH_COMPONENT = 0x1902,
+    GL_RED             = 0x1903,
+    GL_GREEN           = 0x1904,
+    GL_BLUE            = 0x1905,
+    GL_ALPHA           = 0x1906,
+    GL_RGB             = 0x1907,
+    GL_RGBA            = 0x1908,
+    GL_LUMINANCE       = 0x1909,
+    GL_LUMINANCE_ALPHA = 0x190A,
+    GL_ABGR_EXT        = 0x8000,
+    GL_CMYK_EXT        = 0x800C,
+    GL_CMYKA_EXT       = 0x800D,
+    GL_YCRCB_422_SGIX  = 0x81BB,
+    GL_YCRCB_444_SGIX  = 0x81BC,
+};
+
+
+enum class PixelMap : unsigned int
+{
+    GL_PIXEL_MAP_I_TO_I = 0x0C70, // reuse GetPixelMap
+    GL_PIXEL_MAP_S_TO_S = 0x0C71, // reuse GetPixelMap
+    GL_PIXEL_MAP_I_TO_R = 0x0C72, // reuse GetPixelMap
+    GL_PIXEL_MAP_I_TO_G = 0x0C73, // reuse GetPixelMap
+    GL_PIXEL_MAP_I_TO_B = 0x0C74, // reuse GetPixelMap
+    GL_PIXEL_MAP_I_TO_A = 0x0C75, // reuse GetPixelMap
+    GL_PIXEL_MAP_R_TO_R = 0x0C76, // reuse GetPixelMap
+    GL_PIXEL_MAP_G_TO_G = 0x0C77, // reuse GetPixelMap
+    GL_PIXEL_MAP_B_TO_B = 0x0C78, // reuse GetPixelMap
+    GL_PIXEL_MAP_A_TO_A = 0x0C79, // reuse GetPixelMap
+};
+
+
+enum class PixelStoreParameter : unsigned int
+{
+    GL_UNPACK_SWAP_BYTES           = 0x0CF0, // reuse GetPName
+    GL_UNPACK_LSB_FIRST            = 0x0CF1, // reuse GetPName
+    GL_UNPACK_ROW_LENGTH           = 0x0CF2, // reuse GetPName
+    GL_UNPACK_SKIP_ROWS            = 0x0CF3, // reuse GetPName
+    GL_UNPACK_SKIP_PIXELS          = 0x0CF4, // reuse GetPName
+    GL_UNPACK_ALIGNMENT            = 0x0CF5, // reuse GetPName
+    GL_PACK_SWAP_BYTES             = 0x0D00, // reuse GetPName
+    GL_PACK_LSB_FIRST              = 0x0D01, // reuse GetPName
+    GL_PACK_ROW_LENGTH             = 0x0D02, // reuse GetPName
+    GL_PACK_SKIP_ROWS              = 0x0D03, // reuse GetPName
+    GL_PACK_SKIP_PIXELS            = 0x0D04, // reuse GetPName
+    GL_PACK_ALIGNMENT              = 0x0D05, // reuse GetPName
+    GL_PACK_SKIP_IMAGES            = 0x806B,
+    GL_PACK_SKIP_IMAGES_EXT        = 0x806B, // reuse GetPName
+    GL_PACK_IMAGE_HEIGHT           = 0x806C,
+    GL_PACK_IMAGE_HEIGHT_EXT       = 0x806C, // reuse GetPName
+    GL_UNPACK_SKIP_IMAGES          = 0x806D,
+    GL_UNPACK_SKIP_IMAGES_EXT      = 0x806D, // reuse GetPName
+    GL_UNPACK_IMAGE_HEIGHT         = 0x806E,
+    GL_UNPACK_IMAGE_HEIGHT_EXT     = 0x806E, // reuse GetPName
+    GL_PACK_SKIP_VOLUMES_SGIS      = 0x8130, // reuse GetPName
+    GL_PACK_IMAGE_DEPTH_SGIS       = 0x8131, // reuse GetPName
+    GL_UNPACK_SKIP_VOLUMES_SGIS    = 0x8132, // reuse GetPName
+    GL_UNPACK_IMAGE_DEPTH_SGIS     = 0x8133, // reuse GetPName
+    GL_PIXEL_TILE_WIDTH_SGIX       = 0x8140, // reuse GetPName
+    GL_PIXEL_TILE_HEIGHT_SGIX      = 0x8141, // reuse GetPName
+    GL_PIXEL_TILE_GRID_WIDTH_SGIX  = 0x8142, // reuse GetPName
+    GL_PIXEL_TILE_GRID_HEIGHT_SGIX = 0x8143, // reuse GetPName
+    GL_PIXEL_TILE_GRID_DEPTH_SGIX  = 0x8144, // reuse GetPName
+    GL_PIXEL_TILE_CACHE_SIZE_SGIX  = 0x8145, // reuse GetPName
+    GL_PACK_RESAMPLE_SGIX          = 0x842C, // reuse GetPName
+    GL_UNPACK_RESAMPLE_SGIX        = 0x842D, // reuse GetPName
+    GL_PACK_SUBSAMPLE_RATE_SGIX    = 0x85A0, // reuse GetPName
+    GL_UNPACK_SUBSAMPLE_RATE_SGIX  = 0x85A1, // reuse GetPName
+    GL_PACK_RESAMPLE_OML           = 0x8984,
+    GL_UNPACK_RESAMPLE_OML         = 0x8985,
+};
+
+
+enum class PixelStoreResampleMode : unsigned int
+{
+    GL_RESAMPLE_REPLICATE_SGIX = 0x842E,
+    GL_RESAMPLE_ZERO_FILL_SGIX = 0x842F,
+    GL_RESAMPLE_DECIMATE_SGIX  = 0x8430,
+};
+
+
+enum class PixelStoreSubsampleRate : unsigned int
+{
+    GL_PIXEL_SUBSAMPLE_4444_SGIX = 0x85A2,
+    GL_PIXEL_SUBSAMPLE_2424_SGIX = 0x85A3,
+    GL_PIXEL_SUBSAMPLE_4242_SGIX = 0x85A4,
+};
+
+
+enum class PixelTexGenMode : unsigned int
+{
+    GL_NONE            = 0, // reuse DrawBufferMode
+    GL_RGB             = 0x1907, // reuse PixelFormat
+    GL_RGBA            = 0x1908, // reuse PixelFormat
+    GL_LUMINANCE       = 0x1909, // reuse PixelFormat
+    GL_LUMINANCE_ALPHA = 0x190A, // reuse PixelFormat
+};
+
+
+enum class PixelTexGenParameterNameSGIS : unsigned int
+{
+    GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS   = 0x8354,
+    GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS = 0x8355,
+};
+
+
+enum class PixelTransferParameter : unsigned int
+{
+    GL_MAP_COLOR                         = 0x0D10, // reuse GetPName
+    GL_MAP_STENCIL                       = 0x0D11, // reuse GetPName
+    GL_INDEX_SHIFT                       = 0x0D12, // reuse GetPName
+    GL_INDEX_OFFSET                      = 0x0D13, // reuse GetPName
+    GL_RED_SCALE                         = 0x0D14, // reuse GetPName
+    GL_RED_BIAS                          = 0x0D15, // reuse GetPName
+    GL_GREEN_SCALE                       = 0x0D18, // reuse GetPName
+    GL_GREEN_BIAS                        = 0x0D19, // reuse GetPName
+    GL_BLUE_SCALE                        = 0x0D1A, // reuse GetPName
+    GL_BLUE_BIAS                         = 0x0D1B, // reuse GetPName
+    GL_ALPHA_SCALE                       = 0x0D1C, // reuse GetPName
+    GL_ALPHA_BIAS                        = 0x0D1D, // reuse GetPName
+    GL_DEPTH_SCALE                       = 0x0D1E, // reuse GetPName
+    GL_DEPTH_BIAS                        = 0x0D1F, // reuse GetPName
+    GL_POST_CONVOLUTION_RED_SCALE        = 0x801C,
+    GL_POST_CONVOLUTION_RED_SCALE_EXT    = 0x801C, // reuse GetPName
+    GL_POST_CONVOLUTION_GREEN_SCALE      = 0x801D,
+    GL_POST_CONVOLUTION_GREEN_SCALE_EXT  = 0x801D, // reuse GetPName
+    GL_POST_CONVOLUTION_BLUE_SCALE       = 0x801E,
+    GL_POST_CONVOLUTION_BLUE_SCALE_EXT   = 0x801E, // reuse GetPName
+    GL_POST_CONVOLUTION_ALPHA_SCALE      = 0x801F,
+    GL_POST_CONVOLUTION_ALPHA_SCALE_EXT  = 0x801F, // reuse GetPName
+    GL_POST_CONVOLUTION_RED_BIAS         = 0x8020,
+    GL_POST_CONVOLUTION_RED_BIAS_EXT     = 0x8020, // reuse GetPName
+    GL_POST_CONVOLUTION_GREEN_BIAS       = 0x8021,
+    GL_POST_CONVOLUTION_GREEN_BIAS_EXT   = 0x8021, // reuse GetPName
+    GL_POST_CONVOLUTION_BLUE_BIAS        = 0x8022,
+    GL_POST_CONVOLUTION_BLUE_BIAS_EXT    = 0x8022, // reuse GetPName
+    GL_POST_CONVOLUTION_ALPHA_BIAS       = 0x8023,
+    GL_POST_CONVOLUTION_ALPHA_BIAS_EXT   = 0x8023, // reuse GetPName
+    GL_POST_COLOR_MATRIX_RED_SCALE       = 0x80B4,
+    GL_POST_COLOR_MATRIX_RED_SCALE_SGI   = 0x80B4, // reuse GetPName
+    GL_POST_COLOR_MATRIX_GREEN_SCALE     = 0x80B5,
+    GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = 0x80B5, // reuse GetPName
+    GL_POST_COLOR_MATRIX_BLUE_SCALE      = 0x80B6,
+    GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI  = 0x80B6, // reuse GetPName
+    GL_POST_COLOR_MATRIX_ALPHA_SCALE     = 0x80B7,
+    GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = 0x80B7, // reuse GetPName
+    GL_POST_COLOR_MATRIX_RED_BIAS        = 0x80B8,
+    GL_POST_COLOR_MATRIX_RED_BIAS_SGI    = 0x80B8, // reuse GetPName
+    GL_POST_COLOR_MATRIX_GREEN_BIAS      = 0x80B9,
+    GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI  = 0x80B9, // reuse GetPName
+    GL_POST_COLOR_MATRIX_BLUE_BIAS       = 0x80BA,
+    GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI   = 0x80BA, // reuse GetPName
+    GL_POST_COLOR_MATRIX_ALPHA_BIAS      = 0x80BB,
+    GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI  = 0x80BB, // reuse GetPName
+};
+
+
+enum class PixelType : unsigned int
+{
+    GL_BYTE                        = 0x1400, // reuse ColorPointerType
+    GL_UNSIGNED_BYTE               = 0x1401, // reuse ColorPointerType
+    GL_SHORT                       = 0x1402, // reuse ColorPointerType
+    GL_UNSIGNED_SHORT              = 0x1403, // reuse ColorPointerType
+    GL_INT                         = 0x1404, // reuse ColorPointerType
+    GL_UNSIGNED_INT                = 0x1405, // reuse ColorPointerType
+    GL_FLOAT                       = 0x1406, // reuse ColorPointerType
+    GL_BITMAP                      = 0x1A00,
+    GL_UNSIGNED_BYTE_3_3_2         = 0x8032,
+    GL_UNSIGNED_BYTE_3_3_2_EXT     = 0x8032,
+    GL_UNSIGNED_SHORT_4_4_4_4      = 0x8033,
+    GL_UNSIGNED_SHORT_4_4_4_4_EXT  = 0x8033,
+    GL_UNSIGNED_SHORT_5_5_5_1      = 0x8034,
+    GL_UNSIGNED_SHORT_5_5_5_1_EXT  = 0x8034,
+    GL_UNSIGNED_INT_8_8_8_8        = 0x8035,
+    GL_UNSIGNED_INT_8_8_8_8_EXT    = 0x8035,
+    GL_UNSIGNED_INT_10_10_10_2     = 0x8036,
+    GL_UNSIGNED_INT_10_10_10_2_EXT = 0x8036,
+};
+
+
+enum class PointParameterNameSGIS : unsigned int
+{
+    GL_POINT_SIZE_MIN                 = 0x8126,
+    GL_POINT_SIZE_MIN_ARB             = 0x8126,
+    GL_POINT_SIZE_MIN_EXT             = 0x8126,
+    GL_POINT_SIZE_MIN_SGIS            = 0x8126, // reuse GetPName
+    GL_POINT_SIZE_MAX                 = 0x8127,
+    GL_POINT_SIZE_MAX_ARB             = 0x8127,
+    GL_POINT_SIZE_MAX_EXT             = 0x8127,
+    GL_POINT_SIZE_MAX_SGIS            = 0x8127, // reuse GetPName
+    GL_POINT_FADE_THRESHOLD_SIZE      = 0x8128,
+    GL_POINT_FADE_THRESHOLD_SIZE_ARB  = 0x8128,
+    GL_POINT_FADE_THRESHOLD_SIZE_EXT  = 0x8128,
+    GL_POINT_FADE_THRESHOLD_SIZE_SGIS = 0x8128, // reuse GetPName
+    GL_DISTANCE_ATTENUATION_EXT       = 0x8129,
+    GL_DISTANCE_ATTENUATION_SGIS      = 0x8129, // reuse GetPName
+    GL_POINT_DISTANCE_ATTENUATION     = 0x8129,
+    GL_POINT_DISTANCE_ATTENUATION_ARB = 0x8129,
+};
+
+
+enum class PolygonMode : unsigned int
+{
+    GL_POINT = 0x1B00, // reuse MeshMode1
+    GL_LINE  = 0x1B01, // reuse MeshMode1
+    GL_FILL  = 0x1B02, // reuse MeshMode2
+};
+
+
+enum class PrimitiveType : unsigned int
+{
+    GL_POINTS                       = 0x0000,
+    GL_LINES                        = 0x0001,
+    GL_LINE_LOOP                    = 0x0002,
+    GL_LINE_STRIP                   = 0x0003,
+    GL_TRIANGLES                    = 0x0004,
+    GL_TRIANGLE_STRIP               = 0x0005,
+    GL_TRIANGLE_FAN                 = 0x0006,
+    GL_QUADS                        = 0x0007,
+    GL_QUAD_STRIP                   = 0x0008,
+    GL_POLYGON                      = 0x0009,
+    GL_LINES_ADJACENCY              = 0x000A,
+    GL_LINES_ADJACENCY_ARB          = 0x000A,
+    GL_LINES_ADJACENCY_EXT          = 0x000A,
+    GL_LINE_STRIP_ADJACENCY         = 0x000B,
+    GL_LINE_STRIP_ADJACENCY_ARB     = 0x000B,
+    GL_LINE_STRIP_ADJACENCY_EXT     = 0x000B,
+    GL_TRIANGLES_ADJACENCY          = 0x000C,
+    GL_TRIANGLES_ADJACENCY_ARB      = 0x000C,
+    GL_TRIANGLES_ADJACENCY_EXT      = 0x000C,
+    GL_TRIANGLE_STRIP_ADJACENCY     = 0x000D,
+    GL_TRIANGLE_STRIP_ADJACENCY_ARB = 0x000D,
+    GL_TRIANGLE_STRIP_ADJACENCY_EXT = 0x000D,
+    GL_PATCHES                      = 0x000E,
+};
+
+
+enum class ReadBufferMode : unsigned int
+{
+    GL_FRONT_LEFT  = 0x0400, // reuse DrawBufferMode
+    GL_FRONT_RIGHT = 0x0401, // reuse DrawBufferMode
+    GL_BACK_LEFT   = 0x0402, // reuse DrawBufferMode
+    GL_BACK_RIGHT  = 0x0403, // reuse DrawBufferMode
+    GL_FRONT       = 0x0404, // reuse ColorMaterialFace
+    GL_BACK        = 0x0405, // reuse ColorMaterialFace
+    GL_LEFT        = 0x0406, // reuse DrawBufferMode
+    GL_RIGHT       = 0x0407, // reuse DrawBufferMode
+    GL_AUX0        = 0x0409, // reuse DrawBufferMode
+    GL_AUX1        = 0x040A, // reuse DrawBufferMode
+    GL_AUX2        = 0x040B, // reuse DrawBufferMode
+    GL_AUX3        = 0x040C, // reuse DrawBufferMode
+};
+
+
+enum class RenderingMode : unsigned int
+{
+    GL_RENDER   = 0x1C00,
+    GL_FEEDBACK = 0x1C01,
+    GL_SELECT   = 0x1C02,
+};
+
+
+enum class SamplePatternSGIS : unsigned int
+{
+    GL_1PASS_EXT    = 0x80A1,
+    GL_1PASS_SGIS   = 0x80A1,
+    GL_2PASS_0_EXT  = 0x80A2,
+    GL_2PASS_0_SGIS = 0x80A2,
+    GL_2PASS_1_EXT  = 0x80A3,
+    GL_2PASS_1_SGIS = 0x80A3,
+    GL_4PASS_0_EXT  = 0x80A4,
+    GL_4PASS_0_SGIS = 0x80A4,
+    GL_4PASS_1_EXT  = 0x80A5,
+    GL_4PASS_1_SGIS = 0x80A5,
+    GL_4PASS_2_EXT  = 0x80A6,
+    GL_4PASS_2_SGIS = 0x80A6,
+    GL_4PASS_3_EXT  = 0x80A7,
+    GL_4PASS_3_SGIS = 0x80A7,
+};
+
+
+enum class SeparableTargetEXT : unsigned int
+{
+    GL_SEPARABLE_2D     = 0x8012,
+    GL_SEPARABLE_2D_EXT = 0x8012, // reuse EnableCap
+};
+
+
+enum class ShadingModel : unsigned int
+{
+    GL_FLAT   = 0x1D00,
+    GL_SMOOTH = 0x1D01,
+};
+
+
+enum class StencilFunction : unsigned int
+{
+    GL_NEVER    = 0x0200, // reuse AlphaFunction
+    GL_LESS     = 0x0201, // reuse AlphaFunction
+    GL_EQUAL    = 0x0202, // reuse AlphaFunction
+    GL_LEQUAL   = 0x0203, // reuse AlphaFunction
+    GL_GREATER  = 0x0204, // reuse AlphaFunction
+    GL_NOTEQUAL = 0x0205, // reuse AlphaFunction
+    GL_GEQUAL   = 0x0206, // reuse AlphaFunction
+    GL_ALWAYS   = 0x0207, // reuse AlphaFunction
+};
+
+
+enum class StencilOp : unsigned int
+{
+    GL_ZERO    = 0, // reuse BlendingFactorDest
+    GL_INVERT  = 0x150A, // reuse LogicOp
+    GL_KEEP    = 0x1E00,
+    GL_REPLACE = 0x1E01, // reuse LightEnvModeSGIX
+    GL_INCR    = 0x1E02,
+    GL_DECR    = 0x1E03,
+};
+
+
+enum class StringName : unsigned int
+{
+    GL_VENDOR     = 0x1F00,
+    GL_RENDERER   = 0x1F01,
+    GL_VERSION    = 0x1F02,
+    GL_EXTENSIONS = 0x1F03,
+};
+
+
+enum class TexCoordPointerType : unsigned int
+{
+    GL_SHORT  = 0x1402, // reuse ColorPointerType
+    GL_INT    = 0x1404, // reuse ColorPointerType
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
+
+
+enum class TextureCoordName : unsigned int
+{
+    GL_S = 0x2000,
+    GL_T = 0x2001,
+    GL_R = 0x2002,
+    GL_Q = 0x2003,
+};
+
+
+enum class TextureEnvMode : unsigned int
+{
+    GL_ADD                   = 0x0104, // reuse AccumOp
+    GL_BLEND                 = 0x0BE2, // reuse EnableCap
+    GL_MODULATE              = 0x2100, // reuse LightEnvModeSGIX
+    GL_DECAL                 = 0x2101,
+    GL_REPLACE_EXT           = 0x8062,
+    GL_TEXTURE_ENV_BIAS_SGIX = 0x80BE,
+};
+
+
+enum class TextureEnvParameter : unsigned int
+{
+    GL_TEXTURE_ENV_MODE  = 0x2200,
+    GL_TEXTURE_ENV_COLOR = 0x2201,
+};
+
+
+enum class TextureEnvTarget : unsigned int
+{
+    GL_TEXTURE_ENV = 0x2300,
+};
+
+
+enum class TextureFilterFuncSGIS : unsigned int
+{
+    GL_FILTER4_SGIS = 0x8146,
+};
+
+
+enum class TextureGenMode : unsigned int
+{
+    GL_EYE_LINEAR                    = 0x2400,
+    GL_OBJECT_LINEAR                 = 0x2401,
+    GL_SPHERE_MAP                    = 0x2402,
+    GL_EYE_DISTANCE_TO_POINT_SGIS    = 0x81F0,
+    GL_OBJECT_DISTANCE_TO_POINT_SGIS = 0x81F1,
+    GL_EYE_DISTANCE_TO_LINE_SGIS     = 0x81F2,
+    GL_OBJECT_DISTANCE_TO_LINE_SGIS  = 0x81F3,
+};
+
+
+enum class TextureGenParameter : unsigned int
+{
+    GL_TEXTURE_GEN_MODE  = 0x2500,
+    GL_OBJECT_PLANE      = 0x2501,
+    GL_EYE_PLANE         = 0x2502,
+    GL_EYE_POINT_SGIS    = 0x81F4,
+    GL_OBJECT_POINT_SGIS = 0x81F5,
+    GL_EYE_LINE_SGIS     = 0x81F6,
+    GL_OBJECT_LINE_SGIS  = 0x81F7,
+};
+
+
+enum class TextureMagFilter : unsigned int
+{
+    GL_NEAREST                   = 0x2600,
+    GL_LINEAR                    = 0x2601, // reuse FogMode
+    GL_LINEAR_DETAIL_SGIS        = 0x8097,
+    GL_LINEAR_DETAIL_ALPHA_SGIS  = 0x8098,
+    GL_LINEAR_DETAIL_COLOR_SGIS  = 0x8099,
+    GL_LINEAR_SHARPEN_SGIS       = 0x80AD,
+    GL_LINEAR_SHARPEN_ALPHA_SGIS = 0x80AE,
+    GL_LINEAR_SHARPEN_COLOR_SGIS = 0x80AF,
+    GL_FILTER4_SGIS              = 0x8146, // reuse TextureFilterFuncSGIS
+};
+
+
+enum class TextureMinFilter : unsigned int
+{
+    GL_NEAREST                      = 0x2600, // reuse TextureMagFilter
+    GL_LINEAR                       = 0x2601, // reuse FogMode
+    GL_NEAREST_MIPMAP_NEAREST       = 0x2700,
+    GL_LINEAR_MIPMAP_NEAREST        = 0x2701,
+    GL_NEAREST_MIPMAP_LINEAR        = 0x2702,
+    GL_LINEAR_MIPMAP_LINEAR         = 0x2703,
+    GL_FILTER4_SGIS                 = 0x8146, // reuse TextureFilterFuncSGIS
+    GL_LINEAR_CLIPMAP_LINEAR_SGIX   = 0x8170,
+    GL_NEAREST_CLIPMAP_NEAREST_SGIX = 0x844D,
+    GL_NEAREST_CLIPMAP_LINEAR_SGIX  = 0x844E,
+    GL_LINEAR_CLIPMAP_NEAREST_SGIX  = 0x844F,
+};
+
+
+enum class TextureParameterName : unsigned int
+{
+    GL_TEXTURE_BORDER_COLOR               = 0x1004, // reuse GetTextureParameter
+    GL_TEXTURE_MAG_FILTER                 = 0x2800, // reuse GetTextureParameter
+    GL_TEXTURE_MIN_FILTER                 = 0x2801, // reuse GetTextureParameter
+    GL_TEXTURE_WRAP_S                     = 0x2802, // reuse GetTextureParameter
+    GL_TEXTURE_WRAP_T                     = 0x2803, // reuse GetTextureParameter
+    GL_TEXTURE_PRIORITY                   = 0x8066, // reuse GetTextureParameter
+    GL_TEXTURE_PRIORITY_EXT               = 0x8066,
+    GL_TEXTURE_WRAP_R                     = 0x8072,
+    GL_TEXTURE_WRAP_R_EXT                 = 0x8072, // reuse GetTextureParameter
+    GL_DETAIL_TEXTURE_LEVEL_SGIS          = 0x809A, // reuse GetTextureParameter
+    GL_DETAIL_TEXTURE_MODE_SGIS           = 0x809B, // reuse GetTextureParameter
+    GL_SHADOW_AMBIENT_SGIX                = 0x80BF, // reuse GetTextureParameter
+    GL_DUAL_TEXTURE_SELECT_SGIS           = 0x8124, // reuse GetTextureParameter
+    GL_QUAD_TEXTURE_SELECT_SGIS           = 0x8125, // reuse GetTextureParameter
+    GL_TEXTURE_WRAP_Q_SGIS                = 0x8137, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_CENTER_SGIX        = 0x8171, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_FRAME_SGIX         = 0x8172, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_OFFSET_SGIX        = 0x8173, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = 0x8174, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX    = 0x8175, // reuse GetTextureParameter
+    GL_TEXTURE_CLIPMAP_DEPTH_SGIX         = 0x8176, // reuse GetTextureParameter
+    GL_POST_TEXTURE_FILTER_BIAS_SGIX      = 0x8179, // reuse GetTextureParameter
+    GL_POST_TEXTURE_FILTER_SCALE_SGIX     = 0x817A, // reuse GetTextureParameter
+    GL_TEXTURE_LOD_BIAS_S_SGIX            = 0x818E, // reuse GetTextureParameter
+    GL_TEXTURE_LOD_BIAS_T_SGIX            = 0x818F, // reuse GetTextureParameter
+    GL_TEXTURE_LOD_BIAS_R_SGIX            = 0x8190, // reuse GetTextureParameter
+    GL_GENERATE_MIPMAP                    = 0x8191,
+    GL_GENERATE_MIPMAP_SGIS               = 0x8191, // reuse GetTextureParameter
+    GL_TEXTURE_COMPARE_SGIX               = 0x819A, // reuse GetTextureParameter
+    GL_TEXTURE_MAX_CLAMP_S_SGIX           = 0x8369, // reuse GetTextureParameter
+    GL_TEXTURE_MAX_CLAMP_T_SGIX           = 0x836A, // reuse GetTextureParameter
+    GL_TEXTURE_MAX_CLAMP_R_SGIX           = 0x836B, // reuse GetTextureParameter
+};
+
+
+enum class TextureTarget : unsigned int
+{
+    GL_TEXTURE_1D              = 0x0DE0, // reuse EnableCap
+    GL_TEXTURE_2D              = 0x0DE1, // reuse EnableCap
+    GL_PROXY_TEXTURE_1D        = 0x8063,
+    GL_PROXY_TEXTURE_1D_EXT    = 0x8063,
+    GL_PROXY_TEXTURE_2D        = 0x8064,
+    GL_PROXY_TEXTURE_2D_EXT    = 0x8064,
+    GL_TEXTURE_3D              = 0x806F,
+    GL_TEXTURE_3D_EXT          = 0x806F, // reuse EnableCap
+    GL_PROXY_TEXTURE_3D        = 0x8070,
+    GL_PROXY_TEXTURE_3D_EXT    = 0x8070,
+    GL_DETAIL_TEXTURE_2D_SGIS  = 0x8095,
+    GL_TEXTURE_4D_SGIS         = 0x8134, // reuse EnableCap
+    GL_PROXY_TEXTURE_4D_SGIS   = 0x8135,
+    GL_TEXTURE_MIN_LOD         = 0x813A,
+    GL_TEXTURE_MIN_LOD_SGIS    = 0x813A, // reuse GetTextureParameter
+    GL_TEXTURE_MAX_LOD         = 0x813B,
+    GL_TEXTURE_MAX_LOD_SGIS    = 0x813B, // reuse GetTextureParameter
+    GL_TEXTURE_BASE_LEVEL      = 0x813C,
+    GL_TEXTURE_BASE_LEVEL_SGIS = 0x813C, // reuse GetTextureParameter
+    GL_TEXTURE_MAX_LEVEL       = 0x813D,
+    GL_TEXTURE_MAX_LEVEL_SGIS  = 0x813D, // reuse GetTextureParameter
+};
+
+
+enum class TextureWrapMode : unsigned int
+{
+    GL_CLAMP                = 0x2900,
+    GL_REPEAT               = 0x2901,
+    GL_CLAMP_TO_BORDER      = 0x812D,
+    GL_CLAMP_TO_BORDER_ARB  = 0x812D,
+    GL_CLAMP_TO_BORDER_SGIS = 0x812D,
+    GL_CLAMP_TO_EDGE        = 0x812F,
+    GL_CLAMP_TO_EDGE_SGIS   = 0x812F,
+};
+
+
+enum class VertexPointerType : unsigned int
+{
+    GL_SHORT  = 0x1402, // reuse ColorPointerType
+    GL_INT    = 0x1404, // reuse ColorPointerType
+    GL_FLOAT  = 0x1406, // reuse ColorPointerType
+    GL_DOUBLE = 0x140A, // reuse ColorPointerType
+};
+
+
+
 // import enums to namespace
-
-
-// AccumOp
-
-static const GLenum GL_ACCUM = GLenum::GL_ACCUM;
-static const GLenum GL_LOAD = GLenum::GL_LOAD;
-static const GLenum GL_RETURN = GLenum::GL_RETURN;
-static const GLenum GL_MULT = GLenum::GL_MULT;
-static const GLenum GL_ADD = GLenum::GL_ADD;
-
-// AlphaFunction
-
-static const GLenum GL_NEVER = GLenum::GL_NEVER;
-static const GLenum GL_LESS = GLenum::GL_LESS;
-static const GLenum GL_EQUAL = GLenum::GL_EQUAL;
-static const GLenum GL_LEQUAL = GLenum::GL_LEQUAL;
-static const GLenum GL_GREATER = GLenum::GL_GREATER;
-static const GLenum GL_NOTEQUAL = GLenum::GL_NOTEQUAL;
-static const GLenum GL_GEQUAL = GLenum::GL_GEQUAL;
-static const GLenum GL_ALWAYS = GLenum::GL_ALWAYS;
-
-// BlendEquationModeEXT
-
-static const GLenum GL_LOGIC_OP = GLenum::GL_LOGIC_OP;
-static const GLenum GL_FUNC_ADD_EXT = GLenum::GL_FUNC_ADD_EXT;
-static const GLenum GL_MIN_EXT = GLenum::GL_MIN_EXT;
-static const GLenum GL_MAX_EXT = GLenum::GL_MAX_EXT;
-static const GLenum GL_FUNC_SUBTRACT_EXT = GLenum::GL_FUNC_SUBTRACT_EXT;
-static const GLenum GL_FUNC_REVERSE_SUBTRACT_EXT = GLenum::GL_FUNC_REVERSE_SUBTRACT_EXT;
-static const GLenum GL_ALPHA_MIN_SGIX = GLenum::GL_ALPHA_MIN_SGIX;
-static const GLenum GL_ALPHA_MAX_SGIX = GLenum::GL_ALPHA_MAX_SGIX;
-
-// BlendingFactorDest
-
-static const GLenum GL_ZERO = GLenum::GL_ZERO;
-static const GLenum GL_SRC_COLOR = GLenum::GL_SRC_COLOR;
-static const GLenum GL_ONE_MINUS_SRC_COLOR = GLenum::GL_ONE_MINUS_SRC_COLOR;
-static const GLenum GL_SRC_ALPHA = GLenum::GL_SRC_ALPHA;
-static const GLenum GL_ONE_MINUS_SRC_ALPHA = GLenum::GL_ONE_MINUS_SRC_ALPHA;
-static const GLenum GL_DST_ALPHA = GLenum::GL_DST_ALPHA;
-static const GLenum GL_ONE_MINUS_DST_ALPHA = GLenum::GL_ONE_MINUS_DST_ALPHA;
-static const GLenum GL_CONSTANT_COLOR_EXT = GLenum::GL_CONSTANT_COLOR_EXT;
-static const GLenum GL_ONE_MINUS_CONSTANT_COLOR_EXT = GLenum::GL_ONE_MINUS_CONSTANT_COLOR_EXT;
-static const GLenum GL_CONSTANT_ALPHA_EXT = GLenum::GL_CONSTANT_ALPHA_EXT;
-static const GLenum GL_ONE_MINUS_CONSTANT_ALPHA_EXT = GLenum::GL_ONE_MINUS_CONSTANT_ALPHA_EXT;
-static const GLenum GL_ONE = GLenum::GL_ONE;
-
-// BlendingFactorSrc
-
-// static const GLenum GL_ZERO = GLenum::GL_ZERO; // reuse BlendingFactorDest
-// static const GLenum GL_SRC_ALPHA = GLenum::GL_SRC_ALPHA; // reuse BlendingFactorDest
-// static const GLenum GL_ONE_MINUS_SRC_ALPHA = GLenum::GL_ONE_MINUS_SRC_ALPHA; // reuse BlendingFactorDest
-// static const GLenum GL_DST_ALPHA = GLenum::GL_DST_ALPHA; // reuse BlendingFactorDest
-// static const GLenum GL_ONE_MINUS_DST_ALPHA = GLenum::GL_ONE_MINUS_DST_ALPHA; // reuse BlendingFactorDest
-static const GLenum GL_DST_COLOR = GLenum::GL_DST_COLOR;
-static const GLenum GL_ONE_MINUS_DST_COLOR = GLenum::GL_ONE_MINUS_DST_COLOR;
-static const GLenum GL_SRC_ALPHA_SATURATE = GLenum::GL_SRC_ALPHA_SATURATE;
-// static const GLenum GL_CONSTANT_COLOR_EXT = GLenum::GL_CONSTANT_COLOR_EXT; // reuse BlendingFactorDest
-// static const GLenum GL_ONE_MINUS_CONSTANT_COLOR_EXT = GLenum::GL_ONE_MINUS_CONSTANT_COLOR_EXT; // reuse BlendingFactorDest
-// static const GLenum GL_CONSTANT_ALPHA_EXT = GLenum::GL_CONSTANT_ALPHA_EXT; // reuse BlendingFactorDest
-// static const GLenum GL_ONE_MINUS_CONSTANT_ALPHA_EXT = GLenum::GL_ONE_MINUS_CONSTANT_ALPHA_EXT; // reuse BlendingFactorDest
-// static const GLenum GL_ONE = GLenum::GL_ONE; // reuse BlendingFactorDest
-
-// ClipPlaneName
-
-static const GLenum GL_CLIP_DISTANCE0 = GLenum::GL_CLIP_DISTANCE0;
-static const GLenum GL_CLIP_PLANE0 = GLenum::GL_CLIP_PLANE0;
-static const GLenum GL_CLIP_DISTANCE1 = GLenum::GL_CLIP_DISTANCE1;
-static const GLenum GL_CLIP_PLANE1 = GLenum::GL_CLIP_PLANE1;
-static const GLenum GL_CLIP_DISTANCE2 = GLenum::GL_CLIP_DISTANCE2;
-static const GLenum GL_CLIP_PLANE2 = GLenum::GL_CLIP_PLANE2;
-static const GLenum GL_CLIP_DISTANCE3 = GLenum::GL_CLIP_DISTANCE3;
-static const GLenum GL_CLIP_PLANE3 = GLenum::GL_CLIP_PLANE3;
-static const GLenum GL_CLIP_DISTANCE4 = GLenum::GL_CLIP_DISTANCE4;
-static const GLenum GL_CLIP_PLANE4 = GLenum::GL_CLIP_PLANE4;
-static const GLenum GL_CLIP_DISTANCE5 = GLenum::GL_CLIP_DISTANCE5;
-static const GLenum GL_CLIP_PLANE5 = GLenum::GL_CLIP_PLANE5;
-static const GLenum GL_CLIP_DISTANCE6 = GLenum::GL_CLIP_DISTANCE6;
-static const GLenum GL_CLIP_DISTANCE7 = GLenum::GL_CLIP_DISTANCE7;
-
-// ColorMaterialFace
-
-static const GLenum GL_FRONT = GLenum::GL_FRONT;
-static const GLenum GL_BACK = GLenum::GL_BACK;
-static const GLenum GL_FRONT_AND_BACK = GLenum::GL_FRONT_AND_BACK;
-
-// ColorMaterialParameter
-
-static const GLenum GL_AMBIENT = GLenum::GL_AMBIENT;
-static const GLenum GL_DIFFUSE = GLenum::GL_DIFFUSE;
-static const GLenum GL_SPECULAR = GLenum::GL_SPECULAR;
-static const GLenum GL_EMISSION = GLenum::GL_EMISSION;
-static const GLenum GL_AMBIENT_AND_DIFFUSE = GLenum::GL_AMBIENT_AND_DIFFUSE;
-
-// ColorPointerType
-
-static const GLenum GL_BYTE = GLenum::GL_BYTE;
-static const GLenum GL_UNSIGNED_BYTE = GLenum::GL_UNSIGNED_BYTE;
-static const GLenum GL_SHORT = GLenum::GL_SHORT;
-static const GLenum GL_UNSIGNED_SHORT = GLenum::GL_UNSIGNED_SHORT;
-static const GLenum GL_INT = GLenum::GL_INT;
-static const GLenum GL_UNSIGNED_INT = GLenum::GL_UNSIGNED_INT;
-static const GLenum GL_FLOAT = GLenum::GL_FLOAT;
-static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE;
-
-// ColorTableParameterPNameSGI
-
-static const GLenum GL_COLOR_TABLE_SCALE = GLenum::GL_COLOR_TABLE_SCALE;
-static const GLenum GL_COLOR_TABLE_SCALE_SGI = GLenum::GL_COLOR_TABLE_SCALE_SGI;
-static const GLenum GL_COLOR_TABLE_BIAS = GLenum::GL_COLOR_TABLE_BIAS;
-static const GLenum GL_COLOR_TABLE_BIAS_SGI = GLenum::GL_COLOR_TABLE_BIAS_SGI;
-
-// ColorTableTargetSGI
-
-static const GLenum GL_TEXTURE_COLOR_TABLE_SGI = GLenum::GL_TEXTURE_COLOR_TABLE_SGI;
-static const GLenum GL_PROXY_TEXTURE_COLOR_TABLE_SGI = GLenum::GL_PROXY_TEXTURE_COLOR_TABLE_SGI;
-static const GLenum GL_COLOR_TABLE = GLenum::GL_COLOR_TABLE;
-static const GLenum GL_COLOR_TABLE_SGI = GLenum::GL_COLOR_TABLE_SGI;
-static const GLenum GL_POST_CONVOLUTION_COLOR_TABLE = GLenum::GL_POST_CONVOLUTION_COLOR_TABLE;
-static const GLenum GL_POST_CONVOLUTION_COLOR_TABLE_SGI = GLenum::GL_POST_CONVOLUTION_COLOR_TABLE_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_COLOR_TABLE = GLenum::GL_POST_COLOR_MATRIX_COLOR_TABLE;
-static const GLenum GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = GLenum::GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI;
-static const GLenum GL_PROXY_COLOR_TABLE = GLenum::GL_PROXY_COLOR_TABLE;
-static const GLenum GL_PROXY_COLOR_TABLE_SGI = GLenum::GL_PROXY_COLOR_TABLE_SGI;
-static const GLenum GL_PROXY_POST_CONVOLUTION_COLOR_TABLE = GLenum::GL_PROXY_POST_CONVOLUTION_COLOR_TABLE;
-static const GLenum GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI = GLenum::GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI;
-static const GLenum GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE = GLenum::GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE;
-static const GLenum GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI = GLenum::GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI;
-
-// ConvolutionBorderModeEXT
-
-static const GLenum GL_REDUCE = GLenum::GL_REDUCE;
-static const GLenum GL_REDUCE_EXT = GLenum::GL_REDUCE_EXT;
-
-// ConvolutionParameterEXT
-
-static const GLenum GL_CONVOLUTION_BORDER_MODE = GLenum::GL_CONVOLUTION_BORDER_MODE;
-static const GLenum GL_CONVOLUTION_BORDER_MODE_EXT = GLenum::GL_CONVOLUTION_BORDER_MODE_EXT;
-static const GLenum GL_CONVOLUTION_FILTER_SCALE = GLenum::GL_CONVOLUTION_FILTER_SCALE;
-static const GLenum GL_CONVOLUTION_FILTER_SCALE_EXT = GLenum::GL_CONVOLUTION_FILTER_SCALE_EXT;
-static const GLenum GL_CONVOLUTION_FILTER_BIAS = GLenum::GL_CONVOLUTION_FILTER_BIAS;
-static const GLenum GL_CONVOLUTION_FILTER_BIAS_EXT = GLenum::GL_CONVOLUTION_FILTER_BIAS_EXT;
-
-// ConvolutionTargetEXT
-
-static const GLenum GL_CONVOLUTION_1D = GLenum::GL_CONVOLUTION_1D;
-static const GLenum GL_CONVOLUTION_1D_EXT = GLenum::GL_CONVOLUTION_1D_EXT;
-static const GLenum GL_CONVOLUTION_2D = GLenum::GL_CONVOLUTION_2D;
-static const GLenum GL_CONVOLUTION_2D_EXT = GLenum::GL_CONVOLUTION_2D_EXT;
-
-// CullFaceMode
-
-// static const GLenum GL_FRONT = GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const GLenum GL_BACK = GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const GLenum GL_FRONT_AND_BACK = GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-
-// DepthFunction
-
-// static const GLenum GL_NEVER = GLenum::GL_NEVER; // reuse AlphaFunction
-// static const GLenum GL_LESS = GLenum::GL_LESS; // reuse AlphaFunction
-// static const GLenum GL_EQUAL = GLenum::GL_EQUAL; // reuse AlphaFunction
-// static const GLenum GL_LEQUAL = GLenum::GL_LEQUAL; // reuse AlphaFunction
-// static const GLenum GL_GREATER = GLenum::GL_GREATER; // reuse AlphaFunction
-// static const GLenum GL_NOTEQUAL = GLenum::GL_NOTEQUAL; // reuse AlphaFunction
-// static const GLenum GL_GEQUAL = GLenum::GL_GEQUAL; // reuse AlphaFunction
-// static const GLenum GL_ALWAYS = GLenum::GL_ALWAYS; // reuse AlphaFunction
-
-// DrawBufferMode
-
-static const GLenum GL_NONE = GLenum::GL_NONE;
-static const GLenum GL_FRONT_LEFT = GLenum::GL_FRONT_LEFT;
-static const GLenum GL_FRONT_RIGHT = GLenum::GL_FRONT_RIGHT;
-static const GLenum GL_BACK_LEFT = GLenum::GL_BACK_LEFT;
-static const GLenum GL_BACK_RIGHT = GLenum::GL_BACK_RIGHT;
-// static const GLenum GL_FRONT = GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const GLenum GL_BACK = GLenum::GL_BACK; // reuse ColorMaterialFace
-static const GLenum GL_LEFT = GLenum::GL_LEFT;
-static const GLenum GL_RIGHT = GLenum::GL_RIGHT;
-// static const GLenum GL_FRONT_AND_BACK = GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-static const GLenum GL_AUX0 = GLenum::GL_AUX0;
-static const GLenum GL_AUX1 = GLenum::GL_AUX1;
-static const GLenum GL_AUX2 = GLenum::GL_AUX2;
-static const GLenum GL_AUX3 = GLenum::GL_AUX3;
-
-// EnableCap
-
-static const GLenum GL_POINT_SMOOTH = GLenum::GL_POINT_SMOOTH;
-static const GLenum GL_LINE_SMOOTH = GLenum::GL_LINE_SMOOTH;
-static const GLenum GL_LINE_STIPPLE = GLenum::GL_LINE_STIPPLE;
-static const GLenum GL_POLYGON_SMOOTH = GLenum::GL_POLYGON_SMOOTH;
-static const GLenum GL_POLYGON_STIPPLE = GLenum::GL_POLYGON_STIPPLE;
-static const GLenum GL_CULL_FACE = GLenum::GL_CULL_FACE;
-static const GLenum GL_LIGHTING = GLenum::GL_LIGHTING;
-static const GLenum GL_COLOR_MATERIAL = GLenum::GL_COLOR_MATERIAL;
-static const GLenum GL_FOG = GLenum::GL_FOG;
-static const GLenum GL_DEPTH_TEST = GLenum::GL_DEPTH_TEST;
-static const GLenum GL_STENCIL_TEST = GLenum::GL_STENCIL_TEST;
-static const GLenum GL_NORMALIZE = GLenum::GL_NORMALIZE;
-static const GLenum GL_ALPHA_TEST = GLenum::GL_ALPHA_TEST;
-static const GLenum GL_DITHER = GLenum::GL_DITHER;
-static const GLenum GL_BLEND = GLenum::GL_BLEND;
-static const GLenum GL_INDEX_LOGIC_OP = GLenum::GL_INDEX_LOGIC_OP;
-static const GLenum GL_COLOR_LOGIC_OP = GLenum::GL_COLOR_LOGIC_OP;
-static const GLenum GL_SCISSOR_TEST = GLenum::GL_SCISSOR_TEST;
-static const GLenum GL_TEXTURE_GEN_S = GLenum::GL_TEXTURE_GEN_S;
-static const GLenum GL_TEXTURE_GEN_T = GLenum::GL_TEXTURE_GEN_T;
-static const GLenum GL_TEXTURE_GEN_R = GLenum::GL_TEXTURE_GEN_R;
-static const GLenum GL_TEXTURE_GEN_Q = GLenum::GL_TEXTURE_GEN_Q;
-static const GLenum GL_AUTO_NORMAL = GLenum::GL_AUTO_NORMAL;
-static const GLenum GL_MAP1_COLOR_4 = GLenum::GL_MAP1_COLOR_4;
-static const GLenum GL_MAP1_INDEX = GLenum::GL_MAP1_INDEX;
-static const GLenum GL_MAP1_NORMAL = GLenum::GL_MAP1_NORMAL;
-static const GLenum GL_MAP1_TEXTURE_COORD_1 = GLenum::GL_MAP1_TEXTURE_COORD_1;
-static const GLenum GL_MAP1_TEXTURE_COORD_2 = GLenum::GL_MAP1_TEXTURE_COORD_2;
-static const GLenum GL_MAP1_TEXTURE_COORD_3 = GLenum::GL_MAP1_TEXTURE_COORD_3;
-static const GLenum GL_MAP1_TEXTURE_COORD_4 = GLenum::GL_MAP1_TEXTURE_COORD_4;
-static const GLenum GL_MAP1_VERTEX_3 = GLenum::GL_MAP1_VERTEX_3;
-static const GLenum GL_MAP1_VERTEX_4 = GLenum::GL_MAP1_VERTEX_4;
-static const GLenum GL_MAP2_COLOR_4 = GLenum::GL_MAP2_COLOR_4;
-static const GLenum GL_MAP2_INDEX = GLenum::GL_MAP2_INDEX;
-static const GLenum GL_MAP2_NORMAL = GLenum::GL_MAP2_NORMAL;
-static const GLenum GL_MAP2_TEXTURE_COORD_1 = GLenum::GL_MAP2_TEXTURE_COORD_1;
-static const GLenum GL_MAP2_TEXTURE_COORD_2 = GLenum::GL_MAP2_TEXTURE_COORD_2;
-static const GLenum GL_MAP2_TEXTURE_COORD_3 = GLenum::GL_MAP2_TEXTURE_COORD_3;
-static const GLenum GL_MAP2_TEXTURE_COORD_4 = GLenum::GL_MAP2_TEXTURE_COORD_4;
-static const GLenum GL_MAP2_VERTEX_3 = GLenum::GL_MAP2_VERTEX_3;
-static const GLenum GL_MAP2_VERTEX_4 = GLenum::GL_MAP2_VERTEX_4;
-static const GLenum GL_TEXTURE_1D = GLenum::GL_TEXTURE_1D;
-static const GLenum GL_TEXTURE_2D = GLenum::GL_TEXTURE_2D;
-static const GLenum GL_POLYGON_OFFSET_POINT = GLenum::GL_POLYGON_OFFSET_POINT;
-static const GLenum GL_POLYGON_OFFSET_LINE = GLenum::GL_POLYGON_OFFSET_LINE;
-// static const GLenum GL_CLIP_PLANE0 = GLenum::GL_CLIP_PLANE0; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE1 = GLenum::GL_CLIP_PLANE1; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE2 = GLenum::GL_CLIP_PLANE2; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE3 = GLenum::GL_CLIP_PLANE3; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE4 = GLenum::GL_CLIP_PLANE4; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE5 = GLenum::GL_CLIP_PLANE5; // reuse ClipPlaneName
-static const GLenum GL_LIGHT0 = GLenum::GL_LIGHT0;
-static const GLenum GL_LIGHT1 = GLenum::GL_LIGHT1;
-static const GLenum GL_LIGHT2 = GLenum::GL_LIGHT2;
-static const GLenum GL_LIGHT3 = GLenum::GL_LIGHT3;
-static const GLenum GL_LIGHT4 = GLenum::GL_LIGHT4;
-static const GLenum GL_LIGHT5 = GLenum::GL_LIGHT5;
-static const GLenum GL_LIGHT6 = GLenum::GL_LIGHT6;
-static const GLenum GL_LIGHT7 = GLenum::GL_LIGHT7;
-// static const GLenum GL_CONVOLUTION_1D_EXT = GLenum::GL_CONVOLUTION_1D_EXT; // reuse ConvolutionTargetEXT
-// static const GLenum GL_CONVOLUTION_2D_EXT = GLenum::GL_CONVOLUTION_2D_EXT; // reuse ConvolutionTargetEXT
-static const GLenum GL_SEPARABLE_2D_EXT = GLenum::GL_SEPARABLE_2D_EXT;
-static const GLenum GL_HISTOGRAM_EXT = GLenum::GL_HISTOGRAM_EXT;
-static const GLenum GL_MINMAX_EXT = GLenum::GL_MINMAX_EXT;
-static const GLenum GL_POLYGON_OFFSET_FILL = GLenum::GL_POLYGON_OFFSET_FILL;
-static const GLenum GL_RESCALE_NORMAL_EXT = GLenum::GL_RESCALE_NORMAL_EXT;
-static const GLenum GL_TEXTURE_3D_EXT = GLenum::GL_TEXTURE_3D_EXT;
-static const GLenum GL_VERTEX_ARRAY = GLenum::GL_VERTEX_ARRAY;
-static const GLenum GL_NORMAL_ARRAY = GLenum::GL_NORMAL_ARRAY;
-static const GLenum GL_COLOR_ARRAY = GLenum::GL_COLOR_ARRAY;
-static const GLenum GL_INDEX_ARRAY = GLenum::GL_INDEX_ARRAY;
-static const GLenum GL_TEXTURE_COORD_ARRAY = GLenum::GL_TEXTURE_COORD_ARRAY;
-static const GLenum GL_EDGE_FLAG_ARRAY = GLenum::GL_EDGE_FLAG_ARRAY;
-static const GLenum GL_INTERLACE_SGIX = GLenum::GL_INTERLACE_SGIX;
-static const GLenum GL_MULTISAMPLE_SGIS = GLenum::GL_MULTISAMPLE_SGIS;
-static const GLenum GL_SAMPLE_ALPHA_TO_MASK_SGIS = GLenum::GL_SAMPLE_ALPHA_TO_MASK_SGIS;
-static const GLenum GL_SAMPLE_ALPHA_TO_ONE_SGIS = GLenum::GL_SAMPLE_ALPHA_TO_ONE_SGIS;
-static const GLenum GL_SAMPLE_MASK_SGIS = GLenum::GL_SAMPLE_MASK_SGIS;
-// static const GLenum GL_TEXTURE_COLOR_TABLE_SGI = GLenum::GL_TEXTURE_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_COLOR_TABLE_SGI = GLenum::GL_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_POST_CONVOLUTION_COLOR_TABLE_SGI = GLenum::GL_POST_CONVOLUTION_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = GLenum::GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-static const GLenum GL_TEXTURE_4D_SGIS = GLenum::GL_TEXTURE_4D_SGIS;
-static const GLenum GL_PIXEL_TEX_GEN_SGIX = GLenum::GL_PIXEL_TEX_GEN_SGIX;
-static const GLenum GL_SPRITE_SGIX = GLenum::GL_SPRITE_SGIX;
-static const GLenum GL_REFERENCE_PLANE_SGIX = GLenum::GL_REFERENCE_PLANE_SGIX;
-static const GLenum GL_IR_INSTRUMENT1_SGIX = GLenum::GL_IR_INSTRUMENT1_SGIX;
-static const GLenum GL_CALLIGRAPHIC_FRAGMENT_SGIX = GLenum::GL_CALLIGRAPHIC_FRAGMENT_SGIX;
-static const GLenum GL_FRAMEZOOM_SGIX = GLenum::GL_FRAMEZOOM_SGIX;
-static const GLenum GL_FOG_OFFSET_SGIX = GLenum::GL_FOG_OFFSET_SGIX;
-static const GLenum GL_SHARED_TEXTURE_PALETTE_EXT = GLenum::GL_SHARED_TEXTURE_PALETTE_EXT;
-static const GLenum GL_ASYNC_HISTOGRAM_SGIX = GLenum::GL_ASYNC_HISTOGRAM_SGIX;
-static const GLenum GL_PIXEL_TEXTURE_SGIS = GLenum::GL_PIXEL_TEXTURE_SGIS;
-static const GLenum GL_ASYNC_TEX_IMAGE_SGIX = GLenum::GL_ASYNC_TEX_IMAGE_SGIX;
-static const GLenum GL_ASYNC_DRAW_PIXELS_SGIX = GLenum::GL_ASYNC_DRAW_PIXELS_SGIX;
-static const GLenum GL_ASYNC_READ_PIXELS_SGIX = GLenum::GL_ASYNC_READ_PIXELS_SGIX;
-static const GLenum GL_FRAGMENT_LIGHTING_SGIX = GLenum::GL_FRAGMENT_LIGHTING_SGIX;
-static const GLenum GL_FRAGMENT_COLOR_MATERIAL_SGIX = GLenum::GL_FRAGMENT_COLOR_MATERIAL_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT0_SGIX = GLenum::GL_FRAGMENT_LIGHT0_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT1_SGIX = GLenum::GL_FRAGMENT_LIGHT1_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT2_SGIX = GLenum::GL_FRAGMENT_LIGHT2_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT3_SGIX = GLenum::GL_FRAGMENT_LIGHT3_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT4_SGIX = GLenum::GL_FRAGMENT_LIGHT4_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT5_SGIX = GLenum::GL_FRAGMENT_LIGHT5_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT6_SGIX = GLenum::GL_FRAGMENT_LIGHT6_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT7_SGIX = GLenum::GL_FRAGMENT_LIGHT7_SGIX;
-
-// ErrorCode
-
-static const GLenum GL_NO_ERROR = GLenum::GL_NO_ERROR;
-static const GLenum GL_INVALID_ENUM = GLenum::GL_INVALID_ENUM;
-static const GLenum GL_INVALID_VALUE = GLenum::GL_INVALID_VALUE;
-static const GLenum GL_INVALID_OPERATION = GLenum::GL_INVALID_OPERATION;
-static const GLenum GL_STACK_OVERFLOW = GLenum::GL_STACK_OVERFLOW;
-static const GLenum GL_STACK_UNDERFLOW = GLenum::GL_STACK_UNDERFLOW;
-static const GLenum GL_OUT_OF_MEMORY = GLenum::GL_OUT_OF_MEMORY;
-static const GLenum GL_INVALID_FRAMEBUFFER_OPERATION = GLenum::GL_INVALID_FRAMEBUFFER_OPERATION;
-static const GLenum GL_INVALID_FRAMEBUFFER_OPERATION_EXT = GLenum::GL_INVALID_FRAMEBUFFER_OPERATION_EXT;
-static const GLenum GL_TABLE_TOO_LARGE = GLenum::GL_TABLE_TOO_LARGE;
-static const GLenum GL_TABLE_TOO_LARGE_EXT = GLenum::GL_TABLE_TOO_LARGE_EXT;
-static const GLenum GL_TEXTURE_TOO_LARGE_EXT = GLenum::GL_TEXTURE_TOO_LARGE_EXT;
-
-// FeedBackToken
-
-static const GLenum GL_PASS_THROUGH_TOKEN = GLenum::GL_PASS_THROUGH_TOKEN;
-static const GLenum GL_POINT_TOKEN = GLenum::GL_POINT_TOKEN;
-static const GLenum GL_LINE_TOKEN = GLenum::GL_LINE_TOKEN;
-static const GLenum GL_POLYGON_TOKEN = GLenum::GL_POLYGON_TOKEN;
-static const GLenum GL_BITMAP_TOKEN = GLenum::GL_BITMAP_TOKEN;
-static const GLenum GL_DRAW_PIXEL_TOKEN = GLenum::GL_DRAW_PIXEL_TOKEN;
-static const GLenum GL_COPY_PIXEL_TOKEN = GLenum::GL_COPY_PIXEL_TOKEN;
-static const GLenum GL_LINE_RESET_TOKEN = GLenum::GL_LINE_RESET_TOKEN;
-
-// FeedbackType
-
-static const GLenum GL_2D = GLenum::GL_2D;
-static const GLenum GL_3D = GLenum::GL_3D;
-static const GLenum GL_3D_COLOR = GLenum::GL_3D_COLOR;
-static const GLenum GL_3D_COLOR_TEXTURE = GLenum::GL_3D_COLOR_TEXTURE;
-static const GLenum GL_4D_COLOR_TEXTURE = GLenum::GL_4D_COLOR_TEXTURE;
-
-// FfdTargetSGIX
-
-static const GLenum GL_GEOMETRY_DEFORMATION_SGIX = GLenum::GL_GEOMETRY_DEFORMATION_SGIX;
-static const GLenum GL_TEXTURE_DEFORMATION_SGIX = GLenum::GL_TEXTURE_DEFORMATION_SGIX;
-
-// FogCoordinatePointerType
-
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FogMode
-
-static const GLenum GL_EXP = GLenum::GL_EXP;
-static const GLenum GL_EXP2 = GLenum::GL_EXP2;
-static const GLenum GL_LINEAR = GLenum::GL_LINEAR;
-static const GLenum GL_FOG_FUNC_SGIS = GLenum::GL_FOG_FUNC_SGIS;
-
-// FogParameter
-
-static const GLenum GL_FOG_INDEX = GLenum::GL_FOG_INDEX;
-static const GLenum GL_FOG_DENSITY = GLenum::GL_FOG_DENSITY;
-static const GLenum GL_FOG_START = GLenum::GL_FOG_START;
-static const GLenum GL_FOG_END = GLenum::GL_FOG_END;
-static const GLenum GL_FOG_MODE = GLenum::GL_FOG_MODE;
-static const GLenum GL_FOG_COLOR = GLenum::GL_FOG_COLOR;
-static const GLenum GL_FOG_OFFSET_VALUE_SGIX = GLenum::GL_FOG_OFFSET_VALUE_SGIX;
-
-// FogPointerTypeEXT
-
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FogPointerTypeIBM
-
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// FragmentLightModelParameterSGIX
-
-static const GLenum GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX;
-static const GLenum GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX;
-
-// FrontFaceDirection
-
-static const GLenum GL_CW = GLenum::GL_CW;
-static const GLenum GL_CCW = GLenum::GL_CCW;
-
-// GetColorTableParameterPNameSGI
-
-// static const GLenum GL_COLOR_TABLE_SCALE_SGI = GLenum::GL_COLOR_TABLE_SCALE_SGI; // reuse ColorTableParameterPNameSGI
-// static const GLenum GL_COLOR_TABLE_BIAS_SGI = GLenum::GL_COLOR_TABLE_BIAS_SGI; // reuse ColorTableParameterPNameSGI
-static const GLenum GL_COLOR_TABLE_FORMAT_SGI = GLenum::GL_COLOR_TABLE_FORMAT_SGI;
-static const GLenum GL_COLOR_TABLE_WIDTH_SGI = GLenum::GL_COLOR_TABLE_WIDTH_SGI;
-static const GLenum GL_COLOR_TABLE_RED_SIZE_SGI = GLenum::GL_COLOR_TABLE_RED_SIZE_SGI;
-static const GLenum GL_COLOR_TABLE_GREEN_SIZE_SGI = GLenum::GL_COLOR_TABLE_GREEN_SIZE_SGI;
-static const GLenum GL_COLOR_TABLE_BLUE_SIZE_SGI = GLenum::GL_COLOR_TABLE_BLUE_SIZE_SGI;
-static const GLenum GL_COLOR_TABLE_ALPHA_SIZE_SGI = GLenum::GL_COLOR_TABLE_ALPHA_SIZE_SGI;
-static const GLenum GL_COLOR_TABLE_LUMINANCE_SIZE_SGI = GLenum::GL_COLOR_TABLE_LUMINANCE_SIZE_SGI;
-static const GLenum GL_COLOR_TABLE_INTENSITY_SIZE_SGI = GLenum::GL_COLOR_TABLE_INTENSITY_SIZE_SGI;
-
-// GetConvolutionParameter
-
-// static const GLenum GL_CONVOLUTION_BORDER_MODE_EXT = GLenum::GL_CONVOLUTION_BORDER_MODE_EXT; // reuse ConvolutionParameterEXT
-// static const GLenum GL_CONVOLUTION_FILTER_SCALE_EXT = GLenum::GL_CONVOLUTION_FILTER_SCALE_EXT; // reuse ConvolutionParameterEXT
-// static const GLenum GL_CONVOLUTION_FILTER_BIAS_EXT = GLenum::GL_CONVOLUTION_FILTER_BIAS_EXT; // reuse ConvolutionParameterEXT
-static const GLenum GL_CONVOLUTION_FORMAT_EXT = GLenum::GL_CONVOLUTION_FORMAT_EXT;
-static const GLenum GL_CONVOLUTION_WIDTH_EXT = GLenum::GL_CONVOLUTION_WIDTH_EXT;
-static const GLenum GL_CONVOLUTION_HEIGHT_EXT = GLenum::GL_CONVOLUTION_HEIGHT_EXT;
-static const GLenum GL_MAX_CONVOLUTION_WIDTH_EXT = GLenum::GL_MAX_CONVOLUTION_WIDTH_EXT;
-static const GLenum GL_MAX_CONVOLUTION_HEIGHT_EXT = GLenum::GL_MAX_CONVOLUTION_HEIGHT_EXT;
-
-// GetHistogramParameterPNameEXT
-
-static const GLenum GL_HISTOGRAM_WIDTH_EXT = GLenum::GL_HISTOGRAM_WIDTH_EXT;
-static const GLenum GL_HISTOGRAM_FORMAT_EXT = GLenum::GL_HISTOGRAM_FORMAT_EXT;
-static const GLenum GL_HISTOGRAM_RED_SIZE_EXT = GLenum::GL_HISTOGRAM_RED_SIZE_EXT;
-static const GLenum GL_HISTOGRAM_GREEN_SIZE_EXT = GLenum::GL_HISTOGRAM_GREEN_SIZE_EXT;
-static const GLenum GL_HISTOGRAM_BLUE_SIZE_EXT = GLenum::GL_HISTOGRAM_BLUE_SIZE_EXT;
-static const GLenum GL_HISTOGRAM_ALPHA_SIZE_EXT = GLenum::GL_HISTOGRAM_ALPHA_SIZE_EXT;
-static const GLenum GL_HISTOGRAM_LUMINANCE_SIZE_EXT = GLenum::GL_HISTOGRAM_LUMINANCE_SIZE_EXT;
-static const GLenum GL_HISTOGRAM_SINK_EXT = GLenum::GL_HISTOGRAM_SINK_EXT;
-
-// GetMapQuery
-
-static const GLenum GL_COEFF = GLenum::GL_COEFF;
-static const GLenum GL_ORDER = GLenum::GL_ORDER;
-static const GLenum GL_DOMAIN = GLenum::GL_DOMAIN;
-
-// GetMinmaxParameterPNameEXT
-
-static const GLenum GL_MINMAX_FORMAT = GLenum::GL_MINMAX_FORMAT;
-static const GLenum GL_MINMAX_FORMAT_EXT = GLenum::GL_MINMAX_FORMAT_EXT;
-static const GLenum GL_MINMAX_SINK = GLenum::GL_MINMAX_SINK;
-static const GLenum GL_MINMAX_SINK_EXT = GLenum::GL_MINMAX_SINK_EXT;
-
-// GetPName
-
-static const GLenum GL_CURRENT_COLOR = GLenum::GL_CURRENT_COLOR;
-static const GLenum GL_CURRENT_INDEX = GLenum::GL_CURRENT_INDEX;
-static const GLenum GL_CURRENT_NORMAL = GLenum::GL_CURRENT_NORMAL;
-static const GLenum GL_CURRENT_TEXTURE_COORDS = GLenum::GL_CURRENT_TEXTURE_COORDS;
-static const GLenum GL_CURRENT_RASTER_COLOR = GLenum::GL_CURRENT_RASTER_COLOR;
-static const GLenum GL_CURRENT_RASTER_INDEX = GLenum::GL_CURRENT_RASTER_INDEX;
-static const GLenum GL_CURRENT_RASTER_TEXTURE_COORDS = GLenum::GL_CURRENT_RASTER_TEXTURE_COORDS;
-static const GLenum GL_CURRENT_RASTER_POSITION = GLenum::GL_CURRENT_RASTER_POSITION;
-static const GLenum GL_CURRENT_RASTER_POSITION_VALID = GLenum::GL_CURRENT_RASTER_POSITION_VALID;
-static const GLenum GL_CURRENT_RASTER_DISTANCE = GLenum::GL_CURRENT_RASTER_DISTANCE;
-// static const GLenum GL_POINT_SMOOTH = GLenum::GL_POINT_SMOOTH; // reuse EnableCap
-static const GLenum GL_POINT_SIZE = GLenum::GL_POINT_SIZE;
-static const GLenum GL_POINT_SIZE_RANGE = GLenum::GL_POINT_SIZE_RANGE;
-static const GLenum GL_SMOOTH_POINT_SIZE_RANGE = GLenum::GL_SMOOTH_POINT_SIZE_RANGE;
-static const GLenum GL_POINT_SIZE_GRANULARITY = GLenum::GL_POINT_SIZE_GRANULARITY;
-static const GLenum GL_SMOOTH_POINT_SIZE_GRANULARITY = GLenum::GL_SMOOTH_POINT_SIZE_GRANULARITY;
-// static const GLenum GL_LINE_SMOOTH = GLenum::GL_LINE_SMOOTH; // reuse EnableCap
-static const GLenum GL_LINE_WIDTH = GLenum::GL_LINE_WIDTH;
-static const GLenum GL_LINE_WIDTH_RANGE = GLenum::GL_LINE_WIDTH_RANGE;
-static const GLenum GL_SMOOTH_LINE_WIDTH_RANGE = GLenum::GL_SMOOTH_LINE_WIDTH_RANGE;
-static const GLenum GL_LINE_WIDTH_GRANULARITY = GLenum::GL_LINE_WIDTH_GRANULARITY;
-static const GLenum GL_SMOOTH_LINE_WIDTH_GRANULARITY = GLenum::GL_SMOOTH_LINE_WIDTH_GRANULARITY;
-// static const GLenum GL_LINE_STIPPLE = GLenum::GL_LINE_STIPPLE; // reuse EnableCap
-static const GLenum GL_LINE_STIPPLE_PATTERN = GLenum::GL_LINE_STIPPLE_PATTERN;
-static const GLenum GL_LINE_STIPPLE_REPEAT = GLenum::GL_LINE_STIPPLE_REPEAT;
-static const GLenum GL_LIST_MODE = GLenum::GL_LIST_MODE;
-static const GLenum GL_MAX_LIST_NESTING = GLenum::GL_MAX_LIST_NESTING;
-static const GLenum GL_LIST_BASE = GLenum::GL_LIST_BASE;
-static const GLenum GL_LIST_INDEX = GLenum::GL_LIST_INDEX;
-static const GLenum GL_POLYGON_MODE = GLenum::GL_POLYGON_MODE;
-// static const GLenum GL_POLYGON_SMOOTH = GLenum::GL_POLYGON_SMOOTH; // reuse EnableCap
-// static const GLenum GL_POLYGON_STIPPLE = GLenum::GL_POLYGON_STIPPLE; // reuse EnableCap
-static const GLenum GL_EDGE_FLAG = GLenum::GL_EDGE_FLAG;
-// static const GLenum GL_CULL_FACE = GLenum::GL_CULL_FACE; // reuse EnableCap
-static const GLenum GL_CULL_FACE_MODE = GLenum::GL_CULL_FACE_MODE;
-static const GLenum GL_FRONT_FACE = GLenum::GL_FRONT_FACE;
-// static const GLenum GL_LIGHTING = GLenum::GL_LIGHTING; // reuse EnableCap
-static const GLenum GL_LIGHT_MODEL_LOCAL_VIEWER = GLenum::GL_LIGHT_MODEL_LOCAL_VIEWER;
-static const GLenum GL_LIGHT_MODEL_TWO_SIDE = GLenum::GL_LIGHT_MODEL_TWO_SIDE;
-static const GLenum GL_LIGHT_MODEL_AMBIENT = GLenum::GL_LIGHT_MODEL_AMBIENT;
-static const GLenum GL_SHADE_MODEL = GLenum::GL_SHADE_MODEL;
-static const GLenum GL_COLOR_MATERIAL_FACE = GLenum::GL_COLOR_MATERIAL_FACE;
-static const GLenum GL_COLOR_MATERIAL_PARAMETER = GLenum::GL_COLOR_MATERIAL_PARAMETER;
-// static const GLenum GL_COLOR_MATERIAL = GLenum::GL_COLOR_MATERIAL; // reuse EnableCap
-// static const GLenum GL_FOG = GLenum::GL_FOG; // reuse EnableCap
-// static const GLenum GL_FOG_INDEX = GLenum::GL_FOG_INDEX; // reuse FogParameter
-// static const GLenum GL_FOG_DENSITY = GLenum::GL_FOG_DENSITY; // reuse FogParameter
-// static const GLenum GL_FOG_START = GLenum::GL_FOG_START; // reuse FogParameter
-// static const GLenum GL_FOG_END = GLenum::GL_FOG_END; // reuse FogParameter
-// static const GLenum GL_FOG_MODE = GLenum::GL_FOG_MODE; // reuse FogParameter
-// static const GLenum GL_FOG_COLOR = GLenum::GL_FOG_COLOR; // reuse FogParameter
-static const GLenum GL_DEPTH_RANGE = GLenum::GL_DEPTH_RANGE;
-// static const GLenum GL_DEPTH_TEST = GLenum::GL_DEPTH_TEST; // reuse EnableCap
-static const GLenum GL_DEPTH_WRITEMASK = GLenum::GL_DEPTH_WRITEMASK;
-static const GLenum GL_DEPTH_CLEAR_VALUE = GLenum::GL_DEPTH_CLEAR_VALUE;
-static const GLenum GL_DEPTH_FUNC = GLenum::GL_DEPTH_FUNC;
-static const GLenum GL_ACCUM_CLEAR_VALUE = GLenum::GL_ACCUM_CLEAR_VALUE;
-// static const GLenum GL_STENCIL_TEST = GLenum::GL_STENCIL_TEST; // reuse EnableCap
-static const GLenum GL_STENCIL_CLEAR_VALUE = GLenum::GL_STENCIL_CLEAR_VALUE;
-static const GLenum GL_STENCIL_FUNC = GLenum::GL_STENCIL_FUNC;
-static const GLenum GL_STENCIL_VALUE_MASK = GLenum::GL_STENCIL_VALUE_MASK;
-static const GLenum GL_STENCIL_FAIL = GLenum::GL_STENCIL_FAIL;
-static const GLenum GL_STENCIL_PASS_DEPTH_FAIL = GLenum::GL_STENCIL_PASS_DEPTH_FAIL;
-static const GLenum GL_STENCIL_PASS_DEPTH_PASS = GLenum::GL_STENCIL_PASS_DEPTH_PASS;
-static const GLenum GL_STENCIL_REF = GLenum::GL_STENCIL_REF;
-static const GLenum GL_STENCIL_WRITEMASK = GLenum::GL_STENCIL_WRITEMASK;
-static const GLenum GL_MATRIX_MODE = GLenum::GL_MATRIX_MODE;
-// static const GLenum GL_NORMALIZE = GLenum::GL_NORMALIZE; // reuse EnableCap
-static const GLenum GL_VIEWPORT = GLenum::GL_VIEWPORT;
-static const GLenum GL_MODELVIEW0_STACK_DEPTH_EXT = GLenum::GL_MODELVIEW0_STACK_DEPTH_EXT;
-static const GLenum GL_MODELVIEW_STACK_DEPTH = GLenum::GL_MODELVIEW_STACK_DEPTH;
-static const GLenum GL_PROJECTION_STACK_DEPTH = GLenum::GL_PROJECTION_STACK_DEPTH;
-static const GLenum GL_TEXTURE_STACK_DEPTH = GLenum::GL_TEXTURE_STACK_DEPTH;
-static const GLenum GL_MODELVIEW0_MATRIX_EXT = GLenum::GL_MODELVIEW0_MATRIX_EXT;
-static const GLenum GL_MODELVIEW_MATRIX = GLenum::GL_MODELVIEW_MATRIX;
-static const GLenum GL_PROJECTION_MATRIX = GLenum::GL_PROJECTION_MATRIX;
-static const GLenum GL_TEXTURE_MATRIX = GLenum::GL_TEXTURE_MATRIX;
-static const GLenum GL_ATTRIB_STACK_DEPTH = GLenum::GL_ATTRIB_STACK_DEPTH;
-static const GLenum GL_CLIENT_ATTRIB_STACK_DEPTH = GLenum::GL_CLIENT_ATTRIB_STACK_DEPTH;
-// static const GLenum GL_ALPHA_TEST = GLenum::GL_ALPHA_TEST; // reuse EnableCap
-static const GLenum GL_ALPHA_TEST_FUNC = GLenum::GL_ALPHA_TEST_FUNC;
-static const GLenum GL_ALPHA_TEST_REF = GLenum::GL_ALPHA_TEST_REF;
-// static const GLenum GL_DITHER = GLenum::GL_DITHER; // reuse EnableCap
-static const GLenum GL_BLEND_DST = GLenum::GL_BLEND_DST;
-static const GLenum GL_BLEND_SRC = GLenum::GL_BLEND_SRC;
-// static const GLenum GL_BLEND = GLenum::GL_BLEND; // reuse EnableCap
-static const GLenum GL_LOGIC_OP_MODE = GLenum::GL_LOGIC_OP_MODE;
-// static const GLenum GL_INDEX_LOGIC_OP = GLenum::GL_INDEX_LOGIC_OP; // reuse EnableCap
-// static const GLenum GL_LOGIC_OP = GLenum::GL_LOGIC_OP; // reuse BlendEquationModeEXT
-// static const GLenum GL_COLOR_LOGIC_OP = GLenum::GL_COLOR_LOGIC_OP; // reuse EnableCap
-static const GLenum GL_AUX_BUFFERS = GLenum::GL_AUX_BUFFERS;
-static const GLenum GL_DRAW_BUFFER = GLenum::GL_DRAW_BUFFER;
-static const GLenum GL_READ_BUFFER = GLenum::GL_READ_BUFFER;
-static const GLenum GL_SCISSOR_BOX = GLenum::GL_SCISSOR_BOX;
-// static const GLenum GL_SCISSOR_TEST = GLenum::GL_SCISSOR_TEST; // reuse EnableCap
-static const GLenum GL_INDEX_CLEAR_VALUE = GLenum::GL_INDEX_CLEAR_VALUE;
-static const GLenum GL_INDEX_WRITEMASK = GLenum::GL_INDEX_WRITEMASK;
-static const GLenum GL_COLOR_CLEAR_VALUE = GLenum::GL_COLOR_CLEAR_VALUE;
-static const GLenum GL_COLOR_WRITEMASK = GLenum::GL_COLOR_WRITEMASK;
-static const GLenum GL_INDEX_MODE = GLenum::GL_INDEX_MODE;
-static const GLenum GL_RGBA_MODE = GLenum::GL_RGBA_MODE;
-static const GLenum GL_DOUBLEBUFFER = GLenum::GL_DOUBLEBUFFER;
-static const GLenum GL_STEREO = GLenum::GL_STEREO;
-static const GLenum GL_RENDER_MODE = GLenum::GL_RENDER_MODE;
-static const GLenum GL_PERSPECTIVE_CORRECTION_HINT = GLenum::GL_PERSPECTIVE_CORRECTION_HINT;
-static const GLenum GL_POINT_SMOOTH_HINT = GLenum::GL_POINT_SMOOTH_HINT;
-static const GLenum GL_LINE_SMOOTH_HINT = GLenum::GL_LINE_SMOOTH_HINT;
-static const GLenum GL_POLYGON_SMOOTH_HINT = GLenum::GL_POLYGON_SMOOTH_HINT;
-static const GLenum GL_FOG_HINT = GLenum::GL_FOG_HINT;
-// static const GLenum GL_TEXTURE_GEN_S = GLenum::GL_TEXTURE_GEN_S; // reuse EnableCap
-// static const GLenum GL_TEXTURE_GEN_T = GLenum::GL_TEXTURE_GEN_T; // reuse EnableCap
-// static const GLenum GL_TEXTURE_GEN_R = GLenum::GL_TEXTURE_GEN_R; // reuse EnableCap
-// static const GLenum GL_TEXTURE_GEN_Q = GLenum::GL_TEXTURE_GEN_Q; // reuse EnableCap
-static const GLenum GL_PIXEL_MAP_I_TO_I_SIZE = GLenum::GL_PIXEL_MAP_I_TO_I_SIZE;
-static const GLenum GL_PIXEL_MAP_S_TO_S_SIZE = GLenum::GL_PIXEL_MAP_S_TO_S_SIZE;
-static const GLenum GL_PIXEL_MAP_I_TO_R_SIZE = GLenum::GL_PIXEL_MAP_I_TO_R_SIZE;
-static const GLenum GL_PIXEL_MAP_I_TO_G_SIZE = GLenum::GL_PIXEL_MAP_I_TO_G_SIZE;
-static const GLenum GL_PIXEL_MAP_I_TO_B_SIZE = GLenum::GL_PIXEL_MAP_I_TO_B_SIZE;
-static const GLenum GL_PIXEL_MAP_I_TO_A_SIZE = GLenum::GL_PIXEL_MAP_I_TO_A_SIZE;
-static const GLenum GL_PIXEL_MAP_R_TO_R_SIZE = GLenum::GL_PIXEL_MAP_R_TO_R_SIZE;
-static const GLenum GL_PIXEL_MAP_G_TO_G_SIZE = GLenum::GL_PIXEL_MAP_G_TO_G_SIZE;
-static const GLenum GL_PIXEL_MAP_B_TO_B_SIZE = GLenum::GL_PIXEL_MAP_B_TO_B_SIZE;
-static const GLenum GL_PIXEL_MAP_A_TO_A_SIZE = GLenum::GL_PIXEL_MAP_A_TO_A_SIZE;
-static const GLenum GL_UNPACK_SWAP_BYTES = GLenum::GL_UNPACK_SWAP_BYTES;
-static const GLenum GL_UNPACK_LSB_FIRST = GLenum::GL_UNPACK_LSB_FIRST;
-static const GLenum GL_UNPACK_ROW_LENGTH = GLenum::GL_UNPACK_ROW_LENGTH;
-static const GLenum GL_UNPACK_SKIP_ROWS = GLenum::GL_UNPACK_SKIP_ROWS;
-static const GLenum GL_UNPACK_SKIP_PIXELS = GLenum::GL_UNPACK_SKIP_PIXELS;
-static const GLenum GL_UNPACK_ALIGNMENT = GLenum::GL_UNPACK_ALIGNMENT;
-static const GLenum GL_PACK_SWAP_BYTES = GLenum::GL_PACK_SWAP_BYTES;
-static const GLenum GL_PACK_LSB_FIRST = GLenum::GL_PACK_LSB_FIRST;
-static const GLenum GL_PACK_ROW_LENGTH = GLenum::GL_PACK_ROW_LENGTH;
-static const GLenum GL_PACK_SKIP_ROWS = GLenum::GL_PACK_SKIP_ROWS;
-static const GLenum GL_PACK_SKIP_PIXELS = GLenum::GL_PACK_SKIP_PIXELS;
-static const GLenum GL_PACK_ALIGNMENT = GLenum::GL_PACK_ALIGNMENT;
-static const GLenum GL_MAP_COLOR = GLenum::GL_MAP_COLOR;
-static const GLenum GL_MAP_STENCIL = GLenum::GL_MAP_STENCIL;
-static const GLenum GL_INDEX_SHIFT = GLenum::GL_INDEX_SHIFT;
-static const GLenum GL_INDEX_OFFSET = GLenum::GL_INDEX_OFFSET;
-static const GLenum GL_RED_SCALE = GLenum::GL_RED_SCALE;
-static const GLenum GL_RED_BIAS = GLenum::GL_RED_BIAS;
-static const GLenum GL_ZOOM_X = GLenum::GL_ZOOM_X;
-static const GLenum GL_ZOOM_Y = GLenum::GL_ZOOM_Y;
-static const GLenum GL_GREEN_SCALE = GLenum::GL_GREEN_SCALE;
-static const GLenum GL_GREEN_BIAS = GLenum::GL_GREEN_BIAS;
-static const GLenum GL_BLUE_SCALE = GLenum::GL_BLUE_SCALE;
-static const GLenum GL_BLUE_BIAS = GLenum::GL_BLUE_BIAS;
-static const GLenum GL_ALPHA_SCALE = GLenum::GL_ALPHA_SCALE;
-static const GLenum GL_ALPHA_BIAS = GLenum::GL_ALPHA_BIAS;
-static const GLenum GL_DEPTH_SCALE = GLenum::GL_DEPTH_SCALE;
-static const GLenum GL_DEPTH_BIAS = GLenum::GL_DEPTH_BIAS;
-static const GLenum GL_MAX_EVAL_ORDER = GLenum::GL_MAX_EVAL_ORDER;
-static const GLenum GL_MAX_LIGHTS = GLenum::GL_MAX_LIGHTS;
-static const GLenum GL_MAX_CLIP_DISTANCES = GLenum::GL_MAX_CLIP_DISTANCES;
-static const GLenum GL_MAX_CLIP_PLANES = GLenum::GL_MAX_CLIP_PLANES;
-static const GLenum GL_MAX_TEXTURE_SIZE = GLenum::GL_MAX_TEXTURE_SIZE;
-static const GLenum GL_MAX_PIXEL_MAP_TABLE = GLenum::GL_MAX_PIXEL_MAP_TABLE;
-static const GLenum GL_MAX_ATTRIB_STACK_DEPTH = GLenum::GL_MAX_ATTRIB_STACK_DEPTH;
-static const GLenum GL_MAX_MODELVIEW_STACK_DEPTH = GLenum::GL_MAX_MODELVIEW_STACK_DEPTH;
-static const GLenum GL_MAX_NAME_STACK_DEPTH = GLenum::GL_MAX_NAME_STACK_DEPTH;
-static const GLenum GL_MAX_PROJECTION_STACK_DEPTH = GLenum::GL_MAX_PROJECTION_STACK_DEPTH;
-static const GLenum GL_MAX_TEXTURE_STACK_DEPTH = GLenum::GL_MAX_TEXTURE_STACK_DEPTH;
-static const GLenum GL_MAX_VIEWPORT_DIMS = GLenum::GL_MAX_VIEWPORT_DIMS;
-static const GLenum GL_MAX_CLIENT_ATTRIB_STACK_DEPTH = GLenum::GL_MAX_CLIENT_ATTRIB_STACK_DEPTH;
-static const GLenum GL_SUBPIXEL_BITS = GLenum::GL_SUBPIXEL_BITS;
-static const GLenum GL_INDEX_BITS = GLenum::GL_INDEX_BITS;
-static const GLenum GL_RED_BITS = GLenum::GL_RED_BITS;
-static const GLenum GL_GREEN_BITS = GLenum::GL_GREEN_BITS;
-static const GLenum GL_BLUE_BITS = GLenum::GL_BLUE_BITS;
-static const GLenum GL_ALPHA_BITS = GLenum::GL_ALPHA_BITS;
-static const GLenum GL_DEPTH_BITS = GLenum::GL_DEPTH_BITS;
-static const GLenum GL_STENCIL_BITS = GLenum::GL_STENCIL_BITS;
-static const GLenum GL_ACCUM_RED_BITS = GLenum::GL_ACCUM_RED_BITS;
-static const GLenum GL_ACCUM_GREEN_BITS = GLenum::GL_ACCUM_GREEN_BITS;
-static const GLenum GL_ACCUM_BLUE_BITS = GLenum::GL_ACCUM_BLUE_BITS;
-static const GLenum GL_ACCUM_ALPHA_BITS = GLenum::GL_ACCUM_ALPHA_BITS;
-static const GLenum GL_NAME_STACK_DEPTH = GLenum::GL_NAME_STACK_DEPTH;
-// static const GLenum GL_AUTO_NORMAL = GLenum::GL_AUTO_NORMAL; // reuse EnableCap
-// static const GLenum GL_MAP1_COLOR_4 = GLenum::GL_MAP1_COLOR_4; // reuse EnableCap
-// static const GLenum GL_MAP1_INDEX = GLenum::GL_MAP1_INDEX; // reuse EnableCap
-// static const GLenum GL_MAP1_NORMAL = GLenum::GL_MAP1_NORMAL; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_1 = GLenum::GL_MAP1_TEXTURE_COORD_1; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_2 = GLenum::GL_MAP1_TEXTURE_COORD_2; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_3 = GLenum::GL_MAP1_TEXTURE_COORD_3; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_4 = GLenum::GL_MAP1_TEXTURE_COORD_4; // reuse EnableCap
-// static const GLenum GL_MAP1_VERTEX_3 = GLenum::GL_MAP1_VERTEX_3; // reuse EnableCap
-// static const GLenum GL_MAP1_VERTEX_4 = GLenum::GL_MAP1_VERTEX_4; // reuse EnableCap
-// static const GLenum GL_MAP2_COLOR_4 = GLenum::GL_MAP2_COLOR_4; // reuse EnableCap
-// static const GLenum GL_MAP2_INDEX = GLenum::GL_MAP2_INDEX; // reuse EnableCap
-// static const GLenum GL_MAP2_NORMAL = GLenum::GL_MAP2_NORMAL; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_1 = GLenum::GL_MAP2_TEXTURE_COORD_1; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_2 = GLenum::GL_MAP2_TEXTURE_COORD_2; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_3 = GLenum::GL_MAP2_TEXTURE_COORD_3; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_4 = GLenum::GL_MAP2_TEXTURE_COORD_4; // reuse EnableCap
-// static const GLenum GL_MAP2_VERTEX_3 = GLenum::GL_MAP2_VERTEX_3; // reuse EnableCap
-// static const GLenum GL_MAP2_VERTEX_4 = GLenum::GL_MAP2_VERTEX_4; // reuse EnableCap
-static const GLenum GL_MAP1_GRID_DOMAIN = GLenum::GL_MAP1_GRID_DOMAIN;
-static const GLenum GL_MAP1_GRID_SEGMENTS = GLenum::GL_MAP1_GRID_SEGMENTS;
-static const GLenum GL_MAP2_GRID_DOMAIN = GLenum::GL_MAP2_GRID_DOMAIN;
-static const GLenum GL_MAP2_GRID_SEGMENTS = GLenum::GL_MAP2_GRID_SEGMENTS;
-// static const GLenum GL_TEXTURE_1D = GLenum::GL_TEXTURE_1D; // reuse EnableCap
-// static const GLenum GL_TEXTURE_2D = GLenum::GL_TEXTURE_2D; // reuse EnableCap
-static const GLenum GL_FEEDBACK_BUFFER_SIZE = GLenum::GL_FEEDBACK_BUFFER_SIZE;
-static const GLenum GL_FEEDBACK_BUFFER_TYPE = GLenum::GL_FEEDBACK_BUFFER_TYPE;
-static const GLenum GL_SELECTION_BUFFER_SIZE = GLenum::GL_SELECTION_BUFFER_SIZE;
-static const GLenum GL_POLYGON_OFFSET_UNITS = GLenum::GL_POLYGON_OFFSET_UNITS;
-// static const GLenum GL_POLYGON_OFFSET_POINT = GLenum::GL_POLYGON_OFFSET_POINT; // reuse EnableCap
-// static const GLenum GL_POLYGON_OFFSET_LINE = GLenum::GL_POLYGON_OFFSET_LINE; // reuse EnableCap
-// static const GLenum GL_CLIP_PLANE0 = GLenum::GL_CLIP_PLANE0; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE1 = GLenum::GL_CLIP_PLANE1; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE2 = GLenum::GL_CLIP_PLANE2; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE3 = GLenum::GL_CLIP_PLANE3; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE4 = GLenum::GL_CLIP_PLANE4; // reuse ClipPlaneName
-// static const GLenum GL_CLIP_PLANE5 = GLenum::GL_CLIP_PLANE5; // reuse ClipPlaneName
-// static const GLenum GL_LIGHT0 = GLenum::GL_LIGHT0; // reuse EnableCap
-// static const GLenum GL_LIGHT1 = GLenum::GL_LIGHT1; // reuse EnableCap
-// static const GLenum GL_LIGHT2 = GLenum::GL_LIGHT2; // reuse EnableCap
-// static const GLenum GL_LIGHT3 = GLenum::GL_LIGHT3; // reuse EnableCap
-// static const GLenum GL_LIGHT4 = GLenum::GL_LIGHT4; // reuse EnableCap
-// static const GLenum GL_LIGHT5 = GLenum::GL_LIGHT5; // reuse EnableCap
-// static const GLenum GL_LIGHT6 = GLenum::GL_LIGHT6; // reuse EnableCap
-// static const GLenum GL_LIGHT7 = GLenum::GL_LIGHT7; // reuse EnableCap
-static const GLenum GL_BLEND_COLOR_EXT = GLenum::GL_BLEND_COLOR_EXT;
-static const GLenum GL_BLEND_EQUATION_EXT = GLenum::GL_BLEND_EQUATION_EXT;
-static const GLenum GL_PACK_CMYK_HINT_EXT = GLenum::GL_PACK_CMYK_HINT_EXT;
-static const GLenum GL_UNPACK_CMYK_HINT_EXT = GLenum::GL_UNPACK_CMYK_HINT_EXT;
-// static const GLenum GL_CONVOLUTION_1D_EXT = GLenum::GL_CONVOLUTION_1D_EXT; // reuse ConvolutionTargetEXT
-// static const GLenum GL_CONVOLUTION_2D_EXT = GLenum::GL_CONVOLUTION_2D_EXT; // reuse ConvolutionTargetEXT
-// static const GLenum GL_SEPARABLE_2D_EXT = GLenum::GL_SEPARABLE_2D_EXT; // reuse EnableCap
-static const GLenum GL_POST_CONVOLUTION_RED_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_RED_SCALE_EXT;
-static const GLenum GL_POST_CONVOLUTION_GREEN_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_GREEN_SCALE_EXT;
-static const GLenum GL_POST_CONVOLUTION_BLUE_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_BLUE_SCALE_EXT;
-static const GLenum GL_POST_CONVOLUTION_ALPHA_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_ALPHA_SCALE_EXT;
-static const GLenum GL_POST_CONVOLUTION_RED_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_RED_BIAS_EXT;
-static const GLenum GL_POST_CONVOLUTION_GREEN_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_GREEN_BIAS_EXT;
-static const GLenum GL_POST_CONVOLUTION_BLUE_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_BLUE_BIAS_EXT;
-static const GLenum GL_POST_CONVOLUTION_ALPHA_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_ALPHA_BIAS_EXT;
-// static const GLenum GL_HISTOGRAM_EXT = GLenum::GL_HISTOGRAM_EXT; // reuse EnableCap
-// static const GLenum GL_MINMAX_EXT = GLenum::GL_MINMAX_EXT; // reuse EnableCap
-// static const GLenum GL_POLYGON_OFFSET_FILL = GLenum::GL_POLYGON_OFFSET_FILL; // reuse EnableCap
-static const GLenum GL_POLYGON_OFFSET_FACTOR = GLenum::GL_POLYGON_OFFSET_FACTOR;
-static const GLenum GL_POLYGON_OFFSET_BIAS_EXT = GLenum::GL_POLYGON_OFFSET_BIAS_EXT;
-// static const GLenum GL_RESCALE_NORMAL_EXT = GLenum::GL_RESCALE_NORMAL_EXT; // reuse EnableCap
-static const GLenum GL_TEXTURE_BINDING_1D = GLenum::GL_TEXTURE_BINDING_1D;
-static const GLenum GL_TEXTURE_BINDING_2D = GLenum::GL_TEXTURE_BINDING_2D;
-static const GLenum GL_TEXTURE_3D_BINDING_EXT = GLenum::GL_TEXTURE_3D_BINDING_EXT;
-static const GLenum GL_TEXTURE_BINDING_3D = GLenum::GL_TEXTURE_BINDING_3D;
-static const GLenum GL_PACK_SKIP_IMAGES_EXT = GLenum::GL_PACK_SKIP_IMAGES_EXT;
-static const GLenum GL_PACK_IMAGE_HEIGHT_EXT = GLenum::GL_PACK_IMAGE_HEIGHT_EXT;
-static const GLenum GL_UNPACK_SKIP_IMAGES_EXT = GLenum::GL_UNPACK_SKIP_IMAGES_EXT;
-static const GLenum GL_UNPACK_IMAGE_HEIGHT_EXT = GLenum::GL_UNPACK_IMAGE_HEIGHT_EXT;
-// static const GLenum GL_TEXTURE_3D_EXT = GLenum::GL_TEXTURE_3D_EXT; // reuse EnableCap
-static const GLenum GL_MAX_3D_TEXTURE_SIZE_EXT = GLenum::GL_MAX_3D_TEXTURE_SIZE_EXT;
-// static const GLenum GL_VERTEX_ARRAY = GLenum::GL_VERTEX_ARRAY; // reuse EnableCap
-// static const GLenum GL_NORMAL_ARRAY = GLenum::GL_NORMAL_ARRAY; // reuse EnableCap
-// static const GLenum GL_COLOR_ARRAY = GLenum::GL_COLOR_ARRAY; // reuse EnableCap
-// static const GLenum GL_INDEX_ARRAY = GLenum::GL_INDEX_ARRAY; // reuse EnableCap
-// static const GLenum GL_TEXTURE_COORD_ARRAY = GLenum::GL_TEXTURE_COORD_ARRAY; // reuse EnableCap
-// static const GLenum GL_EDGE_FLAG_ARRAY = GLenum::GL_EDGE_FLAG_ARRAY; // reuse EnableCap
-static const GLenum GL_VERTEX_ARRAY_SIZE = GLenum::GL_VERTEX_ARRAY_SIZE;
-static const GLenum GL_VERTEX_ARRAY_TYPE = GLenum::GL_VERTEX_ARRAY_TYPE;
-static const GLenum GL_VERTEX_ARRAY_STRIDE = GLenum::GL_VERTEX_ARRAY_STRIDE;
-static const GLenum GL_VERTEX_ARRAY_COUNT_EXT = GLenum::GL_VERTEX_ARRAY_COUNT_EXT;
-static const GLenum GL_NORMAL_ARRAY_TYPE = GLenum::GL_NORMAL_ARRAY_TYPE;
-static const GLenum GL_NORMAL_ARRAY_STRIDE = GLenum::GL_NORMAL_ARRAY_STRIDE;
-static const GLenum GL_NORMAL_ARRAY_COUNT_EXT = GLenum::GL_NORMAL_ARRAY_COUNT_EXT;
-static const GLenum GL_COLOR_ARRAY_SIZE = GLenum::GL_COLOR_ARRAY_SIZE;
-static const GLenum GL_COLOR_ARRAY_TYPE = GLenum::GL_COLOR_ARRAY_TYPE;
-static const GLenum GL_COLOR_ARRAY_STRIDE = GLenum::GL_COLOR_ARRAY_STRIDE;
-static const GLenum GL_COLOR_ARRAY_COUNT_EXT = GLenum::GL_COLOR_ARRAY_COUNT_EXT;
-static const GLenum GL_INDEX_ARRAY_TYPE = GLenum::GL_INDEX_ARRAY_TYPE;
-static const GLenum GL_INDEX_ARRAY_STRIDE = GLenum::GL_INDEX_ARRAY_STRIDE;
-static const GLenum GL_INDEX_ARRAY_COUNT_EXT = GLenum::GL_INDEX_ARRAY_COUNT_EXT;
-static const GLenum GL_TEXTURE_COORD_ARRAY_SIZE = GLenum::GL_TEXTURE_COORD_ARRAY_SIZE;
-static const GLenum GL_TEXTURE_COORD_ARRAY_TYPE = GLenum::GL_TEXTURE_COORD_ARRAY_TYPE;
-static const GLenum GL_TEXTURE_COORD_ARRAY_STRIDE = GLenum::GL_TEXTURE_COORD_ARRAY_STRIDE;
-static const GLenum GL_TEXTURE_COORD_ARRAY_COUNT_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_COUNT_EXT;
-static const GLenum GL_EDGE_FLAG_ARRAY_STRIDE = GLenum::GL_EDGE_FLAG_ARRAY_STRIDE;
-static const GLenum GL_EDGE_FLAG_ARRAY_COUNT_EXT = GLenum::GL_EDGE_FLAG_ARRAY_COUNT_EXT;
-// static const GLenum GL_INTERLACE_SGIX = GLenum::GL_INTERLACE_SGIX; // reuse EnableCap
-static const GLenum GL_DETAIL_TEXTURE_2D_BINDING_SGIS = GLenum::GL_DETAIL_TEXTURE_2D_BINDING_SGIS;
-// static const GLenum GL_MULTISAMPLE_SGIS = GLenum::GL_MULTISAMPLE_SGIS; // reuse EnableCap
-// static const GLenum GL_SAMPLE_ALPHA_TO_MASK_SGIS = GLenum::GL_SAMPLE_ALPHA_TO_MASK_SGIS; // reuse EnableCap
-// static const GLenum GL_SAMPLE_ALPHA_TO_ONE_SGIS = GLenum::GL_SAMPLE_ALPHA_TO_ONE_SGIS; // reuse EnableCap
-// static const GLenum GL_SAMPLE_MASK_SGIS = GLenum::GL_SAMPLE_MASK_SGIS; // reuse EnableCap
-static const GLenum GL_SAMPLE_BUFFERS_SGIS = GLenum::GL_SAMPLE_BUFFERS_SGIS;
-static const GLenum GL_SAMPLES_SGIS = GLenum::GL_SAMPLES_SGIS;
-static const GLenum GL_SAMPLE_MASK_VALUE_SGIS = GLenum::GL_SAMPLE_MASK_VALUE_SGIS;
-static const GLenum GL_SAMPLE_MASK_INVERT_SGIS = GLenum::GL_SAMPLE_MASK_INVERT_SGIS;
-static const GLenum GL_SAMPLE_PATTERN_SGIS = GLenum::GL_SAMPLE_PATTERN_SGIS;
-static const GLenum GL_COLOR_MATRIX_SGI = GLenum::GL_COLOR_MATRIX_SGI;
-static const GLenum GL_COLOR_MATRIX_STACK_DEPTH_SGI = GLenum::GL_COLOR_MATRIX_STACK_DEPTH_SGI;
-static const GLenum GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI = GLenum::GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_RED_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_RED_SCALE_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_RED_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_RED_BIAS_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI;
-static const GLenum GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI;
-// static const GLenum GL_TEXTURE_COLOR_TABLE_SGI = GLenum::GL_TEXTURE_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_COLOR_TABLE_SGI = GLenum::GL_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_POST_CONVOLUTION_COLOR_TABLE_SGI = GLenum::GL_POST_CONVOLUTION_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-// static const GLenum GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = GLenum::GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI; // reuse ColorTableTargetSGI
-static const GLenum GL_POINT_SIZE_MIN_SGIS = GLenum::GL_POINT_SIZE_MIN_SGIS;
-static const GLenum GL_POINT_SIZE_MAX_SGIS = GLenum::GL_POINT_SIZE_MAX_SGIS;
-static const GLenum GL_POINT_FADE_THRESHOLD_SIZE_SGIS = GLenum::GL_POINT_FADE_THRESHOLD_SIZE_SGIS;
-static const GLenum GL_DISTANCE_ATTENUATION_SGIS = GLenum::GL_DISTANCE_ATTENUATION_SGIS;
-static const GLenum GL_FOG_FUNC_POINTS_SGIS = GLenum::GL_FOG_FUNC_POINTS_SGIS;
-static const GLenum GL_MAX_FOG_FUNC_POINTS_SGIS = GLenum::GL_MAX_FOG_FUNC_POINTS_SGIS;
-static const GLenum GL_PACK_SKIP_VOLUMES_SGIS = GLenum::GL_PACK_SKIP_VOLUMES_SGIS;
-static const GLenum GL_PACK_IMAGE_DEPTH_SGIS = GLenum::GL_PACK_IMAGE_DEPTH_SGIS;
-static const GLenum GL_UNPACK_SKIP_VOLUMES_SGIS = GLenum::GL_UNPACK_SKIP_VOLUMES_SGIS;
-static const GLenum GL_UNPACK_IMAGE_DEPTH_SGIS = GLenum::GL_UNPACK_IMAGE_DEPTH_SGIS;
-// static const GLenum GL_TEXTURE_4D_SGIS = GLenum::GL_TEXTURE_4D_SGIS; // reuse EnableCap
-static const GLenum GL_MAX_4D_TEXTURE_SIZE_SGIS = GLenum::GL_MAX_4D_TEXTURE_SIZE_SGIS;
-// static const GLenum GL_PIXEL_TEX_GEN_SGIX = GLenum::GL_PIXEL_TEX_GEN_SGIX; // reuse EnableCap
-static const GLenum GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX = GLenum::GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX;
-static const GLenum GL_PIXEL_TILE_CACHE_INCREMENT_SGIX = GLenum::GL_PIXEL_TILE_CACHE_INCREMENT_SGIX;
-static const GLenum GL_PIXEL_TILE_WIDTH_SGIX = GLenum::GL_PIXEL_TILE_WIDTH_SGIX;
-static const GLenum GL_PIXEL_TILE_HEIGHT_SGIX = GLenum::GL_PIXEL_TILE_HEIGHT_SGIX;
-static const GLenum GL_PIXEL_TILE_GRID_WIDTH_SGIX = GLenum::GL_PIXEL_TILE_GRID_WIDTH_SGIX;
-static const GLenum GL_PIXEL_TILE_GRID_HEIGHT_SGIX = GLenum::GL_PIXEL_TILE_GRID_HEIGHT_SGIX;
-static const GLenum GL_PIXEL_TILE_GRID_DEPTH_SGIX = GLenum::GL_PIXEL_TILE_GRID_DEPTH_SGIX;
-static const GLenum GL_PIXEL_TILE_CACHE_SIZE_SGIX = GLenum::GL_PIXEL_TILE_CACHE_SIZE_SGIX;
-// static const GLenum GL_SPRITE_SGIX = GLenum::GL_SPRITE_SGIX; // reuse EnableCap
-static const GLenum GL_SPRITE_MODE_SGIX = GLenum::GL_SPRITE_MODE_SGIX;
-static const GLenum GL_SPRITE_AXIS_SGIX = GLenum::GL_SPRITE_AXIS_SGIX;
-static const GLenum GL_SPRITE_TRANSLATION_SGIX = GLenum::GL_SPRITE_TRANSLATION_SGIX;
-static const GLenum GL_TEXTURE_4D_BINDING_SGIS = GLenum::GL_TEXTURE_4D_BINDING_SGIS;
-static const GLenum GL_MAX_CLIPMAP_DEPTH_SGIX = GLenum::GL_MAX_CLIPMAP_DEPTH_SGIX;
-static const GLenum GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX = GLenum::GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX;
-static const GLenum GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX = GLenum::GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX;
-static const GLenum GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX = GLenum::GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX;
-// static const GLenum GL_REFERENCE_PLANE_SGIX = GLenum::GL_REFERENCE_PLANE_SGIX; // reuse EnableCap
-static const GLenum GL_REFERENCE_PLANE_EQUATION_SGIX = GLenum::GL_REFERENCE_PLANE_EQUATION_SGIX;
-// static const GLenum GL_IR_INSTRUMENT1_SGIX = GLenum::GL_IR_INSTRUMENT1_SGIX; // reuse EnableCap
-static const GLenum GL_INSTRUMENT_MEASUREMENTS_SGIX = GLenum::GL_INSTRUMENT_MEASUREMENTS_SGIX;
-// static const GLenum GL_CALLIGRAPHIC_FRAGMENT_SGIX = GLenum::GL_CALLIGRAPHIC_FRAGMENT_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAMEZOOM_SGIX = GLenum::GL_FRAMEZOOM_SGIX; // reuse EnableCap
-static const GLenum GL_FRAMEZOOM_FACTOR_SGIX = GLenum::GL_FRAMEZOOM_FACTOR_SGIX;
-static const GLenum GL_MAX_FRAMEZOOM_FACTOR_SGIX = GLenum::GL_MAX_FRAMEZOOM_FACTOR_SGIX;
-static const GLenum GL_GENERATE_MIPMAP_HINT_SGIS = GLenum::GL_GENERATE_MIPMAP_HINT_SGIS;
-static const GLenum GL_DEFORMATIONS_MASK_SGIX = GLenum::GL_DEFORMATIONS_MASK_SGIX;
-// static const GLenum GL_FOG_OFFSET_SGIX = GLenum::GL_FOG_OFFSET_SGIX; // reuse EnableCap
-// static const GLenum GL_FOG_OFFSET_VALUE_SGIX = GLenum::GL_FOG_OFFSET_VALUE_SGIX; // reuse FogParameter
-static const GLenum GL_LIGHT_MODEL_COLOR_CONTROL = GLenum::GL_LIGHT_MODEL_COLOR_CONTROL;
-// static const GLenum GL_SHARED_TEXTURE_PALETTE_EXT = GLenum::GL_SHARED_TEXTURE_PALETTE_EXT; // reuse EnableCap
-static const GLenum GL_CONVOLUTION_HINT_SGIX = GLenum::GL_CONVOLUTION_HINT_SGIX;
-static const GLenum GL_ASYNC_MARKER_SGIX = GLenum::GL_ASYNC_MARKER_SGIX;
-static const GLenum GL_PIXEL_TEX_GEN_MODE_SGIX = GLenum::GL_PIXEL_TEX_GEN_MODE_SGIX;
-// static const GLenum GL_ASYNC_HISTOGRAM_SGIX = GLenum::GL_ASYNC_HISTOGRAM_SGIX; // reuse EnableCap
-static const GLenum GL_MAX_ASYNC_HISTOGRAM_SGIX = GLenum::GL_MAX_ASYNC_HISTOGRAM_SGIX;
-// static const GLenum GL_PIXEL_TEXTURE_SGIS = GLenum::GL_PIXEL_TEXTURE_SGIS; // reuse EnableCap
-// static const GLenum GL_ASYNC_TEX_IMAGE_SGIX = GLenum::GL_ASYNC_TEX_IMAGE_SGIX; // reuse EnableCap
-// static const GLenum GL_ASYNC_DRAW_PIXELS_SGIX = GLenum::GL_ASYNC_DRAW_PIXELS_SGIX; // reuse EnableCap
-// static const GLenum GL_ASYNC_READ_PIXELS_SGIX = GLenum::GL_ASYNC_READ_PIXELS_SGIX; // reuse EnableCap
-static const GLenum GL_MAX_ASYNC_TEX_IMAGE_SGIX = GLenum::GL_MAX_ASYNC_TEX_IMAGE_SGIX;
-static const GLenum GL_MAX_ASYNC_DRAW_PIXELS_SGIX = GLenum::GL_MAX_ASYNC_DRAW_PIXELS_SGIX;
-static const GLenum GL_MAX_ASYNC_READ_PIXELS_SGIX = GLenum::GL_MAX_ASYNC_READ_PIXELS_SGIX;
-static const GLenum GL_VERTEX_PRECLIP_SGIX = GLenum::GL_VERTEX_PRECLIP_SGIX;
-static const GLenum GL_VERTEX_PRECLIP_HINT_SGIX = GLenum::GL_VERTEX_PRECLIP_HINT_SGIX;
-// static const GLenum GL_FRAGMENT_LIGHTING_SGIX = GLenum::GL_FRAGMENT_LIGHTING_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_COLOR_MATERIAL_SGIX = GLenum::GL_FRAGMENT_COLOR_MATERIAL_SGIX; // reuse EnableCap
-static const GLenum GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX = GLenum::GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX;
-static const GLenum GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX = GLenum::GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX;
-static const GLenum GL_MAX_FRAGMENT_LIGHTS_SGIX = GLenum::GL_MAX_FRAGMENT_LIGHTS_SGIX;
-static const GLenum GL_MAX_ACTIVE_LIGHTS_SGIX = GLenum::GL_MAX_ACTIVE_LIGHTS_SGIX;
-static const GLenum GL_LIGHT_ENV_MODE_SGIX = GLenum::GL_LIGHT_ENV_MODE_SGIX;
-// static const GLenum GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX; // reuse FragmentLightModelParameterSGIX
-// static const GLenum GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX; // reuse FragmentLightModelParameterSGIX
-// static const GLenum GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX; // reuse FragmentLightModelParameterSGIX
-// static const GLenum GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = GLenum::GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX; // reuse FragmentLightModelParameterSGIX
-// static const GLenum GL_FRAGMENT_LIGHT0_SGIX = GLenum::GL_FRAGMENT_LIGHT0_SGIX; // reuse EnableCap
-static const GLenum GL_PACK_RESAMPLE_SGIX = GLenum::GL_PACK_RESAMPLE_SGIX;
-static const GLenum GL_UNPACK_RESAMPLE_SGIX = GLenum::GL_UNPACK_RESAMPLE_SGIX;
-static const GLenum GL_ALIASED_POINT_SIZE_RANGE = GLenum::GL_ALIASED_POINT_SIZE_RANGE;
-static const GLenum GL_ALIASED_LINE_WIDTH_RANGE = GLenum::GL_ALIASED_LINE_WIDTH_RANGE;
-static const GLenum GL_PACK_SUBSAMPLE_RATE_SGIX = GLenum::GL_PACK_SUBSAMPLE_RATE_SGIX;
-static const GLenum GL_UNPACK_SUBSAMPLE_RATE_SGIX = GLenum::GL_UNPACK_SUBSAMPLE_RATE_SGIX;
-
-// GetPixelMap
-
-static const GLenum GL_PIXEL_MAP_I_TO_I = GLenum::GL_PIXEL_MAP_I_TO_I;
-static const GLenum GL_PIXEL_MAP_S_TO_S = GLenum::GL_PIXEL_MAP_S_TO_S;
-static const GLenum GL_PIXEL_MAP_I_TO_R = GLenum::GL_PIXEL_MAP_I_TO_R;
-static const GLenum GL_PIXEL_MAP_I_TO_G = GLenum::GL_PIXEL_MAP_I_TO_G;
-static const GLenum GL_PIXEL_MAP_I_TO_B = GLenum::GL_PIXEL_MAP_I_TO_B;
-static const GLenum GL_PIXEL_MAP_I_TO_A = GLenum::GL_PIXEL_MAP_I_TO_A;
-static const GLenum GL_PIXEL_MAP_R_TO_R = GLenum::GL_PIXEL_MAP_R_TO_R;
-static const GLenum GL_PIXEL_MAP_G_TO_G = GLenum::GL_PIXEL_MAP_G_TO_G;
-static const GLenum GL_PIXEL_MAP_B_TO_B = GLenum::GL_PIXEL_MAP_B_TO_B;
-static const GLenum GL_PIXEL_MAP_A_TO_A = GLenum::GL_PIXEL_MAP_A_TO_A;
-
-// GetPointervPName
-
-static const GLenum GL_FEEDBACK_BUFFER_POINTER = GLenum::GL_FEEDBACK_BUFFER_POINTER;
-static const GLenum GL_SELECTION_BUFFER_POINTER = GLenum::GL_SELECTION_BUFFER_POINTER;
-static const GLenum GL_VERTEX_ARRAY_POINTER = GLenum::GL_VERTEX_ARRAY_POINTER;
-static const GLenum GL_VERTEX_ARRAY_POINTER_EXT = GLenum::GL_VERTEX_ARRAY_POINTER_EXT;
-static const GLenum GL_NORMAL_ARRAY_POINTER = GLenum::GL_NORMAL_ARRAY_POINTER;
-static const GLenum GL_NORMAL_ARRAY_POINTER_EXT = GLenum::GL_NORMAL_ARRAY_POINTER_EXT;
-static const GLenum GL_COLOR_ARRAY_POINTER = GLenum::GL_COLOR_ARRAY_POINTER;
-static const GLenum GL_COLOR_ARRAY_POINTER_EXT = GLenum::GL_COLOR_ARRAY_POINTER_EXT;
-static const GLenum GL_INDEX_ARRAY_POINTER = GLenum::GL_INDEX_ARRAY_POINTER;
-static const GLenum GL_INDEX_ARRAY_POINTER_EXT = GLenum::GL_INDEX_ARRAY_POINTER_EXT;
-static const GLenum GL_TEXTURE_COORD_ARRAY_POINTER = GLenum::GL_TEXTURE_COORD_ARRAY_POINTER;
-static const GLenum GL_TEXTURE_COORD_ARRAY_POINTER_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_POINTER_EXT;
-static const GLenum GL_EDGE_FLAG_ARRAY_POINTER = GLenum::GL_EDGE_FLAG_ARRAY_POINTER;
-static const GLenum GL_EDGE_FLAG_ARRAY_POINTER_EXT = GLenum::GL_EDGE_FLAG_ARRAY_POINTER_EXT;
-static const GLenum GL_INSTRUMENT_BUFFER_POINTER_SGIX = GLenum::GL_INSTRUMENT_BUFFER_POINTER_SGIX;
-
-// GetTextureParameter
-
-static const GLenum GL_TEXTURE_WIDTH = GLenum::GL_TEXTURE_WIDTH;
-static const GLenum GL_TEXTURE_HEIGHT = GLenum::GL_TEXTURE_HEIGHT;
-static const GLenum GL_TEXTURE_COMPONENTS = GLenum::GL_TEXTURE_COMPONENTS;
-static const GLenum GL_TEXTURE_INTERNAL_FORMAT = GLenum::GL_TEXTURE_INTERNAL_FORMAT;
-static const GLenum GL_TEXTURE_BORDER_COLOR = GLenum::GL_TEXTURE_BORDER_COLOR;
-static const GLenum GL_TEXTURE_BORDER = GLenum::GL_TEXTURE_BORDER;
-static const GLenum GL_TEXTURE_MAG_FILTER = GLenum::GL_TEXTURE_MAG_FILTER;
-static const GLenum GL_TEXTURE_MIN_FILTER = GLenum::GL_TEXTURE_MIN_FILTER;
-static const GLenum GL_TEXTURE_WRAP_S = GLenum::GL_TEXTURE_WRAP_S;
-static const GLenum GL_TEXTURE_WRAP_T = GLenum::GL_TEXTURE_WRAP_T;
-static const GLenum GL_TEXTURE_RED_SIZE = GLenum::GL_TEXTURE_RED_SIZE;
-static const GLenum GL_TEXTURE_GREEN_SIZE = GLenum::GL_TEXTURE_GREEN_SIZE;
-static const GLenum GL_TEXTURE_BLUE_SIZE = GLenum::GL_TEXTURE_BLUE_SIZE;
-static const GLenum GL_TEXTURE_ALPHA_SIZE = GLenum::GL_TEXTURE_ALPHA_SIZE;
-static const GLenum GL_TEXTURE_LUMINANCE_SIZE = GLenum::GL_TEXTURE_LUMINANCE_SIZE;
-static const GLenum GL_TEXTURE_INTENSITY_SIZE = GLenum::GL_TEXTURE_INTENSITY_SIZE;
-static const GLenum GL_TEXTURE_PRIORITY = GLenum::GL_TEXTURE_PRIORITY;
-static const GLenum GL_TEXTURE_RESIDENT = GLenum::GL_TEXTURE_RESIDENT;
-static const GLenum GL_TEXTURE_DEPTH_EXT = GLenum::GL_TEXTURE_DEPTH_EXT;
-static const GLenum GL_TEXTURE_WRAP_R_EXT = GLenum::GL_TEXTURE_WRAP_R_EXT;
-static const GLenum GL_DETAIL_TEXTURE_LEVEL_SGIS = GLenum::GL_DETAIL_TEXTURE_LEVEL_SGIS;
-static const GLenum GL_DETAIL_TEXTURE_MODE_SGIS = GLenum::GL_DETAIL_TEXTURE_MODE_SGIS;
-static const GLenum GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS = GLenum::GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS;
-static const GLenum GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS = GLenum::GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS;
-static const GLenum GL_SHADOW_AMBIENT_SGIX = GLenum::GL_SHADOW_AMBIENT_SGIX;
-static const GLenum GL_DUAL_TEXTURE_SELECT_SGIS = GLenum::GL_DUAL_TEXTURE_SELECT_SGIS;
-static const GLenum GL_QUAD_TEXTURE_SELECT_SGIS = GLenum::GL_QUAD_TEXTURE_SELECT_SGIS;
-static const GLenum GL_TEXTURE_4DSIZE_SGIS = GLenum::GL_TEXTURE_4DSIZE_SGIS;
-static const GLenum GL_TEXTURE_WRAP_Q_SGIS = GLenum::GL_TEXTURE_WRAP_Q_SGIS;
-static const GLenum GL_TEXTURE_MIN_LOD_SGIS = GLenum::GL_TEXTURE_MIN_LOD_SGIS;
-static const GLenum GL_TEXTURE_MAX_LOD_SGIS = GLenum::GL_TEXTURE_MAX_LOD_SGIS;
-static const GLenum GL_TEXTURE_BASE_LEVEL_SGIS = GLenum::GL_TEXTURE_BASE_LEVEL_SGIS;
-static const GLenum GL_TEXTURE_MAX_LEVEL_SGIS = GLenum::GL_TEXTURE_MAX_LEVEL_SGIS;
-static const GLenum GL_TEXTURE_FILTER4_SIZE_SGIS = GLenum::GL_TEXTURE_FILTER4_SIZE_SGIS;
-static const GLenum GL_TEXTURE_CLIPMAP_CENTER_SGIX = GLenum::GL_TEXTURE_CLIPMAP_CENTER_SGIX;
-static const GLenum GL_TEXTURE_CLIPMAP_FRAME_SGIX = GLenum::GL_TEXTURE_CLIPMAP_FRAME_SGIX;
-static const GLenum GL_TEXTURE_CLIPMAP_OFFSET_SGIX = GLenum::GL_TEXTURE_CLIPMAP_OFFSET_SGIX;
-static const GLenum GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = GLenum::GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX;
-static const GLenum GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX = GLenum::GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX;
-static const GLenum GL_TEXTURE_CLIPMAP_DEPTH_SGIX = GLenum::GL_TEXTURE_CLIPMAP_DEPTH_SGIX;
-static const GLenum GL_POST_TEXTURE_FILTER_BIAS_SGIX = GLenum::GL_POST_TEXTURE_FILTER_BIAS_SGIX;
-static const GLenum GL_POST_TEXTURE_FILTER_SCALE_SGIX = GLenum::GL_POST_TEXTURE_FILTER_SCALE_SGIX;
-static const GLenum GL_TEXTURE_LOD_BIAS_S_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_S_SGIX;
-static const GLenum GL_TEXTURE_LOD_BIAS_T_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_T_SGIX;
-static const GLenum GL_TEXTURE_LOD_BIAS_R_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_R_SGIX;
-static const GLenum GL_GENERATE_MIPMAP_SGIS = GLenum::GL_GENERATE_MIPMAP_SGIS;
-static const GLenum GL_TEXTURE_COMPARE_SGIX = GLenum::GL_TEXTURE_COMPARE_SGIX;
-static const GLenum GL_TEXTURE_COMPARE_OPERATOR_SGIX = GLenum::GL_TEXTURE_COMPARE_OPERATOR_SGIX;
-static const GLenum GL_TEXTURE_LEQUAL_R_SGIX = GLenum::GL_TEXTURE_LEQUAL_R_SGIX;
-static const GLenum GL_TEXTURE_GEQUAL_R_SGIX = GLenum::GL_TEXTURE_GEQUAL_R_SGIX;
-static const GLenum GL_TEXTURE_MAX_CLAMP_S_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_S_SGIX;
-static const GLenum GL_TEXTURE_MAX_CLAMP_T_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_T_SGIX;
-static const GLenum GL_TEXTURE_MAX_CLAMP_R_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_R_SGIX;
-
-// HintMode
-
-static const GLenum GL_DONT_CARE = GLenum::GL_DONT_CARE;
-static const GLenum GL_FASTEST = GLenum::GL_FASTEST;
-static const GLenum GL_NICEST = GLenum::GL_NICEST;
-
-// HintTarget
-
-// static const GLenum GL_PERSPECTIVE_CORRECTION_HINT = GLenum::GL_PERSPECTIVE_CORRECTION_HINT; // reuse GetPName
-// static const GLenum GL_POINT_SMOOTH_HINT = GLenum::GL_POINT_SMOOTH_HINT; // reuse GetPName
-// static const GLenum GL_LINE_SMOOTH_HINT = GLenum::GL_LINE_SMOOTH_HINT; // reuse GetPName
-// static const GLenum GL_POLYGON_SMOOTH_HINT = GLenum::GL_POLYGON_SMOOTH_HINT; // reuse GetPName
-// static const GLenum GL_FOG_HINT = GLenum::GL_FOG_HINT; // reuse GetPName
-static const GLenum GL_PREFER_DOUBLEBUFFER_HINT_PGI = GLenum::GL_PREFER_DOUBLEBUFFER_HINT_PGI;
-static const GLenum GL_CONSERVE_MEMORY_HINT_PGI = GLenum::GL_CONSERVE_MEMORY_HINT_PGI;
-static const GLenum GL_RECLAIM_MEMORY_HINT_PGI = GLenum::GL_RECLAIM_MEMORY_HINT_PGI;
-static const GLenum GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI = GLenum::GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI;
-static const GLenum GL_NATIVE_GRAPHICS_END_HINT_PGI = GLenum::GL_NATIVE_GRAPHICS_END_HINT_PGI;
-static const GLenum GL_ALWAYS_FAST_HINT_PGI = GLenum::GL_ALWAYS_FAST_HINT_PGI;
-static const GLenum GL_ALWAYS_SOFT_HINT_PGI = GLenum::GL_ALWAYS_SOFT_HINT_PGI;
-static const GLenum GL_ALLOW_DRAW_OBJ_HINT_PGI = GLenum::GL_ALLOW_DRAW_OBJ_HINT_PGI;
-static const GLenum GL_ALLOW_DRAW_WIN_HINT_PGI = GLenum::GL_ALLOW_DRAW_WIN_HINT_PGI;
-static const GLenum GL_ALLOW_DRAW_FRG_HINT_PGI = GLenum::GL_ALLOW_DRAW_FRG_HINT_PGI;
-static const GLenum GL_ALLOW_DRAW_MEM_HINT_PGI = GLenum::GL_ALLOW_DRAW_MEM_HINT_PGI;
-static const GLenum GL_STRICT_DEPTHFUNC_HINT_PGI = GLenum::GL_STRICT_DEPTHFUNC_HINT_PGI;
-static const GLenum GL_STRICT_LIGHTING_HINT_PGI = GLenum::GL_STRICT_LIGHTING_HINT_PGI;
-static const GLenum GL_STRICT_SCISSOR_HINT_PGI = GLenum::GL_STRICT_SCISSOR_HINT_PGI;
-static const GLenum GL_FULL_STIPPLE_HINT_PGI = GLenum::GL_FULL_STIPPLE_HINT_PGI;
-static const GLenum GL_CLIP_NEAR_HINT_PGI = GLenum::GL_CLIP_NEAR_HINT_PGI;
-static const GLenum GL_CLIP_FAR_HINT_PGI = GLenum::GL_CLIP_FAR_HINT_PGI;
-static const GLenum GL_WIDE_LINE_HINT_PGI = GLenum::GL_WIDE_LINE_HINT_PGI;
-static const GLenum GL_BACK_NORMALS_HINT_PGI = GLenum::GL_BACK_NORMALS_HINT_PGI;
-static const GLenum GL_VERTEX_DATA_HINT_PGI = GLenum::GL_VERTEX_DATA_HINT_PGI;
-static const GLenum GL_VERTEX_CONSISTENT_HINT_PGI = GLenum::GL_VERTEX_CONSISTENT_HINT_PGI;
-static const GLenum GL_MATERIAL_SIDE_HINT_PGI = GLenum::GL_MATERIAL_SIDE_HINT_PGI;
-static const GLenum GL_MAX_VERTEX_HINT_PGI = GLenum::GL_MAX_VERTEX_HINT_PGI;
-// static const GLenum GL_PACK_CMYK_HINT_EXT = GLenum::GL_PACK_CMYK_HINT_EXT; // reuse GetPName
-// static const GLenum GL_UNPACK_CMYK_HINT_EXT = GLenum::GL_UNPACK_CMYK_HINT_EXT; // reuse GetPName
-static const GLenum GL_PHONG_HINT_WIN = GLenum::GL_PHONG_HINT_WIN;
-static const GLenum GL_CLIP_VOLUME_CLIPPING_HINT_EXT = GLenum::GL_CLIP_VOLUME_CLIPPING_HINT_EXT;
-static const GLenum GL_TEXTURE_MULTI_BUFFER_HINT_SGIX = GLenum::GL_TEXTURE_MULTI_BUFFER_HINT_SGIX;
-static const GLenum GL_GENERATE_MIPMAP_HINT = GLenum::GL_GENERATE_MIPMAP_HINT;
-// static const GLenum GL_GENERATE_MIPMAP_HINT_SGIS = GLenum::GL_GENERATE_MIPMAP_HINT_SGIS; // reuse GetPName
-static const GLenum GL_PROGRAM_BINARY_RETRIEVABLE_HINT = GLenum::GL_PROGRAM_BINARY_RETRIEVABLE_HINT;
-// static const GLenum GL_CONVOLUTION_HINT_SGIX = GLenum::GL_CONVOLUTION_HINT_SGIX; // reuse GetPName
-static const GLenum GL_SCALEBIAS_HINT_SGIX = GLenum::GL_SCALEBIAS_HINT_SGIX;
-// static const GLenum GL_VERTEX_PRECLIP_SGIX = GLenum::GL_VERTEX_PRECLIP_SGIX; // reuse GetPName
-// static const GLenum GL_VERTEX_PRECLIP_HINT_SGIX = GLenum::GL_VERTEX_PRECLIP_HINT_SGIX; // reuse GetPName
-static const GLenum GL_TEXTURE_COMPRESSION_HINT = GLenum::GL_TEXTURE_COMPRESSION_HINT;
-static const GLenum GL_TEXTURE_COMPRESSION_HINT_ARB = GLenum::GL_TEXTURE_COMPRESSION_HINT_ARB;
-static const GLenum GL_VERTEX_ARRAY_STORAGE_HINT_APPLE = GLenum::GL_VERTEX_ARRAY_STORAGE_HINT_APPLE;
-static const GLenum GL_MULTISAMPLE_FILTER_HINT_NV = GLenum::GL_MULTISAMPLE_FILTER_HINT_NV;
-static const GLenum GL_TRANSFORM_HINT_APPLE = GLenum::GL_TRANSFORM_HINT_APPLE;
-static const GLenum GL_TEXTURE_STORAGE_HINT_APPLE = GLenum::GL_TEXTURE_STORAGE_HINT_APPLE;
-static const GLenum GL_FRAGMENT_SHADER_DERIVATIVE_HINT = GLenum::GL_FRAGMENT_SHADER_DERIVATIVE_HINT;
-static const GLenum GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = GLenum::GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB;
-
-// HistogramTargetEXT
-
-static const GLenum GL_HISTOGRAM = GLenum::GL_HISTOGRAM;
-// static const GLenum GL_HISTOGRAM_EXT = GLenum::GL_HISTOGRAM_EXT; // reuse EnableCap
-static const GLenum GL_PROXY_HISTOGRAM = GLenum::GL_PROXY_HISTOGRAM;
-static const GLenum GL_PROXY_HISTOGRAM_EXT = GLenum::GL_PROXY_HISTOGRAM_EXT;
-
-// IndexPointerType
-
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// InterleavedArrayFormat
-
-static const GLenum GL_V2F = GLenum::GL_V2F;
-static const GLenum GL_V3F = GLenum::GL_V3F;
-static const GLenum GL_C4UB_V2F = GLenum::GL_C4UB_V2F;
-static const GLenum GL_C4UB_V3F = GLenum::GL_C4UB_V3F;
-static const GLenum GL_C3F_V3F = GLenum::GL_C3F_V3F;
-static const GLenum GL_N3F_V3F = GLenum::GL_N3F_V3F;
-static const GLenum GL_C4F_N3F_V3F = GLenum::GL_C4F_N3F_V3F;
-static const GLenum GL_T2F_V3F = GLenum::GL_T2F_V3F;
-static const GLenum GL_T4F_V4F = GLenum::GL_T4F_V4F;
-static const GLenum GL_T2F_C4UB_V3F = GLenum::GL_T2F_C4UB_V3F;
-static const GLenum GL_T2F_C3F_V3F = GLenum::GL_T2F_C3F_V3F;
-static const GLenum GL_T2F_N3F_V3F = GLenum::GL_T2F_N3F_V3F;
-static const GLenum GL_T2F_C4F_N3F_V3F = GLenum::GL_T2F_C4F_N3F_V3F;
-static const GLenum GL_T4F_C4F_N3F_V4F = GLenum::GL_T4F_C4F_N3F_V4F;
-
-// InternalFormat
-
-static const GLenum GL_R3_G3_B2 = GLenum::GL_R3_G3_B2;
-static const GLenum GL_ALPHA4 = GLenum::GL_ALPHA4;
-static const GLenum GL_ALPHA8 = GLenum::GL_ALPHA8;
-static const GLenum GL_ALPHA12 = GLenum::GL_ALPHA12;
-static const GLenum GL_ALPHA16 = GLenum::GL_ALPHA16;
-static const GLenum GL_LUMINANCE4 = GLenum::GL_LUMINANCE4;
-static const GLenum GL_LUMINANCE8 = GLenum::GL_LUMINANCE8;
-static const GLenum GL_LUMINANCE12 = GLenum::GL_LUMINANCE12;
-static const GLenum GL_LUMINANCE16 = GLenum::GL_LUMINANCE16;
-static const GLenum GL_LUMINANCE4_ALPHA4 = GLenum::GL_LUMINANCE4_ALPHA4;
-static const GLenum GL_LUMINANCE6_ALPHA2 = GLenum::GL_LUMINANCE6_ALPHA2;
-static const GLenum GL_LUMINANCE8_ALPHA8 = GLenum::GL_LUMINANCE8_ALPHA8;
-static const GLenum GL_LUMINANCE12_ALPHA4 = GLenum::GL_LUMINANCE12_ALPHA4;
-static const GLenum GL_LUMINANCE12_ALPHA12 = GLenum::GL_LUMINANCE12_ALPHA12;
-static const GLenum GL_LUMINANCE16_ALPHA16 = GLenum::GL_LUMINANCE16_ALPHA16;
-static const GLenum GL_INTENSITY = GLenum::GL_INTENSITY;
-static const GLenum GL_INTENSITY4 = GLenum::GL_INTENSITY4;
-static const GLenum GL_INTENSITY8 = GLenum::GL_INTENSITY8;
-static const GLenum GL_INTENSITY12 = GLenum::GL_INTENSITY12;
-static const GLenum GL_INTENSITY16 = GLenum::GL_INTENSITY16;
-static const GLenum GL_RGB2_EXT = GLenum::GL_RGB2_EXT;
-static const GLenum GL_RGB4 = GLenum::GL_RGB4;
-static const GLenum GL_RGB5 = GLenum::GL_RGB5;
-static const GLenum GL_RGB8 = GLenum::GL_RGB8;
-static const GLenum GL_RGB10 = GLenum::GL_RGB10;
-static const GLenum GL_RGB12 = GLenum::GL_RGB12;
-static const GLenum GL_RGB16 = GLenum::GL_RGB16;
-static const GLenum GL_RGBA2 = GLenum::GL_RGBA2;
-static const GLenum GL_RGBA4 = GLenum::GL_RGBA4;
-static const GLenum GL_RGB5_A1 = GLenum::GL_RGB5_A1;
-static const GLenum GL_RGBA8 = GLenum::GL_RGBA8;
-static const GLenum GL_RGB10_A2 = GLenum::GL_RGB10_A2;
-static const GLenum GL_RGBA12 = GLenum::GL_RGBA12;
-static const GLenum GL_RGBA16 = GLenum::GL_RGBA16;
-static const GLenum GL_DUAL_ALPHA4_SGIS = GLenum::GL_DUAL_ALPHA4_SGIS;
-static const GLenum GL_DUAL_ALPHA8_SGIS = GLenum::GL_DUAL_ALPHA8_SGIS;
-static const GLenum GL_DUAL_ALPHA12_SGIS = GLenum::GL_DUAL_ALPHA12_SGIS;
-static const GLenum GL_DUAL_ALPHA16_SGIS = GLenum::GL_DUAL_ALPHA16_SGIS;
-static const GLenum GL_DUAL_LUMINANCE4_SGIS = GLenum::GL_DUAL_LUMINANCE4_SGIS;
-static const GLenum GL_DUAL_LUMINANCE8_SGIS = GLenum::GL_DUAL_LUMINANCE8_SGIS;
-static const GLenum GL_DUAL_LUMINANCE12_SGIS = GLenum::GL_DUAL_LUMINANCE12_SGIS;
-static const GLenum GL_DUAL_LUMINANCE16_SGIS = GLenum::GL_DUAL_LUMINANCE16_SGIS;
-static const GLenum GL_DUAL_INTENSITY4_SGIS = GLenum::GL_DUAL_INTENSITY4_SGIS;
-static const GLenum GL_DUAL_INTENSITY8_SGIS = GLenum::GL_DUAL_INTENSITY8_SGIS;
-static const GLenum GL_DUAL_INTENSITY12_SGIS = GLenum::GL_DUAL_INTENSITY12_SGIS;
-static const GLenum GL_DUAL_INTENSITY16_SGIS = GLenum::GL_DUAL_INTENSITY16_SGIS;
-static const GLenum GL_DUAL_LUMINANCE_ALPHA4_SGIS = GLenum::GL_DUAL_LUMINANCE_ALPHA4_SGIS;
-static const GLenum GL_DUAL_LUMINANCE_ALPHA8_SGIS = GLenum::GL_DUAL_LUMINANCE_ALPHA8_SGIS;
-static const GLenum GL_QUAD_ALPHA4_SGIS = GLenum::GL_QUAD_ALPHA4_SGIS;
-static const GLenum GL_QUAD_ALPHA8_SGIS = GLenum::GL_QUAD_ALPHA8_SGIS;
-static const GLenum GL_QUAD_LUMINANCE4_SGIS = GLenum::GL_QUAD_LUMINANCE4_SGIS;
-static const GLenum GL_QUAD_LUMINANCE8_SGIS = GLenum::GL_QUAD_LUMINANCE8_SGIS;
-static const GLenum GL_QUAD_INTENSITY4_SGIS = GLenum::GL_QUAD_INTENSITY4_SGIS;
-static const GLenum GL_QUAD_INTENSITY8_SGIS = GLenum::GL_QUAD_INTENSITY8_SGIS;
-static const GLenum GL_DEPTH_COMPONENT16_SGIX = GLenum::GL_DEPTH_COMPONENT16_SGIX;
-static const GLenum GL_DEPTH_COMPONENT24_SGIX = GLenum::GL_DEPTH_COMPONENT24_SGIX;
-static const GLenum GL_DEPTH_COMPONENT32_SGIX = GLenum::GL_DEPTH_COMPONENT32_SGIX;
-
-// LightEnvModeSGIX
-
-// static const GLenum GL_ADD = GLenum::GL_ADD; // reuse AccumOp
-static const GLenum GL_REPLACE = GLenum::GL_REPLACE;
-static const GLenum GL_MODULATE = GLenum::GL_MODULATE;
-
-// LightEnvParameterSGIX
-
-// static const GLenum GL_LIGHT_ENV_MODE_SGIX = GLenum::GL_LIGHT_ENV_MODE_SGIX; // reuse GetPName
-
-// LightModelColorControl
-
-static const GLenum GL_SINGLE_COLOR = GLenum::GL_SINGLE_COLOR;
-static const GLenum GL_SINGLE_COLOR_EXT = GLenum::GL_SINGLE_COLOR_EXT;
-static const GLenum GL_SEPARATE_SPECULAR_COLOR = GLenum::GL_SEPARATE_SPECULAR_COLOR;
-static const GLenum GL_SEPARATE_SPECULAR_COLOR_EXT = GLenum::GL_SEPARATE_SPECULAR_COLOR_EXT;
-
-// LightModelParameter
-
-// static const GLenum GL_LIGHT_MODEL_LOCAL_VIEWER = GLenum::GL_LIGHT_MODEL_LOCAL_VIEWER; // reuse GetPName
-// static const GLenum GL_LIGHT_MODEL_TWO_SIDE = GLenum::GL_LIGHT_MODEL_TWO_SIDE; // reuse GetPName
-// static const GLenum GL_LIGHT_MODEL_AMBIENT = GLenum::GL_LIGHT_MODEL_AMBIENT; // reuse GetPName
-// static const GLenum GL_LIGHT_MODEL_COLOR_CONTROL = GLenum::GL_LIGHT_MODEL_COLOR_CONTROL; // reuse GetPName
-static const GLenum GL_LIGHT_MODEL_COLOR_CONTROL_EXT = GLenum::GL_LIGHT_MODEL_COLOR_CONTROL_EXT;
-
-// LightName
-
-// static const GLenum GL_LIGHT0 = GLenum::GL_LIGHT0; // reuse EnableCap
-// static const GLenum GL_LIGHT1 = GLenum::GL_LIGHT1; // reuse EnableCap
-// static const GLenum GL_LIGHT2 = GLenum::GL_LIGHT2; // reuse EnableCap
-// static const GLenum GL_LIGHT3 = GLenum::GL_LIGHT3; // reuse EnableCap
-// static const GLenum GL_LIGHT4 = GLenum::GL_LIGHT4; // reuse EnableCap
-// static const GLenum GL_LIGHT5 = GLenum::GL_LIGHT5; // reuse EnableCap
-// static const GLenum GL_LIGHT6 = GLenum::GL_LIGHT6; // reuse EnableCap
-// static const GLenum GL_LIGHT7 = GLenum::GL_LIGHT7; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT0_SGIX = GLenum::GL_FRAGMENT_LIGHT0_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT1_SGIX = GLenum::GL_FRAGMENT_LIGHT1_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT2_SGIX = GLenum::GL_FRAGMENT_LIGHT2_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT3_SGIX = GLenum::GL_FRAGMENT_LIGHT3_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT4_SGIX = GLenum::GL_FRAGMENT_LIGHT4_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT5_SGIX = GLenum::GL_FRAGMENT_LIGHT5_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT6_SGIX = GLenum::GL_FRAGMENT_LIGHT6_SGIX; // reuse EnableCap
-// static const GLenum GL_FRAGMENT_LIGHT7_SGIX = GLenum::GL_FRAGMENT_LIGHT7_SGIX; // reuse EnableCap
-
-// LightParameter
-
-// static const GLenum GL_AMBIENT = GLenum::GL_AMBIENT; // reuse ColorMaterialParameter
-// static const GLenum GL_DIFFUSE = GLenum::GL_DIFFUSE; // reuse ColorMaterialParameter
-// static const GLenum GL_SPECULAR = GLenum::GL_SPECULAR; // reuse ColorMaterialParameter
-static const GLenum GL_POSITION = GLenum::GL_POSITION;
-static const GLenum GL_SPOT_DIRECTION = GLenum::GL_SPOT_DIRECTION;
-static const GLenum GL_SPOT_EXPONENT = GLenum::GL_SPOT_EXPONENT;
-static const GLenum GL_SPOT_CUTOFF = GLenum::GL_SPOT_CUTOFF;
-static const GLenum GL_CONSTANT_ATTENUATION = GLenum::GL_CONSTANT_ATTENUATION;
-static const GLenum GL_LINEAR_ATTENUATION = GLenum::GL_LINEAR_ATTENUATION;
-static const GLenum GL_QUADRATIC_ATTENUATION = GLenum::GL_QUADRATIC_ATTENUATION;
-
-// ListMode
-
-static const GLenum GL_COMPILE = GLenum::GL_COMPILE;
-static const GLenum GL_COMPILE_AND_EXECUTE = GLenum::GL_COMPILE_AND_EXECUTE;
-
-// ListNameType
-
-// static const GLenum GL_BYTE = GLenum::GL_BYTE; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_BYTE = GLenum::GL_UNSIGNED_BYTE; // reuse ColorPointerType
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_SHORT = GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_INT = GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-static const GLenum GL_2_BYTES = GLenum::GL_2_BYTES;
-static const GLenum GL_3_BYTES = GLenum::GL_3_BYTES;
-static const GLenum GL_4_BYTES = GLenum::GL_4_BYTES;
-
-// ListParameterName
-
-static const GLenum GL_LIST_PRIORITY_SGIX = GLenum::GL_LIST_PRIORITY_SGIX;
-
-// LogicOp
-
-static const GLenum GL_CLEAR = GLenum::GL_CLEAR;
-static const GLenum GL_AND = GLenum::GL_AND;
-static const GLenum GL_AND_REVERSE = GLenum::GL_AND_REVERSE;
-static const GLenum GL_COPY = GLenum::GL_COPY;
-static const GLenum GL_AND_INVERTED = GLenum::GL_AND_INVERTED;
-static const GLenum GL_NOOP = GLenum::GL_NOOP;
-static const GLenum GL_XOR = GLenum::GL_XOR;
-static const GLenum GL_OR = GLenum::GL_OR;
-static const GLenum GL_NOR = GLenum::GL_NOR;
-static const GLenum GL_EQUIV = GLenum::GL_EQUIV;
-static const GLenum GL_INVERT = GLenum::GL_INVERT;
-static const GLenum GL_OR_REVERSE = GLenum::GL_OR_REVERSE;
-static const GLenum GL_COPY_INVERTED = GLenum::GL_COPY_INVERTED;
-static const GLenum GL_OR_INVERTED = GLenum::GL_OR_INVERTED;
-static const GLenum GL_NAND = GLenum::GL_NAND;
-static const GLenum GL_SET = GLenum::GL_SET;
-
-// MapTarget
-
-// static const GLenum GL_MAP1_COLOR_4 = GLenum::GL_MAP1_COLOR_4; // reuse EnableCap
-// static const GLenum GL_MAP1_INDEX = GLenum::GL_MAP1_INDEX; // reuse EnableCap
-// static const GLenum GL_MAP1_NORMAL = GLenum::GL_MAP1_NORMAL; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_1 = GLenum::GL_MAP1_TEXTURE_COORD_1; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_2 = GLenum::GL_MAP1_TEXTURE_COORD_2; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_3 = GLenum::GL_MAP1_TEXTURE_COORD_3; // reuse EnableCap
-// static const GLenum GL_MAP1_TEXTURE_COORD_4 = GLenum::GL_MAP1_TEXTURE_COORD_4; // reuse EnableCap
-// static const GLenum GL_MAP1_VERTEX_3 = GLenum::GL_MAP1_VERTEX_3; // reuse EnableCap
-// static const GLenum GL_MAP1_VERTEX_4 = GLenum::GL_MAP1_VERTEX_4; // reuse EnableCap
-// static const GLenum GL_MAP2_COLOR_4 = GLenum::GL_MAP2_COLOR_4; // reuse EnableCap
-// static const GLenum GL_MAP2_INDEX = GLenum::GL_MAP2_INDEX; // reuse EnableCap
-// static const GLenum GL_MAP2_NORMAL = GLenum::GL_MAP2_NORMAL; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_1 = GLenum::GL_MAP2_TEXTURE_COORD_1; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_2 = GLenum::GL_MAP2_TEXTURE_COORD_2; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_3 = GLenum::GL_MAP2_TEXTURE_COORD_3; // reuse EnableCap
-// static const GLenum GL_MAP2_TEXTURE_COORD_4 = GLenum::GL_MAP2_TEXTURE_COORD_4; // reuse EnableCap
-// static const GLenum GL_MAP2_VERTEX_3 = GLenum::GL_MAP2_VERTEX_3; // reuse EnableCap
-// static const GLenum GL_MAP2_VERTEX_4 = GLenum::GL_MAP2_VERTEX_4; // reuse EnableCap
-// static const GLenum GL_GEOMETRY_DEFORMATION_SGIX = GLenum::GL_GEOMETRY_DEFORMATION_SGIX; // reuse FfdTargetSGIX
-// static const GLenum GL_TEXTURE_DEFORMATION_SGIX = GLenum::GL_TEXTURE_DEFORMATION_SGIX; // reuse FfdTargetSGIX
-
-// MapTextureFormatINTEL
-
-static const GLenum GL_LAYOUT_DEFAULT_INTEL = GLenum::GL_LAYOUT_DEFAULT_INTEL;
-static const GLenum GL_LAYOUT_LINEAR_INTEL = GLenum::GL_LAYOUT_LINEAR_INTEL;
-static const GLenum GL_LAYOUT_LINEAR_CPU_CACHED_INTEL = GLenum::GL_LAYOUT_LINEAR_CPU_CACHED_INTEL;
-
-// MaterialFace
-
-// static const GLenum GL_FRONT = GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const GLenum GL_BACK = GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const GLenum GL_FRONT_AND_BACK = GLenum::GL_FRONT_AND_BACK; // reuse ColorMaterialFace
-
-// MaterialParameter
-
-// static const GLenum GL_AMBIENT = GLenum::GL_AMBIENT; // reuse ColorMaterialParameter
-// static const GLenum GL_DIFFUSE = GLenum::GL_DIFFUSE; // reuse ColorMaterialParameter
-// static const GLenum GL_SPECULAR = GLenum::GL_SPECULAR; // reuse ColorMaterialParameter
-// static const GLenum GL_EMISSION = GLenum::GL_EMISSION; // reuse ColorMaterialParameter
-static const GLenum GL_SHININESS = GLenum::GL_SHININESS;
-// static const GLenum GL_AMBIENT_AND_DIFFUSE = GLenum::GL_AMBIENT_AND_DIFFUSE; // reuse ColorMaterialParameter
-static const GLenum GL_COLOR_INDEXES = GLenum::GL_COLOR_INDEXES;
-
-// MatrixMode
-
-static const GLenum GL_MODELVIEW = GLenum::GL_MODELVIEW;
-static const GLenum GL_MODELVIEW0_EXT = GLenum::GL_MODELVIEW0_EXT;
-static const GLenum GL_PROJECTION = GLenum::GL_PROJECTION;
-static const GLenum GL_TEXTURE = GLenum::GL_TEXTURE;
-
-// MeshMode1
-
-static const GLenum GL_POINT = GLenum::GL_POINT;
-static const GLenum GL_LINE = GLenum::GL_LINE;
-
-// MeshMode2
-
-// static const GLenum GL_POINT = GLenum::GL_POINT; // reuse MeshMode1
-// static const GLenum GL_LINE = GLenum::GL_LINE; // reuse MeshMode1
-static const GLenum GL_FILL = GLenum::GL_FILL;
-
-// MinmaxTargetEXT
-
-static const GLenum GL_MINMAX = GLenum::GL_MINMAX;
-// static const GLenum GL_MINMAX_EXT = GLenum::GL_MINMAX_EXT; // reuse EnableCap
-
-// NormalPointerType
-
-// static const GLenum GL_BYTE = GLenum::GL_BYTE; // reuse ColorPointerType
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// OcclusionQueryEventMaskAMD
-
-static const GLenum GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD = GLenum::GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD;
-static const GLenum GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD = GLenum::GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD;
-static const GLenum GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD = GLenum::GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD;
-static const GLenum GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD = GLenum::GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD;
-static const GLenum GL_QUERY_ALL_EVENT_BITS_AMD = GLenum::GL_QUERY_ALL_EVENT_BITS_AMD;
-
-// PixelCopyType
-
-static const GLenum GL_COLOR = GLenum::GL_COLOR;
-static const GLenum GL_DEPTH = GLenum::GL_DEPTH;
-static const GLenum GL_STENCIL = GLenum::GL_STENCIL;
-
-// PixelFormat
-
-// static const GLenum GL_UNSIGNED_SHORT = GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_INT = GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-static const GLenum GL_COLOR_INDEX = GLenum::GL_COLOR_INDEX;
-static const GLenum GL_STENCIL_INDEX = GLenum::GL_STENCIL_INDEX;
-static const GLenum GL_DEPTH_COMPONENT = GLenum::GL_DEPTH_COMPONENT;
-static const GLenum GL_RED = GLenum::GL_RED;
-static const GLenum GL_GREEN = GLenum::GL_GREEN;
-static const GLenum GL_BLUE = GLenum::GL_BLUE;
-static const GLenum GL_ALPHA = GLenum::GL_ALPHA;
-static const GLenum GL_RGB = GLenum::GL_RGB;
-static const GLenum GL_RGBA = GLenum::GL_RGBA;
-static const GLenum GL_LUMINANCE = GLenum::GL_LUMINANCE;
-static const GLenum GL_LUMINANCE_ALPHA = GLenum::GL_LUMINANCE_ALPHA;
-static const GLenum GL_ABGR_EXT = GLenum::GL_ABGR_EXT;
-static const GLenum GL_CMYK_EXT = GLenum::GL_CMYK_EXT;
-static const GLenum GL_CMYKA_EXT = GLenum::GL_CMYKA_EXT;
-static const GLenum GL_YCRCB_422_SGIX = GLenum::GL_YCRCB_422_SGIX;
-static const GLenum GL_YCRCB_444_SGIX = GLenum::GL_YCRCB_444_SGIX;
-
-// PixelMap
-
-// static const GLenum GL_PIXEL_MAP_I_TO_I = GLenum::GL_PIXEL_MAP_I_TO_I; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_S_TO_S = GLenum::GL_PIXEL_MAP_S_TO_S; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_I_TO_R = GLenum::GL_PIXEL_MAP_I_TO_R; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_I_TO_G = GLenum::GL_PIXEL_MAP_I_TO_G; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_I_TO_B = GLenum::GL_PIXEL_MAP_I_TO_B; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_I_TO_A = GLenum::GL_PIXEL_MAP_I_TO_A; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_R_TO_R = GLenum::GL_PIXEL_MAP_R_TO_R; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_G_TO_G = GLenum::GL_PIXEL_MAP_G_TO_G; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_B_TO_B = GLenum::GL_PIXEL_MAP_B_TO_B; // reuse GetPixelMap
-// static const GLenum GL_PIXEL_MAP_A_TO_A = GLenum::GL_PIXEL_MAP_A_TO_A; // reuse GetPixelMap
-
-// PixelStoreParameter
-
-// static const GLenum GL_UNPACK_SWAP_BYTES = GLenum::GL_UNPACK_SWAP_BYTES; // reuse GetPName
-// static const GLenum GL_UNPACK_LSB_FIRST = GLenum::GL_UNPACK_LSB_FIRST; // reuse GetPName
-// static const GLenum GL_UNPACK_ROW_LENGTH = GLenum::GL_UNPACK_ROW_LENGTH; // reuse GetPName
-// static const GLenum GL_UNPACK_SKIP_ROWS = GLenum::GL_UNPACK_SKIP_ROWS; // reuse GetPName
-// static const GLenum GL_UNPACK_SKIP_PIXELS = GLenum::GL_UNPACK_SKIP_PIXELS; // reuse GetPName
-// static const GLenum GL_UNPACK_ALIGNMENT = GLenum::GL_UNPACK_ALIGNMENT; // reuse GetPName
-// static const GLenum GL_PACK_SWAP_BYTES = GLenum::GL_PACK_SWAP_BYTES; // reuse GetPName
-// static const GLenum GL_PACK_LSB_FIRST = GLenum::GL_PACK_LSB_FIRST; // reuse GetPName
-// static const GLenum GL_PACK_ROW_LENGTH = GLenum::GL_PACK_ROW_LENGTH; // reuse GetPName
-// static const GLenum GL_PACK_SKIP_ROWS = GLenum::GL_PACK_SKIP_ROWS; // reuse GetPName
-// static const GLenum GL_PACK_SKIP_PIXELS = GLenum::GL_PACK_SKIP_PIXELS; // reuse GetPName
-// static const GLenum GL_PACK_ALIGNMENT = GLenum::GL_PACK_ALIGNMENT; // reuse GetPName
-static const GLenum GL_PACK_SKIP_IMAGES = GLenum::GL_PACK_SKIP_IMAGES;
-// static const GLenum GL_PACK_SKIP_IMAGES_EXT = GLenum::GL_PACK_SKIP_IMAGES_EXT; // reuse GetPName
-static const GLenum GL_PACK_IMAGE_HEIGHT = GLenum::GL_PACK_IMAGE_HEIGHT;
-// static const GLenum GL_PACK_IMAGE_HEIGHT_EXT = GLenum::GL_PACK_IMAGE_HEIGHT_EXT; // reuse GetPName
-static const GLenum GL_UNPACK_SKIP_IMAGES = GLenum::GL_UNPACK_SKIP_IMAGES;
-// static const GLenum GL_UNPACK_SKIP_IMAGES_EXT = GLenum::GL_UNPACK_SKIP_IMAGES_EXT; // reuse GetPName
-static const GLenum GL_UNPACK_IMAGE_HEIGHT = GLenum::GL_UNPACK_IMAGE_HEIGHT;
-// static const GLenum GL_UNPACK_IMAGE_HEIGHT_EXT = GLenum::GL_UNPACK_IMAGE_HEIGHT_EXT; // reuse GetPName
-// static const GLenum GL_PACK_SKIP_VOLUMES_SGIS = GLenum::GL_PACK_SKIP_VOLUMES_SGIS; // reuse GetPName
-// static const GLenum GL_PACK_IMAGE_DEPTH_SGIS = GLenum::GL_PACK_IMAGE_DEPTH_SGIS; // reuse GetPName
-// static const GLenum GL_UNPACK_SKIP_VOLUMES_SGIS = GLenum::GL_UNPACK_SKIP_VOLUMES_SGIS; // reuse GetPName
-// static const GLenum GL_UNPACK_IMAGE_DEPTH_SGIS = GLenum::GL_UNPACK_IMAGE_DEPTH_SGIS; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_WIDTH_SGIX = GLenum::GL_PIXEL_TILE_WIDTH_SGIX; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_HEIGHT_SGIX = GLenum::GL_PIXEL_TILE_HEIGHT_SGIX; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_GRID_WIDTH_SGIX = GLenum::GL_PIXEL_TILE_GRID_WIDTH_SGIX; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_GRID_HEIGHT_SGIX = GLenum::GL_PIXEL_TILE_GRID_HEIGHT_SGIX; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_GRID_DEPTH_SGIX = GLenum::GL_PIXEL_TILE_GRID_DEPTH_SGIX; // reuse GetPName
-// static const GLenum GL_PIXEL_TILE_CACHE_SIZE_SGIX = GLenum::GL_PIXEL_TILE_CACHE_SIZE_SGIX; // reuse GetPName
-// static const GLenum GL_PACK_RESAMPLE_SGIX = GLenum::GL_PACK_RESAMPLE_SGIX; // reuse GetPName
-// static const GLenum GL_UNPACK_RESAMPLE_SGIX = GLenum::GL_UNPACK_RESAMPLE_SGIX; // reuse GetPName
-// static const GLenum GL_PACK_SUBSAMPLE_RATE_SGIX = GLenum::GL_PACK_SUBSAMPLE_RATE_SGIX; // reuse GetPName
-// static const GLenum GL_UNPACK_SUBSAMPLE_RATE_SGIX = GLenum::GL_UNPACK_SUBSAMPLE_RATE_SGIX; // reuse GetPName
-static const GLenum GL_PACK_RESAMPLE_OML = GLenum::GL_PACK_RESAMPLE_OML;
-static const GLenum GL_UNPACK_RESAMPLE_OML = GLenum::GL_UNPACK_RESAMPLE_OML;
-
-// PixelStoreResampleMode
-
-static const GLenum GL_RESAMPLE_REPLICATE_SGIX = GLenum::GL_RESAMPLE_REPLICATE_SGIX;
-static const GLenum GL_RESAMPLE_ZERO_FILL_SGIX = GLenum::GL_RESAMPLE_ZERO_FILL_SGIX;
-static const GLenum GL_RESAMPLE_DECIMATE_SGIX = GLenum::GL_RESAMPLE_DECIMATE_SGIX;
-
-// PixelStoreSubsampleRate
-
-static const GLenum GL_PIXEL_SUBSAMPLE_4444_SGIX = GLenum::GL_PIXEL_SUBSAMPLE_4444_SGIX;
-static const GLenum GL_PIXEL_SUBSAMPLE_2424_SGIX = GLenum::GL_PIXEL_SUBSAMPLE_2424_SGIX;
-static const GLenum GL_PIXEL_SUBSAMPLE_4242_SGIX = GLenum::GL_PIXEL_SUBSAMPLE_4242_SGIX;
-
-// PixelTexGenMode
-
-// static const GLenum GL_NONE = GLenum::GL_NONE; // reuse DrawBufferMode
-// static const GLenum GL_RGB = GLenum::GL_RGB; // reuse PixelFormat
-// static const GLenum GL_RGBA = GLenum::GL_RGBA; // reuse PixelFormat
-// static const GLenum GL_LUMINANCE = GLenum::GL_LUMINANCE; // reuse PixelFormat
-// static const GLenum GL_LUMINANCE_ALPHA = GLenum::GL_LUMINANCE_ALPHA; // reuse PixelFormat
-
-// PixelTexGenParameterNameSGIS
-
-static const GLenum GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS = GLenum::GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS;
-static const GLenum GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS = GLenum::GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS;
-
-// PixelTransferParameter
-
-// static const GLenum GL_MAP_COLOR = GLenum::GL_MAP_COLOR; // reuse GetPName
-// static const GLenum GL_MAP_STENCIL = GLenum::GL_MAP_STENCIL; // reuse GetPName
-// static const GLenum GL_INDEX_SHIFT = GLenum::GL_INDEX_SHIFT; // reuse GetPName
-// static const GLenum GL_INDEX_OFFSET = GLenum::GL_INDEX_OFFSET; // reuse GetPName
-// static const GLenum GL_RED_SCALE = GLenum::GL_RED_SCALE; // reuse GetPName
-// static const GLenum GL_RED_BIAS = GLenum::GL_RED_BIAS; // reuse GetPName
-// static const GLenum GL_GREEN_SCALE = GLenum::GL_GREEN_SCALE; // reuse GetPName
-// static const GLenum GL_GREEN_BIAS = GLenum::GL_GREEN_BIAS; // reuse GetPName
-// static const GLenum GL_BLUE_SCALE = GLenum::GL_BLUE_SCALE; // reuse GetPName
-// static const GLenum GL_BLUE_BIAS = GLenum::GL_BLUE_BIAS; // reuse GetPName
-// static const GLenum GL_ALPHA_SCALE = GLenum::GL_ALPHA_SCALE; // reuse GetPName
-// static const GLenum GL_ALPHA_BIAS = GLenum::GL_ALPHA_BIAS; // reuse GetPName
-// static const GLenum GL_DEPTH_SCALE = GLenum::GL_DEPTH_SCALE; // reuse GetPName
-// static const GLenum GL_DEPTH_BIAS = GLenum::GL_DEPTH_BIAS; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_RED_SCALE = GLenum::GL_POST_CONVOLUTION_RED_SCALE;
-// static const GLenum GL_POST_CONVOLUTION_RED_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_RED_SCALE_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_GREEN_SCALE = GLenum::GL_POST_CONVOLUTION_GREEN_SCALE;
-// static const GLenum GL_POST_CONVOLUTION_GREEN_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_GREEN_SCALE_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_BLUE_SCALE = GLenum::GL_POST_CONVOLUTION_BLUE_SCALE;
-// static const GLenum GL_POST_CONVOLUTION_BLUE_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_BLUE_SCALE_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_ALPHA_SCALE = GLenum::GL_POST_CONVOLUTION_ALPHA_SCALE;
-// static const GLenum GL_POST_CONVOLUTION_ALPHA_SCALE_EXT = GLenum::GL_POST_CONVOLUTION_ALPHA_SCALE_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_RED_BIAS = GLenum::GL_POST_CONVOLUTION_RED_BIAS;
-// static const GLenum GL_POST_CONVOLUTION_RED_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_RED_BIAS_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_GREEN_BIAS = GLenum::GL_POST_CONVOLUTION_GREEN_BIAS;
-// static const GLenum GL_POST_CONVOLUTION_GREEN_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_GREEN_BIAS_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_BLUE_BIAS = GLenum::GL_POST_CONVOLUTION_BLUE_BIAS;
-// static const GLenum GL_POST_CONVOLUTION_BLUE_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_BLUE_BIAS_EXT; // reuse GetPName
-static const GLenum GL_POST_CONVOLUTION_ALPHA_BIAS = GLenum::GL_POST_CONVOLUTION_ALPHA_BIAS;
-// static const GLenum GL_POST_CONVOLUTION_ALPHA_BIAS_EXT = GLenum::GL_POST_CONVOLUTION_ALPHA_BIAS_EXT; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_RED_SCALE = GLenum::GL_POST_COLOR_MATRIX_RED_SCALE;
-// static const GLenum GL_POST_COLOR_MATRIX_RED_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_RED_SCALE_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_GREEN_SCALE = GLenum::GL_POST_COLOR_MATRIX_GREEN_SCALE;
-// static const GLenum GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_BLUE_SCALE = GLenum::GL_POST_COLOR_MATRIX_BLUE_SCALE;
-// static const GLenum GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_ALPHA_SCALE = GLenum::GL_POST_COLOR_MATRIX_ALPHA_SCALE;
-// static const GLenum GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = GLenum::GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_RED_BIAS = GLenum::GL_POST_COLOR_MATRIX_RED_BIAS;
-// static const GLenum GL_POST_COLOR_MATRIX_RED_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_RED_BIAS_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_GREEN_BIAS = GLenum::GL_POST_COLOR_MATRIX_GREEN_BIAS;
-// static const GLenum GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_BLUE_BIAS = GLenum::GL_POST_COLOR_MATRIX_BLUE_BIAS;
-// static const GLenum GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI; // reuse GetPName
-static const GLenum GL_POST_COLOR_MATRIX_ALPHA_BIAS = GLenum::GL_POST_COLOR_MATRIX_ALPHA_BIAS;
-// static const GLenum GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI = GLenum::GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI; // reuse GetPName
-
-// PixelType
-
-// static const GLenum GL_BYTE = GLenum::GL_BYTE; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_BYTE = GLenum::GL_UNSIGNED_BYTE; // reuse ColorPointerType
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_SHORT = GLenum::GL_UNSIGNED_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_UNSIGNED_INT = GLenum::GL_UNSIGNED_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-static const GLenum GL_BITMAP = GLenum::GL_BITMAP;
-static const GLenum GL_UNSIGNED_BYTE_3_3_2 = GLenum::GL_UNSIGNED_BYTE_3_3_2;
-static const GLenum GL_UNSIGNED_BYTE_3_3_2_EXT = GLenum::GL_UNSIGNED_BYTE_3_3_2_EXT;
-static const GLenum GL_UNSIGNED_SHORT_4_4_4_4 = GLenum::GL_UNSIGNED_SHORT_4_4_4_4;
-static const GLenum GL_UNSIGNED_SHORT_4_4_4_4_EXT = GLenum::GL_UNSIGNED_SHORT_4_4_4_4_EXT;
-static const GLenum GL_UNSIGNED_SHORT_5_5_5_1 = GLenum::GL_UNSIGNED_SHORT_5_5_5_1;
-static const GLenum GL_UNSIGNED_SHORT_5_5_5_1_EXT = GLenum::GL_UNSIGNED_SHORT_5_5_5_1_EXT;
-static const GLenum GL_UNSIGNED_INT_8_8_8_8 = GLenum::GL_UNSIGNED_INT_8_8_8_8;
-static const GLenum GL_UNSIGNED_INT_8_8_8_8_EXT = GLenum::GL_UNSIGNED_INT_8_8_8_8_EXT;
-static const GLenum GL_UNSIGNED_INT_10_10_10_2 = GLenum::GL_UNSIGNED_INT_10_10_10_2;
-static const GLenum GL_UNSIGNED_INT_10_10_10_2_EXT = GLenum::GL_UNSIGNED_INT_10_10_10_2_EXT;
-
-// PointParameterNameSGIS
-
-static const GLenum GL_POINT_SIZE_MIN = GLenum::GL_POINT_SIZE_MIN;
-static const GLenum GL_POINT_SIZE_MIN_ARB = GLenum::GL_POINT_SIZE_MIN_ARB;
-static const GLenum GL_POINT_SIZE_MIN_EXT = GLenum::GL_POINT_SIZE_MIN_EXT;
-// static const GLenum GL_POINT_SIZE_MIN_SGIS = GLenum::GL_POINT_SIZE_MIN_SGIS; // reuse GetPName
-static const GLenum GL_POINT_SIZE_MAX = GLenum::GL_POINT_SIZE_MAX;
-static const GLenum GL_POINT_SIZE_MAX_ARB = GLenum::GL_POINT_SIZE_MAX_ARB;
-static const GLenum GL_POINT_SIZE_MAX_EXT = GLenum::GL_POINT_SIZE_MAX_EXT;
-// static const GLenum GL_POINT_SIZE_MAX_SGIS = GLenum::GL_POINT_SIZE_MAX_SGIS; // reuse GetPName
-static const GLenum GL_POINT_FADE_THRESHOLD_SIZE = GLenum::GL_POINT_FADE_THRESHOLD_SIZE;
-static const GLenum GL_POINT_FADE_THRESHOLD_SIZE_ARB = GLenum::GL_POINT_FADE_THRESHOLD_SIZE_ARB;
-static const GLenum GL_POINT_FADE_THRESHOLD_SIZE_EXT = GLenum::GL_POINT_FADE_THRESHOLD_SIZE_EXT;
-// static const GLenum GL_POINT_FADE_THRESHOLD_SIZE_SGIS = GLenum::GL_POINT_FADE_THRESHOLD_SIZE_SGIS; // reuse GetPName
-static const GLenum GL_DISTANCE_ATTENUATION_EXT = GLenum::GL_DISTANCE_ATTENUATION_EXT;
-// static const GLenum GL_DISTANCE_ATTENUATION_SGIS = GLenum::GL_DISTANCE_ATTENUATION_SGIS; // reuse GetPName
-static const GLenum GL_POINT_DISTANCE_ATTENUATION = GLenum::GL_POINT_DISTANCE_ATTENUATION;
-static const GLenum GL_POINT_DISTANCE_ATTENUATION_ARB = GLenum::GL_POINT_DISTANCE_ATTENUATION_ARB;
-
-// PolygonMode
-
-// static const GLenum GL_POINT = GLenum::GL_POINT; // reuse MeshMode1
-// static const GLenum GL_LINE = GLenum::GL_LINE; // reuse MeshMode1
-// static const GLenum GL_FILL = GLenum::GL_FILL; // reuse MeshMode2
-
-// PrimitiveType
-
-static const GLenum GL_POINTS = GLenum::GL_POINTS;
-static const GLenum GL_LINES = GLenum::GL_LINES;
-static const GLenum GL_LINE_LOOP = GLenum::GL_LINE_LOOP;
-static const GLenum GL_LINE_STRIP = GLenum::GL_LINE_STRIP;
-static const GLenum GL_TRIANGLES = GLenum::GL_TRIANGLES;
-static const GLenum GL_TRIANGLE_STRIP = GLenum::GL_TRIANGLE_STRIP;
-static const GLenum GL_TRIANGLE_FAN = GLenum::GL_TRIANGLE_FAN;
-static const GLenum GL_QUADS = GLenum::GL_QUADS;
-static const GLenum GL_QUAD_STRIP = GLenum::GL_QUAD_STRIP;
-static const GLenum GL_POLYGON = GLenum::GL_POLYGON;
-static const GLenum GL_LINES_ADJACENCY = GLenum::GL_LINES_ADJACENCY;
-static const GLenum GL_LINES_ADJACENCY_ARB = GLenum::GL_LINES_ADJACENCY_ARB;
-static const GLenum GL_LINES_ADJACENCY_EXT = GLenum::GL_LINES_ADJACENCY_EXT;
-static const GLenum GL_LINE_STRIP_ADJACENCY = GLenum::GL_LINE_STRIP_ADJACENCY;
-static const GLenum GL_LINE_STRIP_ADJACENCY_ARB = GLenum::GL_LINE_STRIP_ADJACENCY_ARB;
-static const GLenum GL_LINE_STRIP_ADJACENCY_EXT = GLenum::GL_LINE_STRIP_ADJACENCY_EXT;
-static const GLenum GL_TRIANGLES_ADJACENCY = GLenum::GL_TRIANGLES_ADJACENCY;
-static const GLenum GL_TRIANGLES_ADJACENCY_ARB = GLenum::GL_TRIANGLES_ADJACENCY_ARB;
-static const GLenum GL_TRIANGLES_ADJACENCY_EXT = GLenum::GL_TRIANGLES_ADJACENCY_EXT;
-static const GLenum GL_TRIANGLE_STRIP_ADJACENCY = GLenum::GL_TRIANGLE_STRIP_ADJACENCY;
-static const GLenum GL_TRIANGLE_STRIP_ADJACENCY_ARB = GLenum::GL_TRIANGLE_STRIP_ADJACENCY_ARB;
-static const GLenum GL_TRIANGLE_STRIP_ADJACENCY_EXT = GLenum::GL_TRIANGLE_STRIP_ADJACENCY_EXT;
-static const GLenum GL_PATCHES = GLenum::GL_PATCHES;
-
-// ReadBufferMode
-
-// static const GLenum GL_FRONT_LEFT = GLenum::GL_FRONT_LEFT; // reuse DrawBufferMode
-// static const GLenum GL_FRONT_RIGHT = GLenum::GL_FRONT_RIGHT; // reuse DrawBufferMode
-// static const GLenum GL_BACK_LEFT = GLenum::GL_BACK_LEFT; // reuse DrawBufferMode
-// static const GLenum GL_BACK_RIGHT = GLenum::GL_BACK_RIGHT; // reuse DrawBufferMode
-// static const GLenum GL_FRONT = GLenum::GL_FRONT; // reuse ColorMaterialFace
-// static const GLenum GL_BACK = GLenum::GL_BACK; // reuse ColorMaterialFace
-// static const GLenum GL_LEFT = GLenum::GL_LEFT; // reuse DrawBufferMode
-// static const GLenum GL_RIGHT = GLenum::GL_RIGHT; // reuse DrawBufferMode
-// static const GLenum GL_AUX0 = GLenum::GL_AUX0; // reuse DrawBufferMode
-// static const GLenum GL_AUX1 = GLenum::GL_AUX1; // reuse DrawBufferMode
-// static const GLenum GL_AUX2 = GLenum::GL_AUX2; // reuse DrawBufferMode
-// static const GLenum GL_AUX3 = GLenum::GL_AUX3; // reuse DrawBufferMode
-
-// RenderingMode
-
-static const GLenum GL_RENDER = GLenum::GL_RENDER;
-static const GLenum GL_FEEDBACK = GLenum::GL_FEEDBACK;
-static const GLenum GL_SELECT = GLenum::GL_SELECT;
-
-// SamplePatternSGIS
-
-static const GLenum GL_1PASS_EXT = GLenum::GL_1PASS_EXT;
-static const GLenum GL_1PASS_SGIS = GLenum::GL_1PASS_SGIS;
-static const GLenum GL_2PASS_0_EXT = GLenum::GL_2PASS_0_EXT;
-static const GLenum GL_2PASS_0_SGIS = GLenum::GL_2PASS_0_SGIS;
-static const GLenum GL_2PASS_1_EXT = GLenum::GL_2PASS_1_EXT;
-static const GLenum GL_2PASS_1_SGIS = GLenum::GL_2PASS_1_SGIS;
-static const GLenum GL_4PASS_0_EXT = GLenum::GL_4PASS_0_EXT;
-static const GLenum GL_4PASS_0_SGIS = GLenum::GL_4PASS_0_SGIS;
-static const GLenum GL_4PASS_1_EXT = GLenum::GL_4PASS_1_EXT;
-static const GLenum GL_4PASS_1_SGIS = GLenum::GL_4PASS_1_SGIS;
-static const GLenum GL_4PASS_2_EXT = GLenum::GL_4PASS_2_EXT;
-static const GLenum GL_4PASS_2_SGIS = GLenum::GL_4PASS_2_SGIS;
-static const GLenum GL_4PASS_3_EXT = GLenum::GL_4PASS_3_EXT;
-static const GLenum GL_4PASS_3_SGIS = GLenum::GL_4PASS_3_SGIS;
-
-// SeparableTargetEXT
-
-static const GLenum GL_SEPARABLE_2D = GLenum::GL_SEPARABLE_2D;
-// static const GLenum GL_SEPARABLE_2D_EXT = GLenum::GL_SEPARABLE_2D_EXT; // reuse EnableCap
-
-// ShadingModel
-
-static const GLenum GL_FLAT = GLenum::GL_FLAT;
-static const GLenum GL_SMOOTH = GLenum::GL_SMOOTH;
-
-// StencilFunction
-
-// static const GLenum GL_NEVER = GLenum::GL_NEVER; // reuse AlphaFunction
-// static const GLenum GL_LESS = GLenum::GL_LESS; // reuse AlphaFunction
-// static const GLenum GL_EQUAL = GLenum::GL_EQUAL; // reuse AlphaFunction
-// static const GLenum GL_LEQUAL = GLenum::GL_LEQUAL; // reuse AlphaFunction
-// static const GLenum GL_GREATER = GLenum::GL_GREATER; // reuse AlphaFunction
-// static const GLenum GL_NOTEQUAL = GLenum::GL_NOTEQUAL; // reuse AlphaFunction
-// static const GLenum GL_GEQUAL = GLenum::GL_GEQUAL; // reuse AlphaFunction
-// static const GLenum GL_ALWAYS = GLenum::GL_ALWAYS; // reuse AlphaFunction
-
-// StencilOp
-
-// static const GLenum GL_ZERO = GLenum::GL_ZERO; // reuse BlendingFactorDest
-// static const GLenum GL_INVERT = GLenum::GL_INVERT; // reuse LogicOp
-static const GLenum GL_KEEP = GLenum::GL_KEEP;
-// static const GLenum GL_REPLACE = GLenum::GL_REPLACE; // reuse LightEnvModeSGIX
-static const GLenum GL_INCR = GLenum::GL_INCR;
-static const GLenum GL_DECR = GLenum::GL_DECR;
-
-// StringName
-
-static const GLenum GL_VENDOR = GLenum::GL_VENDOR;
-static const GLenum GL_RENDERER = GLenum::GL_RENDERER;
-static const GLenum GL_VERSION = GLenum::GL_VERSION;
-static const GLenum GL_EXTENSIONS = GLenum::GL_EXTENSIONS;
-
-// TexCoordPointerType
-
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// TextureCoordName
-
-static const GLenum GL_S = GLenum::GL_S;
-static const GLenum GL_T = GLenum::GL_T;
-static const GLenum GL_R = GLenum::GL_R;
-static const GLenum GL_Q = GLenum::GL_Q;
-
-// TextureEnvMode
-
-// static const GLenum GL_ADD = GLenum::GL_ADD; // reuse AccumOp
-// static const GLenum GL_BLEND = GLenum::GL_BLEND; // reuse EnableCap
-// static const GLenum GL_MODULATE = GLenum::GL_MODULATE; // reuse LightEnvModeSGIX
-static const GLenum GL_DECAL = GLenum::GL_DECAL;
-static const GLenum GL_REPLACE_EXT = GLenum::GL_REPLACE_EXT;
-static const GLenum GL_TEXTURE_ENV_BIAS_SGIX = GLenum::GL_TEXTURE_ENV_BIAS_SGIX;
-
-// TextureEnvParameter
-
-static const GLenum GL_TEXTURE_ENV_MODE = GLenum::GL_TEXTURE_ENV_MODE;
-static const GLenum GL_TEXTURE_ENV_COLOR = GLenum::GL_TEXTURE_ENV_COLOR;
-
-// TextureEnvTarget
-
-static const GLenum GL_TEXTURE_ENV = GLenum::GL_TEXTURE_ENV;
-
-// TextureFilterFuncSGIS
-
-static const GLenum GL_FILTER4_SGIS = GLenum::GL_FILTER4_SGIS;
-
-// TextureGenMode
-
-static const GLenum GL_EYE_LINEAR = GLenum::GL_EYE_LINEAR;
-static const GLenum GL_OBJECT_LINEAR = GLenum::GL_OBJECT_LINEAR;
-static const GLenum GL_SPHERE_MAP = GLenum::GL_SPHERE_MAP;
-static const GLenum GL_EYE_DISTANCE_TO_POINT_SGIS = GLenum::GL_EYE_DISTANCE_TO_POINT_SGIS;
-static const GLenum GL_OBJECT_DISTANCE_TO_POINT_SGIS = GLenum::GL_OBJECT_DISTANCE_TO_POINT_SGIS;
-static const GLenum GL_EYE_DISTANCE_TO_LINE_SGIS = GLenum::GL_EYE_DISTANCE_TO_LINE_SGIS;
-static const GLenum GL_OBJECT_DISTANCE_TO_LINE_SGIS = GLenum::GL_OBJECT_DISTANCE_TO_LINE_SGIS;
-
-// TextureGenParameter
-
-static const GLenum GL_TEXTURE_GEN_MODE = GLenum::GL_TEXTURE_GEN_MODE;
-static const GLenum GL_OBJECT_PLANE = GLenum::GL_OBJECT_PLANE;
-static const GLenum GL_EYE_PLANE = GLenum::GL_EYE_PLANE;
-static const GLenum GL_EYE_POINT_SGIS = GLenum::GL_EYE_POINT_SGIS;
-static const GLenum GL_OBJECT_POINT_SGIS = GLenum::GL_OBJECT_POINT_SGIS;
-static const GLenum GL_EYE_LINE_SGIS = GLenum::GL_EYE_LINE_SGIS;
-static const GLenum GL_OBJECT_LINE_SGIS = GLenum::GL_OBJECT_LINE_SGIS;
-
-// TextureMagFilter
-
-static const GLenum GL_NEAREST = GLenum::GL_NEAREST;
-// static const GLenum GL_LINEAR = GLenum::GL_LINEAR; // reuse FogMode
-static const GLenum GL_LINEAR_DETAIL_SGIS = GLenum::GL_LINEAR_DETAIL_SGIS;
-static const GLenum GL_LINEAR_DETAIL_ALPHA_SGIS = GLenum::GL_LINEAR_DETAIL_ALPHA_SGIS;
-static const GLenum GL_LINEAR_DETAIL_COLOR_SGIS = GLenum::GL_LINEAR_DETAIL_COLOR_SGIS;
-static const GLenum GL_LINEAR_SHARPEN_SGIS = GLenum::GL_LINEAR_SHARPEN_SGIS;
-static const GLenum GL_LINEAR_SHARPEN_ALPHA_SGIS = GLenum::GL_LINEAR_SHARPEN_ALPHA_SGIS;
-static const GLenum GL_LINEAR_SHARPEN_COLOR_SGIS = GLenum::GL_LINEAR_SHARPEN_COLOR_SGIS;
-// static const GLenum GL_FILTER4_SGIS = GLenum::GL_FILTER4_SGIS; // reuse TextureFilterFuncSGIS
-
-// TextureMinFilter
-
-// static const GLenum GL_NEAREST = GLenum::GL_NEAREST; // reuse TextureMagFilter
-// static const GLenum GL_LINEAR = GLenum::GL_LINEAR; // reuse FogMode
-static const GLenum GL_NEAREST_MIPMAP_NEAREST = GLenum::GL_NEAREST_MIPMAP_NEAREST;
-static const GLenum GL_LINEAR_MIPMAP_NEAREST = GLenum::GL_LINEAR_MIPMAP_NEAREST;
-static const GLenum GL_NEAREST_MIPMAP_LINEAR = GLenum::GL_NEAREST_MIPMAP_LINEAR;
-static const GLenum GL_LINEAR_MIPMAP_LINEAR = GLenum::GL_LINEAR_MIPMAP_LINEAR;
-// static const GLenum GL_FILTER4_SGIS = GLenum::GL_FILTER4_SGIS; // reuse TextureFilterFuncSGIS
-static const GLenum GL_LINEAR_CLIPMAP_LINEAR_SGIX = GLenum::GL_LINEAR_CLIPMAP_LINEAR_SGIX;
-static const GLenum GL_NEAREST_CLIPMAP_NEAREST_SGIX = GLenum::GL_NEAREST_CLIPMAP_NEAREST_SGIX;
-static const GLenum GL_NEAREST_CLIPMAP_LINEAR_SGIX = GLenum::GL_NEAREST_CLIPMAP_LINEAR_SGIX;
-static const GLenum GL_LINEAR_CLIPMAP_NEAREST_SGIX = GLenum::GL_LINEAR_CLIPMAP_NEAREST_SGIX;
-
-// TextureParameterName
-
-// static const GLenum GL_TEXTURE_BORDER_COLOR = GLenum::GL_TEXTURE_BORDER_COLOR; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_MAG_FILTER = GLenum::GL_TEXTURE_MAG_FILTER; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_MIN_FILTER = GLenum::GL_TEXTURE_MIN_FILTER; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_WRAP_S = GLenum::GL_TEXTURE_WRAP_S; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_WRAP_T = GLenum::GL_TEXTURE_WRAP_T; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_PRIORITY = GLenum::GL_TEXTURE_PRIORITY; // reuse GetTextureParameter
-static const GLenum GL_TEXTURE_PRIORITY_EXT = GLenum::GL_TEXTURE_PRIORITY_EXT;
-static const GLenum GL_TEXTURE_WRAP_R = GLenum::GL_TEXTURE_WRAP_R;
-// static const GLenum GL_TEXTURE_WRAP_R_EXT = GLenum::GL_TEXTURE_WRAP_R_EXT; // reuse GetTextureParameter
-// static const GLenum GL_DETAIL_TEXTURE_LEVEL_SGIS = GLenum::GL_DETAIL_TEXTURE_LEVEL_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_DETAIL_TEXTURE_MODE_SGIS = GLenum::GL_DETAIL_TEXTURE_MODE_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_SHADOW_AMBIENT_SGIX = GLenum::GL_SHADOW_AMBIENT_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_DUAL_TEXTURE_SELECT_SGIS = GLenum::GL_DUAL_TEXTURE_SELECT_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_QUAD_TEXTURE_SELECT_SGIS = GLenum::GL_QUAD_TEXTURE_SELECT_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_WRAP_Q_SGIS = GLenum::GL_TEXTURE_WRAP_Q_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_CENTER_SGIX = GLenum::GL_TEXTURE_CLIPMAP_CENTER_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_FRAME_SGIX = GLenum::GL_TEXTURE_CLIPMAP_FRAME_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_OFFSET_SGIX = GLenum::GL_TEXTURE_CLIPMAP_OFFSET_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = GLenum::GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX = GLenum::GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_CLIPMAP_DEPTH_SGIX = GLenum::GL_TEXTURE_CLIPMAP_DEPTH_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_POST_TEXTURE_FILTER_BIAS_SGIX = GLenum::GL_POST_TEXTURE_FILTER_BIAS_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_POST_TEXTURE_FILTER_SCALE_SGIX = GLenum::GL_POST_TEXTURE_FILTER_SCALE_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_LOD_BIAS_S_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_S_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_LOD_BIAS_T_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_T_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_LOD_BIAS_R_SGIX = GLenum::GL_TEXTURE_LOD_BIAS_R_SGIX; // reuse GetTextureParameter
-static const GLenum GL_GENERATE_MIPMAP = GLenum::GL_GENERATE_MIPMAP;
-// static const GLenum GL_GENERATE_MIPMAP_SGIS = GLenum::GL_GENERATE_MIPMAP_SGIS; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_COMPARE_SGIX = GLenum::GL_TEXTURE_COMPARE_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_MAX_CLAMP_S_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_S_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_MAX_CLAMP_T_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_T_SGIX; // reuse GetTextureParameter
-// static const GLenum GL_TEXTURE_MAX_CLAMP_R_SGIX = GLenum::GL_TEXTURE_MAX_CLAMP_R_SGIX; // reuse GetTextureParameter
-
-// TextureTarget
-
-// static const GLenum GL_TEXTURE_1D = GLenum::GL_TEXTURE_1D; // reuse EnableCap
-// static const GLenum GL_TEXTURE_2D = GLenum::GL_TEXTURE_2D; // reuse EnableCap
-static const GLenum GL_PROXY_TEXTURE_1D = GLenum::GL_PROXY_TEXTURE_1D;
-static const GLenum GL_PROXY_TEXTURE_1D_EXT = GLenum::GL_PROXY_TEXTURE_1D_EXT;
-static const GLenum GL_PROXY_TEXTURE_2D = GLenum::GL_PROXY_TEXTURE_2D;
-static const GLenum GL_PROXY_TEXTURE_2D_EXT = GLenum::GL_PROXY_TEXTURE_2D_EXT;
-static const GLenum GL_TEXTURE_3D = GLenum::GL_TEXTURE_3D;
-// static const GLenum GL_TEXTURE_3D_EXT = GLenum::GL_TEXTURE_3D_EXT; // reuse EnableCap
-static const GLenum GL_PROXY_TEXTURE_3D = GLenum::GL_PROXY_TEXTURE_3D;
-static const GLenum GL_PROXY_TEXTURE_3D_EXT = GLenum::GL_PROXY_TEXTURE_3D_EXT;
-static const GLenum GL_DETAIL_TEXTURE_2D_SGIS = GLenum::GL_DETAIL_TEXTURE_2D_SGIS;
-// static const GLenum GL_TEXTURE_4D_SGIS = GLenum::GL_TEXTURE_4D_SGIS; // reuse EnableCap
-static const GLenum GL_PROXY_TEXTURE_4D_SGIS = GLenum::GL_PROXY_TEXTURE_4D_SGIS;
-static const GLenum GL_TEXTURE_MIN_LOD = GLenum::GL_TEXTURE_MIN_LOD;
-// static const GLenum GL_TEXTURE_MIN_LOD_SGIS = GLenum::GL_TEXTURE_MIN_LOD_SGIS; // reuse GetTextureParameter
-static const GLenum GL_TEXTURE_MAX_LOD = GLenum::GL_TEXTURE_MAX_LOD;
-// static const GLenum GL_TEXTURE_MAX_LOD_SGIS = GLenum::GL_TEXTURE_MAX_LOD_SGIS; // reuse GetTextureParameter
-static const GLenum GL_TEXTURE_BASE_LEVEL = GLenum::GL_TEXTURE_BASE_LEVEL;
-// static const GLenum GL_TEXTURE_BASE_LEVEL_SGIS = GLenum::GL_TEXTURE_BASE_LEVEL_SGIS; // reuse GetTextureParameter
-static const GLenum GL_TEXTURE_MAX_LEVEL = GLenum::GL_TEXTURE_MAX_LEVEL;
-// static const GLenum GL_TEXTURE_MAX_LEVEL_SGIS = GLenum::GL_TEXTURE_MAX_LEVEL_SGIS; // reuse GetTextureParameter
-
-// TextureWrapMode
-
-static const GLenum GL_CLAMP = GLenum::GL_CLAMP;
-static const GLenum GL_REPEAT = GLenum::GL_REPEAT;
-static const GLenum GL_CLAMP_TO_BORDER = GLenum::GL_CLAMP_TO_BORDER;
-static const GLenum GL_CLAMP_TO_BORDER_ARB = GLenum::GL_CLAMP_TO_BORDER_ARB;
-static const GLenum GL_CLAMP_TO_BORDER_SGIS = GLenum::GL_CLAMP_TO_BORDER_SGIS;
-static const GLenum GL_CLAMP_TO_EDGE = GLenum::GL_CLAMP_TO_EDGE;
-static const GLenum GL_CLAMP_TO_EDGE_SGIS = GLenum::GL_CLAMP_TO_EDGE_SGIS;
-
-// VertexPointerType
-
-// static const GLenum GL_SHORT = GLenum::GL_SHORT; // reuse ColorPointerType
-// static const GLenum GL_INT = GLenum::GL_INT; // reuse ColorPointerType
-// static const GLenum GL_FLOAT = GLenum::GL_FLOAT; // reuse ColorPointerType
-// static const GLenum GL_DOUBLE = GLenum::GL_DOUBLE; // reuse ColorPointerType
-
-// __UNGROUPED__
 
 static const GLenum GL_NEXT_BUFFER_NV = GLenum::GL_NEXT_BUFFER_NV;
 static const GLenum GL_SKIP_COMPONENTS4_NV = GLenum::GL_SKIP_COMPONENTS4_NV;
 static const GLenum GL_SKIP_COMPONENTS3_NV = GLenum::GL_SKIP_COMPONENTS3_NV;
 static const GLenum GL_SKIP_COMPONENTS2_NV = GLenum::GL_SKIP_COMPONENTS2_NV;
 static const GLenum GL_SKIP_COMPONENTS1_NV = GLenum::GL_SKIP_COMPONENTS1_NV;
+static const MapTextureFormatINTEL GL_LAYOUT_DEFAULT_INTEL = MapTextureFormatINTEL::GL_LAYOUT_DEFAULT_INTEL;
+static const DrawBufferMode GL_NONE = DrawBufferMode::GL_NONE;
+static const ErrorCode GL_NO_ERROR = ErrorCode::GL_NO_ERROR;
+static const BlendingFactorDest GL_ZERO = BlendingFactorDest::GL_ZERO;
 static const GLenum GL_CLOSE_PATH_NV = GLenum::GL_CLOSE_PATH_NV;
+static const PrimitiveType GL_POINTS = PrimitiveType::GL_POINTS;
+static const OcclusionQueryEventMaskAMD GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD = OcclusionQueryEventMaskAMD::GL_QUERY_DEPTH_PASS_EVENT_BIT_AMD;
+static const OcclusionQueryEventMaskAMD GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD = OcclusionQueryEventMaskAMD::GL_QUERY_DEPTH_FAIL_EVENT_BIT_AMD;
+static const OcclusionQueryEventMaskAMD GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD = OcclusionQueryEventMaskAMD::GL_QUERY_STENCIL_FAIL_EVENT_BIT_AMD;
+static const OcclusionQueryEventMaskAMD GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD = OcclusionQueryEventMaskAMD::GL_QUERY_DEPTH_BOUNDS_FAIL_EVENT_BIT_AMD;
+static const PrimitiveType GL_LINES = PrimitiveType::GL_LINES;
 static const GLenum GL_RESTART_SUN = GLenum::GL_RESTART_SUN;
+static const PrimitiveType GL_LINE_LOOP = PrimitiveType::GL_LINE_LOOP;
 static const GLenum GL_REPLACE_MIDDLE_SUN = GLenum::GL_REPLACE_MIDDLE_SUN;
+static const PrimitiveType GL_LINE_STRIP = PrimitiveType::GL_LINE_STRIP;
 static const GLenum GL_REPLACE_OLDEST_SUN = GLenum::GL_REPLACE_OLDEST_SUN;
+static const PrimitiveType GL_TRIANGLES = PrimitiveType::GL_TRIANGLES;
+static const PrimitiveType GL_TRIANGLE_STRIP = PrimitiveType::GL_TRIANGLE_STRIP;
+static const PrimitiveType GL_TRIANGLE_FAN = PrimitiveType::GL_TRIANGLE_FAN;
+static const PrimitiveType GL_QUADS = PrimitiveType::GL_QUADS;
+static const PrimitiveType GL_QUAD_STRIP = PrimitiveType::GL_QUAD_STRIP;
+static const PrimitiveType GL_POLYGON = PrimitiveType::GL_POLYGON;
+static const PrimitiveType GL_LINES_ADJACENCY = PrimitiveType::GL_LINES_ADJACENCY;
+static const PrimitiveType GL_LINES_ADJACENCY_ARB = PrimitiveType::GL_LINES_ADJACENCY_ARB;
+static const PrimitiveType GL_LINES_ADJACENCY_EXT = PrimitiveType::GL_LINES_ADJACENCY_EXT;
+static const PrimitiveType GL_LINE_STRIP_ADJACENCY = PrimitiveType::GL_LINE_STRIP_ADJACENCY;
+static const PrimitiveType GL_LINE_STRIP_ADJACENCY_ARB = PrimitiveType::GL_LINE_STRIP_ADJACENCY_ARB;
+static const PrimitiveType GL_LINE_STRIP_ADJACENCY_EXT = PrimitiveType::GL_LINE_STRIP_ADJACENCY_EXT;
+static const PrimitiveType GL_TRIANGLES_ADJACENCY = PrimitiveType::GL_TRIANGLES_ADJACENCY;
+static const PrimitiveType GL_TRIANGLES_ADJACENCY_ARB = PrimitiveType::GL_TRIANGLES_ADJACENCY_ARB;
+static const PrimitiveType GL_TRIANGLES_ADJACENCY_EXT = PrimitiveType::GL_TRIANGLES_ADJACENCY_EXT;
+static const PrimitiveType GL_TRIANGLE_STRIP_ADJACENCY = PrimitiveType::GL_TRIANGLE_STRIP_ADJACENCY;
+static const PrimitiveType GL_TRIANGLE_STRIP_ADJACENCY_ARB = PrimitiveType::GL_TRIANGLE_STRIP_ADJACENCY_ARB;
+static const PrimitiveType GL_TRIANGLE_STRIP_ADJACENCY_EXT = PrimitiveType::GL_TRIANGLE_STRIP_ADJACENCY_EXT;
+static const PrimitiveType GL_PATCHES = PrimitiveType::GL_PATCHES;
+static const AccumOp GL_ACCUM = AccumOp::GL_ACCUM;
+static const AccumOp GL_LOAD = AccumOp::GL_LOAD;
+static const AccumOp GL_RETURN = AccumOp::GL_RETURN;
+static const AccumOp GL_MULT = AccumOp::GL_MULT;
+static const AccumOp GL_ADD = AccumOp::GL_ADD;
 static const GLenum GL_MOVE_TO_NV = GLenum::GL_MOVE_TO_NV;
+static const AlphaFunction GL_NEVER = AlphaFunction::GL_NEVER;
+static const AlphaFunction GL_LESS = AlphaFunction::GL_LESS;
+static const AlphaFunction GL_EQUAL = AlphaFunction::GL_EQUAL;
+static const AlphaFunction GL_LEQUAL = AlphaFunction::GL_LEQUAL;
+static const AlphaFunction GL_GREATER = AlphaFunction::GL_GREATER;
+static const AlphaFunction GL_NOTEQUAL = AlphaFunction::GL_NOTEQUAL;
+static const AlphaFunction GL_GEQUAL = AlphaFunction::GL_GEQUAL;
+static const AlphaFunction GL_ALWAYS = AlphaFunction::GL_ALWAYS;
 static const GLenum GL_RELATIVE_MOVE_TO_NV = GLenum::GL_RELATIVE_MOVE_TO_NV;
+static const BlendingFactorDest GL_SRC_COLOR = BlendingFactorDest::GL_SRC_COLOR;
+static const BlendingFactorDest GL_ONE_MINUS_SRC_COLOR = BlendingFactorDest::GL_ONE_MINUS_SRC_COLOR;
+static const BlendingFactorDest GL_SRC_ALPHA = BlendingFactorDest::GL_SRC_ALPHA;
+static const BlendingFactorDest GL_ONE_MINUS_SRC_ALPHA = BlendingFactorDest::GL_ONE_MINUS_SRC_ALPHA;
+static const BlendingFactorDest GL_DST_ALPHA = BlendingFactorDest::GL_DST_ALPHA;
+static const BlendingFactorDest GL_ONE_MINUS_DST_ALPHA = BlendingFactorDest::GL_ONE_MINUS_DST_ALPHA;
+static const BlendingFactorSrc GL_DST_COLOR = BlendingFactorSrc::GL_DST_COLOR;
+static const BlendingFactorSrc GL_ONE_MINUS_DST_COLOR = BlendingFactorSrc::GL_ONE_MINUS_DST_COLOR;
+static const BlendingFactorSrc GL_SRC_ALPHA_SATURATE = BlendingFactorSrc::GL_SRC_ALPHA_SATURATE;
 static const GLenum GL_LINE_TO_NV = GLenum::GL_LINE_TO_NV;
+static const DrawBufferMode GL_FRONT_LEFT = DrawBufferMode::GL_FRONT_LEFT;
+static const DrawBufferMode GL_FRONT_RIGHT = DrawBufferMode::GL_FRONT_RIGHT;
+static const DrawBufferMode GL_BACK_LEFT = DrawBufferMode::GL_BACK_LEFT;
+static const DrawBufferMode GL_BACK_RIGHT = DrawBufferMode::GL_BACK_RIGHT;
+static const ColorMaterialFace GL_FRONT = ColorMaterialFace::GL_FRONT;
+static const ColorMaterialFace GL_BACK = ColorMaterialFace::GL_BACK;
+static const DrawBufferMode GL_LEFT = DrawBufferMode::GL_LEFT;
+static const DrawBufferMode GL_RIGHT = DrawBufferMode::GL_RIGHT;
+static const ColorMaterialFace GL_FRONT_AND_BACK = ColorMaterialFace::GL_FRONT_AND_BACK;
+static const DrawBufferMode GL_AUX0 = DrawBufferMode::GL_AUX0;
+static const DrawBufferMode GL_AUX1 = DrawBufferMode::GL_AUX1;
+static const DrawBufferMode GL_AUX2 = DrawBufferMode::GL_AUX2;
+static const DrawBufferMode GL_AUX3 = DrawBufferMode::GL_AUX3;
 static const GLenum GL_RELATIVE_LINE_TO_NV = GLenum::GL_RELATIVE_LINE_TO_NV;
+static const ErrorCode GL_INVALID_ENUM = ErrorCode::GL_INVALID_ENUM;
+static const ErrorCode GL_INVALID_VALUE = ErrorCode::GL_INVALID_VALUE;
+static const ErrorCode GL_INVALID_OPERATION = ErrorCode::GL_INVALID_OPERATION;
+static const ErrorCode GL_STACK_OVERFLOW = ErrorCode::GL_STACK_OVERFLOW;
+static const ErrorCode GL_STACK_UNDERFLOW = ErrorCode::GL_STACK_UNDERFLOW;
+static const ErrorCode GL_OUT_OF_MEMORY = ErrorCode::GL_OUT_OF_MEMORY;
+static const ErrorCode GL_INVALID_FRAMEBUFFER_OPERATION = ErrorCode::GL_INVALID_FRAMEBUFFER_OPERATION;
+static const ErrorCode GL_INVALID_FRAMEBUFFER_OPERATION_EXT = ErrorCode::GL_INVALID_FRAMEBUFFER_OPERATION_EXT;
 static const GLenum GL_CONTEXT_LOST = GLenum::GL_CONTEXT_LOST;
 static const GLenum GL_HORIZONTAL_LINE_TO_NV = GLenum::GL_HORIZONTAL_LINE_TO_NV;
+static const FeedbackType GL_2D = FeedbackType::GL_2D;
+static const FeedbackType GL_3D = FeedbackType::GL_3D;
+static const FeedbackType GL_3D_COLOR = FeedbackType::GL_3D_COLOR;
+static const FeedbackType GL_3D_COLOR_TEXTURE = FeedbackType::GL_3D_COLOR_TEXTURE;
+static const FeedbackType GL_4D_COLOR_TEXTURE = FeedbackType::GL_4D_COLOR_TEXTURE;
 static const GLenum GL_RELATIVE_HORIZONTAL_LINE_TO_NV = GLenum::GL_RELATIVE_HORIZONTAL_LINE_TO_NV;
+static const FeedBackToken GL_PASS_THROUGH_TOKEN = FeedBackToken::GL_PASS_THROUGH_TOKEN;
+static const FeedBackToken GL_POINT_TOKEN = FeedBackToken::GL_POINT_TOKEN;
+static const FeedBackToken GL_LINE_TOKEN = FeedBackToken::GL_LINE_TOKEN;
+static const FeedBackToken GL_POLYGON_TOKEN = FeedBackToken::GL_POLYGON_TOKEN;
+static const FeedBackToken GL_BITMAP_TOKEN = FeedBackToken::GL_BITMAP_TOKEN;
+static const FeedBackToken GL_DRAW_PIXEL_TOKEN = FeedBackToken::GL_DRAW_PIXEL_TOKEN;
+static const FeedBackToken GL_COPY_PIXEL_TOKEN = FeedBackToken::GL_COPY_PIXEL_TOKEN;
+static const FeedBackToken GL_LINE_RESET_TOKEN = FeedBackToken::GL_LINE_RESET_TOKEN;
 static const GLenum GL_VERTICAL_LINE_TO_NV = GLenum::GL_VERTICAL_LINE_TO_NV;
+static const FogMode GL_EXP = FogMode::GL_EXP;
+static const FogMode GL_EXP2 = FogMode::GL_EXP2;
 static const GLenum GL_RELATIVE_VERTICAL_LINE_TO_NV = GLenum::GL_RELATIVE_VERTICAL_LINE_TO_NV;
+static const FrontFaceDirection GL_CW = FrontFaceDirection::GL_CW;
+static const FrontFaceDirection GL_CCW = FrontFaceDirection::GL_CCW;
 static const GLenum GL_QUADRATIC_CURVE_TO_NV = GLenum::GL_QUADRATIC_CURVE_TO_NV;
+static const GetMapQuery GL_COEFF = GetMapQuery::GL_COEFF;
+static const GetMapQuery GL_ORDER = GetMapQuery::GL_ORDER;
+static const GetMapQuery GL_DOMAIN = GetMapQuery::GL_DOMAIN;
 static const GLenum GL_RELATIVE_QUADRATIC_CURVE_TO_NV = GLenum::GL_RELATIVE_QUADRATIC_CURVE_TO_NV;
+static const GetPName GL_CURRENT_COLOR = GetPName::GL_CURRENT_COLOR;
+static const GetPName GL_CURRENT_INDEX = GetPName::GL_CURRENT_INDEX;
+static const GetPName GL_CURRENT_NORMAL = GetPName::GL_CURRENT_NORMAL;
+static const GetPName GL_CURRENT_TEXTURE_COORDS = GetPName::GL_CURRENT_TEXTURE_COORDS;
+static const GetPName GL_CURRENT_RASTER_COLOR = GetPName::GL_CURRENT_RASTER_COLOR;
+static const GetPName GL_CURRENT_RASTER_INDEX = GetPName::GL_CURRENT_RASTER_INDEX;
+static const GetPName GL_CURRENT_RASTER_TEXTURE_COORDS = GetPName::GL_CURRENT_RASTER_TEXTURE_COORDS;
+static const GetPName GL_CURRENT_RASTER_POSITION = GetPName::GL_CURRENT_RASTER_POSITION;
+static const GetPName GL_CURRENT_RASTER_POSITION_VALID = GetPName::GL_CURRENT_RASTER_POSITION_VALID;
+static const GetPName GL_CURRENT_RASTER_DISTANCE = GetPName::GL_CURRENT_RASTER_DISTANCE;
+static const EnableCap GL_POINT_SMOOTH = EnableCap::GL_POINT_SMOOTH;
+static const GetPName GL_POINT_SIZE = GetPName::GL_POINT_SIZE;
+static const GetPName GL_POINT_SIZE_RANGE = GetPName::GL_POINT_SIZE_RANGE;
+static const GetPName GL_SMOOTH_POINT_SIZE_RANGE = GetPName::GL_SMOOTH_POINT_SIZE_RANGE;
+static const GetPName GL_POINT_SIZE_GRANULARITY = GetPName::GL_POINT_SIZE_GRANULARITY;
+static const GetPName GL_SMOOTH_POINT_SIZE_GRANULARITY = GetPName::GL_SMOOTH_POINT_SIZE_GRANULARITY;
+static const EnableCap GL_LINE_SMOOTH = EnableCap::GL_LINE_SMOOTH;
+static const GetPName GL_LINE_WIDTH = GetPName::GL_LINE_WIDTH;
+static const GetPName GL_LINE_WIDTH_RANGE = GetPName::GL_LINE_WIDTH_RANGE;
+static const GetPName GL_SMOOTH_LINE_WIDTH_RANGE = GetPName::GL_SMOOTH_LINE_WIDTH_RANGE;
+static const GetPName GL_LINE_WIDTH_GRANULARITY = GetPName::GL_LINE_WIDTH_GRANULARITY;
+static const GetPName GL_SMOOTH_LINE_WIDTH_GRANULARITY = GetPName::GL_SMOOTH_LINE_WIDTH_GRANULARITY;
+static const EnableCap GL_LINE_STIPPLE = EnableCap::GL_LINE_STIPPLE;
+static const GetPName GL_LINE_STIPPLE_PATTERN = GetPName::GL_LINE_STIPPLE_PATTERN;
+static const GetPName GL_LINE_STIPPLE_REPEAT = GetPName::GL_LINE_STIPPLE_REPEAT;
+static const GetPName GL_LIST_MODE = GetPName::GL_LIST_MODE;
+static const GetPName GL_MAX_LIST_NESTING = GetPName::GL_MAX_LIST_NESTING;
+static const GetPName GL_LIST_BASE = GetPName::GL_LIST_BASE;
+static const GetPName GL_LIST_INDEX = GetPName::GL_LIST_INDEX;
+static const GetPName GL_POLYGON_MODE = GetPName::GL_POLYGON_MODE;
+static const EnableCap GL_POLYGON_SMOOTH = EnableCap::GL_POLYGON_SMOOTH;
+static const EnableCap GL_POLYGON_STIPPLE = EnableCap::GL_POLYGON_STIPPLE;
+static const GetPName GL_EDGE_FLAG = GetPName::GL_EDGE_FLAG;
+static const EnableCap GL_CULL_FACE = EnableCap::GL_CULL_FACE;
+static const GetPName GL_CULL_FACE_MODE = GetPName::GL_CULL_FACE_MODE;
+static const GetPName GL_FRONT_FACE = GetPName::GL_FRONT_FACE;
+static const EnableCap GL_LIGHTING = EnableCap::GL_LIGHTING;
+static const GetPName GL_LIGHT_MODEL_LOCAL_VIEWER = GetPName::GL_LIGHT_MODEL_LOCAL_VIEWER;
+static const GetPName GL_LIGHT_MODEL_TWO_SIDE = GetPName::GL_LIGHT_MODEL_TWO_SIDE;
+static const GetPName GL_LIGHT_MODEL_AMBIENT = GetPName::GL_LIGHT_MODEL_AMBIENT;
+static const GetPName GL_SHADE_MODEL = GetPName::GL_SHADE_MODEL;
+static const GetPName GL_COLOR_MATERIAL_FACE = GetPName::GL_COLOR_MATERIAL_FACE;
+static const GetPName GL_COLOR_MATERIAL_PARAMETER = GetPName::GL_COLOR_MATERIAL_PARAMETER;
+static const EnableCap GL_COLOR_MATERIAL = EnableCap::GL_COLOR_MATERIAL;
+static const EnableCap GL_FOG = EnableCap::GL_FOG;
+static const FogParameter GL_FOG_INDEX = FogParameter::GL_FOG_INDEX;
+static const FogParameter GL_FOG_DENSITY = FogParameter::GL_FOG_DENSITY;
+static const FogParameter GL_FOG_START = FogParameter::GL_FOG_START;
+static const FogParameter GL_FOG_END = FogParameter::GL_FOG_END;
+static const FogParameter GL_FOG_MODE = FogParameter::GL_FOG_MODE;
+static const FogParameter GL_FOG_COLOR = FogParameter::GL_FOG_COLOR;
+static const GetPName GL_DEPTH_RANGE = GetPName::GL_DEPTH_RANGE;
+static const EnableCap GL_DEPTH_TEST = EnableCap::GL_DEPTH_TEST;
+static const GetPName GL_DEPTH_WRITEMASK = GetPName::GL_DEPTH_WRITEMASK;
+static const GetPName GL_DEPTH_CLEAR_VALUE = GetPName::GL_DEPTH_CLEAR_VALUE;
+static const GetPName GL_DEPTH_FUNC = GetPName::GL_DEPTH_FUNC;
+static const GetPName GL_ACCUM_CLEAR_VALUE = GetPName::GL_ACCUM_CLEAR_VALUE;
+static const EnableCap GL_STENCIL_TEST = EnableCap::GL_STENCIL_TEST;
+static const GetPName GL_STENCIL_CLEAR_VALUE = GetPName::GL_STENCIL_CLEAR_VALUE;
+static const GetPName GL_STENCIL_FUNC = GetPName::GL_STENCIL_FUNC;
+static const GetPName GL_STENCIL_VALUE_MASK = GetPName::GL_STENCIL_VALUE_MASK;
+static const GetPName GL_STENCIL_FAIL = GetPName::GL_STENCIL_FAIL;
+static const GetPName GL_STENCIL_PASS_DEPTH_FAIL = GetPName::GL_STENCIL_PASS_DEPTH_FAIL;
+static const GetPName GL_STENCIL_PASS_DEPTH_PASS = GetPName::GL_STENCIL_PASS_DEPTH_PASS;
+static const GetPName GL_STENCIL_REF = GetPName::GL_STENCIL_REF;
+static const GetPName GL_STENCIL_WRITEMASK = GetPName::GL_STENCIL_WRITEMASK;
+static const GetPName GL_MATRIX_MODE = GetPName::GL_MATRIX_MODE;
+static const EnableCap GL_NORMALIZE = EnableCap::GL_NORMALIZE;
+static const GetPName GL_VIEWPORT = GetPName::GL_VIEWPORT;
+static const GetPName GL_MODELVIEW0_STACK_DEPTH_EXT = GetPName::GL_MODELVIEW0_STACK_DEPTH_EXT;
+static const GetPName GL_MODELVIEW_STACK_DEPTH = GetPName::GL_MODELVIEW_STACK_DEPTH;
 static const GLenum GL_PATH_MODELVIEW_STACK_DEPTH_NV = GLenum::GL_PATH_MODELVIEW_STACK_DEPTH_NV;
 static const GLenum GL_PATH_PROJECTION_STACK_DEPTH_NV = GLenum::GL_PATH_PROJECTION_STACK_DEPTH_NV;
+static const GetPName GL_PROJECTION_STACK_DEPTH = GetPName::GL_PROJECTION_STACK_DEPTH;
+static const GetPName GL_TEXTURE_STACK_DEPTH = GetPName::GL_TEXTURE_STACK_DEPTH;
+static const GetPName GL_MODELVIEW0_MATRIX_EXT = GetPName::GL_MODELVIEW0_MATRIX_EXT;
+static const GetPName GL_MODELVIEW_MATRIX = GetPName::GL_MODELVIEW_MATRIX;
 static const GLenum GL_PATH_MODELVIEW_MATRIX_NV = GLenum::GL_PATH_MODELVIEW_MATRIX_NV;
 static const GLenum GL_PATH_PROJECTION_MATRIX_NV = GLenum::GL_PATH_PROJECTION_MATRIX_NV;
+static const GetPName GL_PROJECTION_MATRIX = GetPName::GL_PROJECTION_MATRIX;
+static const GetPName GL_TEXTURE_MATRIX = GetPName::GL_TEXTURE_MATRIX;
+static const GetPName GL_ATTRIB_STACK_DEPTH = GetPName::GL_ATTRIB_STACK_DEPTH;
+static const GetPName GL_CLIENT_ATTRIB_STACK_DEPTH = GetPName::GL_CLIENT_ATTRIB_STACK_DEPTH;
+static const EnableCap GL_ALPHA_TEST = EnableCap::GL_ALPHA_TEST;
+static const GetPName GL_ALPHA_TEST_FUNC = GetPName::GL_ALPHA_TEST_FUNC;
+static const GetPName GL_ALPHA_TEST_REF = GetPName::GL_ALPHA_TEST_REF;
+static const EnableCap GL_DITHER = EnableCap::GL_DITHER;
+static const GetPName GL_BLEND_DST = GetPName::GL_BLEND_DST;
+static const GetPName GL_BLEND_SRC = GetPName::GL_BLEND_SRC;
+static const EnableCap GL_BLEND = EnableCap::GL_BLEND;
+static const GetPName GL_LOGIC_OP_MODE = GetPName::GL_LOGIC_OP_MODE;
+static const EnableCap GL_INDEX_LOGIC_OP = EnableCap::GL_INDEX_LOGIC_OP;
+static const BlendEquationModeEXT GL_LOGIC_OP = BlendEquationModeEXT::GL_LOGIC_OP;
+static const EnableCap GL_COLOR_LOGIC_OP = EnableCap::GL_COLOR_LOGIC_OP;
 static const GLenum GL_CUBIC_CURVE_TO_NV = GLenum::GL_CUBIC_CURVE_TO_NV;
+static const GetPName GL_AUX_BUFFERS = GetPName::GL_AUX_BUFFERS;
+static const GetPName GL_DRAW_BUFFER = GetPName::GL_DRAW_BUFFER;
+static const GetPName GL_READ_BUFFER = GetPName::GL_READ_BUFFER;
+static const GetPName GL_SCISSOR_BOX = GetPName::GL_SCISSOR_BOX;
+static const EnableCap GL_SCISSOR_TEST = EnableCap::GL_SCISSOR_TEST;
+static const GetPName GL_INDEX_CLEAR_VALUE = GetPName::GL_INDEX_CLEAR_VALUE;
+static const GetPName GL_INDEX_WRITEMASK = GetPName::GL_INDEX_WRITEMASK;
+static const GetPName GL_COLOR_CLEAR_VALUE = GetPName::GL_COLOR_CLEAR_VALUE;
+static const GetPName GL_COLOR_WRITEMASK = GetPName::GL_COLOR_WRITEMASK;
+static const GetPName GL_INDEX_MODE = GetPName::GL_INDEX_MODE;
+static const GetPName GL_RGBA_MODE = GetPName::GL_RGBA_MODE;
+static const GetPName GL_DOUBLEBUFFER = GetPName::GL_DOUBLEBUFFER;
+static const GetPName GL_STEREO = GetPName::GL_STEREO;
+static const GetPName GL_RENDER_MODE = GetPName::GL_RENDER_MODE;
+static const GetPName GL_PERSPECTIVE_CORRECTION_HINT = GetPName::GL_PERSPECTIVE_CORRECTION_HINT;
+static const GetPName GL_POINT_SMOOTH_HINT = GetPName::GL_POINT_SMOOTH_HINT;
+static const GetPName GL_LINE_SMOOTH_HINT = GetPName::GL_LINE_SMOOTH_HINT;
+static const GetPName GL_POLYGON_SMOOTH_HINT = GetPName::GL_POLYGON_SMOOTH_HINT;
+static const GetPName GL_FOG_HINT = GetPName::GL_FOG_HINT;
+static const EnableCap GL_TEXTURE_GEN_S = EnableCap::GL_TEXTURE_GEN_S;
+static const EnableCap GL_TEXTURE_GEN_T = EnableCap::GL_TEXTURE_GEN_T;
+static const EnableCap GL_TEXTURE_GEN_R = EnableCap::GL_TEXTURE_GEN_R;
+static const EnableCap GL_TEXTURE_GEN_Q = EnableCap::GL_TEXTURE_GEN_Q;
+static const GetPixelMap GL_PIXEL_MAP_I_TO_I = GetPixelMap::GL_PIXEL_MAP_I_TO_I;
+static const GetPixelMap GL_PIXEL_MAP_S_TO_S = GetPixelMap::GL_PIXEL_MAP_S_TO_S;
+static const GetPixelMap GL_PIXEL_MAP_I_TO_R = GetPixelMap::GL_PIXEL_MAP_I_TO_R;
+static const GetPixelMap GL_PIXEL_MAP_I_TO_G = GetPixelMap::GL_PIXEL_MAP_I_TO_G;
+static const GetPixelMap GL_PIXEL_MAP_I_TO_B = GetPixelMap::GL_PIXEL_MAP_I_TO_B;
+static const GetPixelMap GL_PIXEL_MAP_I_TO_A = GetPixelMap::GL_PIXEL_MAP_I_TO_A;
+static const GetPixelMap GL_PIXEL_MAP_R_TO_R = GetPixelMap::GL_PIXEL_MAP_R_TO_R;
+static const GetPixelMap GL_PIXEL_MAP_G_TO_G = GetPixelMap::GL_PIXEL_MAP_G_TO_G;
+static const GetPixelMap GL_PIXEL_MAP_B_TO_B = GetPixelMap::GL_PIXEL_MAP_B_TO_B;
+static const GetPixelMap GL_PIXEL_MAP_A_TO_A = GetPixelMap::GL_PIXEL_MAP_A_TO_A;
+static const GetPName GL_PIXEL_MAP_I_TO_I_SIZE = GetPName::GL_PIXEL_MAP_I_TO_I_SIZE;
+static const GetPName GL_PIXEL_MAP_S_TO_S_SIZE = GetPName::GL_PIXEL_MAP_S_TO_S_SIZE;
+static const GetPName GL_PIXEL_MAP_I_TO_R_SIZE = GetPName::GL_PIXEL_MAP_I_TO_R_SIZE;
+static const GetPName GL_PIXEL_MAP_I_TO_G_SIZE = GetPName::GL_PIXEL_MAP_I_TO_G_SIZE;
+static const GetPName GL_PIXEL_MAP_I_TO_B_SIZE = GetPName::GL_PIXEL_MAP_I_TO_B_SIZE;
+static const GetPName GL_PIXEL_MAP_I_TO_A_SIZE = GetPName::GL_PIXEL_MAP_I_TO_A_SIZE;
+static const GetPName GL_PIXEL_MAP_R_TO_R_SIZE = GetPName::GL_PIXEL_MAP_R_TO_R_SIZE;
+static const GetPName GL_PIXEL_MAP_G_TO_G_SIZE = GetPName::GL_PIXEL_MAP_G_TO_G_SIZE;
+static const GetPName GL_PIXEL_MAP_B_TO_B_SIZE = GetPName::GL_PIXEL_MAP_B_TO_B_SIZE;
+static const GetPName GL_PIXEL_MAP_A_TO_A_SIZE = GetPName::GL_PIXEL_MAP_A_TO_A_SIZE;
+static const GetPName GL_UNPACK_SWAP_BYTES = GetPName::GL_UNPACK_SWAP_BYTES;
+static const GetPName GL_UNPACK_LSB_FIRST = GetPName::GL_UNPACK_LSB_FIRST;
+static const GetPName GL_UNPACK_ROW_LENGTH = GetPName::GL_UNPACK_ROW_LENGTH;
+static const GetPName GL_UNPACK_SKIP_ROWS = GetPName::GL_UNPACK_SKIP_ROWS;
+static const GetPName GL_UNPACK_SKIP_PIXELS = GetPName::GL_UNPACK_SKIP_PIXELS;
+static const GetPName GL_UNPACK_ALIGNMENT = GetPName::GL_UNPACK_ALIGNMENT;
 static const GLenum GL_RELATIVE_CUBIC_CURVE_TO_NV = GLenum::GL_RELATIVE_CUBIC_CURVE_TO_NV;
+static const GetPName GL_PACK_SWAP_BYTES = GetPName::GL_PACK_SWAP_BYTES;
+static const GetPName GL_PACK_LSB_FIRST = GetPName::GL_PACK_LSB_FIRST;
+static const GetPName GL_PACK_ROW_LENGTH = GetPName::GL_PACK_ROW_LENGTH;
+static const GetPName GL_PACK_SKIP_ROWS = GetPName::GL_PACK_SKIP_ROWS;
+static const GetPName GL_PACK_SKIP_PIXELS = GetPName::GL_PACK_SKIP_PIXELS;
+static const GetPName GL_PACK_ALIGNMENT = GetPName::GL_PACK_ALIGNMENT;
+static const GetPName GL_MAP_COLOR = GetPName::GL_MAP_COLOR;
+static const GetPName GL_MAP_STENCIL = GetPName::GL_MAP_STENCIL;
+static const GetPName GL_INDEX_SHIFT = GetPName::GL_INDEX_SHIFT;
+static const GetPName GL_INDEX_OFFSET = GetPName::GL_INDEX_OFFSET;
+static const GetPName GL_RED_SCALE = GetPName::GL_RED_SCALE;
+static const GetPName GL_RED_BIAS = GetPName::GL_RED_BIAS;
+static const GetPName GL_ZOOM_X = GetPName::GL_ZOOM_X;
+static const GetPName GL_ZOOM_Y = GetPName::GL_ZOOM_Y;
+static const GetPName GL_GREEN_SCALE = GetPName::GL_GREEN_SCALE;
+static const GetPName GL_GREEN_BIAS = GetPName::GL_GREEN_BIAS;
+static const GetPName GL_BLUE_SCALE = GetPName::GL_BLUE_SCALE;
+static const GetPName GL_BLUE_BIAS = GetPName::GL_BLUE_BIAS;
+static const GetPName GL_ALPHA_SCALE = GetPName::GL_ALPHA_SCALE;
+static const GetPName GL_ALPHA_BIAS = GetPName::GL_ALPHA_BIAS;
+static const GetPName GL_DEPTH_SCALE = GetPName::GL_DEPTH_SCALE;
+static const GetPName GL_DEPTH_BIAS = GetPName::GL_DEPTH_BIAS;
+static const GetPName GL_MAX_EVAL_ORDER = GetPName::GL_MAX_EVAL_ORDER;
+static const GetPName GL_MAX_LIGHTS = GetPName::GL_MAX_LIGHTS;
+static const GetPName GL_MAX_CLIP_DISTANCES = GetPName::GL_MAX_CLIP_DISTANCES;
+static const GetPName GL_MAX_CLIP_PLANES = GetPName::GL_MAX_CLIP_PLANES;
+static const GetPName GL_MAX_TEXTURE_SIZE = GetPName::GL_MAX_TEXTURE_SIZE;
+static const GetPName GL_MAX_PIXEL_MAP_TABLE = GetPName::GL_MAX_PIXEL_MAP_TABLE;
+static const GetPName GL_MAX_ATTRIB_STACK_DEPTH = GetPName::GL_MAX_ATTRIB_STACK_DEPTH;
+static const GetPName GL_MAX_MODELVIEW_STACK_DEPTH = GetPName::GL_MAX_MODELVIEW_STACK_DEPTH;
 static const GLenum GL_PATH_MAX_MODELVIEW_STACK_DEPTH_NV = GLenum::GL_PATH_MAX_MODELVIEW_STACK_DEPTH_NV;
+static const GetPName GL_MAX_NAME_STACK_DEPTH = GetPName::GL_MAX_NAME_STACK_DEPTH;
+static const GetPName GL_MAX_PROJECTION_STACK_DEPTH = GetPName::GL_MAX_PROJECTION_STACK_DEPTH;
 static const GLenum GL_PATH_MAX_PROJECTION_STACK_DEPTH_NV = GLenum::GL_PATH_MAX_PROJECTION_STACK_DEPTH_NV;
+static const GetPName GL_MAX_TEXTURE_STACK_DEPTH = GetPName::GL_MAX_TEXTURE_STACK_DEPTH;
+static const GetPName GL_MAX_VIEWPORT_DIMS = GetPName::GL_MAX_VIEWPORT_DIMS;
+static const GetPName GL_MAX_CLIENT_ATTRIB_STACK_DEPTH = GetPName::GL_MAX_CLIENT_ATTRIB_STACK_DEPTH;
+static const GetPName GL_SUBPIXEL_BITS = GetPName::GL_SUBPIXEL_BITS;
+static const GetPName GL_INDEX_BITS = GetPName::GL_INDEX_BITS;
+static const GetPName GL_RED_BITS = GetPName::GL_RED_BITS;
+static const GetPName GL_GREEN_BITS = GetPName::GL_GREEN_BITS;
+static const GetPName GL_BLUE_BITS = GetPName::GL_BLUE_BITS;
+static const GetPName GL_ALPHA_BITS = GetPName::GL_ALPHA_BITS;
+static const GetPName GL_DEPTH_BITS = GetPName::GL_DEPTH_BITS;
+static const GetPName GL_STENCIL_BITS = GetPName::GL_STENCIL_BITS;
+static const GetPName GL_ACCUM_RED_BITS = GetPName::GL_ACCUM_RED_BITS;
+static const GetPName GL_ACCUM_GREEN_BITS = GetPName::GL_ACCUM_GREEN_BITS;
+static const GetPName GL_ACCUM_BLUE_BITS = GetPName::GL_ACCUM_BLUE_BITS;
+static const GetPName GL_ACCUM_ALPHA_BITS = GetPName::GL_ACCUM_ALPHA_BITS;
+static const GetPName GL_NAME_STACK_DEPTH = GetPName::GL_NAME_STACK_DEPTH;
+static const EnableCap GL_AUTO_NORMAL = EnableCap::GL_AUTO_NORMAL;
+static const EnableCap GL_MAP1_COLOR_4 = EnableCap::GL_MAP1_COLOR_4;
+static const EnableCap GL_MAP1_INDEX = EnableCap::GL_MAP1_INDEX;
+static const EnableCap GL_MAP1_NORMAL = EnableCap::GL_MAP1_NORMAL;
+static const EnableCap GL_MAP1_TEXTURE_COORD_1 = EnableCap::GL_MAP1_TEXTURE_COORD_1;
+static const EnableCap GL_MAP1_TEXTURE_COORD_2 = EnableCap::GL_MAP1_TEXTURE_COORD_2;
+static const EnableCap GL_MAP1_TEXTURE_COORD_3 = EnableCap::GL_MAP1_TEXTURE_COORD_3;
+static const EnableCap GL_MAP1_TEXTURE_COORD_4 = EnableCap::GL_MAP1_TEXTURE_COORD_4;
+static const EnableCap GL_MAP1_VERTEX_3 = EnableCap::GL_MAP1_VERTEX_3;
+static const EnableCap GL_MAP1_VERTEX_4 = EnableCap::GL_MAP1_VERTEX_4;
+static const EnableCap GL_MAP2_COLOR_4 = EnableCap::GL_MAP2_COLOR_4;
+static const EnableCap GL_MAP2_INDEX = EnableCap::GL_MAP2_INDEX;
+static const EnableCap GL_MAP2_NORMAL = EnableCap::GL_MAP2_NORMAL;
+static const EnableCap GL_MAP2_TEXTURE_COORD_1 = EnableCap::GL_MAP2_TEXTURE_COORD_1;
+static const EnableCap GL_MAP2_TEXTURE_COORD_2 = EnableCap::GL_MAP2_TEXTURE_COORD_2;
+static const EnableCap GL_MAP2_TEXTURE_COORD_3 = EnableCap::GL_MAP2_TEXTURE_COORD_3;
+static const EnableCap GL_MAP2_TEXTURE_COORD_4 = EnableCap::GL_MAP2_TEXTURE_COORD_4;
+static const EnableCap GL_MAP2_VERTEX_3 = EnableCap::GL_MAP2_VERTEX_3;
+static const EnableCap GL_MAP2_VERTEX_4 = EnableCap::GL_MAP2_VERTEX_4;
+static const GetPName GL_MAP1_GRID_DOMAIN = GetPName::GL_MAP1_GRID_DOMAIN;
+static const GetPName GL_MAP1_GRID_SEGMENTS = GetPName::GL_MAP1_GRID_SEGMENTS;
+static const GetPName GL_MAP2_GRID_DOMAIN = GetPName::GL_MAP2_GRID_DOMAIN;
+static const GetPName GL_MAP2_GRID_SEGMENTS = GetPName::GL_MAP2_GRID_SEGMENTS;
+static const EnableCap GL_TEXTURE_1D = EnableCap::GL_TEXTURE_1D;
+static const EnableCap GL_TEXTURE_2D = EnableCap::GL_TEXTURE_2D;
+static const GetPointervPName GL_FEEDBACK_BUFFER_POINTER = GetPointervPName::GL_FEEDBACK_BUFFER_POINTER;
+static const GetPName GL_FEEDBACK_BUFFER_SIZE = GetPName::GL_FEEDBACK_BUFFER_SIZE;
+static const GetPName GL_FEEDBACK_BUFFER_TYPE = GetPName::GL_FEEDBACK_BUFFER_TYPE;
+static const GetPointervPName GL_SELECTION_BUFFER_POINTER = GetPointervPName::GL_SELECTION_BUFFER_POINTER;
+static const GetPName GL_SELECTION_BUFFER_SIZE = GetPName::GL_SELECTION_BUFFER_SIZE;
 static const GLenum GL_SMOOTH_QUADRATIC_CURVE_TO_NV = GLenum::GL_SMOOTH_QUADRATIC_CURVE_TO_NV;
 static const GLenum GL_RELATIVE_SMOOTH_QUADRATIC_CURVE_TO_NV = GLenum::GL_RELATIVE_SMOOTH_QUADRATIC_CURVE_TO_NV;
 static const GLenum GL_SMOOTH_CUBIC_CURVE_TO_NV = GLenum::GL_SMOOTH_CUBIC_CURVE_TO_NV;
+static const GetTextureParameter GL_TEXTURE_WIDTH = GetTextureParameter::GL_TEXTURE_WIDTH;
+static const GetTextureParameter GL_TEXTURE_HEIGHT = GetTextureParameter::GL_TEXTURE_HEIGHT;
+static const GetTextureParameter GL_TEXTURE_COMPONENTS = GetTextureParameter::GL_TEXTURE_COMPONENTS;
+static const GetTextureParameter GL_TEXTURE_INTERNAL_FORMAT = GetTextureParameter::GL_TEXTURE_INTERNAL_FORMAT;
+static const GetTextureParameter GL_TEXTURE_BORDER_COLOR = GetTextureParameter::GL_TEXTURE_BORDER_COLOR;
+static const GetTextureParameter GL_TEXTURE_BORDER = GetTextureParameter::GL_TEXTURE_BORDER;
 static const GLenum GL_TEXTURE_TARGET = GLenum::GL_TEXTURE_TARGET;
 static const GLenum GL_RELATIVE_SMOOTH_CUBIC_CURVE_TO_NV = GLenum::GL_RELATIVE_SMOOTH_CUBIC_CURVE_TO_NV;
+static const HintMode GL_DONT_CARE = HintMode::GL_DONT_CARE;
+static const HintMode GL_FASTEST = HintMode::GL_FASTEST;
+static const HintMode GL_NICEST = HintMode::GL_NICEST;
 static const GLenum GL_SMALL_CCW_ARC_TO_NV = GLenum::GL_SMALL_CCW_ARC_TO_NV;
+static const ColorMaterialParameter GL_AMBIENT = ColorMaterialParameter::GL_AMBIENT;
+static const ColorMaterialParameter GL_DIFFUSE = ColorMaterialParameter::GL_DIFFUSE;
+static const ColorMaterialParameter GL_SPECULAR = ColorMaterialParameter::GL_SPECULAR;
+static const LightParameter GL_POSITION = LightParameter::GL_POSITION;
+static const LightParameter GL_SPOT_DIRECTION = LightParameter::GL_SPOT_DIRECTION;
+static const LightParameter GL_SPOT_EXPONENT = LightParameter::GL_SPOT_EXPONENT;
+static const LightParameter GL_SPOT_CUTOFF = LightParameter::GL_SPOT_CUTOFF;
+static const LightParameter GL_CONSTANT_ATTENUATION = LightParameter::GL_CONSTANT_ATTENUATION;
+static const LightParameter GL_LINEAR_ATTENUATION = LightParameter::GL_LINEAR_ATTENUATION;
+static const LightParameter GL_QUADRATIC_ATTENUATION = LightParameter::GL_QUADRATIC_ATTENUATION;
 static const GLenum GL_RELATIVE_SMALL_CCW_ARC_TO_NV = GLenum::GL_RELATIVE_SMALL_CCW_ARC_TO_NV;
+static const ListMode GL_COMPILE = ListMode::GL_COMPILE;
+static const ListMode GL_COMPILE_AND_EXECUTE = ListMode::GL_COMPILE_AND_EXECUTE;
 static const GLenum GL_SMALL_CW_ARC_TO_NV = GLenum::GL_SMALL_CW_ARC_TO_NV;
+static const ColorPointerType GL_BYTE = ColorPointerType::GL_BYTE;
+static const ColorPointerType GL_UNSIGNED_BYTE = ColorPointerType::GL_UNSIGNED_BYTE;
+static const ColorPointerType GL_SHORT = ColorPointerType::GL_SHORT;
+static const ColorPointerType GL_UNSIGNED_SHORT = ColorPointerType::GL_UNSIGNED_SHORT;
+static const ColorPointerType GL_INT = ColorPointerType::GL_INT;
+static const ColorPointerType GL_UNSIGNED_INT = ColorPointerType::GL_UNSIGNED_INT;
+static const ColorPointerType GL_FLOAT = ColorPointerType::GL_FLOAT;
+static const ListNameType GL_2_BYTES = ListNameType::GL_2_BYTES;
 static const GLenum GL_2_BYTES_NV = GLenum::GL_2_BYTES_NV;
+static const ListNameType GL_3_BYTES = ListNameType::GL_3_BYTES;
 static const GLenum GL_3_BYTES_NV = GLenum::GL_3_BYTES_NV;
+static const ListNameType GL_4_BYTES = ListNameType::GL_4_BYTES;
 static const GLenum GL_4_BYTES_NV = GLenum::GL_4_BYTES_NV;
+static const ColorPointerType GL_DOUBLE = ColorPointerType::GL_DOUBLE;
 static const GLenum GL_HALF_APPLE = GLenum::GL_HALF_APPLE;
 static const GLenum GL_HALF_FLOAT = GLenum::GL_HALF_FLOAT;
 static const GLenum GL_HALF_FLOAT_ARB = GLenum::GL_HALF_FLOAT_ARB;
@@ -6969,143 +5825,538 @@ static const GLenum GL_INT64_NV = GLenum::GL_INT64_NV;
 static const GLenum GL_UNSIGNED_INT64_ARB = GLenum::GL_UNSIGNED_INT64_ARB;
 static const GLenum GL_UNSIGNED_INT64_NV = GLenum::GL_UNSIGNED_INT64_NV;
 static const GLenum GL_RELATIVE_SMALL_CW_ARC_TO_NV = GLenum::GL_RELATIVE_SMALL_CW_ARC_TO_NV;
+static const LogicOp GL_CLEAR = LogicOp::GL_CLEAR;
+static const LogicOp GL_AND = LogicOp::GL_AND;
+static const LogicOp GL_AND_REVERSE = LogicOp::GL_AND_REVERSE;
+static const LogicOp GL_COPY = LogicOp::GL_COPY;
+static const LogicOp GL_AND_INVERTED = LogicOp::GL_AND_INVERTED;
+static const LogicOp GL_NOOP = LogicOp::GL_NOOP;
+static const LogicOp GL_XOR = LogicOp::GL_XOR;
 static const GLenum GL_XOR_NV = GLenum::GL_XOR_NV;
+static const LogicOp GL_OR = LogicOp::GL_OR;
+static const LogicOp GL_NOR = LogicOp::GL_NOR;
+static const LogicOp GL_EQUIV = LogicOp::GL_EQUIV;
+static const LogicOp GL_INVERT = LogicOp::GL_INVERT;
+static const LogicOp GL_OR_REVERSE = LogicOp::GL_OR_REVERSE;
+static const LogicOp GL_COPY_INVERTED = LogicOp::GL_COPY_INVERTED;
+static const LogicOp GL_OR_INVERTED = LogicOp::GL_OR_INVERTED;
+static const LogicOp GL_NAND = LogicOp::GL_NAND;
+static const LogicOp GL_SET = LogicOp::GL_SET;
 static const GLenum GL_LARGE_CCW_ARC_TO_NV = GLenum::GL_LARGE_CCW_ARC_TO_NV;
+static const ColorMaterialParameter GL_EMISSION = ColorMaterialParameter::GL_EMISSION;
+static const MaterialParameter GL_SHININESS = MaterialParameter::GL_SHININESS;
+static const ColorMaterialParameter GL_AMBIENT_AND_DIFFUSE = ColorMaterialParameter::GL_AMBIENT_AND_DIFFUSE;
+static const MaterialParameter GL_COLOR_INDEXES = MaterialParameter::GL_COLOR_INDEXES;
 static const GLenum GL_RELATIVE_LARGE_CCW_ARC_TO_NV = GLenum::GL_RELATIVE_LARGE_CCW_ARC_TO_NV;
+static const MatrixMode GL_MODELVIEW = MatrixMode::GL_MODELVIEW;
 static const GLenum GL_MODELVIEW0_ARB = GLenum::GL_MODELVIEW0_ARB;
+static const MatrixMode GL_MODELVIEW0_EXT = MatrixMode::GL_MODELVIEW0_EXT;
 static const GLenum GL_PATH_MODELVIEW_NV = GLenum::GL_PATH_MODELVIEW_NV;
 static const GLenum GL_PATH_PROJECTION_NV = GLenum::GL_PATH_PROJECTION_NV;
+static const MatrixMode GL_PROJECTION = MatrixMode::GL_PROJECTION;
+static const MatrixMode GL_TEXTURE = MatrixMode::GL_TEXTURE;
 static const GLenum GL_LARGE_CW_ARC_TO_NV = GLenum::GL_LARGE_CW_ARC_TO_NV;
+static const PixelCopyType GL_COLOR = PixelCopyType::GL_COLOR;
+static const PixelCopyType GL_DEPTH = PixelCopyType::GL_DEPTH;
+static const PixelCopyType GL_STENCIL = PixelCopyType::GL_STENCIL;
 static const GLenum GL_RELATIVE_LARGE_CW_ARC_TO_NV = GLenum::GL_RELATIVE_LARGE_CW_ARC_TO_NV;
+static const PixelFormat GL_COLOR_INDEX = PixelFormat::GL_COLOR_INDEX;
+static const PixelFormat GL_STENCIL_INDEX = PixelFormat::GL_STENCIL_INDEX;
+static const PixelFormat GL_DEPTH_COMPONENT = PixelFormat::GL_DEPTH_COMPONENT;
+static const PixelFormat GL_RED = PixelFormat::GL_RED;
 static const GLenum GL_RED_NV = GLenum::GL_RED_NV;
+static const PixelFormat GL_GREEN = PixelFormat::GL_GREEN;
 static const GLenum GL_GREEN_NV = GLenum::GL_GREEN_NV;
+static const PixelFormat GL_BLUE = PixelFormat::GL_BLUE;
 static const GLenum GL_BLUE_NV = GLenum::GL_BLUE_NV;
+static const PixelFormat GL_ALPHA = PixelFormat::GL_ALPHA;
+static const PixelFormat GL_RGB = PixelFormat::GL_RGB;
+static const PixelFormat GL_RGBA = PixelFormat::GL_RGBA;
+static const PixelFormat GL_LUMINANCE = PixelFormat::GL_LUMINANCE;
+static const PixelFormat GL_LUMINANCE_ALPHA = PixelFormat::GL_LUMINANCE_ALPHA;
 static const GLenum GL_RASTER_POSITION_UNCLIPPED_IBM = GLenum::GL_RASTER_POSITION_UNCLIPPED_IBM;
 static const GLenum GL_CONIC_CURVE_TO_NV = GLenum::GL_CONIC_CURVE_TO_NV;
+static const PixelType GL_BITMAP = PixelType::GL_BITMAP;
+static const HintTarget GL_PREFER_DOUBLEBUFFER_HINT_PGI = HintTarget::GL_PREFER_DOUBLEBUFFER_HINT_PGI;
+static const HintTarget GL_CONSERVE_MEMORY_HINT_PGI = HintTarget::GL_CONSERVE_MEMORY_HINT_PGI;
+static const HintTarget GL_RECLAIM_MEMORY_HINT_PGI = HintTarget::GL_RECLAIM_MEMORY_HINT_PGI;
 static const GLenum GL_NATIVE_GRAPHICS_HANDLE_PGI = GLenum::GL_NATIVE_GRAPHICS_HANDLE_PGI;
+static const HintTarget GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI = HintTarget::GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI;
+static const HintTarget GL_NATIVE_GRAPHICS_END_HINT_PGI = HintTarget::GL_NATIVE_GRAPHICS_END_HINT_PGI;
+static const HintTarget GL_ALWAYS_FAST_HINT_PGI = HintTarget::GL_ALWAYS_FAST_HINT_PGI;
+static const HintTarget GL_ALWAYS_SOFT_HINT_PGI = HintTarget::GL_ALWAYS_SOFT_HINT_PGI;
+static const HintTarget GL_ALLOW_DRAW_OBJ_HINT_PGI = HintTarget::GL_ALLOW_DRAW_OBJ_HINT_PGI;
+static const HintTarget GL_ALLOW_DRAW_WIN_HINT_PGI = HintTarget::GL_ALLOW_DRAW_WIN_HINT_PGI;
+static const HintTarget GL_ALLOW_DRAW_FRG_HINT_PGI = HintTarget::GL_ALLOW_DRAW_FRG_HINT_PGI;
+static const HintTarget GL_ALLOW_DRAW_MEM_HINT_PGI = HintTarget::GL_ALLOW_DRAW_MEM_HINT_PGI;
+static const HintTarget GL_STRICT_DEPTHFUNC_HINT_PGI = HintTarget::GL_STRICT_DEPTHFUNC_HINT_PGI;
+static const HintTarget GL_STRICT_LIGHTING_HINT_PGI = HintTarget::GL_STRICT_LIGHTING_HINT_PGI;
+static const HintTarget GL_STRICT_SCISSOR_HINT_PGI = HintTarget::GL_STRICT_SCISSOR_HINT_PGI;
+static const HintTarget GL_FULL_STIPPLE_HINT_PGI = HintTarget::GL_FULL_STIPPLE_HINT_PGI;
+static const HintTarget GL_CLIP_NEAR_HINT_PGI = HintTarget::GL_CLIP_NEAR_HINT_PGI;
+static const HintTarget GL_CLIP_FAR_HINT_PGI = HintTarget::GL_CLIP_FAR_HINT_PGI;
+static const HintTarget GL_WIDE_LINE_HINT_PGI = HintTarget::GL_WIDE_LINE_HINT_PGI;
+static const HintTarget GL_BACK_NORMALS_HINT_PGI = HintTarget::GL_BACK_NORMALS_HINT_PGI;
+static const HintTarget GL_VERTEX_DATA_HINT_PGI = HintTarget::GL_VERTEX_DATA_HINT_PGI;
+static const HintTarget GL_VERTEX_CONSISTENT_HINT_PGI = HintTarget::GL_VERTEX_CONSISTENT_HINT_PGI;
+static const HintTarget GL_MATERIAL_SIDE_HINT_PGI = HintTarget::GL_MATERIAL_SIDE_HINT_PGI;
+static const HintTarget GL_MAX_VERTEX_HINT_PGI = HintTarget::GL_MAX_VERTEX_HINT_PGI;
 static const GLenum GL_RELATIVE_CONIC_CURVE_TO_NV = GLenum::GL_RELATIVE_CONIC_CURVE_TO_NV;
+static const MeshMode1 GL_POINT = MeshMode1::GL_POINT;
+static const MeshMode1 GL_LINE = MeshMode1::GL_LINE;
+static const MeshMode2 GL_FILL = MeshMode2::GL_FILL;
+static const RenderingMode GL_RENDER = RenderingMode::GL_RENDER;
+static const RenderingMode GL_FEEDBACK = RenderingMode::GL_FEEDBACK;
+static const RenderingMode GL_SELECT = RenderingMode::GL_SELECT;
+static const ShadingModel GL_FLAT = ShadingModel::GL_FLAT;
+static const ShadingModel GL_SMOOTH = ShadingModel::GL_SMOOTH;
+static const StencilOp GL_KEEP = StencilOp::GL_KEEP;
+static const LightEnvModeSGIX GL_REPLACE = LightEnvModeSGIX::GL_REPLACE;
+static const StencilOp GL_INCR = StencilOp::GL_INCR;
+static const StencilOp GL_DECR = StencilOp::GL_DECR;
+static const StringName GL_VENDOR = StringName::GL_VENDOR;
+static const StringName GL_RENDERER = StringName::GL_RENDERER;
+static const StringName GL_VERSION = StringName::GL_VERSION;
+static const StringName GL_EXTENSIONS = StringName::GL_EXTENSIONS;
+static const TextureCoordName GL_S = TextureCoordName::GL_S;
+static const TextureCoordName GL_T = TextureCoordName::GL_T;
+static const TextureCoordName GL_R = TextureCoordName::GL_R;
+static const TextureCoordName GL_Q = TextureCoordName::GL_Q;
+static const LightEnvModeSGIX GL_MODULATE = LightEnvModeSGIX::GL_MODULATE;
+static const TextureEnvMode GL_DECAL = TextureEnvMode::GL_DECAL;
+static const TextureEnvParameter GL_TEXTURE_ENV_MODE = TextureEnvParameter::GL_TEXTURE_ENV_MODE;
+static const TextureEnvParameter GL_TEXTURE_ENV_COLOR = TextureEnvParameter::GL_TEXTURE_ENV_COLOR;
+static const TextureEnvTarget GL_TEXTURE_ENV = TextureEnvTarget::GL_TEXTURE_ENV;
+static const TextureGenMode GL_EYE_LINEAR = TextureGenMode::GL_EYE_LINEAR;
 static const GLenum GL_EYE_LINEAR_NV = GLenum::GL_EYE_LINEAR_NV;
+static const TextureGenMode GL_OBJECT_LINEAR = TextureGenMode::GL_OBJECT_LINEAR;
 static const GLenum GL_OBJECT_LINEAR_NV = GLenum::GL_OBJECT_LINEAR_NV;
+static const TextureGenMode GL_SPHERE_MAP = TextureGenMode::GL_SPHERE_MAP;
+static const TextureGenParameter GL_TEXTURE_GEN_MODE = TextureGenParameter::GL_TEXTURE_GEN_MODE;
+static const TextureGenParameter GL_OBJECT_PLANE = TextureGenParameter::GL_OBJECT_PLANE;
+static const TextureGenParameter GL_EYE_PLANE = TextureGenParameter::GL_EYE_PLANE;
+static const TextureMagFilter GL_NEAREST = TextureMagFilter::GL_NEAREST;
+static const FogMode GL_LINEAR = FogMode::GL_LINEAR;
+static const TextureMinFilter GL_NEAREST_MIPMAP_NEAREST = TextureMinFilter::GL_NEAREST_MIPMAP_NEAREST;
+static const TextureMinFilter GL_LINEAR_MIPMAP_NEAREST = TextureMinFilter::GL_LINEAR_MIPMAP_NEAREST;
+static const TextureMinFilter GL_NEAREST_MIPMAP_LINEAR = TextureMinFilter::GL_NEAREST_MIPMAP_LINEAR;
+static const TextureMinFilter GL_LINEAR_MIPMAP_LINEAR = TextureMinFilter::GL_LINEAR_MIPMAP_LINEAR;
+static const GetTextureParameter GL_TEXTURE_MAG_FILTER = GetTextureParameter::GL_TEXTURE_MAG_FILTER;
+static const GetTextureParameter GL_TEXTURE_MIN_FILTER = GetTextureParameter::GL_TEXTURE_MIN_FILTER;
+static const GetTextureParameter GL_TEXTURE_WRAP_S = GetTextureParameter::GL_TEXTURE_WRAP_S;
+static const GetTextureParameter GL_TEXTURE_WRAP_T = GetTextureParameter::GL_TEXTURE_WRAP_T;
+static const TextureWrapMode GL_CLAMP = TextureWrapMode::GL_CLAMP;
+static const TextureWrapMode GL_REPEAT = TextureWrapMode::GL_REPEAT;
+static const GetPName GL_POLYGON_OFFSET_UNITS = GetPName::GL_POLYGON_OFFSET_UNITS;
+static const EnableCap GL_POLYGON_OFFSET_POINT = EnableCap::GL_POLYGON_OFFSET_POINT;
+static const EnableCap GL_POLYGON_OFFSET_LINE = EnableCap::GL_POLYGON_OFFSET_LINE;
+static const InternalFormat GL_R3_G3_B2 = InternalFormat::GL_R3_G3_B2;
+static const InterleavedArrayFormat GL_V2F = InterleavedArrayFormat::GL_V2F;
+static const InterleavedArrayFormat GL_V3F = InterleavedArrayFormat::GL_V3F;
+static const InterleavedArrayFormat GL_C4UB_V2F = InterleavedArrayFormat::GL_C4UB_V2F;
+static const InterleavedArrayFormat GL_C4UB_V3F = InterleavedArrayFormat::GL_C4UB_V3F;
+static const InterleavedArrayFormat GL_C3F_V3F = InterleavedArrayFormat::GL_C3F_V3F;
+static const InterleavedArrayFormat GL_N3F_V3F = InterleavedArrayFormat::GL_N3F_V3F;
+static const InterleavedArrayFormat GL_C4F_N3F_V3F = InterleavedArrayFormat::GL_C4F_N3F_V3F;
+static const InterleavedArrayFormat GL_T2F_V3F = InterleavedArrayFormat::GL_T2F_V3F;
+static const InterleavedArrayFormat GL_T4F_V4F = InterleavedArrayFormat::GL_T4F_V4F;
+static const InterleavedArrayFormat GL_T2F_C4UB_V3F = InterleavedArrayFormat::GL_T2F_C4UB_V3F;
+static const InterleavedArrayFormat GL_T2F_C3F_V3F = InterleavedArrayFormat::GL_T2F_C3F_V3F;
+static const InterleavedArrayFormat GL_T2F_N3F_V3F = InterleavedArrayFormat::GL_T2F_N3F_V3F;
+static const InterleavedArrayFormat GL_T2F_C4F_N3F_V3F = InterleavedArrayFormat::GL_T2F_C4F_N3F_V3F;
+static const InterleavedArrayFormat GL_T4F_C4F_N3F_V4F = InterleavedArrayFormat::GL_T4F_C4F_N3F_V4F;
+static const ClipPlaneName GL_CLIP_DISTANCE0 = ClipPlaneName::GL_CLIP_DISTANCE0;
+static const ClipPlaneName GL_CLIP_PLANE0 = ClipPlaneName::GL_CLIP_PLANE0;
+static const ClipPlaneName GL_CLIP_DISTANCE1 = ClipPlaneName::GL_CLIP_DISTANCE1;
+static const ClipPlaneName GL_CLIP_PLANE1 = ClipPlaneName::GL_CLIP_PLANE1;
+static const ClipPlaneName GL_CLIP_DISTANCE2 = ClipPlaneName::GL_CLIP_DISTANCE2;
+static const ClipPlaneName GL_CLIP_PLANE2 = ClipPlaneName::GL_CLIP_PLANE2;
+static const ClipPlaneName GL_CLIP_DISTANCE3 = ClipPlaneName::GL_CLIP_DISTANCE3;
+static const ClipPlaneName GL_CLIP_PLANE3 = ClipPlaneName::GL_CLIP_PLANE3;
+static const ClipPlaneName GL_CLIP_DISTANCE4 = ClipPlaneName::GL_CLIP_DISTANCE4;
+static const ClipPlaneName GL_CLIP_PLANE4 = ClipPlaneName::GL_CLIP_PLANE4;
+static const ClipPlaneName GL_CLIP_DISTANCE5 = ClipPlaneName::GL_CLIP_DISTANCE5;
+static const ClipPlaneName GL_CLIP_PLANE5 = ClipPlaneName::GL_CLIP_PLANE5;
+static const ClipPlaneName GL_CLIP_DISTANCE6 = ClipPlaneName::GL_CLIP_DISTANCE6;
+static const ClipPlaneName GL_CLIP_DISTANCE7 = ClipPlaneName::GL_CLIP_DISTANCE7;
+static const EnableCap GL_LIGHT0 = EnableCap::GL_LIGHT0;
+static const EnableCap GL_LIGHT1 = EnableCap::GL_LIGHT1;
+static const EnableCap GL_LIGHT2 = EnableCap::GL_LIGHT2;
+static const EnableCap GL_LIGHT3 = EnableCap::GL_LIGHT3;
+static const EnableCap GL_LIGHT4 = EnableCap::GL_LIGHT4;
+static const EnableCap GL_LIGHT5 = EnableCap::GL_LIGHT5;
+static const EnableCap GL_LIGHT6 = EnableCap::GL_LIGHT6;
+static const EnableCap GL_LIGHT7 = EnableCap::GL_LIGHT7;
+static const PixelFormat GL_ABGR_EXT = PixelFormat::GL_ABGR_EXT;
 static const GLenum GL_CONSTANT_COLOR = GLenum::GL_CONSTANT_COLOR;
+static const BlendingFactorDest GL_CONSTANT_COLOR_EXT = BlendingFactorDest::GL_CONSTANT_COLOR_EXT;
 static const GLenum GL_ONE_MINUS_CONSTANT_COLOR = GLenum::GL_ONE_MINUS_CONSTANT_COLOR;
+static const BlendingFactorDest GL_ONE_MINUS_CONSTANT_COLOR_EXT = BlendingFactorDest::GL_ONE_MINUS_CONSTANT_COLOR_EXT;
 static const GLenum GL_CONSTANT_ALPHA = GLenum::GL_CONSTANT_ALPHA;
+static const BlendingFactorDest GL_CONSTANT_ALPHA_EXT = BlendingFactorDest::GL_CONSTANT_ALPHA_EXT;
 static const GLenum GL_ONE_MINUS_CONSTANT_ALPHA = GLenum::GL_ONE_MINUS_CONSTANT_ALPHA;
+static const BlendingFactorDest GL_ONE_MINUS_CONSTANT_ALPHA_EXT = BlendingFactorDest::GL_ONE_MINUS_CONSTANT_ALPHA_EXT;
 static const GLenum GL_BLEND_COLOR = GLenum::GL_BLEND_COLOR;
+static const GetPName GL_BLEND_COLOR_EXT = GetPName::GL_BLEND_COLOR_EXT;
 static const GLenum GL_FUNC_ADD = GLenum::GL_FUNC_ADD;
+static const BlendEquationModeEXT GL_FUNC_ADD_EXT = BlendEquationModeEXT::GL_FUNC_ADD_EXT;
 static const GLenum GL_MIN = GLenum::GL_MIN;
+static const BlendEquationModeEXT GL_MIN_EXT = BlendEquationModeEXT::GL_MIN_EXT;
 static const GLenum GL_MAX = GLenum::GL_MAX;
+static const BlendEquationModeEXT GL_MAX_EXT = BlendEquationModeEXT::GL_MAX_EXT;
 static const GLenum GL_BLEND_EQUATION = GLenum::GL_BLEND_EQUATION;
+static const GetPName GL_BLEND_EQUATION_EXT = GetPName::GL_BLEND_EQUATION_EXT;
 static const GLenum GL_BLEND_EQUATION_RGB = GLenum::GL_BLEND_EQUATION_RGB;
 static const GLenum GL_BLEND_EQUATION_RGB_EXT = GLenum::GL_BLEND_EQUATION_RGB_EXT;
 static const GLenum GL_FUNC_SUBTRACT = GLenum::GL_FUNC_SUBTRACT;
+static const BlendEquationModeEXT GL_FUNC_SUBTRACT_EXT = BlendEquationModeEXT::GL_FUNC_SUBTRACT_EXT;
 static const GLenum GL_FUNC_REVERSE_SUBTRACT = GLenum::GL_FUNC_REVERSE_SUBTRACT;
+static const BlendEquationModeEXT GL_FUNC_REVERSE_SUBTRACT_EXT = BlendEquationModeEXT::GL_FUNC_REVERSE_SUBTRACT_EXT;
+static const PixelFormat GL_CMYK_EXT = PixelFormat::GL_CMYK_EXT;
+static const PixelFormat GL_CMYKA_EXT = PixelFormat::GL_CMYKA_EXT;
+static const GetPName GL_PACK_CMYK_HINT_EXT = GetPName::GL_PACK_CMYK_HINT_EXT;
+static const GetPName GL_UNPACK_CMYK_HINT_EXT = GetPName::GL_UNPACK_CMYK_HINT_EXT;
+static const ConvolutionTargetEXT GL_CONVOLUTION_1D = ConvolutionTargetEXT::GL_CONVOLUTION_1D;
+static const ConvolutionTargetEXT GL_CONVOLUTION_1D_EXT = ConvolutionTargetEXT::GL_CONVOLUTION_1D_EXT;
+static const ConvolutionTargetEXT GL_CONVOLUTION_2D = ConvolutionTargetEXT::GL_CONVOLUTION_2D;
+static const ConvolutionTargetEXT GL_CONVOLUTION_2D_EXT = ConvolutionTargetEXT::GL_CONVOLUTION_2D_EXT;
+static const SeparableTargetEXT GL_SEPARABLE_2D = SeparableTargetEXT::GL_SEPARABLE_2D;
+static const EnableCap GL_SEPARABLE_2D_EXT = EnableCap::GL_SEPARABLE_2D_EXT;
+static const ConvolutionParameterEXT GL_CONVOLUTION_BORDER_MODE = ConvolutionParameterEXT::GL_CONVOLUTION_BORDER_MODE;
+static const ConvolutionParameterEXT GL_CONVOLUTION_BORDER_MODE_EXT = ConvolutionParameterEXT::GL_CONVOLUTION_BORDER_MODE_EXT;
+static const ConvolutionParameterEXT GL_CONVOLUTION_FILTER_SCALE = ConvolutionParameterEXT::GL_CONVOLUTION_FILTER_SCALE;
+static const ConvolutionParameterEXT GL_CONVOLUTION_FILTER_SCALE_EXT = ConvolutionParameterEXT::GL_CONVOLUTION_FILTER_SCALE_EXT;
+static const ConvolutionParameterEXT GL_CONVOLUTION_FILTER_BIAS = ConvolutionParameterEXT::GL_CONVOLUTION_FILTER_BIAS;
+static const ConvolutionParameterEXT GL_CONVOLUTION_FILTER_BIAS_EXT = ConvolutionParameterEXT::GL_CONVOLUTION_FILTER_BIAS_EXT;
+static const ConvolutionBorderModeEXT GL_REDUCE = ConvolutionBorderModeEXT::GL_REDUCE;
+static const ConvolutionBorderModeEXT GL_REDUCE_EXT = ConvolutionBorderModeEXT::GL_REDUCE_EXT;
 static const GLenum GL_CONVOLUTION_FORMAT = GLenum::GL_CONVOLUTION_FORMAT;
+static const GetConvolutionParameter GL_CONVOLUTION_FORMAT_EXT = GetConvolutionParameter::GL_CONVOLUTION_FORMAT_EXT;
 static const GLenum GL_CONVOLUTION_WIDTH = GLenum::GL_CONVOLUTION_WIDTH;
+static const GetConvolutionParameter GL_CONVOLUTION_WIDTH_EXT = GetConvolutionParameter::GL_CONVOLUTION_WIDTH_EXT;
 static const GLenum GL_CONVOLUTION_HEIGHT = GLenum::GL_CONVOLUTION_HEIGHT;
+static const GetConvolutionParameter GL_CONVOLUTION_HEIGHT_EXT = GetConvolutionParameter::GL_CONVOLUTION_HEIGHT_EXT;
 static const GLenum GL_MAX_CONVOLUTION_WIDTH = GLenum::GL_MAX_CONVOLUTION_WIDTH;
+static const GetConvolutionParameter GL_MAX_CONVOLUTION_WIDTH_EXT = GetConvolutionParameter::GL_MAX_CONVOLUTION_WIDTH_EXT;
 static const GLenum GL_MAX_CONVOLUTION_HEIGHT = GLenum::GL_MAX_CONVOLUTION_HEIGHT;
+static const GetConvolutionParameter GL_MAX_CONVOLUTION_HEIGHT_EXT = GetConvolutionParameter::GL_MAX_CONVOLUTION_HEIGHT_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_RED_SCALE = PixelTransferParameter::GL_POST_CONVOLUTION_RED_SCALE;
+static const GetPName GL_POST_CONVOLUTION_RED_SCALE_EXT = GetPName::GL_POST_CONVOLUTION_RED_SCALE_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_GREEN_SCALE = PixelTransferParameter::GL_POST_CONVOLUTION_GREEN_SCALE;
+static const GetPName GL_POST_CONVOLUTION_GREEN_SCALE_EXT = GetPName::GL_POST_CONVOLUTION_GREEN_SCALE_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_BLUE_SCALE = PixelTransferParameter::GL_POST_CONVOLUTION_BLUE_SCALE;
+static const GetPName GL_POST_CONVOLUTION_BLUE_SCALE_EXT = GetPName::GL_POST_CONVOLUTION_BLUE_SCALE_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_ALPHA_SCALE = PixelTransferParameter::GL_POST_CONVOLUTION_ALPHA_SCALE;
+static const GetPName GL_POST_CONVOLUTION_ALPHA_SCALE_EXT = GetPName::GL_POST_CONVOLUTION_ALPHA_SCALE_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_RED_BIAS = PixelTransferParameter::GL_POST_CONVOLUTION_RED_BIAS;
+static const GetPName GL_POST_CONVOLUTION_RED_BIAS_EXT = GetPName::GL_POST_CONVOLUTION_RED_BIAS_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_GREEN_BIAS = PixelTransferParameter::GL_POST_CONVOLUTION_GREEN_BIAS;
+static const GetPName GL_POST_CONVOLUTION_GREEN_BIAS_EXT = GetPName::GL_POST_CONVOLUTION_GREEN_BIAS_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_BLUE_BIAS = PixelTransferParameter::GL_POST_CONVOLUTION_BLUE_BIAS;
+static const GetPName GL_POST_CONVOLUTION_BLUE_BIAS_EXT = GetPName::GL_POST_CONVOLUTION_BLUE_BIAS_EXT;
+static const PixelTransferParameter GL_POST_CONVOLUTION_ALPHA_BIAS = PixelTransferParameter::GL_POST_CONVOLUTION_ALPHA_BIAS;
+static const GetPName GL_POST_CONVOLUTION_ALPHA_BIAS_EXT = GetPName::GL_POST_CONVOLUTION_ALPHA_BIAS_EXT;
+static const HistogramTargetEXT GL_HISTOGRAM = HistogramTargetEXT::GL_HISTOGRAM;
+static const EnableCap GL_HISTOGRAM_EXT = EnableCap::GL_HISTOGRAM_EXT;
+static const HistogramTargetEXT GL_PROXY_HISTOGRAM = HistogramTargetEXT::GL_PROXY_HISTOGRAM;
+static const HistogramTargetEXT GL_PROXY_HISTOGRAM_EXT = HistogramTargetEXT::GL_PROXY_HISTOGRAM_EXT;
 static const GLenum GL_HISTOGRAM_WIDTH = GLenum::GL_HISTOGRAM_WIDTH;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_WIDTH_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_WIDTH_EXT;
 static const GLenum GL_HISTOGRAM_FORMAT = GLenum::GL_HISTOGRAM_FORMAT;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_FORMAT_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_FORMAT_EXT;
 static const GLenum GL_HISTOGRAM_RED_SIZE = GLenum::GL_HISTOGRAM_RED_SIZE;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_RED_SIZE_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_RED_SIZE_EXT;
 static const GLenum GL_HISTOGRAM_GREEN_SIZE = GLenum::GL_HISTOGRAM_GREEN_SIZE;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_GREEN_SIZE_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_GREEN_SIZE_EXT;
 static const GLenum GL_HISTOGRAM_BLUE_SIZE = GLenum::GL_HISTOGRAM_BLUE_SIZE;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_BLUE_SIZE_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_BLUE_SIZE_EXT;
 static const GLenum GL_HISTOGRAM_ALPHA_SIZE = GLenum::GL_HISTOGRAM_ALPHA_SIZE;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_ALPHA_SIZE_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_ALPHA_SIZE_EXT;
 static const GLenum GL_HISTOGRAM_LUMINANCE_SIZE = GLenum::GL_HISTOGRAM_LUMINANCE_SIZE;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_LUMINANCE_SIZE_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_LUMINANCE_SIZE_EXT;
 static const GLenum GL_HISTOGRAM_SINK = GLenum::GL_HISTOGRAM_SINK;
+static const GetHistogramParameterPNameEXT GL_HISTOGRAM_SINK_EXT = GetHistogramParameterPNameEXT::GL_HISTOGRAM_SINK_EXT;
+static const MinmaxTargetEXT GL_MINMAX = MinmaxTargetEXT::GL_MINMAX;
+static const EnableCap GL_MINMAX_EXT = EnableCap::GL_MINMAX_EXT;
+static const GetMinmaxParameterPNameEXT GL_MINMAX_FORMAT = GetMinmaxParameterPNameEXT::GL_MINMAX_FORMAT;
+static const GetMinmaxParameterPNameEXT GL_MINMAX_FORMAT_EXT = GetMinmaxParameterPNameEXT::GL_MINMAX_FORMAT_EXT;
+static const GetMinmaxParameterPNameEXT GL_MINMAX_SINK = GetMinmaxParameterPNameEXT::GL_MINMAX_SINK;
+static const GetMinmaxParameterPNameEXT GL_MINMAX_SINK_EXT = GetMinmaxParameterPNameEXT::GL_MINMAX_SINK_EXT;
+static const ErrorCode GL_TABLE_TOO_LARGE = ErrorCode::GL_TABLE_TOO_LARGE;
+static const ErrorCode GL_TABLE_TOO_LARGE_EXT = ErrorCode::GL_TABLE_TOO_LARGE_EXT;
+static const PixelType GL_UNSIGNED_BYTE_3_3_2 = PixelType::GL_UNSIGNED_BYTE_3_3_2;
+static const PixelType GL_UNSIGNED_BYTE_3_3_2_EXT = PixelType::GL_UNSIGNED_BYTE_3_3_2_EXT;
+static const PixelType GL_UNSIGNED_SHORT_4_4_4_4 = PixelType::GL_UNSIGNED_SHORT_4_4_4_4;
+static const PixelType GL_UNSIGNED_SHORT_4_4_4_4_EXT = PixelType::GL_UNSIGNED_SHORT_4_4_4_4_EXT;
+static const PixelType GL_UNSIGNED_SHORT_5_5_5_1 = PixelType::GL_UNSIGNED_SHORT_5_5_5_1;
+static const PixelType GL_UNSIGNED_SHORT_5_5_5_1_EXT = PixelType::GL_UNSIGNED_SHORT_5_5_5_1_EXT;
+static const PixelType GL_UNSIGNED_INT_8_8_8_8 = PixelType::GL_UNSIGNED_INT_8_8_8_8;
+static const PixelType GL_UNSIGNED_INT_8_8_8_8_EXT = PixelType::GL_UNSIGNED_INT_8_8_8_8_EXT;
+static const PixelType GL_UNSIGNED_INT_10_10_10_2 = PixelType::GL_UNSIGNED_INT_10_10_10_2;
+static const PixelType GL_UNSIGNED_INT_10_10_10_2_EXT = PixelType::GL_UNSIGNED_INT_10_10_10_2_EXT;
 static const GLenum GL_POLYGON_OFFSET_EXT = GLenum::GL_POLYGON_OFFSET_EXT;
+static const EnableCap GL_POLYGON_OFFSET_FILL = EnableCap::GL_POLYGON_OFFSET_FILL;
+static const GetPName GL_POLYGON_OFFSET_FACTOR = GetPName::GL_POLYGON_OFFSET_FACTOR;
 static const GLenum GL_POLYGON_OFFSET_FACTOR_EXT = GLenum::GL_POLYGON_OFFSET_FACTOR_EXT;
+static const GetPName GL_POLYGON_OFFSET_BIAS_EXT = GetPName::GL_POLYGON_OFFSET_BIAS_EXT;
 static const GLenum GL_RESCALE_NORMAL = GLenum::GL_RESCALE_NORMAL;
+static const EnableCap GL_RESCALE_NORMAL_EXT = EnableCap::GL_RESCALE_NORMAL_EXT;
+static const InternalFormat GL_ALPHA4 = InternalFormat::GL_ALPHA4;
 static const GLenum GL_ALPHA4_EXT = GLenum::GL_ALPHA4_EXT;
+static const InternalFormat GL_ALPHA8 = InternalFormat::GL_ALPHA8;
 static const GLenum GL_ALPHA8_EXT = GLenum::GL_ALPHA8_EXT;
+static const InternalFormat GL_ALPHA12 = InternalFormat::GL_ALPHA12;
 static const GLenum GL_ALPHA12_EXT = GLenum::GL_ALPHA12_EXT;
+static const InternalFormat GL_ALPHA16 = InternalFormat::GL_ALPHA16;
 static const GLenum GL_ALPHA16_EXT = GLenum::GL_ALPHA16_EXT;
+static const InternalFormat GL_LUMINANCE4 = InternalFormat::GL_LUMINANCE4;
 static const GLenum GL_LUMINANCE4_EXT = GLenum::GL_LUMINANCE4_EXT;
+static const InternalFormat GL_LUMINANCE8 = InternalFormat::GL_LUMINANCE8;
 static const GLenum GL_LUMINANCE8_EXT = GLenum::GL_LUMINANCE8_EXT;
+static const InternalFormat GL_LUMINANCE12 = InternalFormat::GL_LUMINANCE12;
 static const GLenum GL_LUMINANCE12_EXT = GLenum::GL_LUMINANCE12_EXT;
+static const InternalFormat GL_LUMINANCE16 = InternalFormat::GL_LUMINANCE16;
 static const GLenum GL_LUMINANCE16_EXT = GLenum::GL_LUMINANCE16_EXT;
+static const InternalFormat GL_LUMINANCE4_ALPHA4 = InternalFormat::GL_LUMINANCE4_ALPHA4;
 static const GLenum GL_LUMINANCE4_ALPHA4_EXT = GLenum::GL_LUMINANCE4_ALPHA4_EXT;
+static const InternalFormat GL_LUMINANCE6_ALPHA2 = InternalFormat::GL_LUMINANCE6_ALPHA2;
 static const GLenum GL_LUMINANCE6_ALPHA2_EXT = GLenum::GL_LUMINANCE6_ALPHA2_EXT;
+static const InternalFormat GL_LUMINANCE8_ALPHA8 = InternalFormat::GL_LUMINANCE8_ALPHA8;
 static const GLenum GL_LUMINANCE8_ALPHA8_EXT = GLenum::GL_LUMINANCE8_ALPHA8_EXT;
+static const InternalFormat GL_LUMINANCE12_ALPHA4 = InternalFormat::GL_LUMINANCE12_ALPHA4;
 static const GLenum GL_LUMINANCE12_ALPHA4_EXT = GLenum::GL_LUMINANCE12_ALPHA4_EXT;
+static const InternalFormat GL_LUMINANCE12_ALPHA12 = InternalFormat::GL_LUMINANCE12_ALPHA12;
 static const GLenum GL_LUMINANCE12_ALPHA12_EXT = GLenum::GL_LUMINANCE12_ALPHA12_EXT;
+static const InternalFormat GL_LUMINANCE16_ALPHA16 = InternalFormat::GL_LUMINANCE16_ALPHA16;
 static const GLenum GL_LUMINANCE16_ALPHA16_EXT = GLenum::GL_LUMINANCE16_ALPHA16_EXT;
+static const InternalFormat GL_INTENSITY = InternalFormat::GL_INTENSITY;
 static const GLenum GL_INTENSITY_EXT = GLenum::GL_INTENSITY_EXT;
+static const InternalFormat GL_INTENSITY4 = InternalFormat::GL_INTENSITY4;
 static const GLenum GL_INTENSITY4_EXT = GLenum::GL_INTENSITY4_EXT;
+static const InternalFormat GL_INTENSITY8 = InternalFormat::GL_INTENSITY8;
 static const GLenum GL_INTENSITY8_EXT = GLenum::GL_INTENSITY8_EXT;
+static const InternalFormat GL_INTENSITY12 = InternalFormat::GL_INTENSITY12;
 static const GLenum GL_INTENSITY12_EXT = GLenum::GL_INTENSITY12_EXT;
+static const InternalFormat GL_INTENSITY16 = InternalFormat::GL_INTENSITY16;
 static const GLenum GL_INTENSITY16_EXT = GLenum::GL_INTENSITY16_EXT;
+static const InternalFormat GL_RGB2_EXT = InternalFormat::GL_RGB2_EXT;
+static const InternalFormat GL_RGB4 = InternalFormat::GL_RGB4;
 static const GLenum GL_RGB4_EXT = GLenum::GL_RGB4_EXT;
+static const InternalFormat GL_RGB5 = InternalFormat::GL_RGB5;
 static const GLenum GL_RGB5_EXT = GLenum::GL_RGB5_EXT;
+static const InternalFormat GL_RGB8 = InternalFormat::GL_RGB8;
 static const GLenum GL_RGB8_EXT = GLenum::GL_RGB8_EXT;
+static const InternalFormat GL_RGB10 = InternalFormat::GL_RGB10;
 static const GLenum GL_RGB10_EXT = GLenum::GL_RGB10_EXT;
+static const InternalFormat GL_RGB12 = InternalFormat::GL_RGB12;
 static const GLenum GL_RGB12_EXT = GLenum::GL_RGB12_EXT;
+static const InternalFormat GL_RGB16 = InternalFormat::GL_RGB16;
 static const GLenum GL_RGB16_EXT = GLenum::GL_RGB16_EXT;
+static const InternalFormat GL_RGBA2 = InternalFormat::GL_RGBA2;
 static const GLenum GL_RGBA2_EXT = GLenum::GL_RGBA2_EXT;
+static const InternalFormat GL_RGBA4 = InternalFormat::GL_RGBA4;
 static const GLenum GL_RGBA4_EXT = GLenum::GL_RGBA4_EXT;
+static const InternalFormat GL_RGB5_A1 = InternalFormat::GL_RGB5_A1;
 static const GLenum GL_RGB5_A1_EXT = GLenum::GL_RGB5_A1_EXT;
+static const InternalFormat GL_RGBA8 = InternalFormat::GL_RGBA8;
 static const GLenum GL_RGBA8_EXT = GLenum::GL_RGBA8_EXT;
+static const InternalFormat GL_RGB10_A2 = InternalFormat::GL_RGB10_A2;
 static const GLenum GL_RGB10_A2_EXT = GLenum::GL_RGB10_A2_EXT;
+static const InternalFormat GL_RGBA12 = InternalFormat::GL_RGBA12;
 static const GLenum GL_RGBA12_EXT = GLenum::GL_RGBA12_EXT;
+static const InternalFormat GL_RGBA16 = InternalFormat::GL_RGBA16;
 static const GLenum GL_RGBA16_EXT = GLenum::GL_RGBA16_EXT;
+static const GetTextureParameter GL_TEXTURE_RED_SIZE = GetTextureParameter::GL_TEXTURE_RED_SIZE;
 static const GLenum GL_TEXTURE_RED_SIZE_EXT = GLenum::GL_TEXTURE_RED_SIZE_EXT;
+static const GetTextureParameter GL_TEXTURE_GREEN_SIZE = GetTextureParameter::GL_TEXTURE_GREEN_SIZE;
 static const GLenum GL_TEXTURE_GREEN_SIZE_EXT = GLenum::GL_TEXTURE_GREEN_SIZE_EXT;
+static const GetTextureParameter GL_TEXTURE_BLUE_SIZE = GetTextureParameter::GL_TEXTURE_BLUE_SIZE;
 static const GLenum GL_TEXTURE_BLUE_SIZE_EXT = GLenum::GL_TEXTURE_BLUE_SIZE_EXT;
+static const GetTextureParameter GL_TEXTURE_ALPHA_SIZE = GetTextureParameter::GL_TEXTURE_ALPHA_SIZE;
 static const GLenum GL_TEXTURE_ALPHA_SIZE_EXT = GLenum::GL_TEXTURE_ALPHA_SIZE_EXT;
+static const GetTextureParameter GL_TEXTURE_LUMINANCE_SIZE = GetTextureParameter::GL_TEXTURE_LUMINANCE_SIZE;
 static const GLenum GL_TEXTURE_LUMINANCE_SIZE_EXT = GLenum::GL_TEXTURE_LUMINANCE_SIZE_EXT;
+static const GetTextureParameter GL_TEXTURE_INTENSITY_SIZE = GetTextureParameter::GL_TEXTURE_INTENSITY_SIZE;
 static const GLenum GL_TEXTURE_INTENSITY_SIZE_EXT = GLenum::GL_TEXTURE_INTENSITY_SIZE_EXT;
+static const TextureEnvMode GL_REPLACE_EXT = TextureEnvMode::GL_REPLACE_EXT;
+static const TextureTarget GL_PROXY_TEXTURE_1D = TextureTarget::GL_PROXY_TEXTURE_1D;
+static const TextureTarget GL_PROXY_TEXTURE_1D_EXT = TextureTarget::GL_PROXY_TEXTURE_1D_EXT;
+static const TextureTarget GL_PROXY_TEXTURE_2D = TextureTarget::GL_PROXY_TEXTURE_2D;
+static const TextureTarget GL_PROXY_TEXTURE_2D_EXT = TextureTarget::GL_PROXY_TEXTURE_2D_EXT;
+static const ErrorCode GL_TEXTURE_TOO_LARGE_EXT = ErrorCode::GL_TEXTURE_TOO_LARGE_EXT;
+static const GetTextureParameter GL_TEXTURE_PRIORITY = GetTextureParameter::GL_TEXTURE_PRIORITY;
+static const TextureParameterName GL_TEXTURE_PRIORITY_EXT = TextureParameterName::GL_TEXTURE_PRIORITY_EXT;
+static const GetTextureParameter GL_TEXTURE_RESIDENT = GetTextureParameter::GL_TEXTURE_RESIDENT;
 static const GLenum GL_TEXTURE_RESIDENT_EXT = GLenum::GL_TEXTURE_RESIDENT_EXT;
 static const GLenum GL_TEXTURE_1D_BINDING_EXT = GLenum::GL_TEXTURE_1D_BINDING_EXT;
+static const GetPName GL_TEXTURE_BINDING_1D = GetPName::GL_TEXTURE_BINDING_1D;
 static const GLenum GL_TEXTURE_2D_BINDING_EXT = GLenum::GL_TEXTURE_2D_BINDING_EXT;
+static const GetPName GL_TEXTURE_BINDING_2D = GetPName::GL_TEXTURE_BINDING_2D;
+static const GetPName GL_TEXTURE_3D_BINDING_EXT = GetPName::GL_TEXTURE_3D_BINDING_EXT;
+static const GetPName GL_TEXTURE_BINDING_3D = GetPName::GL_TEXTURE_BINDING_3D;
+static const PixelStoreParameter GL_PACK_SKIP_IMAGES = PixelStoreParameter::GL_PACK_SKIP_IMAGES;
+static const GetPName GL_PACK_SKIP_IMAGES_EXT = GetPName::GL_PACK_SKIP_IMAGES_EXT;
+static const PixelStoreParameter GL_PACK_IMAGE_HEIGHT = PixelStoreParameter::GL_PACK_IMAGE_HEIGHT;
+static const GetPName GL_PACK_IMAGE_HEIGHT_EXT = GetPName::GL_PACK_IMAGE_HEIGHT_EXT;
+static const PixelStoreParameter GL_UNPACK_SKIP_IMAGES = PixelStoreParameter::GL_UNPACK_SKIP_IMAGES;
+static const GetPName GL_UNPACK_SKIP_IMAGES_EXT = GetPName::GL_UNPACK_SKIP_IMAGES_EXT;
+static const PixelStoreParameter GL_UNPACK_IMAGE_HEIGHT = PixelStoreParameter::GL_UNPACK_IMAGE_HEIGHT;
+static const GetPName GL_UNPACK_IMAGE_HEIGHT_EXT = GetPName::GL_UNPACK_IMAGE_HEIGHT_EXT;
+static const TextureTarget GL_TEXTURE_3D = TextureTarget::GL_TEXTURE_3D;
+static const EnableCap GL_TEXTURE_3D_EXT = EnableCap::GL_TEXTURE_3D_EXT;
+static const TextureTarget GL_PROXY_TEXTURE_3D = TextureTarget::GL_PROXY_TEXTURE_3D;
+static const TextureTarget GL_PROXY_TEXTURE_3D_EXT = TextureTarget::GL_PROXY_TEXTURE_3D_EXT;
 static const GLenum GL_TEXTURE_DEPTH = GLenum::GL_TEXTURE_DEPTH;
+static const GetTextureParameter GL_TEXTURE_DEPTH_EXT = GetTextureParameter::GL_TEXTURE_DEPTH_EXT;
+static const TextureParameterName GL_TEXTURE_WRAP_R = TextureParameterName::GL_TEXTURE_WRAP_R;
+static const GetTextureParameter GL_TEXTURE_WRAP_R_EXT = GetTextureParameter::GL_TEXTURE_WRAP_R_EXT;
 static const GLenum GL_MAX_3D_TEXTURE_SIZE = GLenum::GL_MAX_3D_TEXTURE_SIZE;
+static const GetPName GL_MAX_3D_TEXTURE_SIZE_EXT = GetPName::GL_MAX_3D_TEXTURE_SIZE_EXT;
+static const EnableCap GL_VERTEX_ARRAY = EnableCap::GL_VERTEX_ARRAY;
 static const GLenum GL_VERTEX_ARRAY_EXT = GLenum::GL_VERTEX_ARRAY_EXT;
+static const EnableCap GL_NORMAL_ARRAY = EnableCap::GL_NORMAL_ARRAY;
 static const GLenum GL_NORMAL_ARRAY_EXT = GLenum::GL_NORMAL_ARRAY_EXT;
+static const EnableCap GL_COLOR_ARRAY = EnableCap::GL_COLOR_ARRAY;
 static const GLenum GL_COLOR_ARRAY_EXT = GLenum::GL_COLOR_ARRAY_EXT;
+static const EnableCap GL_INDEX_ARRAY = EnableCap::GL_INDEX_ARRAY;
 static const GLenum GL_INDEX_ARRAY_EXT = GLenum::GL_INDEX_ARRAY_EXT;
+static const EnableCap GL_TEXTURE_COORD_ARRAY = EnableCap::GL_TEXTURE_COORD_ARRAY;
 static const GLenum GL_TEXTURE_COORD_ARRAY_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_EXT;
+static const EnableCap GL_EDGE_FLAG_ARRAY = EnableCap::GL_EDGE_FLAG_ARRAY;
 static const GLenum GL_EDGE_FLAG_ARRAY_EXT = GLenum::GL_EDGE_FLAG_ARRAY_EXT;
+static const GetPName GL_VERTEX_ARRAY_SIZE = GetPName::GL_VERTEX_ARRAY_SIZE;
 static const GLenum GL_VERTEX_ARRAY_SIZE_EXT = GLenum::GL_VERTEX_ARRAY_SIZE_EXT;
+static const GetPName GL_VERTEX_ARRAY_TYPE = GetPName::GL_VERTEX_ARRAY_TYPE;
 static const GLenum GL_VERTEX_ARRAY_TYPE_EXT = GLenum::GL_VERTEX_ARRAY_TYPE_EXT;
+static const GetPName GL_VERTEX_ARRAY_STRIDE = GetPName::GL_VERTEX_ARRAY_STRIDE;
 static const GLenum GL_VERTEX_ARRAY_STRIDE_EXT = GLenum::GL_VERTEX_ARRAY_STRIDE_EXT;
+static const GetPName GL_VERTEX_ARRAY_COUNT_EXT = GetPName::GL_VERTEX_ARRAY_COUNT_EXT;
+static const GetPName GL_NORMAL_ARRAY_TYPE = GetPName::GL_NORMAL_ARRAY_TYPE;
 static const GLenum GL_NORMAL_ARRAY_TYPE_EXT = GLenum::GL_NORMAL_ARRAY_TYPE_EXT;
+static const GetPName GL_NORMAL_ARRAY_STRIDE = GetPName::GL_NORMAL_ARRAY_STRIDE;
 static const GLenum GL_NORMAL_ARRAY_STRIDE_EXT = GLenum::GL_NORMAL_ARRAY_STRIDE_EXT;
+static const GetPName GL_NORMAL_ARRAY_COUNT_EXT = GetPName::GL_NORMAL_ARRAY_COUNT_EXT;
+static const GetPName GL_COLOR_ARRAY_SIZE = GetPName::GL_COLOR_ARRAY_SIZE;
 static const GLenum GL_COLOR_ARRAY_SIZE_EXT = GLenum::GL_COLOR_ARRAY_SIZE_EXT;
+static const GetPName GL_COLOR_ARRAY_TYPE = GetPName::GL_COLOR_ARRAY_TYPE;
 static const GLenum GL_COLOR_ARRAY_TYPE_EXT = GLenum::GL_COLOR_ARRAY_TYPE_EXT;
+static const GetPName GL_COLOR_ARRAY_STRIDE = GetPName::GL_COLOR_ARRAY_STRIDE;
 static const GLenum GL_COLOR_ARRAY_STRIDE_EXT = GLenum::GL_COLOR_ARRAY_STRIDE_EXT;
+static const GetPName GL_COLOR_ARRAY_COUNT_EXT = GetPName::GL_COLOR_ARRAY_COUNT_EXT;
+static const GetPName GL_INDEX_ARRAY_TYPE = GetPName::GL_INDEX_ARRAY_TYPE;
 static const GLenum GL_INDEX_ARRAY_TYPE_EXT = GLenum::GL_INDEX_ARRAY_TYPE_EXT;
+static const GetPName GL_INDEX_ARRAY_STRIDE = GetPName::GL_INDEX_ARRAY_STRIDE;
 static const GLenum GL_INDEX_ARRAY_STRIDE_EXT = GLenum::GL_INDEX_ARRAY_STRIDE_EXT;
+static const GetPName GL_INDEX_ARRAY_COUNT_EXT = GetPName::GL_INDEX_ARRAY_COUNT_EXT;
+static const GetPName GL_TEXTURE_COORD_ARRAY_SIZE = GetPName::GL_TEXTURE_COORD_ARRAY_SIZE;
 static const GLenum GL_TEXTURE_COORD_ARRAY_SIZE_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_SIZE_EXT;
+static const GetPName GL_TEXTURE_COORD_ARRAY_TYPE = GetPName::GL_TEXTURE_COORD_ARRAY_TYPE;
 static const GLenum GL_TEXTURE_COORD_ARRAY_TYPE_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_TYPE_EXT;
+static const GetPName GL_TEXTURE_COORD_ARRAY_STRIDE = GetPName::GL_TEXTURE_COORD_ARRAY_STRIDE;
 static const GLenum GL_TEXTURE_COORD_ARRAY_STRIDE_EXT = GLenum::GL_TEXTURE_COORD_ARRAY_STRIDE_EXT;
+static const GetPName GL_TEXTURE_COORD_ARRAY_COUNT_EXT = GetPName::GL_TEXTURE_COORD_ARRAY_COUNT_EXT;
+static const GetPName GL_EDGE_FLAG_ARRAY_STRIDE = GetPName::GL_EDGE_FLAG_ARRAY_STRIDE;
 static const GLenum GL_EDGE_FLAG_ARRAY_STRIDE_EXT = GLenum::GL_EDGE_FLAG_ARRAY_STRIDE_EXT;
+static const GetPName GL_EDGE_FLAG_ARRAY_COUNT_EXT = GetPName::GL_EDGE_FLAG_ARRAY_COUNT_EXT;
+static const GetPointervPName GL_VERTEX_ARRAY_POINTER = GetPointervPName::GL_VERTEX_ARRAY_POINTER;
+static const GetPointervPName GL_VERTEX_ARRAY_POINTER_EXT = GetPointervPName::GL_VERTEX_ARRAY_POINTER_EXT;
+static const GetPointervPName GL_NORMAL_ARRAY_POINTER = GetPointervPName::GL_NORMAL_ARRAY_POINTER;
+static const GetPointervPName GL_NORMAL_ARRAY_POINTER_EXT = GetPointervPName::GL_NORMAL_ARRAY_POINTER_EXT;
+static const GetPointervPName GL_COLOR_ARRAY_POINTER = GetPointervPName::GL_COLOR_ARRAY_POINTER;
+static const GetPointervPName GL_COLOR_ARRAY_POINTER_EXT = GetPointervPName::GL_COLOR_ARRAY_POINTER_EXT;
+static const GetPointervPName GL_INDEX_ARRAY_POINTER = GetPointervPName::GL_INDEX_ARRAY_POINTER;
+static const GetPointervPName GL_INDEX_ARRAY_POINTER_EXT = GetPointervPName::GL_INDEX_ARRAY_POINTER_EXT;
+static const GetPointervPName GL_TEXTURE_COORD_ARRAY_POINTER = GetPointervPName::GL_TEXTURE_COORD_ARRAY_POINTER;
+static const GetPointervPName GL_TEXTURE_COORD_ARRAY_POINTER_EXT = GetPointervPName::GL_TEXTURE_COORD_ARRAY_POINTER_EXT;
+static const GetPointervPName GL_EDGE_FLAG_ARRAY_POINTER = GetPointervPName::GL_EDGE_FLAG_ARRAY_POINTER;
+static const GetPointervPName GL_EDGE_FLAG_ARRAY_POINTER_EXT = GetPointervPName::GL_EDGE_FLAG_ARRAY_POINTER_EXT;
+static const EnableCap GL_INTERLACE_SGIX = EnableCap::GL_INTERLACE_SGIX;
+static const TextureTarget GL_DETAIL_TEXTURE_2D_SGIS = TextureTarget::GL_DETAIL_TEXTURE_2D_SGIS;
+static const GetPName GL_DETAIL_TEXTURE_2D_BINDING_SGIS = GetPName::GL_DETAIL_TEXTURE_2D_BINDING_SGIS;
+static const TextureMagFilter GL_LINEAR_DETAIL_SGIS = TextureMagFilter::GL_LINEAR_DETAIL_SGIS;
+static const TextureMagFilter GL_LINEAR_DETAIL_ALPHA_SGIS = TextureMagFilter::GL_LINEAR_DETAIL_ALPHA_SGIS;
+static const TextureMagFilter GL_LINEAR_DETAIL_COLOR_SGIS = TextureMagFilter::GL_LINEAR_DETAIL_COLOR_SGIS;
+static const GetTextureParameter GL_DETAIL_TEXTURE_LEVEL_SGIS = GetTextureParameter::GL_DETAIL_TEXTURE_LEVEL_SGIS;
+static const GetTextureParameter GL_DETAIL_TEXTURE_MODE_SGIS = GetTextureParameter::GL_DETAIL_TEXTURE_MODE_SGIS;
+static const GetTextureParameter GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS = GetTextureParameter::GL_DETAIL_TEXTURE_FUNC_POINTS_SGIS;
 static const GLenum GL_MULTISAMPLE = GLenum::GL_MULTISAMPLE;
 static const GLenum GL_MULTISAMPLE_ARB = GLenum::GL_MULTISAMPLE_ARB;
 static const GLenum GL_MULTISAMPLE_EXT = GLenum::GL_MULTISAMPLE_EXT;
+static const EnableCap GL_MULTISAMPLE_SGIS = EnableCap::GL_MULTISAMPLE_SGIS;
 static const GLenum GL_SAMPLE_ALPHA_TO_COVERAGE = GLenum::GL_SAMPLE_ALPHA_TO_COVERAGE;
 static const GLenum GL_SAMPLE_ALPHA_TO_COVERAGE_ARB = GLenum::GL_SAMPLE_ALPHA_TO_COVERAGE_ARB;
 static const GLenum GL_SAMPLE_ALPHA_TO_MASK_EXT = GLenum::GL_SAMPLE_ALPHA_TO_MASK_EXT;
+static const EnableCap GL_SAMPLE_ALPHA_TO_MASK_SGIS = EnableCap::GL_SAMPLE_ALPHA_TO_MASK_SGIS;
 static const GLenum GL_SAMPLE_ALPHA_TO_ONE = GLenum::GL_SAMPLE_ALPHA_TO_ONE;
 static const GLenum GL_SAMPLE_ALPHA_TO_ONE_ARB = GLenum::GL_SAMPLE_ALPHA_TO_ONE_ARB;
 static const GLenum GL_SAMPLE_ALPHA_TO_ONE_EXT = GLenum::GL_SAMPLE_ALPHA_TO_ONE_EXT;
+static const EnableCap GL_SAMPLE_ALPHA_TO_ONE_SGIS = EnableCap::GL_SAMPLE_ALPHA_TO_ONE_SGIS;
 static const GLenum GL_SAMPLE_COVERAGE = GLenum::GL_SAMPLE_COVERAGE;
 static const GLenum GL_SAMPLE_COVERAGE_ARB = GLenum::GL_SAMPLE_COVERAGE_ARB;
 static const GLenum GL_SAMPLE_MASK_EXT = GLenum::GL_SAMPLE_MASK_EXT;
+static const EnableCap GL_SAMPLE_MASK_SGIS = EnableCap::GL_SAMPLE_MASK_SGIS;
+static const SamplePatternSGIS GL_1PASS_EXT = SamplePatternSGIS::GL_1PASS_EXT;
+static const SamplePatternSGIS GL_1PASS_SGIS = SamplePatternSGIS::GL_1PASS_SGIS;
+static const SamplePatternSGIS GL_2PASS_0_EXT = SamplePatternSGIS::GL_2PASS_0_EXT;
+static const SamplePatternSGIS GL_2PASS_0_SGIS = SamplePatternSGIS::GL_2PASS_0_SGIS;
+static const SamplePatternSGIS GL_2PASS_1_EXT = SamplePatternSGIS::GL_2PASS_1_EXT;
+static const SamplePatternSGIS GL_2PASS_1_SGIS = SamplePatternSGIS::GL_2PASS_1_SGIS;
+static const SamplePatternSGIS GL_4PASS_0_EXT = SamplePatternSGIS::GL_4PASS_0_EXT;
+static const SamplePatternSGIS GL_4PASS_0_SGIS = SamplePatternSGIS::GL_4PASS_0_SGIS;
+static const SamplePatternSGIS GL_4PASS_1_EXT = SamplePatternSGIS::GL_4PASS_1_EXT;
+static const SamplePatternSGIS GL_4PASS_1_SGIS = SamplePatternSGIS::GL_4PASS_1_SGIS;
+static const SamplePatternSGIS GL_4PASS_2_EXT = SamplePatternSGIS::GL_4PASS_2_EXT;
+static const SamplePatternSGIS GL_4PASS_2_SGIS = SamplePatternSGIS::GL_4PASS_2_SGIS;
+static const SamplePatternSGIS GL_4PASS_3_EXT = SamplePatternSGIS::GL_4PASS_3_EXT;
+static const SamplePatternSGIS GL_4PASS_3_SGIS = SamplePatternSGIS::GL_4PASS_3_SGIS;
 static const GLenum GL_SAMPLE_BUFFERS = GLenum::GL_SAMPLE_BUFFERS;
 static const GLenum GL_SAMPLE_BUFFERS_ARB = GLenum::GL_SAMPLE_BUFFERS_ARB;
 static const GLenum GL_SAMPLE_BUFFERS_EXT = GLenum::GL_SAMPLE_BUFFERS_EXT;
+static const GetPName GL_SAMPLE_BUFFERS_SGIS = GetPName::GL_SAMPLE_BUFFERS_SGIS;
 static const GLenum GL_SAMPLES = GLenum::GL_SAMPLES;
 static const GLenum GL_SAMPLES_ARB = GLenum::GL_SAMPLES_ARB;
 static const GLenum GL_SAMPLES_EXT = GLenum::GL_SAMPLES_EXT;
+static const GetPName GL_SAMPLES_SGIS = GetPName::GL_SAMPLES_SGIS;
 static const GLenum GL_SAMPLE_COVERAGE_VALUE = GLenum::GL_SAMPLE_COVERAGE_VALUE;
 static const GLenum GL_SAMPLE_COVERAGE_VALUE_ARB = GLenum::GL_SAMPLE_COVERAGE_VALUE_ARB;
 static const GLenum GL_SAMPLE_MASK_VALUE_EXT = GLenum::GL_SAMPLE_MASK_VALUE_EXT;
+static const GetPName GL_SAMPLE_MASK_VALUE_SGIS = GetPName::GL_SAMPLE_MASK_VALUE_SGIS;
 static const GLenum GL_SAMPLE_COVERAGE_INVERT = GLenum::GL_SAMPLE_COVERAGE_INVERT;
 static const GLenum GL_SAMPLE_COVERAGE_INVERT_ARB = GLenum::GL_SAMPLE_COVERAGE_INVERT_ARB;
 static const GLenum GL_SAMPLE_MASK_INVERT_EXT = GLenum::GL_SAMPLE_MASK_INVERT_EXT;
+static const GetPName GL_SAMPLE_MASK_INVERT_SGIS = GetPName::GL_SAMPLE_MASK_INVERT_SGIS;
 static const GLenum GL_SAMPLE_PATTERN_EXT = GLenum::GL_SAMPLE_PATTERN_EXT;
+static const GetPName GL_SAMPLE_PATTERN_SGIS = GetPName::GL_SAMPLE_PATTERN_SGIS;
+static const TextureMagFilter GL_LINEAR_SHARPEN_SGIS = TextureMagFilter::GL_LINEAR_SHARPEN_SGIS;
+static const TextureMagFilter GL_LINEAR_SHARPEN_ALPHA_SGIS = TextureMagFilter::GL_LINEAR_SHARPEN_ALPHA_SGIS;
+static const TextureMagFilter GL_LINEAR_SHARPEN_COLOR_SGIS = TextureMagFilter::GL_LINEAR_SHARPEN_COLOR_SGIS;
+static const GetTextureParameter GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS = GetTextureParameter::GL_SHARPEN_TEXTURE_FUNC_POINTS_SGIS;
 static const GLenum GL_COLOR_MATRIX = GLenum::GL_COLOR_MATRIX;
+static const GetPName GL_COLOR_MATRIX_SGI = GetPName::GL_COLOR_MATRIX_SGI;
 static const GLenum GL_COLOR_MATRIX_STACK_DEPTH = GLenum::GL_COLOR_MATRIX_STACK_DEPTH;
+static const GetPName GL_COLOR_MATRIX_STACK_DEPTH_SGI = GetPName::GL_COLOR_MATRIX_STACK_DEPTH_SGI;
 static const GLenum GL_MAX_COLOR_MATRIX_STACK_DEPTH = GLenum::GL_MAX_COLOR_MATRIX_STACK_DEPTH;
+static const GetPName GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI = GetPName::GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_RED_SCALE = PixelTransferParameter::GL_POST_COLOR_MATRIX_RED_SCALE;
+static const GetPName GL_POST_COLOR_MATRIX_RED_SCALE_SGI = GetPName::GL_POST_COLOR_MATRIX_RED_SCALE_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_GREEN_SCALE = PixelTransferParameter::GL_POST_COLOR_MATRIX_GREEN_SCALE;
+static const GetPName GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = GetPName::GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_BLUE_SCALE = PixelTransferParameter::GL_POST_COLOR_MATRIX_BLUE_SCALE;
+static const GetPName GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI = GetPName::GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_ALPHA_SCALE = PixelTransferParameter::GL_POST_COLOR_MATRIX_ALPHA_SCALE;
+static const GetPName GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = GetPName::GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_RED_BIAS = PixelTransferParameter::GL_POST_COLOR_MATRIX_RED_BIAS;
+static const GetPName GL_POST_COLOR_MATRIX_RED_BIAS_SGI = GetPName::GL_POST_COLOR_MATRIX_RED_BIAS_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_GREEN_BIAS = PixelTransferParameter::GL_POST_COLOR_MATRIX_GREEN_BIAS;
+static const GetPName GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI = GetPName::GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_BLUE_BIAS = PixelTransferParameter::GL_POST_COLOR_MATRIX_BLUE_BIAS;
+static const GetPName GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI = GetPName::GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI;
+static const PixelTransferParameter GL_POST_COLOR_MATRIX_ALPHA_BIAS = PixelTransferParameter::GL_POST_COLOR_MATRIX_ALPHA_BIAS;
+static const GetPName GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI = GetPName::GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI;
+static const ColorTableTargetSGI GL_TEXTURE_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_TEXTURE_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_PROXY_TEXTURE_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_PROXY_TEXTURE_COLOR_TABLE_SGI;
+static const TextureEnvMode GL_TEXTURE_ENV_BIAS_SGIX = TextureEnvMode::GL_TEXTURE_ENV_BIAS_SGIX;
+static const GetTextureParameter GL_SHADOW_AMBIENT_SGIX = GetTextureParameter::GL_SHADOW_AMBIENT_SGIX;
 static const GLenum GL_TEXTURE_COMPARE_FAIL_VALUE_ARB = GLenum::GL_TEXTURE_COMPARE_FAIL_VALUE_ARB;
 static const GLenum GL_BLEND_DST_RGB = GLenum::GL_BLEND_DST_RGB;
 static const GLenum GL_BLEND_DST_RGB_EXT = GLenum::GL_BLEND_DST_RGB_EXT;
@@ -7119,14 +6370,38 @@ static const GLenum GL_422_EXT = GLenum::GL_422_EXT;
 static const GLenum GL_422_REV_EXT = GLenum::GL_422_REV_EXT;
 static const GLenum GL_422_AVERAGE_EXT = GLenum::GL_422_AVERAGE_EXT;
 static const GLenum GL_422_REV_AVERAGE_EXT = GLenum::GL_422_REV_AVERAGE_EXT;
+static const ColorTableTargetSGI GL_COLOR_TABLE = ColorTableTargetSGI::GL_COLOR_TABLE;
+static const ColorTableTargetSGI GL_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_POST_CONVOLUTION_COLOR_TABLE = ColorTableTargetSGI::GL_POST_CONVOLUTION_COLOR_TABLE;
+static const ColorTableTargetSGI GL_POST_CONVOLUTION_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_POST_CONVOLUTION_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_POST_COLOR_MATRIX_COLOR_TABLE = ColorTableTargetSGI::GL_POST_COLOR_MATRIX_COLOR_TABLE;
+static const ColorTableTargetSGI GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_POST_COLOR_MATRIX_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_PROXY_COLOR_TABLE = ColorTableTargetSGI::GL_PROXY_COLOR_TABLE;
+static const ColorTableTargetSGI GL_PROXY_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_PROXY_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_PROXY_POST_CONVOLUTION_COLOR_TABLE = ColorTableTargetSGI::GL_PROXY_POST_CONVOLUTION_COLOR_TABLE;
+static const ColorTableTargetSGI GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_PROXY_POST_CONVOLUTION_COLOR_TABLE_SGI;
+static const ColorTableTargetSGI GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE = ColorTableTargetSGI::GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE;
+static const ColorTableTargetSGI GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI = ColorTableTargetSGI::GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE_SGI;
+static const ColorTableParameterPNameSGI GL_COLOR_TABLE_SCALE = ColorTableParameterPNameSGI::GL_COLOR_TABLE_SCALE;
+static const ColorTableParameterPNameSGI GL_COLOR_TABLE_SCALE_SGI = ColorTableParameterPNameSGI::GL_COLOR_TABLE_SCALE_SGI;
+static const ColorTableParameterPNameSGI GL_COLOR_TABLE_BIAS = ColorTableParameterPNameSGI::GL_COLOR_TABLE_BIAS;
+static const ColorTableParameterPNameSGI GL_COLOR_TABLE_BIAS_SGI = ColorTableParameterPNameSGI::GL_COLOR_TABLE_BIAS_SGI;
 static const GLenum GL_COLOR_TABLE_FORMAT = GLenum::GL_COLOR_TABLE_FORMAT;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_FORMAT_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_FORMAT_SGI;
 static const GLenum GL_COLOR_TABLE_WIDTH = GLenum::GL_COLOR_TABLE_WIDTH;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_WIDTH_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_WIDTH_SGI;
 static const GLenum GL_COLOR_TABLE_RED_SIZE = GLenum::GL_COLOR_TABLE_RED_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_RED_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_RED_SIZE_SGI;
 static const GLenum GL_COLOR_TABLE_GREEN_SIZE = GLenum::GL_COLOR_TABLE_GREEN_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_GREEN_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_GREEN_SIZE_SGI;
 static const GLenum GL_COLOR_TABLE_BLUE_SIZE = GLenum::GL_COLOR_TABLE_BLUE_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_BLUE_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_BLUE_SIZE_SGI;
 static const GLenum GL_COLOR_TABLE_ALPHA_SIZE = GLenum::GL_COLOR_TABLE_ALPHA_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_ALPHA_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_ALPHA_SIZE_SGI;
 static const GLenum GL_COLOR_TABLE_LUMINANCE_SIZE = GLenum::GL_COLOR_TABLE_LUMINANCE_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_LUMINANCE_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_LUMINANCE_SIZE_SGI;
 static const GLenum GL_COLOR_TABLE_INTENSITY_SIZE = GLenum::GL_COLOR_TABLE_INTENSITY_SIZE;
+static const GetColorTableParameterPNameSGI GL_COLOR_TABLE_INTENSITY_SIZE_SGI = GetColorTableParameterPNameSGI::GL_COLOR_TABLE_INTENSITY_SIZE_SGI;
 static const GLenum GL_BGR = GLenum::GL_BGR;
 static const GLenum GL_BGR_EXT = GLenum::GL_BGR_EXT;
 static const GLenum GL_BGRA = GLenum::GL_BGRA;
@@ -7142,13 +6417,95 @@ static const GLenum GL_MAX_ELEMENTS_VERTICES_EXT = GLenum::GL_MAX_ELEMENTS_VERTI
 static const GLenum GL_MAX_ELEMENTS_INDICES = GLenum::GL_MAX_ELEMENTS_INDICES;
 static const GLenum GL_MAX_ELEMENTS_INDICES_EXT = GLenum::GL_MAX_ELEMENTS_INDICES_EXT;
 static const GLenum GL_PHONG_WIN = GLenum::GL_PHONG_WIN;
+static const HintTarget GL_PHONG_HINT_WIN = HintTarget::GL_PHONG_HINT_WIN;
 static const GLenum GL_FOG_SPECULAR_TEXTURE_WIN = GLenum::GL_FOG_SPECULAR_TEXTURE_WIN;
 static const GLenum GL_TEXTURE_INDEX_SIZE_EXT = GLenum::GL_TEXTURE_INDEX_SIZE_EXT;
 static const GLenum GL_PARAMETER_BUFFER_ARB = GLenum::GL_PARAMETER_BUFFER_ARB;
 static const GLenum GL_PARAMETER_BUFFER_BINDING_ARB = GLenum::GL_PARAMETER_BUFFER_BINDING_ARB;
+static const HintTarget GL_CLIP_VOLUME_CLIPPING_HINT_EXT = HintTarget::GL_CLIP_VOLUME_CLIPPING_HINT_EXT;
+static const InternalFormat GL_DUAL_ALPHA4_SGIS = InternalFormat::GL_DUAL_ALPHA4_SGIS;
+static const InternalFormat GL_DUAL_ALPHA8_SGIS = InternalFormat::GL_DUAL_ALPHA8_SGIS;
+static const InternalFormat GL_DUAL_ALPHA12_SGIS = InternalFormat::GL_DUAL_ALPHA12_SGIS;
+static const InternalFormat GL_DUAL_ALPHA16_SGIS = InternalFormat::GL_DUAL_ALPHA16_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE4_SGIS = InternalFormat::GL_DUAL_LUMINANCE4_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE8_SGIS = InternalFormat::GL_DUAL_LUMINANCE8_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE12_SGIS = InternalFormat::GL_DUAL_LUMINANCE12_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE16_SGIS = InternalFormat::GL_DUAL_LUMINANCE16_SGIS;
+static const InternalFormat GL_DUAL_INTENSITY4_SGIS = InternalFormat::GL_DUAL_INTENSITY4_SGIS;
+static const InternalFormat GL_DUAL_INTENSITY8_SGIS = InternalFormat::GL_DUAL_INTENSITY8_SGIS;
+static const InternalFormat GL_DUAL_INTENSITY12_SGIS = InternalFormat::GL_DUAL_INTENSITY12_SGIS;
+static const InternalFormat GL_DUAL_INTENSITY16_SGIS = InternalFormat::GL_DUAL_INTENSITY16_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE_ALPHA4_SGIS = InternalFormat::GL_DUAL_LUMINANCE_ALPHA4_SGIS;
+static const InternalFormat GL_DUAL_LUMINANCE_ALPHA8_SGIS = InternalFormat::GL_DUAL_LUMINANCE_ALPHA8_SGIS;
+static const InternalFormat GL_QUAD_ALPHA4_SGIS = InternalFormat::GL_QUAD_ALPHA4_SGIS;
+static const InternalFormat GL_QUAD_ALPHA8_SGIS = InternalFormat::GL_QUAD_ALPHA8_SGIS;
+static const InternalFormat GL_QUAD_LUMINANCE4_SGIS = InternalFormat::GL_QUAD_LUMINANCE4_SGIS;
+static const InternalFormat GL_QUAD_LUMINANCE8_SGIS = InternalFormat::GL_QUAD_LUMINANCE8_SGIS;
+static const InternalFormat GL_QUAD_INTENSITY4_SGIS = InternalFormat::GL_QUAD_INTENSITY4_SGIS;
+static const InternalFormat GL_QUAD_INTENSITY8_SGIS = InternalFormat::GL_QUAD_INTENSITY8_SGIS;
+static const GetTextureParameter GL_DUAL_TEXTURE_SELECT_SGIS = GetTextureParameter::GL_DUAL_TEXTURE_SELECT_SGIS;
+static const GetTextureParameter GL_QUAD_TEXTURE_SELECT_SGIS = GetTextureParameter::GL_QUAD_TEXTURE_SELECT_SGIS;
+static const PointParameterNameSGIS GL_POINT_SIZE_MIN = PointParameterNameSGIS::GL_POINT_SIZE_MIN;
+static const PointParameterNameSGIS GL_POINT_SIZE_MIN_ARB = PointParameterNameSGIS::GL_POINT_SIZE_MIN_ARB;
+static const PointParameterNameSGIS GL_POINT_SIZE_MIN_EXT = PointParameterNameSGIS::GL_POINT_SIZE_MIN_EXT;
+static const GetPName GL_POINT_SIZE_MIN_SGIS = GetPName::GL_POINT_SIZE_MIN_SGIS;
+static const PointParameterNameSGIS GL_POINT_SIZE_MAX = PointParameterNameSGIS::GL_POINT_SIZE_MAX;
+static const PointParameterNameSGIS GL_POINT_SIZE_MAX_ARB = PointParameterNameSGIS::GL_POINT_SIZE_MAX_ARB;
+static const PointParameterNameSGIS GL_POINT_SIZE_MAX_EXT = PointParameterNameSGIS::GL_POINT_SIZE_MAX_EXT;
+static const GetPName GL_POINT_SIZE_MAX_SGIS = GetPName::GL_POINT_SIZE_MAX_SGIS;
+static const PointParameterNameSGIS GL_POINT_FADE_THRESHOLD_SIZE = PointParameterNameSGIS::GL_POINT_FADE_THRESHOLD_SIZE;
+static const PointParameterNameSGIS GL_POINT_FADE_THRESHOLD_SIZE_ARB = PointParameterNameSGIS::GL_POINT_FADE_THRESHOLD_SIZE_ARB;
+static const PointParameterNameSGIS GL_POINT_FADE_THRESHOLD_SIZE_EXT = PointParameterNameSGIS::GL_POINT_FADE_THRESHOLD_SIZE_EXT;
+static const GetPName GL_POINT_FADE_THRESHOLD_SIZE_SGIS = GetPName::GL_POINT_FADE_THRESHOLD_SIZE_SGIS;
+static const PointParameterNameSGIS GL_DISTANCE_ATTENUATION_EXT = PointParameterNameSGIS::GL_DISTANCE_ATTENUATION_EXT;
+static const GetPName GL_DISTANCE_ATTENUATION_SGIS = GetPName::GL_DISTANCE_ATTENUATION_SGIS;
+static const PointParameterNameSGIS GL_POINT_DISTANCE_ATTENUATION = PointParameterNameSGIS::GL_POINT_DISTANCE_ATTENUATION;
+static const PointParameterNameSGIS GL_POINT_DISTANCE_ATTENUATION_ARB = PointParameterNameSGIS::GL_POINT_DISTANCE_ATTENUATION_ARB;
+static const FogMode GL_FOG_FUNC_SGIS = FogMode::GL_FOG_FUNC_SGIS;
+static const GetPName GL_FOG_FUNC_POINTS_SGIS = GetPName::GL_FOG_FUNC_POINTS_SGIS;
+static const GetPName GL_MAX_FOG_FUNC_POINTS_SGIS = GetPName::GL_MAX_FOG_FUNC_POINTS_SGIS;
+static const TextureWrapMode GL_CLAMP_TO_BORDER = TextureWrapMode::GL_CLAMP_TO_BORDER;
+static const TextureWrapMode GL_CLAMP_TO_BORDER_ARB = TextureWrapMode::GL_CLAMP_TO_BORDER_ARB;
+static const TextureWrapMode GL_CLAMP_TO_BORDER_SGIS = TextureWrapMode::GL_CLAMP_TO_BORDER_SGIS;
+static const HintTarget GL_TEXTURE_MULTI_BUFFER_HINT_SGIX = HintTarget::GL_TEXTURE_MULTI_BUFFER_HINT_SGIX;
+static const TextureWrapMode GL_CLAMP_TO_EDGE = TextureWrapMode::GL_CLAMP_TO_EDGE;
+static const TextureWrapMode GL_CLAMP_TO_EDGE_SGIS = TextureWrapMode::GL_CLAMP_TO_EDGE_SGIS;
+static const GetPName GL_PACK_SKIP_VOLUMES_SGIS = GetPName::GL_PACK_SKIP_VOLUMES_SGIS;
+static const GetPName GL_PACK_IMAGE_DEPTH_SGIS = GetPName::GL_PACK_IMAGE_DEPTH_SGIS;
+static const GetPName GL_UNPACK_SKIP_VOLUMES_SGIS = GetPName::GL_UNPACK_SKIP_VOLUMES_SGIS;
+static const GetPName GL_UNPACK_IMAGE_DEPTH_SGIS = GetPName::GL_UNPACK_IMAGE_DEPTH_SGIS;
+static const EnableCap GL_TEXTURE_4D_SGIS = EnableCap::GL_TEXTURE_4D_SGIS;
+static const TextureTarget GL_PROXY_TEXTURE_4D_SGIS = TextureTarget::GL_PROXY_TEXTURE_4D_SGIS;
+static const GetTextureParameter GL_TEXTURE_4DSIZE_SGIS = GetTextureParameter::GL_TEXTURE_4DSIZE_SGIS;
+static const GetTextureParameter GL_TEXTURE_WRAP_Q_SGIS = GetTextureParameter::GL_TEXTURE_WRAP_Q_SGIS;
+static const GetPName GL_MAX_4D_TEXTURE_SIZE_SGIS = GetPName::GL_MAX_4D_TEXTURE_SIZE_SGIS;
+static const EnableCap GL_PIXEL_TEX_GEN_SGIX = EnableCap::GL_PIXEL_TEX_GEN_SGIX;
+static const TextureTarget GL_TEXTURE_MIN_LOD = TextureTarget::GL_TEXTURE_MIN_LOD;
+static const GetTextureParameter GL_TEXTURE_MIN_LOD_SGIS = GetTextureParameter::GL_TEXTURE_MIN_LOD_SGIS;
+static const TextureTarget GL_TEXTURE_MAX_LOD = TextureTarget::GL_TEXTURE_MAX_LOD;
+static const GetTextureParameter GL_TEXTURE_MAX_LOD_SGIS = GetTextureParameter::GL_TEXTURE_MAX_LOD_SGIS;
+static const TextureTarget GL_TEXTURE_BASE_LEVEL = TextureTarget::GL_TEXTURE_BASE_LEVEL;
+static const GetTextureParameter GL_TEXTURE_BASE_LEVEL_SGIS = GetTextureParameter::GL_TEXTURE_BASE_LEVEL_SGIS;
+static const TextureTarget GL_TEXTURE_MAX_LEVEL = TextureTarget::GL_TEXTURE_MAX_LEVEL;
+static const GetTextureParameter GL_TEXTURE_MAX_LEVEL_SGIS = GetTextureParameter::GL_TEXTURE_MAX_LEVEL_SGIS;
+static const GetPName GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX = GetPName::GL_PIXEL_TILE_BEST_ALIGNMENT_SGIX;
+static const GetPName GL_PIXEL_TILE_CACHE_INCREMENT_SGIX = GetPName::GL_PIXEL_TILE_CACHE_INCREMENT_SGIX;
+static const GetPName GL_PIXEL_TILE_WIDTH_SGIX = GetPName::GL_PIXEL_TILE_WIDTH_SGIX;
+static const GetPName GL_PIXEL_TILE_HEIGHT_SGIX = GetPName::GL_PIXEL_TILE_HEIGHT_SGIX;
+static const GetPName GL_PIXEL_TILE_GRID_WIDTH_SGIX = GetPName::GL_PIXEL_TILE_GRID_WIDTH_SGIX;
+static const GetPName GL_PIXEL_TILE_GRID_HEIGHT_SGIX = GetPName::GL_PIXEL_TILE_GRID_HEIGHT_SGIX;
+static const GetPName GL_PIXEL_TILE_GRID_DEPTH_SGIX = GetPName::GL_PIXEL_TILE_GRID_DEPTH_SGIX;
+static const GetPName GL_PIXEL_TILE_CACHE_SIZE_SGIX = GetPName::GL_PIXEL_TILE_CACHE_SIZE_SGIX;
+static const TextureFilterFuncSGIS GL_FILTER4_SGIS = TextureFilterFuncSGIS::GL_FILTER4_SGIS;
+static const GetTextureParameter GL_TEXTURE_FILTER4_SIZE_SGIS = GetTextureParameter::GL_TEXTURE_FILTER4_SIZE_SGIS;
+static const EnableCap GL_SPRITE_SGIX = EnableCap::GL_SPRITE_SGIX;
+static const GetPName GL_SPRITE_MODE_SGIX = GetPName::GL_SPRITE_MODE_SGIX;
+static const GetPName GL_SPRITE_AXIS_SGIX = GetPName::GL_SPRITE_AXIS_SGIX;
+static const GetPName GL_SPRITE_TRANSLATION_SGIX = GetPName::GL_SPRITE_TRANSLATION_SGIX;
 static const GLenum GL_SPRITE_AXIAL_SGIX = GLenum::GL_SPRITE_AXIAL_SGIX;
 static const GLenum GL_SPRITE_OBJECT_ALIGNED_SGIX = GLenum::GL_SPRITE_OBJECT_ALIGNED_SGIX;
 static const GLenum GL_SPRITE_EYE_ALIGNED_SGIX = GLenum::GL_SPRITE_EYE_ALIGNED_SGIX;
+static const GetPName GL_TEXTURE_4D_BINDING_SGIS = GetPName::GL_TEXTURE_4D_BINDING_SGIS;
 static const GLenum GL_IGNORE_BORDER_HP = GLenum::GL_IGNORE_BORDER_HP;
 static const GLenum GL_CONSTANT_BORDER = GLenum::GL_CONSTANT_BORDER;
 static const GLenum GL_CONSTANT_BORDER_HP = GLenum::GL_CONSTANT_BORDER_HP;
@@ -7176,13 +6533,55 @@ static const GLenum GL_OCCLUSION_TEST_RESULT_HP = GLenum::GL_OCCLUSION_TEST_RESU
 static const GLenum GL_TEXTURE_LIGHTING_MODE_HP = GLenum::GL_TEXTURE_LIGHTING_MODE_HP;
 static const GLenum GL_TEXTURE_POST_SPECULAR_HP = GLenum::GL_TEXTURE_POST_SPECULAR_HP;
 static const GLenum GL_TEXTURE_PRE_SPECULAR_HP = GLenum::GL_TEXTURE_PRE_SPECULAR_HP;
+static const TextureMinFilter GL_LINEAR_CLIPMAP_LINEAR_SGIX = TextureMinFilter::GL_LINEAR_CLIPMAP_LINEAR_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_CENTER_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_CENTER_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_FRAME_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_FRAME_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_OFFSET_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_OFFSET_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_VIRTUAL_DEPTH_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_LOD_OFFSET_SGIX;
+static const GetTextureParameter GL_TEXTURE_CLIPMAP_DEPTH_SGIX = GetTextureParameter::GL_TEXTURE_CLIPMAP_DEPTH_SGIX;
+static const GetPName GL_MAX_CLIPMAP_DEPTH_SGIX = GetPName::GL_MAX_CLIPMAP_DEPTH_SGIX;
+static const GetPName GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX = GetPName::GL_MAX_CLIPMAP_VIRTUAL_DEPTH_SGIX;
+static const GetTextureParameter GL_POST_TEXTURE_FILTER_BIAS_SGIX = GetTextureParameter::GL_POST_TEXTURE_FILTER_BIAS_SGIX;
+static const GetTextureParameter GL_POST_TEXTURE_FILTER_SCALE_SGIX = GetTextureParameter::GL_POST_TEXTURE_FILTER_SCALE_SGIX;
+static const GetPName GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX = GetPName::GL_POST_TEXTURE_FILTER_BIAS_RANGE_SGIX;
+static const GetPName GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX = GetPName::GL_POST_TEXTURE_FILTER_SCALE_RANGE_SGIX;
+static const EnableCap GL_REFERENCE_PLANE_SGIX = EnableCap::GL_REFERENCE_PLANE_SGIX;
+static const GetPName GL_REFERENCE_PLANE_EQUATION_SGIX = GetPName::GL_REFERENCE_PLANE_EQUATION_SGIX;
+static const EnableCap GL_IR_INSTRUMENT1_SGIX = EnableCap::GL_IR_INSTRUMENT1_SGIX;
+static const GetPointervPName GL_INSTRUMENT_BUFFER_POINTER_SGIX = GetPointervPName::GL_INSTRUMENT_BUFFER_POINTER_SGIX;
+static const GetPName GL_INSTRUMENT_MEASUREMENTS_SGIX = GetPName::GL_INSTRUMENT_MEASUREMENTS_SGIX;
+static const ListParameterName GL_LIST_PRIORITY_SGIX = ListParameterName::GL_LIST_PRIORITY_SGIX;
+static const EnableCap GL_CALLIGRAPHIC_FRAGMENT_SGIX = EnableCap::GL_CALLIGRAPHIC_FRAGMENT_SGIX;
+static const EnableCap GL_FRAMEZOOM_SGIX = EnableCap::GL_FRAMEZOOM_SGIX;
+static const GetPName GL_FRAMEZOOM_FACTOR_SGIX = GetPName::GL_FRAMEZOOM_FACTOR_SGIX;
+static const GetPName GL_MAX_FRAMEZOOM_FACTOR_SGIX = GetPName::GL_MAX_FRAMEZOOM_FACTOR_SGIX;
+static const GetTextureParameter GL_TEXTURE_LOD_BIAS_S_SGIX = GetTextureParameter::GL_TEXTURE_LOD_BIAS_S_SGIX;
+static const GetTextureParameter GL_TEXTURE_LOD_BIAS_T_SGIX = GetTextureParameter::GL_TEXTURE_LOD_BIAS_T_SGIX;
+static const GetTextureParameter GL_TEXTURE_LOD_BIAS_R_SGIX = GetTextureParameter::GL_TEXTURE_LOD_BIAS_R_SGIX;
+static const TextureParameterName GL_GENERATE_MIPMAP = TextureParameterName::GL_GENERATE_MIPMAP;
+static const GetTextureParameter GL_GENERATE_MIPMAP_SGIS = GetTextureParameter::GL_GENERATE_MIPMAP_SGIS;
+static const HintTarget GL_GENERATE_MIPMAP_HINT = HintTarget::GL_GENERATE_MIPMAP_HINT;
+static const GetPName GL_GENERATE_MIPMAP_HINT_SGIS = GetPName::GL_GENERATE_MIPMAP_HINT_SGIS;
+static const FfdTargetSGIX GL_GEOMETRY_DEFORMATION_SGIX = FfdTargetSGIX::GL_GEOMETRY_DEFORMATION_SGIX;
+static const FfdTargetSGIX GL_TEXTURE_DEFORMATION_SGIX = FfdTargetSGIX::GL_TEXTURE_DEFORMATION_SGIX;
+static const GetPName GL_DEFORMATIONS_MASK_SGIX = GetPName::GL_DEFORMATIONS_MASK_SGIX;
 static const GLenum GL_MAX_DEFORMATION_ORDER_SGIX = GLenum::GL_MAX_DEFORMATION_ORDER_SGIX;
+static const EnableCap GL_FOG_OFFSET_SGIX = EnableCap::GL_FOG_OFFSET_SGIX;
+static const FogParameter GL_FOG_OFFSET_VALUE_SGIX = FogParameter::GL_FOG_OFFSET_VALUE_SGIX;
+static const GetTextureParameter GL_TEXTURE_COMPARE_SGIX = GetTextureParameter::GL_TEXTURE_COMPARE_SGIX;
+static const GetTextureParameter GL_TEXTURE_COMPARE_OPERATOR_SGIX = GetTextureParameter::GL_TEXTURE_COMPARE_OPERATOR_SGIX;
+static const GetTextureParameter GL_TEXTURE_LEQUAL_R_SGIX = GetTextureParameter::GL_TEXTURE_LEQUAL_R_SGIX;
+static const GetTextureParameter GL_TEXTURE_GEQUAL_R_SGIX = GetTextureParameter::GL_TEXTURE_GEQUAL_R_SGIX;
 static const GLenum GL_DEPTH_COMPONENT16 = GLenum::GL_DEPTH_COMPONENT16;
 static const GLenum GL_DEPTH_COMPONENT16_ARB = GLenum::GL_DEPTH_COMPONENT16_ARB;
+static const InternalFormat GL_DEPTH_COMPONENT16_SGIX = InternalFormat::GL_DEPTH_COMPONENT16_SGIX;
 static const GLenum GL_DEPTH_COMPONENT24 = GLenum::GL_DEPTH_COMPONENT24;
 static const GLenum GL_DEPTH_COMPONENT24_ARB = GLenum::GL_DEPTH_COMPONENT24_ARB;
+static const InternalFormat GL_DEPTH_COMPONENT24_SGIX = InternalFormat::GL_DEPTH_COMPONENT24_SGIX;
 static const GLenum GL_DEPTH_COMPONENT32 = GLenum::GL_DEPTH_COMPONENT32;
 static const GLenum GL_DEPTH_COMPONENT32_ARB = GLenum::GL_DEPTH_COMPONENT32_ARB;
+static const InternalFormat GL_DEPTH_COMPONENT32_SGIX = InternalFormat::GL_DEPTH_COMPONENT32_SGIX;
 static const GLenum GL_ARRAY_ELEMENT_LOCK_FIRST_EXT = GLenum::GL_ARRAY_ELEMENT_LOCK_FIRST_EXT;
 static const GLenum GL_ARRAY_ELEMENT_LOCK_COUNT_EXT = GLenum::GL_ARRAY_ELEMENT_LOCK_COUNT_EXT;
 static const GLenum GL_CULL_VERTEX_EXT = GLenum::GL_CULL_VERTEX_EXT;
@@ -7202,6 +6601,8 @@ static const GLenum GL_INDEX_TEST_REF_EXT = GLenum::GL_INDEX_TEST_REF_EXT;
 static const GLenum GL_INDEX_MATERIAL_EXT = GLenum::GL_INDEX_MATERIAL_EXT;
 static const GLenum GL_INDEX_MATERIAL_PARAMETER_EXT = GLenum::GL_INDEX_MATERIAL_PARAMETER_EXT;
 static const GLenum GL_INDEX_MATERIAL_FACE_EXT = GLenum::GL_INDEX_MATERIAL_FACE_EXT;
+static const PixelFormat GL_YCRCB_422_SGIX = PixelFormat::GL_YCRCB_422_SGIX;
+static const PixelFormat GL_YCRCB_444_SGIX = PixelFormat::GL_YCRCB_444_SGIX;
 static const GLenum GL_WRAP_BORDER_SUN = GLenum::GL_WRAP_BORDER_SUN;
 static const GLenum GL_UNPACK_CONSTANT_DATA_SUNX = GLenum::GL_UNPACK_CONSTANT_DATA_SUNX;
 static const GLenum GL_TEXTURE_CONSTANT_DATA_SUNX = GLenum::GL_TEXTURE_CONSTANT_DATA_SUNX;
@@ -7210,6 +6611,21 @@ static const GLenum GL_REPLACEMENT_CODE_SUN = GLenum::GL_REPLACEMENT_CODE_SUN;
 static const GLenum GL_GLOBAL_ALPHA_SUN = GLenum::GL_GLOBAL_ALPHA_SUN;
 static const GLenum GL_GLOBAL_ALPHA_FACTOR_SUN = GLenum::GL_GLOBAL_ALPHA_FACTOR_SUN;
 static const GLenum GL_TEXTURE_COLOR_WRITEMASK_SGIS = GLenum::GL_TEXTURE_COLOR_WRITEMASK_SGIS;
+static const TextureGenMode GL_EYE_DISTANCE_TO_POINT_SGIS = TextureGenMode::GL_EYE_DISTANCE_TO_POINT_SGIS;
+static const TextureGenMode GL_OBJECT_DISTANCE_TO_POINT_SGIS = TextureGenMode::GL_OBJECT_DISTANCE_TO_POINT_SGIS;
+static const TextureGenMode GL_EYE_DISTANCE_TO_LINE_SGIS = TextureGenMode::GL_EYE_DISTANCE_TO_LINE_SGIS;
+static const TextureGenMode GL_OBJECT_DISTANCE_TO_LINE_SGIS = TextureGenMode::GL_OBJECT_DISTANCE_TO_LINE_SGIS;
+static const TextureGenParameter GL_EYE_POINT_SGIS = TextureGenParameter::GL_EYE_POINT_SGIS;
+static const TextureGenParameter GL_OBJECT_POINT_SGIS = TextureGenParameter::GL_OBJECT_POINT_SGIS;
+static const TextureGenParameter GL_EYE_LINE_SGIS = TextureGenParameter::GL_EYE_LINE_SGIS;
+static const TextureGenParameter GL_OBJECT_LINE_SGIS = TextureGenParameter::GL_OBJECT_LINE_SGIS;
+static const GetPName GL_LIGHT_MODEL_COLOR_CONTROL = GetPName::GL_LIGHT_MODEL_COLOR_CONTROL;
+static const LightModelParameter GL_LIGHT_MODEL_COLOR_CONTROL_EXT = LightModelParameter::GL_LIGHT_MODEL_COLOR_CONTROL_EXT;
+static const LightModelColorControl GL_SINGLE_COLOR = LightModelColorControl::GL_SINGLE_COLOR;
+static const LightModelColorControl GL_SINGLE_COLOR_EXT = LightModelColorControl::GL_SINGLE_COLOR_EXT;
+static const LightModelColorControl GL_SEPARATE_SPECULAR_COLOR = LightModelColorControl::GL_SEPARATE_SPECULAR_COLOR;
+static const LightModelColorControl GL_SEPARATE_SPECULAR_COLOR_EXT = LightModelColorControl::GL_SEPARATE_SPECULAR_COLOR_EXT;
+static const EnableCap GL_SHARED_TEXTURE_PALETTE_EXT = EnableCap::GL_SHARED_TEXTURE_PALETTE_EXT;
 static const GLenum GL_TEXT_FRAGMENT_SHADER_ATI = GLenum::GL_TEXT_FRAGMENT_SHADER_ATI;
 static const GLenum GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING = GLenum::GL_FRAMEBUFFER_ATTACHMENT_COLOR_ENCODING;
 static const GLenum GL_FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE = GLenum::GL_FRAMEBUFFER_ATTACHMENT_COMPONENT_TYPE;
@@ -7298,6 +6714,7 @@ static const GLenum GL_UNKNOWN_CONTEXT_RESET = GLenum::GL_UNKNOWN_CONTEXT_RESET;
 static const GLenum GL_UNKNOWN_CONTEXT_RESET_ARB = GLenum::GL_UNKNOWN_CONTEXT_RESET_ARB;
 static const GLenum GL_RESET_NOTIFICATION_STRATEGY = GLenum::GL_RESET_NOTIFICATION_STRATEGY;
 static const GLenum GL_RESET_NOTIFICATION_STRATEGY_ARB = GLenum::GL_RESET_NOTIFICATION_STRATEGY_ARB;
+static const HintTarget GL_PROGRAM_BINARY_RETRIEVABLE_HINT = HintTarget::GL_PROGRAM_BINARY_RETRIEVABLE_HINT;
 static const GLenum GL_PROGRAM_SEPARABLE = GLenum::GL_PROGRAM_SEPARABLE;
 static const GLenum GL_ACTIVE_PROGRAM = GLenum::GL_ACTIVE_PROGRAM;
 static const GLenum GL_PROGRAM_PIPELINE_BINDING = GLenum::GL_PROGRAM_PIPELINE_BINDING;
@@ -7462,8 +6879,16 @@ static const GLenum GL_MAX_CULL_DISTANCES = GLenum::GL_MAX_CULL_DISTANCES;
 static const GLenum GL_MAX_COMBINED_CLIP_AND_CULL_DISTANCES = GLenum::GL_MAX_COMBINED_CLIP_AND_CULL_DISTANCES;
 static const GLenum GL_CONTEXT_RELEASE_BEHAVIOR = GLenum::GL_CONTEXT_RELEASE_BEHAVIOR;
 static const GLenum GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH = GLenum::GL_CONTEXT_RELEASE_BEHAVIOR_FLUSH;
+static const GetPName GL_CONVOLUTION_HINT_SGIX = GetPName::GL_CONVOLUTION_HINT_SGIX;
 static const GLenum GL_YCRCB_SGIX = GLenum::GL_YCRCB_SGIX;
 static const GLenum GL_YCRCBA_SGIX = GLenum::GL_YCRCBA_SGIX;
+static const BlendEquationModeEXT GL_ALPHA_MIN_SGIX = BlendEquationModeEXT::GL_ALPHA_MIN_SGIX;
+static const BlendEquationModeEXT GL_ALPHA_MAX_SGIX = BlendEquationModeEXT::GL_ALPHA_MAX_SGIX;
+static const HintTarget GL_SCALEBIAS_HINT_SGIX = HintTarget::GL_SCALEBIAS_HINT_SGIX;
+static const GetPName GL_ASYNC_MARKER_SGIX = GetPName::GL_ASYNC_MARKER_SGIX;
+static const GetPName GL_PIXEL_TEX_GEN_MODE_SGIX = GetPName::GL_PIXEL_TEX_GEN_MODE_SGIX;
+static const EnableCap GL_ASYNC_HISTOGRAM_SGIX = EnableCap::GL_ASYNC_HISTOGRAM_SGIX;
+static const GetPName GL_MAX_ASYNC_HISTOGRAM_SGIX = GetPName::GL_MAX_ASYNC_HISTOGRAM_SGIX;
 static const GLenum GL_PIXEL_TRANSFORM_2D_EXT = GLenum::GL_PIXEL_TRANSFORM_2D_EXT;
 static const GLenum GL_PIXEL_MAG_FILTER_EXT = GLenum::GL_PIXEL_MAG_FILTER_EXT;
 static const GLenum GL_PIXEL_MIN_FILTER_EXT = GLenum::GL_PIXEL_MIN_FILTER_EXT;
@@ -7482,7 +6907,16 @@ static const GLenum GL_TEXTURE_APPLICATION_MODE_EXT = GLenum::GL_TEXTURE_APPLICA
 static const GLenum GL_TEXTURE_LIGHT_EXT = GLenum::GL_TEXTURE_LIGHT_EXT;
 static const GLenum GL_TEXTURE_MATERIAL_FACE_EXT = GLenum::GL_TEXTURE_MATERIAL_FACE_EXT;
 static const GLenum GL_TEXTURE_MATERIAL_PARAMETER_EXT = GLenum::GL_TEXTURE_MATERIAL_PARAMETER_EXT;
+static const EnableCap GL_PIXEL_TEXTURE_SGIS = EnableCap::GL_PIXEL_TEXTURE_SGIS;
+static const PixelTexGenParameterNameSGIS GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS = PixelTexGenParameterNameSGIS::GL_PIXEL_FRAGMENT_RGB_SOURCE_SGIS;
+static const PixelTexGenParameterNameSGIS GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS = PixelTexGenParameterNameSGIS::GL_PIXEL_FRAGMENT_ALPHA_SOURCE_SGIS;
 static const GLenum GL_PIXEL_GROUP_COLOR_SGIS = GLenum::GL_PIXEL_GROUP_COLOR_SGIS;
+static const EnableCap GL_ASYNC_TEX_IMAGE_SGIX = EnableCap::GL_ASYNC_TEX_IMAGE_SGIX;
+static const EnableCap GL_ASYNC_DRAW_PIXELS_SGIX = EnableCap::GL_ASYNC_DRAW_PIXELS_SGIX;
+static const EnableCap GL_ASYNC_READ_PIXELS_SGIX = EnableCap::GL_ASYNC_READ_PIXELS_SGIX;
+static const GetPName GL_MAX_ASYNC_TEX_IMAGE_SGIX = GetPName::GL_MAX_ASYNC_TEX_IMAGE_SGIX;
+static const GetPName GL_MAX_ASYNC_DRAW_PIXELS_SGIX = GetPName::GL_MAX_ASYNC_DRAW_PIXELS_SGIX;
+static const GetPName GL_MAX_ASYNC_READ_PIXELS_SGIX = GetPName::GL_MAX_ASYNC_READ_PIXELS_SGIX;
 static const GLenum GL_UNSIGNED_BYTE_2_3_3_REV = GLenum::GL_UNSIGNED_BYTE_2_3_3_REV;
 static const GLenum GL_UNSIGNED_SHORT_5_6_5 = GLenum::GL_UNSIGNED_SHORT_5_6_5;
 static const GLenum GL_UNSIGNED_SHORT_5_6_5_REV = GLenum::GL_UNSIGNED_SHORT_5_6_5_REV;
@@ -7490,6 +6924,9 @@ static const GLenum GL_UNSIGNED_SHORT_4_4_4_4_REV = GLenum::GL_UNSIGNED_SHORT_4_
 static const GLenum GL_UNSIGNED_SHORT_1_5_5_5_REV = GLenum::GL_UNSIGNED_SHORT_1_5_5_5_REV;
 static const GLenum GL_UNSIGNED_INT_8_8_8_8_REV = GLenum::GL_UNSIGNED_INT_8_8_8_8_REV;
 static const GLenum GL_UNSIGNED_INT_2_10_10_10_REV = GLenum::GL_UNSIGNED_INT_2_10_10_10_REV;
+static const GetTextureParameter GL_TEXTURE_MAX_CLAMP_S_SGIX = GetTextureParameter::GL_TEXTURE_MAX_CLAMP_S_SGIX;
+static const GetTextureParameter GL_TEXTURE_MAX_CLAMP_T_SGIX = GetTextureParameter::GL_TEXTURE_MAX_CLAMP_T_SGIX;
+static const GetTextureParameter GL_TEXTURE_MAX_CLAMP_R_SGIX = GetTextureParameter::GL_TEXTURE_MAX_CLAMP_R_SGIX;
 static const GLenum GL_MIRRORED_REPEAT = GLenum::GL_MIRRORED_REPEAT;
 static const GLenum GL_MIRRORED_REPEAT_ARB = GLenum::GL_MIRRORED_REPEAT_ARB;
 static const GLenum GL_MIRRORED_REPEAT_IBM = GLenum::GL_MIRRORED_REPEAT_IBM;
@@ -7499,6 +6936,8 @@ static const GLenum GL_RGBA_S3TC = GLenum::GL_RGBA_S3TC;
 static const GLenum GL_RGBA4_S3TC = GLenum::GL_RGBA4_S3TC;
 static const GLenum GL_RGBA_DXT5_S3TC = GLenum::GL_RGBA_DXT5_S3TC;
 static const GLenum GL_RGBA4_DXT5_S3TC = GLenum::GL_RGBA4_DXT5_S3TC;
+static const GetPName GL_VERTEX_PRECLIP_SGIX = GetPName::GL_VERTEX_PRECLIP_SGIX;
+static const GetPName GL_VERTEX_PRECLIP_HINT_SGIX = GetPName::GL_VERTEX_PRECLIP_HINT_SGIX;
 static const GLenum GL_COMPRESSED_RGB_S3TC_DXT1_EXT = GLenum::GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
 static const GLenum GL_COMPRESSED_RGBA_S3TC_DXT1_EXT = GLenum::GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 static const GLenum GL_COMPRESSED_RGBA_S3TC_DXT3_EXT = GLenum::GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
@@ -7512,7 +6951,31 @@ static const GLenum GL_PERFQUERY_DONOT_FLUSH_INTEL = GLenum::GL_PERFQUERY_DONOT_
 static const GLenum GL_PERFQUERY_FLUSH_INTEL = GLenum::GL_PERFQUERY_FLUSH_INTEL;
 static const GLenum GL_PERFQUERY_WAIT_INTEL = GLenum::GL_PERFQUERY_WAIT_INTEL;
 static const GLenum GL_TEXTURE_MEMORY_LAYOUT_INTEL = GLenum::GL_TEXTURE_MEMORY_LAYOUT_INTEL;
+static const EnableCap GL_FRAGMENT_LIGHTING_SGIX = EnableCap::GL_FRAGMENT_LIGHTING_SGIX;
+static const EnableCap GL_FRAGMENT_COLOR_MATERIAL_SGIX = EnableCap::GL_FRAGMENT_COLOR_MATERIAL_SGIX;
+static const GetPName GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX = GetPName::GL_FRAGMENT_COLOR_MATERIAL_FACE_SGIX;
+static const GetPName GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX = GetPName::GL_FRAGMENT_COLOR_MATERIAL_PARAMETER_SGIX;
+static const GetPName GL_MAX_FRAGMENT_LIGHTS_SGIX = GetPName::GL_MAX_FRAGMENT_LIGHTS_SGIX;
+static const GetPName GL_MAX_ACTIVE_LIGHTS_SGIX = GetPName::GL_MAX_ACTIVE_LIGHTS_SGIX;
 static const GLenum GL_CURRENT_RASTER_NORMAL_SGIX = GLenum::GL_CURRENT_RASTER_NORMAL_SGIX;
+static const GetPName GL_LIGHT_ENV_MODE_SGIX = GetPName::GL_LIGHT_ENV_MODE_SGIX;
+static const FragmentLightModelParameterSGIX GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX = FragmentLightModelParameterSGIX::GL_FRAGMENT_LIGHT_MODEL_LOCAL_VIEWER_SGIX;
+static const FragmentLightModelParameterSGIX GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX = FragmentLightModelParameterSGIX::GL_FRAGMENT_LIGHT_MODEL_TWO_SIDE_SGIX;
+static const FragmentLightModelParameterSGIX GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX = FragmentLightModelParameterSGIX::GL_FRAGMENT_LIGHT_MODEL_AMBIENT_SGIX;
+static const FragmentLightModelParameterSGIX GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX = FragmentLightModelParameterSGIX::GL_FRAGMENT_LIGHT_MODEL_NORMAL_INTERPOLATION_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT0_SGIX = EnableCap::GL_FRAGMENT_LIGHT0_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT1_SGIX = EnableCap::GL_FRAGMENT_LIGHT1_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT2_SGIX = EnableCap::GL_FRAGMENT_LIGHT2_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT3_SGIX = EnableCap::GL_FRAGMENT_LIGHT3_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT4_SGIX = EnableCap::GL_FRAGMENT_LIGHT4_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT5_SGIX = EnableCap::GL_FRAGMENT_LIGHT5_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT6_SGIX = EnableCap::GL_FRAGMENT_LIGHT6_SGIX;
+static const EnableCap GL_FRAGMENT_LIGHT7_SGIX = EnableCap::GL_FRAGMENT_LIGHT7_SGIX;
+static const GetPName GL_PACK_RESAMPLE_SGIX = GetPName::GL_PACK_RESAMPLE_SGIX;
+static const GetPName GL_UNPACK_RESAMPLE_SGIX = GetPName::GL_UNPACK_RESAMPLE_SGIX;
+static const PixelStoreResampleMode GL_RESAMPLE_REPLICATE_SGIX = PixelStoreResampleMode::GL_RESAMPLE_REPLICATE_SGIX;
+static const PixelStoreResampleMode GL_RESAMPLE_ZERO_FILL_SGIX = PixelStoreResampleMode::GL_RESAMPLE_ZERO_FILL_SGIX;
+static const PixelStoreResampleMode GL_RESAMPLE_DECIMATE_SGIX = PixelStoreResampleMode::GL_RESAMPLE_DECIMATE_SGIX;
 static const GLenum GL_TANGENT_ARRAY_EXT = GLenum::GL_TANGENT_ARRAY_EXT;
 static const GLenum GL_BINORMAL_ARRAY_EXT = GLenum::GL_BINORMAL_ARRAY_EXT;
 static const GLenum GL_CURRENT_TANGENT_EXT = GLenum::GL_CURRENT_TANGENT_EXT;
@@ -7527,6 +6990,9 @@ static const GLenum GL_MAP1_TANGENT_EXT = GLenum::GL_MAP1_TANGENT_EXT;
 static const GLenum GL_MAP2_TANGENT_EXT = GLenum::GL_MAP2_TANGENT_EXT;
 static const GLenum GL_MAP1_BINORMAL_EXT = GLenum::GL_MAP1_BINORMAL_EXT;
 static const GLenum GL_MAP2_BINORMAL_EXT = GLenum::GL_MAP2_BINORMAL_EXT;
+static const TextureMinFilter GL_NEAREST_CLIPMAP_NEAREST_SGIX = TextureMinFilter::GL_NEAREST_CLIPMAP_NEAREST_SGIX;
+static const TextureMinFilter GL_NEAREST_CLIPMAP_LINEAR_SGIX = TextureMinFilter::GL_NEAREST_CLIPMAP_LINEAR_SGIX;
+static const TextureMinFilter GL_LINEAR_CLIPMAP_NEAREST_SGIX = TextureMinFilter::GL_LINEAR_CLIPMAP_NEAREST_SGIX;
 static const GLenum GL_FOG_COORDINATE_SOURCE = GLenum::GL_FOG_COORDINATE_SOURCE;
 static const GLenum GL_FOG_COORDINATE_SOURCE_EXT = GLenum::GL_FOG_COORDINATE_SOURCE_EXT;
 static const GLenum GL_FOG_COORD_SRC = GLenum::GL_FOG_COORD_SRC;
@@ -7566,6 +7032,8 @@ static const GLenum GL_SECONDARY_COLOR_ARRAY_POINTER_EXT = GLenum::GL_SECONDARY_
 static const GLenum GL_SECONDARY_COLOR_ARRAY = GLenum::GL_SECONDARY_COLOR_ARRAY;
 static const GLenum GL_SECONDARY_COLOR_ARRAY_EXT = GLenum::GL_SECONDARY_COLOR_ARRAY_EXT;
 static const GLenum GL_CURRENT_RASTER_SECONDARY_COLOR = GLenum::GL_CURRENT_RASTER_SECONDARY_COLOR;
+static const GetPName GL_ALIASED_POINT_SIZE_RANGE = GetPName::GL_ALIASED_POINT_SIZE_RANGE;
+static const GetPName GL_ALIASED_LINE_WIDTH_RANGE = GetPName::GL_ALIASED_LINE_WIDTH_RANGE;
 static const GLenum GL_SCREEN_COORDINATES_REND = GLenum::GL_SCREEN_COORDINATES_REND;
 static const GLenum GL_INVERTED_SCREEN_W_REND = GLenum::GL_INVERTED_SCREEN_W_REND;
 static const GLenum GL_TEXTURE0 = GLenum::GL_TEXTURE0;
@@ -7664,6 +7132,8 @@ static const GLenum GL_COMPRESSED_RGB = GLenum::GL_COMPRESSED_RGB;
 static const GLenum GL_COMPRESSED_RGB_ARB = GLenum::GL_COMPRESSED_RGB_ARB;
 static const GLenum GL_COMPRESSED_RGBA = GLenum::GL_COMPRESSED_RGBA;
 static const GLenum GL_COMPRESSED_RGBA_ARB = GLenum::GL_COMPRESSED_RGBA_ARB;
+static const HintTarget GL_TEXTURE_COMPRESSION_HINT = HintTarget::GL_TEXTURE_COMPRESSION_HINT;
+static const HintTarget GL_TEXTURE_COMPRESSION_HINT_ARB = HintTarget::GL_TEXTURE_COMPRESSION_HINT_ARB;
 static const GLenum GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER = GLenum::GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_CONTROL_SHADER;
 static const GLenum GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER = GLenum::GL_UNIFORM_BLOCK_REFERENCED_BY_TESS_EVALUATION_SHADER;
 static const GLenum GL_ALL_COMPLETED_NV = GLenum::GL_ALL_COMPLETED_NV;
@@ -7756,6 +7226,7 @@ static const GLenum GL_VERTEX_ARRAY_RANGE_NV = GLenum::GL_VERTEX_ARRAY_RANGE_NV;
 static const GLenum GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE = GLenum::GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE;
 static const GLenum GL_VERTEX_ARRAY_RANGE_LENGTH_NV = GLenum::GL_VERTEX_ARRAY_RANGE_LENGTH_NV;
 static const GLenum GL_VERTEX_ARRAY_RANGE_VALID_NV = GLenum::GL_VERTEX_ARRAY_RANGE_VALID_NV;
+static const HintTarget GL_VERTEX_ARRAY_STORAGE_HINT_APPLE = HintTarget::GL_VERTEX_ARRAY_STORAGE_HINT_APPLE;
 static const GLenum GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV = GLenum::GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_NV;
 static const GLenum GL_VERTEX_ARRAY_RANGE_POINTER_APPLE = GLenum::GL_VERTEX_ARRAY_RANGE_POINTER_APPLE;
 static const GLenum GL_VERTEX_ARRAY_RANGE_POINTER_NV = GLenum::GL_VERTEX_ARRAY_RANGE_POINTER_NV;
@@ -7777,6 +7248,7 @@ static const GLenum GL_DISCARD_NV = GLenum::GL_DISCARD_NV;
 static const GLenum GL_E_TIMES_F_NV = GLenum::GL_E_TIMES_F_NV;
 static const GLenum GL_SPARE0_PLUS_SECONDARY_COLOR_NV = GLenum::GL_SPARE0_PLUS_SECONDARY_COLOR_NV;
 static const GLenum GL_VERTEX_ARRAY_RANGE_WITHOUT_FLUSH_NV = GLenum::GL_VERTEX_ARRAY_RANGE_WITHOUT_FLUSH_NV;
+static const HintTarget GL_MULTISAMPLE_FILTER_HINT_NV = HintTarget::GL_MULTISAMPLE_FILTER_HINT_NV;
 static const GLenum GL_PER_STAGE_CONSTANTS_NV = GLenum::GL_PER_STAGE_CONSTANTS_NV;
 static const GLenum GL_UNSIGNED_IDENTITY_NV = GLenum::GL_UNSIGNED_IDENTITY_NV;
 static const GLenum GL_UNSIGNED_INVERT_NV = GLenum::GL_UNSIGNED_INVERT_NV;
@@ -7903,9 +7375,15 @@ static const GLenum GL_OPERAND2_ALPHA = GLenum::GL_OPERAND2_ALPHA;
 static const GLenum GL_OPERAND2_ALPHA_ARB = GLenum::GL_OPERAND2_ALPHA_ARB;
 static const GLenum GL_OPERAND2_ALPHA_EXT = GLenum::GL_OPERAND2_ALPHA_EXT;
 static const GLenum GL_OPERAND3_ALPHA_NV = GLenum::GL_OPERAND3_ALPHA_NV;
+static const GetPName GL_PACK_SUBSAMPLE_RATE_SGIX = GetPName::GL_PACK_SUBSAMPLE_RATE_SGIX;
+static const GetPName GL_UNPACK_SUBSAMPLE_RATE_SGIX = GetPName::GL_UNPACK_SUBSAMPLE_RATE_SGIX;
+static const PixelStoreSubsampleRate GL_PIXEL_SUBSAMPLE_4444_SGIX = PixelStoreSubsampleRate::GL_PIXEL_SUBSAMPLE_4444_SGIX;
+static const PixelStoreSubsampleRate GL_PIXEL_SUBSAMPLE_2424_SGIX = PixelStoreSubsampleRate::GL_PIXEL_SUBSAMPLE_2424_SGIX;
+static const PixelStoreSubsampleRate GL_PIXEL_SUBSAMPLE_4242_SGIX = PixelStoreSubsampleRate::GL_PIXEL_SUBSAMPLE_4242_SGIX;
 static const GLenum GL_PERTURB_EXT = GLenum::GL_PERTURB_EXT;
 static const GLenum GL_TEXTURE_NORMAL_EXT = GLenum::GL_TEXTURE_NORMAL_EXT;
 static const GLenum GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE = GLenum::GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE;
+static const HintTarget GL_TRANSFORM_HINT_APPLE = HintTarget::GL_TRANSFORM_HINT_APPLE;
 static const GLenum GL_UNPACK_CLIENT_STORAGE_APPLE = GLenum::GL_UNPACK_CLIENT_STORAGE_APPLE;
 static const GLenum GL_BUFFER_OBJECT_APPLE = GLenum::GL_BUFFER_OBJECT_APPLE;
 static const GLenum GL_STORAGE_CLIENT_APPLE = GLenum::GL_STORAGE_CLIENT_APPLE;
@@ -7918,6 +7396,7 @@ static const GLenum GL_UNSIGNED_SHORT_8_8_APPLE = GLenum::GL_UNSIGNED_SHORT_8_8_
 static const GLenum GL_UNSIGNED_SHORT_8_8_MESA = GLenum::GL_UNSIGNED_SHORT_8_8_MESA;
 static const GLenum GL_UNSIGNED_SHORT_8_8_REV_APPLE = GLenum::GL_UNSIGNED_SHORT_8_8_REV_APPLE;
 static const GLenum GL_UNSIGNED_SHORT_8_8_REV_MESA = GLenum::GL_UNSIGNED_SHORT_8_8_REV_MESA;
+static const HintTarget GL_TEXTURE_STORAGE_HINT_APPLE = HintTarget::GL_TEXTURE_STORAGE_HINT_APPLE;
 static const GLenum GL_STORAGE_PRIVATE_APPLE = GLenum::GL_STORAGE_PRIVATE_APPLE;
 static const GLenum GL_STORAGE_CACHED_APPLE = GLenum::GL_STORAGE_CACHED_APPLE;
 static const GLenum GL_STORAGE_SHARED_APPLE = GLenum::GL_STORAGE_SHARED_APPLE;
@@ -8889,6 +8368,8 @@ static const GLenum GL_INTERLACE_OML = GLenum::GL_INTERLACE_OML;
 static const GLenum GL_INTERLACE_READ_OML = GLenum::GL_INTERLACE_READ_OML;
 static const GLenum GL_FORMAT_SUBSAMPLE_24_24_OML = GLenum::GL_FORMAT_SUBSAMPLE_24_24_OML;
 static const GLenum GL_FORMAT_SUBSAMPLE_244_244_OML = GLenum::GL_FORMAT_SUBSAMPLE_244_244_OML;
+static const PixelStoreParameter GL_PACK_RESAMPLE_OML = PixelStoreParameter::GL_PACK_RESAMPLE_OML;
+static const PixelStoreParameter GL_UNPACK_RESAMPLE_OML = PixelStoreParameter::GL_UNPACK_RESAMPLE_OML;
 static const GLenum GL_RESAMPLE_REPLICATE_OML = GLenum::GL_RESAMPLE_REPLICATE_OML;
 static const GLenum GL_RESAMPLE_ZERO_FILL_OML = GLenum::GL_RESAMPLE_ZERO_FILL_OML;
 static const GLenum GL_RESAMPLE_AVERAGE_OML = GLenum::GL_RESAMPLE_AVERAGE_OML;
@@ -9050,6 +8531,8 @@ static const GLenum GL_ACTIVE_ATTRIBUTES = GLenum::GL_ACTIVE_ATTRIBUTES;
 static const GLenum GL_OBJECT_ACTIVE_ATTRIBUTES_ARB = GLenum::GL_OBJECT_ACTIVE_ATTRIBUTES_ARB;
 static const GLenum GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = GLenum::GL_ACTIVE_ATTRIBUTE_MAX_LENGTH;
 static const GLenum GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB = GLenum::GL_OBJECT_ACTIVE_ATTRIBUTE_MAX_LENGTH_ARB;
+static const HintTarget GL_FRAGMENT_SHADER_DERIVATIVE_HINT = HintTarget::GL_FRAGMENT_SHADER_DERIVATIVE_HINT;
+static const HintTarget GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = HintTarget::GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB;
 static const GLenum GL_SHADING_LANGUAGE_VERSION = GLenum::GL_SHADING_LANGUAGE_VERSION;
 static const GLenum GL_SHADING_LANGUAGE_VERSION_ARB = GLenum::GL_SHADING_LANGUAGE_VERSION_ARB;
 static const GLenum GL_ACTIVE_PROGRAM_EXT = GLenum::GL_ACTIVE_PROGRAM_EXT;
@@ -10440,6 +9923,9 @@ static const GLenum GL_CIRCULAR_CW_ARC_TO_NV = GLenum::GL_CIRCULAR_CW_ARC_TO_NV;
 static const GLenum GL_CIRCULAR_TANGENT_ARC_TO_NV = GLenum::GL_CIRCULAR_TANGENT_ARC_TO_NV;
 static const GLenum GL_ARC_TO_NV = GLenum::GL_ARC_TO_NV;
 static const GLenum GL_RELATIVE_ARC_TO_NV = GLenum::GL_RELATIVE_ARC_TO_NV;
+static const OcclusionQueryEventMaskAMD GL_QUERY_ALL_EVENT_BITS_AMD = OcclusionQueryEventMaskAMD::GL_QUERY_ALL_EVENT_BITS_AMD;
+static const MapTextureFormatINTEL GL_LAYOUT_LINEAR_INTEL = MapTextureFormatINTEL::GL_LAYOUT_LINEAR_INTEL;
+static const BlendingFactorDest GL_ONE = BlendingFactorDest::GL_ONE;
 static const GLenum GL_CULL_VERTEX_IBM = GLenum::GL_CULL_VERTEX_IBM;
 static const GLenum GL_ALL_STATIC_DATA_IBM = GLenum::GL_ALL_STATIC_DATA_IBM;
 static const GLenum GL_STATIC_VERTEX_ARRAY_IBM = GLenum::GL_STATIC_VERTEX_ARRAY_IBM;
@@ -10459,5 +9945,6 @@ static const GLenum GL_TEXTURE_COORD_ARRAY_LIST_STRIDE_IBM = GLenum::GL_TEXTURE_
 static const GLenum GL_EDGE_FLAG_ARRAY_LIST_STRIDE_IBM = GLenum::GL_EDGE_FLAG_ARRAY_LIST_STRIDE_IBM;
 static const GLenum GL_FOG_COORDINATE_ARRAY_LIST_STRIDE_IBM = GLenum::GL_FOG_COORDINATE_ARRAY_LIST_STRIDE_IBM;
 static const GLenum GL_SECONDARY_COLOR_ARRAY_LIST_STRIDE_IBM = GLenum::GL_SECONDARY_COLOR_ARRAY_LIST_STRIDE_IBM;
+static const MapTextureFormatINTEL GL_LAYOUT_LINEAR_CPU_CACHED_INTEL = MapTextureFormatINTEL::GL_LAYOUT_LINEAR_CPU_CACHED_INTEL;
 
 } // namespace gl

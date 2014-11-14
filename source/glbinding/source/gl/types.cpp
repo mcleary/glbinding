@@ -49,95 +49,15 @@ std::string bitfieldString(T value, const std::unordered_map<T, std::string> & m
 
 
 
-std::ostream & operator<<(std::ostream & stream, const gl::GLextension & value)
-{
-    stream << glbinding::Meta::getString(value);
-    return stream;
-}
-
-
-
-std::ostream & operator<<(std::ostream & stream, const gl::GLenum & value)
-{
-    stream << glbinding::Meta::getString(value);
-    return stream;
-}
-
-
-gl::GLenum operator+(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<gl::GLenum>(static_cast<std::underlying_type<gl::GLenum>::type>(a) + b);
-}
-
-gl::GLenum operator-(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<gl::GLenum>(static_cast<std::underlying_type<gl::GLenum>::type>(a) - b);
-}
-
-
-bool operator==(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) == b;
-}
-
-bool operator!=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) != b;
-}
-
-bool operator<(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) < b;
-}
-
-bool operator<=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) <= b;
-}
-
-bool operator>(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) > b;
-}
-
-bool operator>=(const gl::GLenum & a, std::underlying_type<gl::GLenum>::type b)
-{
-    return static_cast<std::underlying_type<gl::GLenum>::type>(a) >= b;
-}
-
-bool operator==(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a == static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-bool operator!=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a != static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-bool operator<(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a < static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-bool operator<=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a <= static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-bool operator>(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a > static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-bool operator>=(std::underlying_type<gl::GLenum>::type a, const gl::GLenum & b)
-{
-    return a >= static_cast<std::underlying_type<gl::GLenum>::type>(b);
-}
-
-
-
 std::ostream & operator<<(std::ostream & stream, const gl::GLboolean & value)
+{
+    stream << glbinding::Meta::getString(value);
+    return stream;
+}
+
+
+
+std::ostream & operator<<(std::ostream & stream, const gl::GLextension & value)
 {
     stream << glbinding::Meta::getString(value);
     return stream;

@@ -41,6 +41,9 @@ using GLDEBUGPROCAMD = gl::GLDEBUGPROCAMD;
 using GLhalfNV = gl::GLhalfNV;
 using GLvdpauSurfaceNV = gl::GLvdpauSurfaceNV;
 using GLuint_array_2 = gl::GLuint_array_2;
+
+// GLbitfields
+
 using AttribMask = gl::AttribMask;
 using ClearBufferMask = gl::ClearBufferMask;
 using ClientAttribMask = gl::ClientAttribMask;
@@ -61,3 +64,6 @@ using VertexHintsMaskPGI = gl::VertexHintsMaskPGI;
 using PathFontStyle = gl::PathFontStyle;
 using UnusedMask = gl::UnusedMask;
 using BufferAccessMask = gl::BufferAccessMask;
+
+// GLenums
+
