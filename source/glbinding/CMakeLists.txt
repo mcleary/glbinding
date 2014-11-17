@@ -77,6 +77,8 @@ set(api_includes
     ${include_path}/Version.h
     ${include_path}/SharedBitfield.h
     ${include_path}/SharedBitfield.hpp
+
+    ${include_path}/RingBuffer.hpp
 )
 
 # add featured headers
