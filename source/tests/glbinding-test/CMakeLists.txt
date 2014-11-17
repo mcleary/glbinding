@@ -49,6 +49,7 @@ set(sources
     main.cpp
     MultiContext_test.cpp
     MultiThreading_test.cpp
+    RingBuffer_test.cpp
 )
 
 #
