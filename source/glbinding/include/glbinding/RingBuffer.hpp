@@ -53,7 +53,6 @@ template <typename T, unsigned long n> bool RingBuffer<T, n>::pull(T * object) {
  
     *object = m_ringBuffer.at(tail);
     m_tail.store(next(tail), std::memory_order_release);
-    
     return true;
   }
 
