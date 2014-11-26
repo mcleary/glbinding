@@ -8,6 +8,7 @@
 
 #include <glbinding/ContextInfo.h>
 #include <glbinding/Version.h>
+#include <glbinding/RingBuffer.hpp>
 
 #include "Timer.h"
 
@@ -68,7 +69,7 @@ void compare()
 
     long double glbinding_avg = timer.stop();
 
-
+ 
     std::cout << std::endl << "test: again, now with error checking ..." << std::endl;
 
     glew_error(true);
@@ -84,11 +85,24 @@ void compare()
 
     long double glbinding_avg_err = timer.stop();
 
+    std::cout << std::endl << "test: again, now with logging ..." << std::endl;
+    glbinding::RingBuffer<int, 10> buffer;
+    glbinding_log(true, &buffer);
+    std::cout << "Done Setting" << std::endl;
+    timer.start("      glbinding ");
+    
+    for (int i = 0; i < ITERATIONS; ++i)
+        glbinding_test();
+
+    long double glbinding_avg_log = timer.stop();
+
+
     std::cout << std::endl << "glbinding/glew decrease:                " << (glbinding_avg / glew_avg - 1.0) * 100.0 << "%" << std::endl;
     std::cout << std::endl << "glbinding/glew decrease (error checks): " << (glbinding_avg_err / glew_avg_err - 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with logging: " << (glbinding_avg / glbinding_avg_log - 1.0) * 100.0 << "%" << std::endl;
 
     std::cout << std::endl << "finalizing ..." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(10));
 }
 
 void errorfun(int errnum, const char * errmsg)
