@@ -28,10 +28,8 @@ class RingBuffer {
     bool pull(T*);
     int size();
 
-  private:
     bool isFull();
     bool isEmpty();
-
 };
 
 template <typename T, unsigned long n> bool RingBuffer<T, n>::push(const T object) {
@@ -50,7 +48,6 @@ template <typename T, unsigned long n> bool RingBuffer<T, n>::pull(T * object) {
     if (tail == m_head.load(std::memory_order_acquire)) {
       return false;
     }
- 
     *object = m_ringBuffer.at(tail);
     m_tail.store(next(tail), std::memory_order_release);
     return true;
@@ -75,7 +72,6 @@ template <typename T, unsigned long n> bool RingBuffer<T, n>::isFull() {
 template <typename T, unsigned long n> bool RingBuffer<T, n>::isEmpty() {
     unsigned long tail = m_tail.load(std::memory_order_relaxed);
     if (tail == m_head.load(std::memory_order_acquire)) {
-      std::cout << "Error no element here: returning false" << std::endl;
       return true;
     }
     return false;
