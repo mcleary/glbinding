@@ -11,6 +11,8 @@
 #include <glbinding/RingBuffer.hpp>
 
 #include "Timer.h"
+#include <thread>
+#include <fstream>
 
 #include "glbinding.h"
 #include "glew.h"
@@ -86,14 +88,37 @@ void compare()
     long double glbinding_avg_err = timer.stop();
 
     std::cout << std::endl << "test: again, now with logging ..." << std::endl;
-    glbinding::RingBuffer<int, 10> buffer;
-    glbinding_log(true, &buffer);
-    std::cout << "Done Setting" << std::endl;
+    glbinding::RingBuffer<std::string, 10> buffer;
+    bool finished = false;
+    std::thread t3([&]()
+        {
+            auto unix_timestamp = std::chrono::seconds(std::time(NULL));
+            int unix_timestamp_x_1000 = std::chrono::milliseconds(unix_timestamp).count();
+
+            std::string logname = "logs/test_";
+            logname += std::to_string(unix_timestamp_x_1000);
+            std::ofstream logfile;
+            logfile.open (logname, std::ios::out);
+
+            std::string entry;
+            logfile << "test";
+            while(!finished || !buffer.isEmpty())
+            {
+                while(!buffer.pull(&entry)){};
+                logfile << entry;
+                logfile.flush();
+            }
+            std::cout << "Leaving Thread" << std::endl;
+    });
+    glbinding_log(true, buffer);
     timer.start("      glbinding ");
     
     for (int i = 0; i < ITERATIONS; ++i)
         glbinding_test();
 
+    std::cout << "Done with Gl commands";
+    finished = true;
+    t3.join();
     long double glbinding_avg_log = timer.stop();
 
 
@@ -102,7 +127,7 @@ void compare()
     std::cout << std::endl << "glbinding decrease with logging: " << (glbinding_avg / glbinding_avg_log - 1.0) * 100.0 << "%" << std::endl;
 
     std::cout << std::endl << "finalizing ..." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 
 void errorfun(int errnum, const char * errmsg)

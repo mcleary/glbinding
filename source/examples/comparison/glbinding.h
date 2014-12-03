@@ -6,4 +6,4 @@ void glbinding_init();
 void glbinding_test();
 
 void glbinding_error(bool enable);
-void glbinding_log(bool enable, glbinding::RingBuffer<int, 10> * buffer);
+void glbinding_log(bool enable, glbinding::RingBuffer<std::string, 10> &buffer);
