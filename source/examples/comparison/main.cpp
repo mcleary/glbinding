@@ -88,7 +88,7 @@ void compare()
     long double glbinding_avg_err = timer.stop();
 
     std::cout << std::endl << "test: again, now with logging ..." << std::endl;
-    glbinding::RingBuffer<std::string, 10> buffer;
+    glbinding::RingBuffer<std::string, 100> buffer;
     bool finished = false;
     std::thread t3([&]()
         {

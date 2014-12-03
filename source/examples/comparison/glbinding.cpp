@@ -47,7 +47,7 @@ void glbinding_error(bool enable)
         glbinding::setCallbackMask(glbinding::CallbackMask::None);
 }
 
-void glbinding_log(bool enable, glbinding::RingBuffer<std::string, 10> &buffer)
+void glbinding_log(bool enable, glbinding::RingBuffer<std::string, 100> &buffer)
 {
     if (enable)
     {
