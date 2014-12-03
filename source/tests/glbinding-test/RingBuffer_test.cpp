@@ -104,6 +104,32 @@ TEST_F(RingBuffer_test, MultiThreadedTest)
     EXPECT_EQ(0, buffer.size());
 }
 
+TEST_F(RingBuffer_test, MultiThreadedTest2)
+{
+
+    RingBuffer<int, 3> buffer;
+    std::thread t1([&]()
+    {
+        for(int i = 0; i < 100000000; i++)
+            while(!buffer.push(i));
+    });
+
+    std::thread t2([&]()
+    {
+        int result;
+        for(int j = 0; j < 100000000; j++)
+        {
+            while(!buffer.pull(&result));
+            EXPECT_EQ(j, result);
+        }
+
+    });
+
+    t1.join();
+    t2.join();
+    EXPECT_EQ(0, buffer.size());
+}
+
 // TEST_F(RingBuffer_test, MultiThreadedTest2)
 // {
 
