@@ -110,14 +110,14 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
     RingBuffer<int, 3> buffer;
     std::thread t1([&]()
     {
-        for(int i = 0; i < 100000000; i++)
+        for(int i = 0; i < 1000000; i++)
             while(!buffer.push(i));
     });
 
     std::thread t2([&]()
     {
         int result;
-        for(int j = 0; j < 100000000; j++)
+        for(int j = 0; j < 1000000; j++)
         {
             while(!buffer.pull(&result));
             EXPECT_EQ(j, result);
@@ -127,6 +127,39 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
 
     t1.join();
     t2.join();
+    EXPECT_EQ(0, buffer.size());
+}
+
+TEST_F(RingBuffer_test, ConsumerTest)
+{
+    std::list<int> values = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+    RingBuffer<int, 10> buffer;
+    std::function<void (int result)> consume = [&](int value)
+    {
+        EXPECT_EQ(values.front(), value);
+        values.pop_front();
+    };
+    buffer.setConsumer(consume);
+
+    std::thread t1([&]()
+    {
+        for(int i = 0; i < 15; i++)
+        {
+            while(!buffer.push(i)){}
+        }
+    });
+    // std::cout << "Waiting to write all elements" << std::endl;
+    t1.join();
+    // std::cout << "Finished writing all elements" << std::endl;
+    if(!buffer.isEmpty())
+    {
+        buffer.startConsumer(); 
+    }
+
+    while(buffer.consumerRunning()){
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        // std::cout << buffer.consumerRunning() << " - " << buffer.isEmpty() << std::endl;
+    }
     EXPECT_EQ(0, buffer.size());
 }
 
