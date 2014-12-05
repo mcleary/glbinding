@@ -90,7 +90,7 @@ void compare()
     std::cout << std::endl << "test: again, now with logging ..." << std::endl;
     glbinding::RingBuffer<std::string, 100> buffer;
     bool finished = false;
-    std::thread t3([&]()
+    std::thread writer([&]()
         {
             auto unix_timestamp = std::chrono::seconds(std::time(NULL));
             int unix_timestamp_x_1000 = std::chrono::milliseconds(unix_timestamp).count();
@@ -101,24 +101,24 @@ void compare()
             logfile.open (logname, std::ios::out);
 
             std::string entry;
-            logfile << "test";
             while(!finished || !buffer.isEmpty())
             {
-                while(!buffer.pull(&entry)){};
-                logfile << entry;
-                logfile.flush();
+                if(buffer.pull(&entry))
+                {
+                    logfile << entry;
+                    logfile.flush();
+                };
             }
-            std::cout << "Leaving Thread" << std::endl;
+            logfile.close();
     });
     glbinding_log(true, buffer);
     timer.start("      glbinding ");
-    
+
     for (int i = 0; i < ITERATIONS; ++i)
         glbinding_test();
 
-    std::cout << "Done with Gl commands";
     finished = true;
-    t3.join();
+    writer.join();
     long double glbinding_avg_log = timer.stop();
 
 
