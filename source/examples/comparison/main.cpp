@@ -121,6 +121,8 @@ void compare()
     writer.join();
     long double glbinding_avg_log = timer.stop();
 
+    // glbinding::Logging log;
+
 
     std::cout << std::endl << "glbinding/glew decrease:                " << (glbinding_avg / glew_avg - 1.0) * 100.0 << "%" << std::endl;
     std::cout << std::endl << "glbinding/glew decrease (error checks): " << (glbinding_avg_err / glew_avg_err - 1.0) * 100.0 << "%" << std::endl;

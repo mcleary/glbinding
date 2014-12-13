@@ -7,6 +7,7 @@
 #include <type_traits>
 
 #include <glbinding/Binding.h>
+#include <glbinding/Logging.hpp>
 #include <glbinding/Meta.h>
 
 #include "callbacks_private.h"
@@ -170,8 +171,12 @@ void AbstractFunction::before(const FunctionCall & call) const
 {
     glbinding::before(call);
 }
+
+
 void AbstractFunction::after(const FunctionCall & call) const
 {
+    // if(Logging::isActive())
+        // Logging::log(call);
     glbinding::after(call);
 }
 

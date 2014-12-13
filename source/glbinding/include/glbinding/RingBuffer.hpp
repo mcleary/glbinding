@@ -54,6 +54,8 @@ template <typename T, unsigned long n> bool RingBuffer<T, n>::push(const T objec
     if(consumerSet && !consumerWorking && overThreshold())
     {
       startConsumer();
+      int  = 0;
+
     }
     if (nextHead == m_tail.load(std::memory_order_acquire)) {
         return false;
