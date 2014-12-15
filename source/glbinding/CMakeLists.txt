@@ -117,6 +117,8 @@ set(sources
     ${source_path}/Meta_StringsByBoolean.cpp
     ${source_path}/Meta_StringsByEnum.cpp
     ${source_path}/Meta_StringsByExtension.cpp
+
+    ${source_path}/Logging.cpp
 )
 
 # file(GLOB featured_sources ${source_path}/gl/*.cpp)
