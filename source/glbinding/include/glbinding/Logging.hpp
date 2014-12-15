@@ -16,62 +16,64 @@ class Logging
 {
     friend class AbstractFunction;
 
-public:
-    Logging()
-    {
-        m_active = false;
-        m_stop = false;
-        m_finished = false; 
-    };
-    
-    // virtual ~Logging();
+    private:
+    static bool s_active;
+    static bool s_stop;
+    static bool s_finished;
+    static glbinding::RingBuffer<std::string, 100> s_buffer;
+    static std::mutex s_lockfinish;
+    static std::condition_variable s_finishcheck;
 
+    public:
     static void start()
     {
-        m_active = true;
-        m_stop = false;
-        m_finished = false;
+        s_active = true;
+        s_stop = false;
+        s_finished = false;
         std::thread writer([&]()
         {
             auto unix_timestamp = std::chrono::seconds(std::time(NULL));
             int unix_timestamp_x_1000 = std::chrono::milliseconds(unix_timestamp).count();
 
-            std::string logname = "logs/test_";
+            std::string logname = "logs/logger_";
             logname += std::to_string(unix_timestamp_x_1000);
             std::ofstream logfile;
             logfile.open (logname, std::ios::out);
 
             std::string entry;
-            while(!m_stop || !buffer.isEmpty())
+            while(!s_stop || !s_buffer.isEmpty())
             {
-                if(buffer.pull(&entry))
+                if(s_buffer.pull(&entry))
                 {
                     logfile << entry;
                     logfile.flush();
                 };
             }
             logfile.close();
+            s_finished = true;
+            s_finishcheck.notify_all();
         });
         writer.detach();
     };
 
     static void stop()
     {
-    m_stop = true;
-    while(!m_finished){}
-    m_active = false;
-    };
+    s_stop = true;
+    std::unique_lock<std::mutex> locker(s_lockfinish);
 
-protected:
-    static bool m_active;
-    static bool m_stop;
-    static bool m_finished; 
-    static glbinding::RingBuffer<std::string, 100> buffer;
+    while(!s_finished){
+        s_finishcheck.wait(locker);
+    }
+    s_active = false;
+    };
 
     static bool isActive()
     {
-    return m_active;
+        return s_active;
     };
+
+protected:
+
 
     static void log(const FunctionCall & call)
     {
@@ -94,7 +96,7 @@ protected:
 
     os << std::endl;
     std::string input = os.str();
-    while(!buffer.push(input)){}
+    while(!s_buffer.push(input)){}
     };
 
 };

@@ -175,8 +175,8 @@ void AbstractFunction::before(const FunctionCall & call) const
 
 void AbstractFunction::after(const FunctionCall & call) const
 {
-    // if(Logging::isActive())
-        // Logging::log(call);
+    if(Logging::isActive())
+        Logging::log(call);
     glbinding::after(call);
 }
 
