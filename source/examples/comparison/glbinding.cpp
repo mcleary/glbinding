@@ -8,6 +8,7 @@
 
 #include <glbinding/AbstractFunction.h> 
 #include <glbinding/callbacks.h>
+#include <glbinding/Logging.hpp>
 
 
 using namespace gl;
@@ -77,6 +78,21 @@ void glbinding_log(bool enable, glbinding::RingBuffer<std::string, 100> &buffer)
     }
     else
     {
+        glbinding::setCallbackMask(glbinding::CallbackMask::None);
+    }
+}
+
+void glbinding_log2(bool enable)
+{
+    if (enable)
+    {
+        glbinding::setCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
+        glbinding::setAfterCallback([&](const glbinding::FunctionCall & call) {});
+        glbinding::Logging::start();
+    }
+    else
+    {
+        glbinding::Logging::stop();
         glbinding::setCallbackMask(glbinding::CallbackMask::None);
     }
 }

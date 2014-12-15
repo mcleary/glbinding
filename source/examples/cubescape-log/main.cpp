@@ -7,7 +7,7 @@
 #include <glbinding/ContextInfo.h>
 #include <glbinding/Version.h>
 #include <glbinding/callbacks.h>
-#include <glbinding/RingBuffer.hpp>
+#include <glbinding/Logging.hpp>
 
 #include <glbinding/gl/gl.h>
 
@@ -95,53 +95,12 @@ int main(int, char *[])
 
     Binding::initialize(false); // only resolve functions that are actually used (lazy)
 
-    glbinding::RingBuffer<std::string, 1000> buffer;
-    bool finished = false;
-    std::thread t3([&]()
-        {
-            auto unix_timestamp = std::chrono::seconds(std::time(NULL));
-            int unix_timestamp_x_1000 = std::chrono::milliseconds(unix_timestamp).count();
-
-            std::string logname = "logs/test_cubescape_";
-            logname += std::to_string(unix_timestamp_x_1000);
-            std::ofstream logfile;
-            logfile.open (logname, std::ios::out);
-
-            std::string entry;
-            while(!finished || !buffer.isEmpty())
-            {
-                if(buffer.pull(&entry))
-                {
-                    logfile << entry;
-                    logfile.flush();
-                };
-            }
-            logfile.close();
-    });
-
     setCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
     setAfterCallback([&](const glbinding::FunctionCall & call) {
-        std::ostringstream os;
-        os << call.function.name() << "(";
-
-        for (unsigned i = 0; i < call.parameters.size(); ++i)
-        {
-            os << call.parameters[i]->asString();
-            if (i < call.parameters.size() - 1)
-                os << ", ";
-        }
-
-        os << ")";
-
-        if (call.returnValue)
-        {
-            os << " -> " << call.returnValue->asString();
-        }
-
-        os << std::endl;
-        std::string input = os.str();
-        while(!buffer.push(input)){}
     });
+
+
+    Logging::start();
 
     // print some gl infos (query)
 
@@ -166,10 +125,9 @@ int main(int, char *[])
         glfwSwapBuffers(window);
     }
 
-    finished = true;
     delete cubescape;
     cubescape = nullptr;
-    t3.join();
+    Logging::stop();
 
     glfwTerminate();
     return 0;
