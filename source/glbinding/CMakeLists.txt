@@ -78,7 +78,6 @@ set(api_includes
     ${include_path}/SharedBitfield.h
     ${include_path}/SharedBitfield.hpp
 
-    ${include_path}/RingBuffer.hpp
     ${include_path}/Logging.hpp
 )
 
@@ -118,6 +117,7 @@ set(sources
     ${source_path}/Meta_StringsByEnum.cpp
     ${source_path}/Meta_StringsByExtension.cpp
 
+    ${source_path}/RingBuffer.hpp
     ${source_path}/Logging.cpp
 )
 
