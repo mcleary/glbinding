@@ -48,41 +48,7 @@ void glbinding_error(bool enable)
         glbinding::setCallbackMask(glbinding::CallbackMask::None);
 }
 
-void glbinding_log(bool enable, glbinding::RingBuffer<std::string, 100> &buffer)
-{
-    if (enable)
-    {
-        glbinding::setCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
-        glbinding::setAfterCallback([&](const glbinding::FunctionCall & call) {
-            std::ostringstream os;
-            os << call.function.name() << "(";
-
-            for (unsigned i = 0; i < call.parameters.size(); ++i)
-            {
-                os << call.parameters[i]->asString();
-                if (i < call.parameters.size() - 1)
-                    os << ", ";
-            }
-
-            os << ")";
-
-            if (call.returnValue)
-            {
-                os << " -> " << call.returnValue->asString();
-            }
-
-            os << std::endl;
-            std::string input = os.str();
-            while(!buffer.push(input)){}
-        });
-    }
-    else
-    {
-        glbinding::setCallbackMask(glbinding::CallbackMask::None);
-    }
-}
-
-void glbinding_log2(bool enable)
+void glbinding_log(bool enable)
 {
     if (enable)
     {

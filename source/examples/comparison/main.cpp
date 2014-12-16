@@ -8,7 +8,6 @@
 
 #include <glbinding/ContextInfo.h>
 #include <glbinding/Version.h>
-#include <glbinding/RingBuffer.hpp>
 
 #include "Timer.h"
 #include <thread>
@@ -87,54 +86,19 @@ void compare()
 
     long double glbinding_avg_err = timer.stop();
 
-    std::cout << std::endl << "test: again, now with callback logging ..." << std::endl;
-    glbinding::RingBuffer<std::string, 100> buffer;
-    bool finished = false;
-    std::thread writer([&]()
-        {
-            auto unix_timestamp = std::chrono::seconds(std::time(NULL));
-            int unix_timestamp_x_1000 = std::chrono::milliseconds(unix_timestamp).count();
-
-            std::string logname = "logs/test_";
-            logname += std::to_string(unix_timestamp_x_1000);
-            std::ofstream logfile;
-            logfile.open (logname, std::ios::out);
-
-            std::string entry;
-            while(!finished || !buffer.isEmpty())
-            {
-                if(buffer.pull(&entry))
-                {
-                    logfile << entry;
-                    logfile.flush();
-                };
-            }
-            logfile.close();
-    });
-    glbinding_log(true, buffer);
+    std::cout << std::endl << "test: again, now with logging ..." << std::endl;
+    glbinding_log(true);
     timer.start("      glbinding ");
 
     for (int i = 0; i < ITERATIONS; ++i)
         glbinding_test();
-
-    finished = true;
-    writer.join();
+    glbinding_log(false);
     long double glbinding_avg_log = timer.stop();
-
-    std::cout << std::endl << "test: again, now with own logging ..." << std::endl;
-    glbinding_log2(true);
-    timer.start("      glbinding ");
-
-    for (int i = 0; i < ITERATIONS; ++i)
-        glbinding_test();
-    glbinding_log2(false);
-    long double glbinding_avg_log2 = timer.stop();
 
 
     std::cout << std::endl << "glbinding/glew decrease:                 " << (glbinding_avg / glew_avg - 1.0) * 100.0 << "%" << std::endl;
     std::cout << std::endl << "glbinding/glew decrease (error checks):  " << (glbinding_avg_err / glew_avg_err - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with callback logging:" << (glbinding_avg / glbinding_avg_log - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with logging:         " << (glbinding_avg / glbinding_avg_log2 - 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with logging:         " << (glbinding_avg / glbinding_avg_log - 1.0) * 100.0 << "%" << std::endl;
 
 
     std::cout << std::endl << "finalizing ..." << std::endl;
