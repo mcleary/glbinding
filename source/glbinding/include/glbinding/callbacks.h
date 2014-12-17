@@ -6,6 +6,7 @@
 #include <vector>
 #include <functional>
 #include <string>
+#include <chrono>
 
 namespace glbinding 
 {
@@ -20,7 +21,11 @@ struct GLBINDING_API FunctionCall
 
     FunctionCall & operator=(const FunctionCall &) = delete;
 
+    std::string toString() const;
+
+
     const AbstractFunction & function;
+    const std::chrono::high_resolution_clock::time_point timestamp;
 
     std::vector<AbstractValue *> parameters;
     AbstractValue * returnValue;
