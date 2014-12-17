@@ -1,6 +1,5 @@
 #pragma once
 
-#include <sstream>
 #include <thread>
 #include <fstream>
 
@@ -10,6 +9,7 @@
 
 namespace glbinding 
 {
+static const int LOG_BUFFER_SIZE = 1000;
 
 template <typename T, unsigned long n>
 class RingBuffer;
@@ -18,23 +18,28 @@ class GLBINDING_API Logging
 {
     friend class AbstractFunction;
 
-    private:
-    static bool s_active;
-    static bool s_stop;
-    static bool s_finished;
-    static glbinding::RingBuffer<std::string, 100> s_buffer;
-    static std::mutex s_lockfinish;
-    static std::condition_variable s_finishcheck;
-
-    Logging() = delete;
-    ~Logging() = delete;
-
-    public:
+public:
     static void start();
     static void stop();
 
-    protected:
+protected:
     static bool isActive();
     static void log(const FunctionCall & call);
+
+private:
+    Logging() = delete;
+    ~Logging() = delete;
+
+private:
+    static bool s_active;
+
+    static bool s_stop;
+    static bool s_finished;
+    static std::mutex s_lockfinish;
+    static std::condition_variable s_finishcheck;
+
+    using FunctionCallBuffer = glbinding::RingBuffer<std::string, LOG_BUFFER_SIZE>;
+    static FunctionCallBuffer s_buffer;
+
 };
 } // namespace glbinding
