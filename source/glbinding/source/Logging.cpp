@@ -1,4 +1,4 @@
-#include <glbinding/Logging.hpp>
+#include <glbinding/Logging.h>
 #include "RingBuffer.hpp"
 
 namespace glbinding
