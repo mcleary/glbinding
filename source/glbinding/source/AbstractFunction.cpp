@@ -7,7 +7,7 @@
 #include <type_traits>
 
 #include <glbinding/Binding.h>
-#include <glbinding/Logging.hpp>
+#include <glbinding/Logging.h>
 #include <glbinding/Meta.h>
 
 #include "callbacks_private.h"

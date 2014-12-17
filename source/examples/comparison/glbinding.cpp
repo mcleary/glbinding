@@ -8,7 +8,7 @@
 
 #include <glbinding/AbstractFunction.h> 
 #include <glbinding/callbacks.h>
-#include <glbinding/Logging.hpp>
+#include <glbinding/Logging.h>
 
 
 using namespace gl;

@@ -78,7 +78,7 @@ set(api_includes
     ${include_path}/SharedBitfield.h
     ${include_path}/SharedBitfield.hpp
 
-    ${include_path}/Logging.hpp
+    ${include_path}/Logging.h
 )
 
 # add featured headers
