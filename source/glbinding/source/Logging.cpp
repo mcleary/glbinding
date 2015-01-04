@@ -18,15 +18,14 @@ void Logging::start()
     std::thread writer([&]()
     {
         using milliseconds = std::chrono::milliseconds;
-        auto unix_timestamp = milliseconds(std::time(NULL));
-        int unix_timestamp_x_1000 = milliseconds(unix_timestamp).count();
+        auto timestamp = milliseconds(std::time(NULL)).count();
 
         std::string logname = "logs/log_";
-        logname += std::to_string(unix_timestamp_x_1000);
+        logname += std::to_string(timestamp);
         std::ofstream logfile;
         logfile.open (logname, std::ios::out);
 
-        std::string entry;
+        BufferType entry;
         while(!s_stop || !s_buffer.isEmpty())
         {
             if(s_buffer.pull(&entry))
