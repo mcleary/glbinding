@@ -38,7 +38,8 @@ private:
     static std::mutex s_lockfinish;
     static std::condition_variable s_finishcheck;
 
-    using FunctionCallBuffer = glbinding::RingBuffer<std::string, LOG_BUFFER_SIZE>;
+    using BufferType = std::string;
+    using FunctionCallBuffer = glbinding::RingBuffer<BufferType, LOG_BUFFER_SIZE>;
     static FunctionCallBuffer s_buffer;
 
 };
