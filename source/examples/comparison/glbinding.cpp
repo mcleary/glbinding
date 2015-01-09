@@ -52,13 +52,10 @@ void glbinding_log(bool enable)
 {
     if (enable)
     {
-        glbinding::setCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
-        glbinding::setAfterCallback([&](const glbinding::FunctionCall & call) {});
         glbinding::Logging::start();
     }
     else
     {
         glbinding::Logging::stop();
-        glbinding::setCallbackMask(glbinding::CallbackMask::None);
     }
 }

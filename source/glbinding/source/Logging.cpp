@@ -20,24 +20,26 @@ void Logging::start()
     std::thread writer([&]()
     {
         using milliseconds = std::chrono::milliseconds;
-        auto timestamp = milliseconds(std::time(NULL)).count();
+        auto timestamp = milliseconds(std::time(0)).count();
 
         std::string logname = "logs/log_";
         logname += std::to_string(timestamp);
         std::ofstream logfile;
         logfile.open (logname, std::ios::out);
+        logfile << "Start log";
+        logfile.flush();
 
         BufferType entry;
         while(!s_stop || !s_buffer.isEmpty())
         {
-            if(s_buffer.pull(&entry))
+            if(s_buffer.pull(entry))
             {
                 logfile << entry;
                 logfile.flush();
             };
         }
         logfile.close();
-        //
+        std::cout << "Logging stoped" << std::endl;
         s_persisted = true;
         s_finishcheck.notify_all();
     });
@@ -59,8 +61,8 @@ void Logging::stop()
 
 void Logging::log(const FunctionCall & call)
 {
-    // while(!s_buffer.push(call.toString()));
-    s_buffer.push(call.toString());
+    while(!s_buffer.push(call.toString()));
+    // s_buffer.push(call.toString());
 };
 
 } // namespace glbinding
