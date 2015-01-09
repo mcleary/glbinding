@@ -113,7 +113,7 @@ ReturnType Function<ReturnType, Arguments...>::operator()(Arguments&... argument
 
     if (myAddress != nullptr)
     {
-        if (isAnyEnabled(CallbackMask::Before | CallbackMask::After))
+        if (isAnyEnabled(CallbackMask::Before | CallbackMask::After | CallbackMask::Logging))
             return FunctionHelper<ReturnType, Arguments...>().call(this, std::forward<Arguments>(arguments)...);
         else
             return FunctionHelper<ReturnType, Arguments...>().basicCall(this, std::forward<Arguments>(arguments)...);
