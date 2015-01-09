@@ -95,11 +95,6 @@ int main(int, char *[])
 
     Binding::initialize(false); // only resolve functions that are actually used (lazy)
 
-    setCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
-    setAfterCallback([&](const glbinding::FunctionCall & call) {
-    });
-
-
     Logging::start();
 
     // print some gl infos (query)

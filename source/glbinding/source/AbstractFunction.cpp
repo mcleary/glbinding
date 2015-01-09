@@ -7,7 +7,6 @@
 #include <type_traits>
 
 #include <glbinding/Binding.h>
-#include <glbinding/Logging.h>
 #include <glbinding/Meta.h>
 
 #include "callbacks_private.h"
@@ -156,11 +155,25 @@ bool AbstractFunction::isAnyEnabled(const CallbackMask mask) const
         ^ static_cast<callback_mask_t>(mask)) != 0;
 }
 
+CallbackMask AbstractFunction::callbackMask() const
+{
+    return state().callbackMask;
+}
+
 void AbstractFunction::setCallbackMask(const CallbackMask mask)
 {
     state().callbackMask = mask;
 }
 
+void AbstractFunction::addCallbackMask(const CallbackMask mask)
+{
+    state().callbackMask |= mask;
+}
+
+void AbstractFunction::removeCallbackMask(const CallbackMask mask)
+{
+    state().callbackMask &= ~mask;
+}
 
 void AbstractFunction::unresolved() const
 {
@@ -175,8 +188,6 @@ void AbstractFunction::before(const FunctionCall & call) const
 
 void AbstractFunction::after(const FunctionCall & call) const
 {
-    if(Logging::isActive())
-        Logging::log(call);
     glbinding::after(call);
 }
 
