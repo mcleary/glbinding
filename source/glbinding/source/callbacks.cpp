@@ -41,6 +41,30 @@ CallbackMask operator|(const CallbackMask a, const CallbackMask b)
     return static_cast<CallbackMask>(static_cast<callback_mask_t>(a) | static_cast<callback_mask_t>(b));
 }
 
+CallbackMask operator~(CallbackMask a)
+{
+    using callback_mask_t = std::underlying_type<CallbackMask>::type;
+    return static_cast<CallbackMask>(~static_cast<callback_mask_t>(a));
+}
+
+CallbackMask operator&(CallbackMask a, CallbackMask b)
+{
+    using callback_mask_t = std::underlying_type<CallbackMask>::type;
+    return static_cast<CallbackMask>(static_cast<callback_mask_t>(a) & static_cast<callback_mask_t>(b));
+}
+
+CallbackMask& operator|=(CallbackMask& a, CallbackMask b)
+{
+    a = a | b;
+    return a;
+}
+
+CallbackMask& operator&=(CallbackMask& a, CallbackMask b)
+{
+    a = a & b;
+    return a;
+}
+
 std::string FunctionCall::toString() const
 {
     std::ostringstream os;
@@ -82,6 +106,17 @@ void setCallbackMaskExcept(const CallbackMask mask, const std::set<std::string> 
             function->setCallbackMask(mask);
 }
 
+void addCallbackMask(const CallbackMask mask)
+{
+    for (AbstractFunction * function : Binding::functions())
+        function->addCallbackMask(mask);
+}
+
+void removeCallbackMask(const CallbackMask mask)
+{
+    for (AbstractFunction * function : Binding::functions())
+        function->removeCallbackMask(mask);
+}
 
 void setUnresolvedCallback(SimpleFunctionCallback callback)
 {
