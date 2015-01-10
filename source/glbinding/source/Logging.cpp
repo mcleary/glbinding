@@ -1,6 +1,6 @@
 #include <glbinding/Logging.h>
 #include <glbinding/callbacks.h>
-#include "RingBuffer.hpp"
+#include "RingBuffer.h"
 
 namespace glbinding
 {

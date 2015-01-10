@@ -117,6 +117,7 @@ set(sources
     ${source_path}/Meta_StringsByEnum.cpp
     ${source_path}/Meta_StringsByExtension.cpp
 
+    ${source_path}/RingBuffer.h
     ${source_path}/RingBuffer.hpp
     ${source_path}/Logging.cpp
 )

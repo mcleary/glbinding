@@ -1,39 +1,12 @@
 #pragma once
 
 #include <iostream>
-#include <atomic>
-#include <array>
 #include <iomanip>
 #include <thread>
 
 namespace glbinding
 {
 
-template <typename T, unsigned long n>
-class RingBuffer 
-{
-    std::array<T, n+1> m_ringBuffer;
-    const int m_size = n+1;
-    std::atomic<unsigned long> m_head;
-    std::atomic<unsigned long> m_tail;
-
-    unsigned long next(unsigned long current) {
-        return (current + 1) % m_size;
-    }
-
-    public:
-    RingBuffer()
-    {
-        m_head = 0;
-        m_tail = 0;
-    };
-    bool push(T);
-    bool pull(T&);
-    int size();
-
-    bool isFull();
-    bool isEmpty();
-};
 
 template <typename T, unsigned long n>
 bool RingBuffer<T, n>::push(const T object) {
