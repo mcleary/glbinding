@@ -110,14 +110,14 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
     RingBuffer<int, 3> buffer;
     std::thread t1([&]()
     {
-        for(int i = 0; i < 1000000; i++)
+        for(int i = 0; i < 10; i++)
             while(!buffer.push(i));
     });
 
     std::thread t2([&]()
     {
         int result;
-        for(int j = 0; j < 1000000; j++)
+        for(int j = 0; j < 10; j++)
         {
             while(!buffer.pull(result));
             EXPECT_EQ(j, result);
@@ -132,7 +132,6 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
 
 TEST_F(RingBuffer_test, ConsumerTest1)
 {
-    std::list<int> values = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
     RingBuffer<int, 10> buffer;
 
     unsigned int a = buffer.addTail();
@@ -201,14 +200,14 @@ TEST_F(RingBuffer_test, ConsumerTest2)
 
     std::thread t1([&]()
     {
-        for(int i = 0; i < 100000; i++)
+        for(int i = 0; i < 10; i++)
             while(!buffer.push(i));
     });
 
     std::thread t2([&]()
     {
         int result;
-        for(int j = 0; j < 100000; j++)
+        for(int j = 0; j < 10; j++)
         {
             while(!buffer.pullTail(a, result));
             EXPECT_EQ(j, result);
@@ -219,7 +218,7 @@ TEST_F(RingBuffer_test, ConsumerTest2)
     std::thread t3([&]()
     {
         int result;
-        for(int j = 0; j < 100000; j++)
+        for(int j = 0; j < 10; j++)
         {
             while(!buffer.pullTail(b, result));
             EXPECT_EQ(j, result);
@@ -235,6 +234,40 @@ TEST_F(RingBuffer_test, ConsumerTest2)
     buffer.removeTail(b);
 
     EXPECT_EQ(0, buffer.size());
+}
+
+TEST_F(RingBuffer_test, PullBlockTest)
+{
+    RingBuffer<int, 10> buffer;
+
+    unsigned int a = buffer.addTail();
+    EXPECT_EQ(0, a);
+
+    for(int i = 0; i < 5; i++)
+    {
+        while(!buffer.push(i)){}
+    }
+
+    EXPECT_EQ(5, buffer.size());
+
+    std::vector<int> result = buffer.pullTail(a, 4);
+    for (int i = 0; i < 4; i++)
+    {
+        EXPECT_EQ(i, result[i]);
+    }
+
+    EXPECT_EQ(1, buffer.size());
+
+    for(int i = 5; i < 13; i++)
+    {
+        while(!buffer.push(i)){}
+    }
+
+    result = buffer.pullTail(a, 8);
+    for (int i = 4; i < 13; i++)
+    {
+        EXPECT_EQ(i, result[i-4]);
+    }
 }
 
 // TEST_F(RingBuffer_test, MultiThreadedTest2)

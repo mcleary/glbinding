@@ -15,7 +15,7 @@ bool RingBuffer<T, n>::push(const T object)
 {
     uint64_t head = m_head.load(std::memory_order_relaxed);
     uint64_t nextHead = next(head);
-    if (nextHead == m_tail.load(std::memory_order_acquire)) {
+    if (nextHead % m_size == m_tail.load(std::memory_order_acquire)) {
         return false;
     }
     m_buffer.at(head % m_size) = object;
@@ -27,7 +27,7 @@ template <typename T, uint64_t n>
 bool RingBuffer<T, n>::pull(T & object)
 {
     uint64_t tail = m_tail.load(std::memory_order_relaxed);
-    if (tail == m_head.load(std::memory_order_acquire)) {
+    if (tail == m_head.load(std::memory_order_acquire) % m_size) {
         return false;
     }
     object = m_buffer.at(tail % m_size);
@@ -89,13 +89,24 @@ template <typename T, uint64_t n>
 bool RingBuffer<T, n>::pullTail(unsigned int key, T & object)
 {
     uint64_t tail = m_tails[key].load(std::memory_order_relaxed);
-    if (tail == m_head.load(std::memory_order_acquire)) {
+    if (tail == m_head.load(std::memory_order_acquire) % m_size) {
         return false;
     }
     object = m_buffer.at(tail % m_size);
     m_tails[key].store(next(tail), std::memory_order_release);
     updateTail();
     return true;
+}
+
+template <typename T, uint64_t n>
+std::vector<T> RingBuffer<T, n>::pullTail(unsigned int key, uint64_t length)
+{
+    uint64_t tail = m_tails[key].load(std::memory_order_relaxed);
+    uint64_t newTail = tail + length;
+    std::vector<T> result = pullBlock(tail, newTail);
+    m_tails[key].store(newTail, std::memory_order_release);
+    updateTail();
+    return result;
 }
 
 template <typename T, uint64_t n>

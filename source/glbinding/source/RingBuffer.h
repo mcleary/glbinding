@@ -38,6 +38,7 @@ class RingBuffer
     unsigned int addTail();
     void removeTail(unsigned int);
     bool pullTail(unsigned int, T&);
+    std::vector<T> pullTail(unsigned int, uint64_t length);
     int sizeTail(unsigned int);
 
     private:
