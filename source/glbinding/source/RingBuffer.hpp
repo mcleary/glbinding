@@ -6,6 +6,7 @@
 
 #include "RingBuffer.h"
 
+<<<<<<< HEAD
 namespace glbinding
 {
 
