@@ -23,6 +23,7 @@ class GLBINDING_API Logging
 
 public:
     static void start();
+    static void start(std::string filepath);
     static void stop();
 
     static void log(const FunctionCall & call);

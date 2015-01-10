@@ -12,22 +12,24 @@ Logging::FunctionCallBuffer Logging::s_buffer;
 
 void Logging::start()
 {
-
-    addCallbackMask(CallbackMask::Logging);
-    s_stop = false;
-    s_persisted = false;
-
-    std::thread writer([&]()
-    {
         using milliseconds = std::chrono::milliseconds;
         auto timestamp = milliseconds(std::time(0)).count();
 
         std::string logname = "logs/log_";
         logname += std::to_string(timestamp);
+        start(logname);
+};
+
+void Logging::start(std::string filepath)
+{
+    addCallbackMask(CallbackMask::Logging);
+    s_stop = false;
+    s_persisted = false;
+
+    std::thread writer([filepath]()
+    {
         std::ofstream logfile;
-        logfile.open (logname, std::ios::out);
-        logfile << "Start log";
-        logfile.flush();
+        logfile.open (filepath, std::ios::out);
 
         BufferType entry;
         while(!s_stop || !s_buffer.isEmpty())
@@ -39,7 +41,6 @@ void Logging::start()
             };
         }
         logfile.close();
-        std::cout << "Logging stoped" << std::endl;
         s_persisted = true;
         s_finishcheck.notify_all();
     });
