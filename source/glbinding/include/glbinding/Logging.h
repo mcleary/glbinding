@@ -14,7 +14,7 @@ namespace glbinding
 //ToDo: Reason why 1000
 static const int LOG_BUFFER_SIZE = 1000;
 
-template <typename T, unsigned long n>
+template <typename T, uint64_t n>
 class RingBuffer;
 
 

@@ -2,21 +2,23 @@
 #include <atomic>
 #include <array>
 #include <map>
+#include <vector>
 
 namespace glbinding
 {
 
-template <typename T, unsigned long n>
+template <typename T, uint64_t n>
 class RingBuffer 
 {
-    std::array<T, n+1> m_ringBuffer;
-    const int m_size = n+1;
-    std::atomic<unsigned long> m_head;
-    std::atomic<unsigned long> m_tail;
-    std::map<std::string,std::atomic<unsigned long>> m_tails;
+    std::array<T, n+1> m_buffer;
+    const uint64_t m_size = n+1;
+    std::atomic<uint64_t> m_head;
+    std::atomic<uint64_t> m_tail;
+    std::map<unsigned int, std::atomic<uint64_t>> m_tails;
+    std::mutex m_tail_mutex;
 
-    unsigned long next(unsigned long current) {
-        return (current + 1) % m_size;
+    uint64_t next(uint64_t current) {
+        return (current + 1) % (2 * m_size);
     }
 
     public:
@@ -33,13 +35,15 @@ class RingBuffer
     bool isFull();
     bool isEmpty();
 
-    void registerConsumer(std::string);
-    void deregisterConsumer(std::string);
-    bool pull(std::string, T&);
-    int size(std::string);
+    unsigned int addTail();
+    void removeTail(unsigned int);
+    bool pullTail(unsigned int, T&);
+    int sizeTail(unsigned int);
 
     private:
     void updateTail();
+    std::vector<T> pullBlock(uint64_t, uint64_t);
+
 };
 
 } // namespace glbinding
