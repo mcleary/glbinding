@@ -85,7 +85,7 @@ void compare()
         glbinding_test();
 
     long double glbinding_avg_err = timer.stop();
-
+    glbinding_error(false);
     std::cout << std::endl << "test: again, now with logging ..." << std::endl;
     glbinding_log(true);
     timer.start("      glbinding ");
