@@ -5,7 +5,7 @@
 #include <list>
 #include <iostream>
 
-#include <glbinding/RingBuffer.hpp>
+#include <RingBuffer.h>
 
 using namespace glbinding;
 
@@ -19,7 +19,7 @@ TEST_F(RingBuffer_test, SimpleTest)
     RingBuffer<int, 10> buffer;
 
     int result;
-    EXPECT_EQ(false, buffer.pull(&result));
+    EXPECT_EQ(false, buffer.pull(result));
 
     for (int i = 1; i <= 10; i++)
     {
@@ -30,7 +30,7 @@ TEST_F(RingBuffer_test, SimpleTest)
 
     for (int i = 1; i <= 5; i++)
     {
-        EXPECT_EQ(true, buffer.pull(&result));
+        EXPECT_EQ(true, buffer.pull(result));
         EXPECT_EQ(i, result);
     }
 
@@ -49,7 +49,7 @@ TEST_F(RingBuffer_test, StringTest)
     RingBuffer<std::string, 10> buffer;
 
     std::string result;
-    EXPECT_EQ(false, buffer.pull(&result));
+    EXPECT_EQ(false, buffer.pull(result));
 
     for (int i = 1; i <= 10; i++)
     {
@@ -60,7 +60,7 @@ TEST_F(RingBuffer_test, StringTest)
 
     for (int i = 1; i <= 5; i++)
     {
-        EXPECT_EQ(true, buffer.pull(&result));
+        EXPECT_EQ(true, buffer.pull(result));
         EXPECT_EQ("Hello world!", result);
     }
 
@@ -91,7 +91,7 @@ TEST_F(RingBuffer_test, MultiThreadedTest)
         int result;
         for(const int s: i1)
         {
-            while(!buffer.pull(&result));
+            while(!buffer.pull(result));
             EXPECT_EQ(s, result);
             out.push_front(result);
         }
@@ -119,7 +119,7 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
         int result;
         for(int j = 0; j < 1000000; j++)
         {
-            while(!buffer.pull(&result));
+            while(!buffer.pull(result));
             EXPECT_EQ(j, result);
         }
 
@@ -130,36 +130,104 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
     EXPECT_EQ(0, buffer.size());
 }
 
-TEST_F(RingBuffer_test, ConsumerTest)
+TEST_F(RingBuffer_test, ConsumerTest1)
 {
     std::list<int> values = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
     RingBuffer<int, 10> buffer;
-    std::function<void (int result)> consume = [&](int value)
+    buffer.registerConsumer("first");
+    int result;
+
+    for(int i = 0; i < 5; i++)
     {
-        EXPECT_EQ(values.front(), value);
-        values.pop_front();
-    };
-    buffer.setConsumer(consume);
+        while(!buffer.push(i)){}
+    }
+
+    for(int j = 0; j < 3; j++)
+    {
+        buffer.pull("first", result);
+        EXPECT_EQ(j, result);
+    }
+
+    buffer.registerConsumer("second");
+
+    for(int j = 3; j < 5; j++)
+    {
+        buffer.pull("second", result);
+        EXPECT_EQ(j, result);
+    }
+
+    for(int i = 5; i < 13; i++)
+    {
+        while(!buffer.push(i)){}
+    }
+    
+    EXPECT_EQ(10, buffer.size());
+    EXPECT_EQ(10, buffer.size("first"));
+    EXPECT_EQ(8, buffer.size("second"));
+    
+    buffer.deregisterConsumer("first");
+    EXPECT_EQ(8, buffer.size());
+
+    buffer.registerConsumer("third");
+    for(int j = 5; j < 9; j++)
+    {
+        buffer.pull("second", result);
+        EXPECT_EQ(j, result);
+    }
+
+    buffer.deregisterConsumer("second");
+    EXPECT_EQ(8, buffer.size());
+
+    for(int j = 5; j < 13; j++)
+    {
+        buffer.pull("third", result);
+        EXPECT_EQ(j, result);
+    }
+
+    EXPECT_EQ(0, buffer.size());
+}
+
+TEST_F(RingBuffer_test, ConsumerTest2)
+{
+    RingBuffer<int, 50> buffer;
+    buffer.registerConsumer("first");
+    buffer.registerConsumer("second");
 
     std::thread t1([&]()
     {
-        for(int i = 0; i < 15; i++)
-        {
-            while(!buffer.push(i)){}
-        }
+        for(int i = 0; i < 10000000; i++)
+            while(!buffer.push(i));
     });
-    // std::cout << "Waiting to write all elements" << std::endl;
-    t1.join();
-    // std::cout << "Finished writing all elements" << std::endl;
-    if(!buffer.isEmpty())
-    {
-        buffer.startConsumer(); 
-    }
 
-    while(buffer.consumerRunning()){
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
-        // std::cout << buffer.consumerRunning() << " - " << buffer.isEmpty() << std::endl;
-    }
+    std::thread t2([&]()
+    {
+        int result;
+        for(int j = 0; j < 10000000; j++)
+        {
+            while(!buffer.pull("first", result));
+            EXPECT_EQ(j, result);
+        }
+
+    });
+
+    std::thread t3([&]()
+    {
+        int result;
+        for(int j = 0; j < 10000000; j++)
+        {
+            while(!buffer.pull("second" ,result));
+            EXPECT_EQ(j, result);
+        }
+
+    });
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    buffer.deregisterConsumer("first");
+    buffer.deregisterConsumer("second");
+
     EXPECT_EQ(0, buffer.size());
 }
 
@@ -188,7 +256,7 @@ TEST_F(RingBuffer_test, ConsumerTest)
 //         // std::cout << "End: " << i1.size() + i2.size() << std::endl;
 //         for(int i = 0; i < i1.size() + i2.size(); i++)
 //         {
-//             while(!buffer.pull(&result));
+//             while(!buffer.pull(result));
 //             out.push_front(result);
 //             std::cout << "i = " << result << std::endl;
 //         }
