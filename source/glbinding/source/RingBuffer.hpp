@@ -15,7 +15,7 @@ bool RingBuffer<T, n>::push(const T object)
 {
     uint64_t head = m_head.load(std::memory_order_relaxed);
     uint64_t nextHead = next(head);
-    if (nextHead % m_size == m_tail.load(std::memory_order_acquire)) {
+    if (nextHead == m_tail.load(std::memory_order_acquire)) {
         return false;
     }
     m_buffer.at(head % m_size) = object;
@@ -27,7 +27,7 @@ template <typename T, uint64_t n>
 bool RingBuffer<T, n>::pull(T & object)
 {
     uint64_t tail = m_tail.load(std::memory_order_relaxed);
-    if (tail == m_head.load(std::memory_order_acquire) % m_size) {
+    if (tail == m_head.load(std::memory_order_acquire)) {
         return false;
     }
     object = m_buffer.at(tail % m_size);
@@ -36,9 +36,11 @@ bool RingBuffer<T, n>::pull(T & object)
 }
 
 template <typename T, uint64_t n>
-int RingBuffer<T, n>::size()
+uint64_t RingBuffer<T, n>::size()
 {
-    return m_head.load(std::memory_order_acquire) - m_tail.load(std::memory_order_acquire);
+    uint64_t head = m_head.load(std::memory_order_acquire);
+    uint64_t tail = m_tail.load(std::memory_order_acquire);
+    return size(head, tail);
 }
 
 template <typename T, uint64_t n>
@@ -68,11 +70,10 @@ unsigned int RingBuffer<T, n>::addTail()
     unsigned int i = 0;
     while(true)
     {
-        if ( m_tails.find(i) != m_tails.end() ) {
-          i++;
-        } else {
-            break;
+        if ( m_tails.find(i) == m_tails.end() ) {
+          break;
         }
+        i++;
     }
     m_tails[i] = m_tail.load(std::memory_order_acquire);
     return i;
@@ -110,9 +111,22 @@ std::vector<T> RingBuffer<T, n>::pullTail(unsigned int key, uint64_t length)
 }
 
 template <typename T, uint64_t n>
-int RingBuffer<T, n>::sizeTail(unsigned int key)
+std::vector<T> RingBuffer<T, n>::pullCompleteTail(unsigned int key)
 {
-    return m_head.load(std::memory_order_acquire) - m_tails[key].load(std::memory_order_acquire);
+    uint64_t tail = m_tails[key].load(std::memory_order_relaxed);
+    uint64_t newTail = m_head.load(std::memory_order_acquire);
+    std::vector<T> result = pullBlock(tail, newTail);
+    m_tails[key].store(newTail, std::memory_order_release);
+    updateTail();
+    return result;
+}
+
+template <typename T, uint64_t n>
+uint64_t RingBuffer<T, n>::sizeTail(unsigned int key)
+{
+    uint64_t head = m_head.load(std::memory_order_acquire);
+    uint64_t tail = m_tails[key].load(std::memory_order_acquire);
+    return size(head, tail);
 }
 
 template <typename T, uint64_t n>
@@ -130,6 +144,11 @@ void RingBuffer<T, n>::updateTail()
             return;
         }
 
+        if (tailPos < tail)
+        {
+            tailPos += m_size;
+        }
+
         if (tailPos < currentMin)
         {
             currentMin = tailPos;
@@ -142,8 +161,26 @@ void RingBuffer<T, n>::updateTail()
         return;
     }
 
+    if (currentMin > m_size)
+    {
+        currentMin = currentMin % m_size;
+    }
+
     m_tail.store(currentMin, std::memory_order_release);
     m_tail_mutex.unlock();
+}
+
+template <typename T, uint64_t n>
+uint64_t RingBuffer<T, n>::size(uint64_t head, uint64_t tail)
+{
+    if (head < tail)
+    {
+        return m_size - tail + head;
+    }
+    else
+    {
+        return head - tail;
+    }
 }
 
 template <typename T, uint64_t n>

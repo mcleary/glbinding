@@ -18,7 +18,7 @@ class RingBuffer
     std::mutex m_tail_mutex;
 
     uint64_t next(uint64_t current) {
-        return (current + 1) % (2 * m_size);
+        return (current + 1) % m_size;
     }
 
     public:
@@ -30,7 +30,7 @@ class RingBuffer
 
     bool push(T);
     bool pull(T&);
-    int size();
+    uint64_t size();
 
     bool isFull();
     bool isEmpty();
@@ -38,11 +38,13 @@ class RingBuffer
     unsigned int addTail();
     void removeTail(unsigned int);
     bool pullTail(unsigned int, T&);
-    std::vector<T> pullTail(unsigned int, uint64_t length);
-    int sizeTail(unsigned int);
+    std::vector<T> pullTail(unsigned int, uint64_t);
+    std::vector<T> pullCompleteTail(unsigned int);
+    uint64_t sizeTail(unsigned int);
 
     private:
     void updateTail();
+    uint64_t size(uint64_t, uint64_t);
     std::vector<T> pullBlock(uint64_t, uint64_t);
 
 };
