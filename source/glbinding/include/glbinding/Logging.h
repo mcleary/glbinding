@@ -12,7 +12,7 @@ namespace glbinding
 
 //ToDo: Comment why array and not vector
 //ToDo: Reason why 1000
-static const int LOG_BUFFER_SIZE = 1000;
+static const int LOG_BUFFER_SIZE = 1000000;
 
 template <typename T, uint64_t n>
 class RingBuffer;

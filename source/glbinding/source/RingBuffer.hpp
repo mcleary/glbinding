@@ -161,7 +161,7 @@ void RingBuffer<T, n>::updateTail()
         return;
     }
 
-    if (currentMin > m_size)
+    if (currentMin >= m_size)
     {
         currentMin = currentMin % m_size;
     }

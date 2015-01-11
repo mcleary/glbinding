@@ -110,14 +110,14 @@ TEST_F(RingBuffer_test, MultiThreadedTest2)
     RingBuffer<int, 3> buffer;
     std::thread t1([&]()
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 100000; i++)
             while(!buffer.push(i));
     });
 
     std::thread t2([&]()
     {
         int result;
-        for(int j = 0; j < 10; j++)
+        for(int j = 0; j < 100000; j++)
         {
             while(!buffer.pull(result));
             EXPECT_EQ(j, result);
@@ -200,14 +200,14 @@ TEST_F(RingBuffer_test, ConsumerTest2)
 
     std::thread t1([&]()
     {
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 100000; i++)
             while(!buffer.push(i));
     });
 
     std::thread t2([&]()
     {
         int result;
-        for(int j = 0; j < 10; j++)
+        for(int j = 0; j < 100000; j++)
         {
             while(!buffer.pullTail(a, result));
             EXPECT_EQ(j, result);
@@ -218,7 +218,7 @@ TEST_F(RingBuffer_test, ConsumerTest2)
     std::thread t3([&]()
     {
         int result;
-        for(int j = 0; j < 10; j++)
+        for(int j = 0; j < 100000; j++)
         {
             while(!buffer.pullTail(b, result));
             EXPECT_EQ(j, result);

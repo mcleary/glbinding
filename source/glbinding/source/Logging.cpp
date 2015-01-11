@@ -28,19 +28,30 @@ void Logging::start(std::string filepath)
 
     std::thread writer([filepath]()
     {
+        unsigned int key = s_buffer.addTail();
         std::ofstream logfile;
         logfile.open (filepath, std::ios::out);
 
-        BufferType entry;
         while(!s_stop || !s_buffer.isEmpty())
         {
-            if(s_buffer.pull(entry))
+            std::vector<BufferType> entries = s_buffer.pullCompleteTail(key);
+            if (entries.size() != 0)
             {
-                logfile << entry;
+                for (BufferType entry : entries)
+                {
+                    logfile << entry;
+                };
                 logfile.flush();
-            };
+            }
+            else
+            {
+                std::chrono::milliseconds dura( 10 );
+                std::this_thread::sleep_for( dura );
+            }
+
         }
         logfile.close();
+        s_buffer.removeTail(key);
         s_persisted = true;
         s_finishcheck.notify_all();
     });
