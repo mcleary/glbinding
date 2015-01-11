@@ -251,6 +251,8 @@ TEST_F(RingBuffer_test, PullBlockTest)
     EXPECT_EQ(5, buffer.size());
 
     std::vector<int> result = buffer.pullTail(a, 4);
+    EXPECT_EQ(4, result.size());
+
     for (int i = 0; i < 4; i++)
     {
         EXPECT_EQ(i, result[i]);
@@ -263,11 +265,15 @@ TEST_F(RingBuffer_test, PullBlockTest)
         while(!buffer.push(i)){}
     }
 
-    result = buffer.pullTail(a, 8);
+    result = buffer.pullTail(a, 9);
+    EXPECT_EQ(9, result.size());
+
     for (int i = 4; i < 13; i++)
     {
         EXPECT_EQ(i, result[i-4]);
     }
+
+    EXPECT_EQ(0, buffer.size());
 }
 
 // TEST_F(RingBuffer_test, MultiThreadedTest2)

@@ -150,7 +150,7 @@ template <typename T, uint64_t n>
 std::vector<T> RingBuffer<T, n>::pullBlock(uint64_t begin, uint64_t end) {
     std::vector<T> result;
 
-    for (uint64_t i = begin; i <= end; i++)
+    for (uint64_t i = begin; i < end; i++)
     {
         result.push_back(m_buffer.at(i % m_size));
     }
