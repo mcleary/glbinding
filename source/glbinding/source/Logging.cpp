@@ -32,7 +32,7 @@ void Logging::start(std::string filepath)
         std::ofstream logfile;
         logfile.open (filepath, std::ios::out);
 
-        while(!s_stop || !s_buffer.isEmpty())
+        while(!s_stop || (s_buffer.sizeTail(key) != 0))
         {
             std::vector<BufferType> entries = s_buffer.pullCompleteTail(key);
             if (entries.size() != 0)
