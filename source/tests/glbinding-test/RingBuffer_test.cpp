@@ -176,7 +176,7 @@ TEST_F(RingBuffer_test, ConsumerTest1)
 
     for(int j = 5; j < 9; j++)
     {
-        buffer.pullTail(b, result);
+        result = buffer.pull(b);
         EXPECT_EQ(j, result);
     }
 
@@ -185,7 +185,7 @@ TEST_F(RingBuffer_test, ConsumerTest1)
 
     for(int j = 5; j < 13; j++)
     {
-        buffer.pullTail(c, result);
+        result = buffer.pull(c);
         EXPECT_EQ(j, result);
     }
 
@@ -229,7 +229,7 @@ TEST_F(RingBuffer_test, ConsumerTest2)
             ok = false;
             while(!ok)
             {
-                result = buffer.pull(a, ok);
+                result = buffer.pull(b, ok);
             }
             EXPECT_EQ(j, result);
         }
