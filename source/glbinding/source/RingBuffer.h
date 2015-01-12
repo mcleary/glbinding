@@ -7,21 +7,15 @@
 namespace glbinding
 {
 
-template <typename T, uint64_t n>
+template <typename T, uint64_t N>
 class RingBuffer 
 {
-    std::array<T, n+1> m_buffer;
-    const uint64_t m_size = n+1;
-    std::atomic<uint64_t> m_head;
-    std::atomic<uint64_t> m_tail;
-    std::map<unsigned int, std::atomic<uint64_t>> m_tails;
-    std::mutex m_tail_mutex;
 
     uint64_t next(uint64_t current) {
         return (current + 1) % m_size;
     }
 
-    public:
+public:
     RingBuffer()
     {
         m_head = 0;
@@ -35,18 +29,28 @@ class RingBuffer
     bool isFull();
     bool isEmpty();
 
-    unsigned int addTail();
-    void removeTail(unsigned int);
-    bool pullTail(unsigned int, T&);
-    std::vector<T> pullTail(unsigned int, uint64_t);
-    std::vector<T> pullCompleteTail(unsigned int);
-    uint64_t sizeTail(unsigned int);
+    using TailIdentifier = unsigned int;
 
-    private:
+    TailIdentifier addTail();
+    void removeTail(TailIdentifier);
+    T pull(TailIdentifier, bool& ok);
+    T pull(TailIdentifier);
+    std::vector<T> pullTail(TailIdentifier, uint64_t length);
+    std::vector<T> pullTail(TailIdentifier);
+    uint64_t sizeTail(TailIdentifier);
+
+protected:
     void updateTail();
     uint64_t size(uint64_t, uint64_t);
     std::vector<T> pullBlock(uint64_t, uint64_t);
 
+protected:
+    std::array<T, N+1> m_buffer;
+    const uint64_t m_size = N+1;
+    std::atomic<uint64_t> m_head;
+    std::atomic<uint64_t> m_tail;
+    std::map<TailIdentifier, std::atomic<uint64_t>> m_tails;
+    std::mutex m_tail_mutex;
 };
 
 } // namespace glbinding

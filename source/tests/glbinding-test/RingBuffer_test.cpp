@@ -146,7 +146,7 @@ TEST_F(RingBuffer_test, ConsumerTest1)
 
     for(int j = 0; j < 3; j++)
     {
-        buffer.pullTail(a, result);
+        result = buffer.pull(a);
         EXPECT_EQ(j, result);
     }
 
@@ -155,7 +155,7 @@ TEST_F(RingBuffer_test, ConsumerTest1)
 
     for(int j = 3; j < 5; j++)
     {
-        buffer.pullTail(b, result);
+        result = buffer.pull(b);
         EXPECT_EQ(j, result);
     }
 
@@ -207,9 +207,14 @@ TEST_F(RingBuffer_test, ConsumerTest2)
     std::thread t2([&]()
     {
         int result;
+        bool ok;
         for(int j = 0; j < 100000; j++)
         {
-            while(!buffer.pullTail(a, result));
+            ok = false;
+            while(!ok)
+            {
+                result = buffer.pull(a, ok);
+            }
             EXPECT_EQ(j, result);
         }
 
@@ -218,9 +223,14 @@ TEST_F(RingBuffer_test, ConsumerTest2)
     std::thread t3([&]()
     {
         int result;
+        bool ok;
         for(int j = 0; j < 100000; j++)
         {
-            while(!buffer.pullTail(b, result));
+            ok = false;
+            while(!ok)
+            {
+                result = buffer.pull(a, ok);
+            }
             EXPECT_EQ(j, result);
         }
 

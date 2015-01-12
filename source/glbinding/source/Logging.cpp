@@ -34,7 +34,7 @@ void Logging::start(std::string filepath)
 
         while(!s_stop || (s_buffer.sizeTail(key) != 0))
         {
-            std::vector<BufferType> entries = s_buffer.pullCompleteTail(key);
+            std::vector<BufferType> entries = s_buffer.pullTail(key);
             if (entries.size() != 0)
             {
                 for (BufferType entry : entries)
@@ -50,6 +50,7 @@ void Logging::start(std::string filepath)
             }
 
         }
+
         logfile.close();
         s_buffer.removeTail(key);
         s_persisted = true;
