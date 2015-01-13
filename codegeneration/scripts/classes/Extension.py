@@ -74,6 +74,10 @@ def suffixFreeEnumName(enum):
 
 	return enum.name
 
+def suffixFreeCommandName(command):
+
+	name = command.name
+	return next((name.rstrip(x) for x in Extension.suffixes if name.endswith(x)), name)
 
 def parseExtensions(xml, features, api):
 
