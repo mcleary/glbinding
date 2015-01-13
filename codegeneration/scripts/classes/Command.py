@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 from classes.Feature import *
 from classes.Extension import *
+from categorization import * 
 
 # near and far are defined by windows.h ... :( 
 exceptions = ["GetProcAddress", "near", "far"]
@@ -53,6 +54,8 @@ class Command:
         self.reqFeatures   = []
         self.remFeatures   = [] # len(remF) should always be < 2
         self.reqExtensions = []
+
+        self.category = category(self.name);
         
         for feature in features:
             if feature.api == api and self.name in feature.reqCommandStrings:
