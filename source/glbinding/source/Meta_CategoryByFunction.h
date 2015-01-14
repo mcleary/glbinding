@@ -7,7 +7,7 @@ using namespace gl; // ToDo: multiple APIs?
 namespace glbinding
 {
 
-const std::unordered_map<std::string, std::string> Meta_CategoryByCommand
+const std::unordered_map<std::string, std::string> Meta_CategoryByFunction
 {
 #ifdef GL_BY_STRINGS
     { "glAccum", "Fixed Function" },
@@ -1133,7 +1133,7 @@ const std::unordered_map<std::string, std::string> Meta_CategoryByCommand
     { "glIndexPointerListIBM", "Uncategorized" },
     { "glIndexd", "Uncategorized" },
     { "glIndexdv", "Uncategorized" },
-    { "glIndexf", "Uncategorized" },
+    { "glIndexf", "Immediate Mode" },
     { "glIndexfv", "Uncategorized" },
     { "glIndexi", "Uncategorized" },
     { "glIndexiv", "Uncategorized" },
@@ -1329,19 +1329,19 @@ const std::unordered_map<std::string, std::string> Meta_CategoryByCommand
     { "glMultTransposeMatrixf", "Uncategorized" },
     { "glMultTransposeMatrixfARB", "Uncategorized" },
     { "glMultTransposeMatrixxOES", "Uncategorized" },
-    { "glMultiDrawArrays", "Buffer Objects" },
-    { "glMultiDrawArraysEXT", "Buffer Objects" },
-    { "glMultiDrawArraysIndirect", "Buffer Objects" },
-    { "glMultiDrawArraysIndirectAMD", "Buffer Objects" },
+    { "glMultiDrawArrays", "Rendering" },
+    { "glMultiDrawArraysEXT", "Rendering" },
+    { "glMultiDrawArraysIndirect", "Rendering" },
+    { "glMultiDrawArraysIndirectAMD", "Rendering" },
     { "glMultiDrawArraysIndirectBindlessCountNV", "Uncategorized" },
     { "glMultiDrawArraysIndirectBindlessNV", "Uncategorized" },
     { "glMultiDrawArraysIndirectCountARB", "Uncategorized" },
     { "glMultiDrawElementArrayAPPLE", "Uncategorized" },
-    { "glMultiDrawElements", "Buffer Objects" },
-    { "glMultiDrawElementsBaseVertex", "Buffer Objects" },
-    { "glMultiDrawElementsEXT", "Buffer Objects" },
-    { "glMultiDrawElementsIndirect", "Buffer Objects" },
-    { "glMultiDrawElementsIndirectAMD", "Buffer Objects" },
+    { "glMultiDrawElements", "Rendering" },
+    { "glMultiDrawElementsBaseVertex", "Rendering" },
+    { "glMultiDrawElementsEXT", "Rendering" },
+    { "glMultiDrawElementsIndirect", "Rendering" },
+    { "glMultiDrawElementsIndirectAMD", "Rendering" },
     { "glMultiDrawElementsIndirectBindlessCountNV", "Uncategorized" },
     { "glMultiDrawElementsIndirectBindlessNV", "Uncategorized" },
     { "glMultiDrawElementsIndirectCountARB", "Uncategorized" },

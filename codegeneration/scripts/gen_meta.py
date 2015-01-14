@@ -100,7 +100,7 @@ def genMetaEnumsByString(enums, outputdir, outputfile, type):
         file.write(template(outputfile) % ((",\n" + tab).join(
             [ metaStringToEnum(e, type) for e in pureEnums ])))
 
-def genMetaCategoryByCommand(commands, outputdir, outputfile):
+def genMetaCategoryByFunction(commands, outputdir, outputfile):
     status(outputdir + outputfile)
 
     l = [ '{ "%s", "%s" }' % (c.name, c.category) for c in commands ]
@@ -108,7 +108,7 @@ def genMetaCategoryByCommand(commands, outputdir, outputfile):
     with open(outputdir + outputfile, 'w') as file:
         file.write(template(outputfile) % ((",\n" + tab).join(l)))
 
-def genMetaCommandsByCategory(commands, outputdir, outputfile):
+def genMetaFunctionsByCategory(commands, outputdir, outputfile):
     status(outputdir + outputfile)
 
     d = swapMultiMap(dict( (c.name, c.category) for c in commands ))

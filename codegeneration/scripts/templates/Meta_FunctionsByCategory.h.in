@@ -7,7 +7,7 @@ using namespace gl; // ToDo: multiple APIs?
 namespace glbinding
 {
 
-const std::unordered_map<std::string, std::list<std::string>> Meta_CommandsByCategory
+const std::unordered_map<std::string, std::list<std::string>> Meta_FunctionsByCategory
 {
 #ifdef GL_BY_STRINGS
     %s
