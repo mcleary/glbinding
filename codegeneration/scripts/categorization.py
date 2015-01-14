@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from classes.Extension import *
 from classes.Command import *
 
@@ -10,10 +8,16 @@ def swapMultiMap(n_map):
 
   rev_map = {}
   for k in n_map:
-    for e in n_map[k]:
-      if (not(e in rev_map)):
-        rev_map[e] = []
-      rev_map[e].append(k)
+    val = n_map[k]
+    if isinstance(val, (list, tuple)):
+      for e in val:
+        if (not(e in rev_map)):
+          rev_map[e] = []
+        rev_map[e].append(k)
+    else:
+      if (not(val in rev_map)):
+          rev_map[val] = []
+      rev_map[val].append(k)
   return rev_map
 
 def category(command):
@@ -83,6 +87,11 @@ categories_command = {
       "glDrawBuffer",
       "glFinish",
       "glFlush",
+      "glMultiDrawArrays",
+      "glMultiDrawArraysIndirect",
+      "glMultiDrawElements",
+      "glMultiDrawElementsBaseVertex",
+      "glMultiDrawElementsIndirect",
       "glReadBuffer",
       "glReadPixels",
   ],
@@ -233,11 +242,6 @@ categories_command = {
       "glIsBuffer",
       "glMapBuffer",
       "glMapBufferRange",
-      "glMultiDrawArrays",
-      "glMultiDrawArraysIndirect",
-      "glMultiDrawElements",
-      "glMultiDrawElementsBaseVertex",
-      "glMultiDrawElementsIndirect",
       "glPatchParameter",
       "glPrimitiveRestartIndex",
       "glProvokingVertex",
@@ -390,6 +394,7 @@ categories_command = {
         "glTexCoord",
         "glFogCoord",
         "glIndex",
+        "glIndexf",
         "glMaterial",
         "glMultiTexCoord",
         "glNormal",

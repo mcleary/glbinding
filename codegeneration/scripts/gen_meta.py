@@ -1,4 +1,5 @@
 from binding import *
+from categorization import *
 from classes.Extension import *
 
 
@@ -98,6 +99,23 @@ def genMetaEnumsByString(enums, outputdir, outputfile, type):
     with open(outputdir + outputfile, 'w') as file:
         file.write(template(outputfile) % ((",\n" + tab).join(
             [ metaStringToEnum(e, type) for e in pureEnums ])))
+
+def genMetaCategoryByCommand(commands, outputdir, outputfile):
+    status(outputdir + outputfile)
+
+    l = [ '{ "%s", "%s" }' % (c.name, c.category) for c in commands ]
+
+    with open(outputdir + outputfile, 'w') as file:
+        file.write(template(outputfile) % ((",\n" + tab).join(l)))
+
+def genMetaCommandsByCategory(commands, outputdir, outputfile):
+    status(outputdir + outputfile)
+
+    d = swapMultiMap(dict( (c.name, c.category) for c in commands ))
+    l = [ '{ "%s", %s}' % (cat, ('{ %s }' % (", ").join('"%s"' % com for com in d[cat]))) for cat in d ]
+
+    with open(outputdir + outputfile, 'w') as file:
+        file.write(template(outputfile) % ((",\n" + tab).join(l)))
 
 
 def groupEnumsByValue(enums):
