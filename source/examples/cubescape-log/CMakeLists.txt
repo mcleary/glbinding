@@ -12,6 +12,11 @@ if (NOT GLFW_FOUND)
 	return()
 endif()
 
+if (NOT OPTION_BUILD_TOOLS)
+    message("Example ${target} skipped: logvis not found")
+    return()
+endif()
+
 message(STATUS "Example ${target}")
 
 
@@ -20,6 +25,7 @@ message(STATUS "Example ${target}")
 include_directories(
     ${OPENGL_INCLUDE_DIR}
     ${GLFW_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/source/tools/logvis/include
 )
 
 include_directories(
@@ -35,6 +41,7 @@ set(libs
     ${OPENGL_LIBRARIES}
     ${GLFW_LIBRARY}
     glbinding
+    logvis
 )
 
 
