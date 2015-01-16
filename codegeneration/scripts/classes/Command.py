@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 from classes.Feature import *
 from classes.Extension import *
-from categorization import * 
+from categories import * 
 
 # near and far are defined by windows.h ... :( 
 exceptions = ["GetProcAddress", "near", "far"]
