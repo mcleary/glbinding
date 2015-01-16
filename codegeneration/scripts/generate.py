@@ -205,8 +205,8 @@ def generate(inputfile, patchfile, targetdir, revisionfile):
 
     genFunctionStringsByExtension  (extensions,         sourcedir,  "Meta_FunctionStringsByExtension.cpp")
     genExtensionsByFunctionString  (extensions,         sourcedir,  "Meta_ExtensionsByFunctionString.cpp")
-    genMetaCategoryByFunction      (commands,           sourcedir,  "Meta_CategoryByFunction.h")
-    genMetaFunctionsByCategory     (commands,           sourcedir,  "Meta_FunctionsByCategory.h")
+    genMetaCategoryByFunction      (commands,           sourcedir,  "Meta_CategoryByFunction.cpp")
+    genMetaFunctionsByCategory     (commands,           sourcedir,  "Meta_FunctionsByCategory.cpp")
 
 
     print("")

@@ -114,6 +114,8 @@ set(sources
     ${source_path}/Meta_StringsByBoolean.cpp
     ${source_path}/Meta_StringsByEnum.cpp
     ${source_path}/Meta_StringsByExtension.cpp
+    ${source_path}/Meta_FunctionsByCategory.cpp
+    ${source_path}/Meta_CategoryByFunction.cpp
 )
 
 # file(GLOB featured_sources ${source_path}/gl/*.cpp)
