@@ -171,7 +171,7 @@ const std::string & Meta::getCategory(const std::string & function)
     return i->second;
 }
 
-std::set<std::string> & getCategories()
+std::set<std::string> Meta::getCategories()
 {
     std::set<std::string> categories;
     for (auto p : Meta_FunctionsByCategory)
