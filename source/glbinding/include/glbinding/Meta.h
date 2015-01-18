@@ -45,7 +45,7 @@ public:
 
     static const std::set<std::string> & getCategoryFunctions(const std::string & category);
     static const std::string & getCategory(const std::string & function);
-    static const std::set<std::string> & getCategories();
+    static std::set<std::string> & getCategories();
 };
 
 } // namespace gl
