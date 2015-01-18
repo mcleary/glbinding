@@ -25,8 +25,14 @@ public:
     static void start();
     static void start(std::string filepath);
     static void stop();
+    static void pause();
+    static void resume();
 
     static void log(const FunctionCall & call);
+
+    using BufferType = std::string;
+    using FunctionCallBuffer = glbinding::RingBuffer<BufferType, LOG_BUFFER_SIZE>;
+    static FunctionCallBuffer& getBuffer();
 
 private:
     Logging() = delete;
@@ -38,8 +44,6 @@ private:
     static std::mutex s_lockfinish;
     static std::condition_variable s_finishcheck;
 
-    using BufferType = std::string;
-    using FunctionCallBuffer = glbinding::RingBuffer<BufferType, LOG_BUFFER_SIZE>;
     static FunctionCallBuffer s_buffer;
 
 

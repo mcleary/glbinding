@@ -9,7 +9,6 @@ namespace glbinding
 
 const std::unordered_map<std::string, std::string> Meta_CategoryByFunction
 {
-#ifdef GL_BY_STRINGS
     { "glAccum", "Fixed Function" },
     { "glAccumxOES", "Uncategorized" },
     { "glActiveProgramEXT", "Uncategorized" },
@@ -2798,7 +2797,6 @@ const std::unordered_map<std::string, std::string> Meta_CategoryByFunction
     { "glWindowPos4sMESA", "Uncategorized" },
     { "glWindowPos4svMESA", "Uncategorized" },
     { "glWriteMaskEXT", "Uncategorized" }
-#endif
 };
 
 } // namespace glbinding

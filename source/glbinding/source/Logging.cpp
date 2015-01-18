@@ -72,6 +72,21 @@ void Logging::stop()
     removeCallbackMask(CallbackMask::Logging);
 };
 
+void Logging::pause()
+{
+    removeCallbackMask(CallbackMask::Logging);
+};
+
+void Logging::resume()
+{
+    addCallbackMask(CallbackMask::Logging);
+};
+
+Logging::FunctionCallBuffer& Logging::getBuffer()
+{
+    return s_buffer;
+}
+
 void Logging::log(const FunctionCall & call)
 {
     while(!s_buffer.push(call.toString()));

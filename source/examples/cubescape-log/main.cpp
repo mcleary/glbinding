@@ -12,6 +12,7 @@
 #include <glbinding/gl/gl.h>
 
 #include "CubeScape.h"
+#include <logvis/LogVis.h>
 
 #include <thread>
 #include <fstream>
@@ -96,17 +97,19 @@ int main(int, char *[])
     Binding::initialize(false); // only resolve functions that are actually used (lazy)
 
     Logging::start();
+    
 
     // print some gl infos (query)
-
     std::cout << std::endl
         << "OpenGL Version:  " << ContextInfo::version() << std::endl
         << "OpenGL Vendor:   " << ContextInfo::vendor() << std::endl
         << "OpenGL Renderer: " << ContextInfo::renderer() << std::endl;
 
+
     std::cout << std::endl
         << "Press i or d to either increase or decrease number of cubes." << std::endl << std::endl;
 
+    logvis::LogVis visualiser;
 
     cubescape = new CubeScape();
 
@@ -118,6 +121,7 @@ int main(int, char *[])
         glfwPollEvents();
         cubescape->draw();
         glfwSwapBuffers(window);
+        visualiser.update();
     }
 
     delete cubescape;
