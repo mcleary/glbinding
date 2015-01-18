@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 from classes.Feature import *
 from classes.Extension import *
+from categories import * 
 
 # near and far are defined by windows.h ... :( 
 exceptions = ["GetProcAddress", "near", "far"]
@@ -53,6 +54,8 @@ class Command:
         self.reqFeatures   = []
         self.remFeatures   = [] # len(remF) should always be < 2
         self.reqExtensions = []
+
+        self.category = category(self.name);
         
         for feature in features:
             if feature.api == api and self.name in feature.reqCommandStrings:
@@ -153,8 +156,9 @@ def verifyCommands(commands, bitfGroups):
 
     # all non verified commands should be patched
 
-    missing    = dict()
-    unresolved = dict()
+    missing       = dict()
+    unresolved    = dict()
+    uncategorized = [] 
 
     for command in commands:
         for param in (param for param in command.params):
@@ -168,6 +172,9 @@ def verifyCommands(commands, bitfGroups):
             elif param.groupString not in bitfGroupsByName:
                 unresolved[param] = command
 
+        if (command.category == "Uncategorized"):
+            uncategorized.append(command)
+
     if len(missing) > 0:
         print(" WARNING: " + str(len(missing)) + " missing group specification (defaulting to GLbitfield):")
         for param, command in missing.items():
@@ -177,4 +184,9 @@ def verifyCommands(commands, bitfGroups):
         print(" WARNING: " + str(len(unresolved)) + " unresolved groups:")
         for param, command in unresolved.items():
             print("  %s (in %s)" % (param.groupString, command.name))
+
+    if len(uncategorized) > 0:
+        print(" WARNING: " + str(len(uncategorized)) + " uncategorized commands:")
+        # for command in uncategorized:
+        #     print("  %s" % command.name)
 

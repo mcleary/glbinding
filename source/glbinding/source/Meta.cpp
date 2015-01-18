@@ -149,4 +149,26 @@ const std::set<Version> & Meta::versions()
     return Version::versions();
 }
 
+const std::set<std::string> & Meta::getCategoryFunctions(const std::string & category)
+{
+    auto i = Meta_FunctionsByCategory.find(category);
+    if (i == Meta_FunctionsByCategory.end())
+    {
+        static const std::set<std::string> none;
+        return none;
+    }
+    return i->second;
+}
+
+const std::string & Meta::getCategory(const std::string & function)
+{
+    auto i = Meta_CategoryByFunction.find(function);
+    if (i == Meta_CategoryByFunction.end())
+    {
+        static const std::string none;
+        return none;
+    }
+    return i->second;
+}
+
 } // namespace glbinding

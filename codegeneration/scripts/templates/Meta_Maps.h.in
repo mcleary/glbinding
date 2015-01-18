@@ -32,6 +32,9 @@ extern const std::unordered_map<gl::GLextension, std::set<std::string>> Meta_Fun
 
 extern const std::unordered_map<gl::GLextension, Version> Meta_ReqVersionsByExtension;
 
+extern const std::unordered_map<std::string, std::string> Meta_CategoryByFunction;
+extern const std::unordered_map<std::string, std::set<std::string>> Meta_FunctionsByCategory;
+
 %s
 
 } // namespace glbinding

@@ -42,6 +42,9 @@ public:
 
     static const Version & getRequiringVersion(gl::GLextension extension);
     static const std::set<Version> & versions();
+
+    static const std::set<std::string> & getCategoryFunctions(const std::string & category);
+    static const std::string & getCategory(const std::string & function);
 };
 
 } // namespace gl
