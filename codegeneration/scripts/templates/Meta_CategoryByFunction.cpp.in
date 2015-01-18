@@ -9,9 +9,7 @@ namespace glbinding
 
 const std::unordered_map<std::string, std::string> Meta_CategoryByFunction
 {
-#ifdef GL_BY_STRINGS
     %s
-#endif
 };
 
 } // namespace glbinding

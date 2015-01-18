@@ -171,4 +171,13 @@ const std::string & Meta::getCategory(const std::string & function)
     return i->second;
 }
 
+const std::set<std::string> & getCategories()
+{
+    std::set<std::string> categories;
+    for (auto p : Meta_FunctionsByCategory)
+        categories.insert(p.first);
+
+    return categories;
+}
+
 } // namespace glbinding

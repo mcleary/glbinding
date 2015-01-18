@@ -9,7 +9,6 @@ namespace glbinding
 
 const std::unordered_map<std::string, std::set<std::string>> Meta_FunctionsByCategory
 {
-#ifdef GL_BY_STRINGS
     { "Program Pipelines", { "glValidateProgramPipeline", "glIsProgramPipeline", "glBindProgramPipeline", "glGetProgramPipelineInfoLog", "glActiveShaderProgram", "glDeleteProgramPipelines", "glGenProgramPipelines", "glCreateProgramPipelines" }},
     { "Debug", { "glDebugMessageControl", "glGetDebugMessageLogAMD", "glGetPointerv", "glGetObjectPtrLabel", "glGetObjectLabel", "glDebugMessageCallbackARB", "glGetObjectLabelEXT", "glDebugMessageInsertAMD", "glDebugMessageInsert", "glObjectPtrLabel", "glGetDebugMessageLog", "glPushDebugGroup", "glGetPointervEXT", "glObjectLabel", "glDebugMessageCallbackAMD", "glDebugMessageInsertARB", "glDebugMessageControlARB", "glDebugMessageCallback", "glPopDebugGroup", "glGetDebugMessageLogARB" }},
     { "Vertex Array Objects", { "glDeleteVertexArrays", "glDeleteVertexArraysAPPLE", "glIsVertexArrayAPPLE", "glIsVertexArray", "glGenVertexArraysAPPLE", "glBindVertexArrayAPPLE", "glBindVertexArray", "glGenVertexArrays" }},
@@ -32,7 +31,6 @@ const std::unordered_map<std::string, std::set<std::string>> Meta_FunctionsByCat
     { "Call Lists", { "glCallList", "glCallLists", "glDeleteLists", "glIsList", "glGenLists", "glEndList" }},
     { "Utility", { "glGetMultisamplefv", "glGetGraphicsResetStatus", "glGetString", "glDispatchComputeIndirect", "glGetInternalformativ", "glGetMultisamplefvNV", "glDispatchCompute", "glMemoryBarrier", "glMemoryBarrierEXT", "glGetGraphicsResetStatusARB" }},
     { "GL2 Rasterization", { "glLineStipple", "glPopName", "glCopyPixels", "glRenderMode", "glDrawPixels", "glPolygonStipple", "glPassThrough", "glBitmap", "glClearIndex", "glSelectBuffer", "glInitNames", "glClipPlane", "glGetPolygonStipple", "glLoadName", "glPixelZoom", "glFeedbackBuffer", "glPushName", "glGetClipPlane" }}
-#endif
 };
 
 } // namespace glbinding
