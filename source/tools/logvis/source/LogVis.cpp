@@ -8,6 +8,10 @@ LogVis::LogVis()
 : log(glbinding::Logging::getBuffer())
 {
     tailId = log.addTail();
+    for (std::string category : glbinding::Meta::getCategories())
+    {
+        maxStats[category] = 0;
+    };
 }
 
 LogVis::~LogVis()
@@ -17,7 +21,21 @@ LogVis::~LogVis()
 
 void LogVis::update()
 {
-    std::map<std::string, unsigned int> categoryCount;
+    LogVis::CategoryStats categoryCount = getCurrentLogPart();
+
+    updateMax(categoryCount);
+    updateLast(categoryCount);
+
+    for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
+    {
+        std::cout << it->first << ": " << it->second << " - " << averageCount(it->first) << " - " << maxStats[it->first] << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+LogVis::CategoryStats LogVis::getCurrentLogPart()
+{
+    LogVis::CategoryStats categoryCount;
     for (std::string category : glbinding::Meta::getCategories())
     {
         categoryCount[category] = 0;
@@ -29,17 +47,28 @@ void LogVis::update()
         int begin = entry.find(" ") + 1;
         int end = entry.find("(");
         std::string command = entry.substr(begin, end - begin);
-        // std::cout << command << ": " << glbinding::Meta::getCategory(command) << std::endl;
         ++categoryCount[glbinding::Meta::getCategory(command)];
     }
 
-    lastStats[head++ % 5] = categoryCount;
+    return categoryCount;
+}
 
-    for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
+void LogVis::updateMax(LogVis::CategoryStats currentCounts)
+{
+    for (auto it = maxStats.cbegin(); it != maxStats.cend(); ++it)
     {
-        std::cout << it->first << ": " << it->second << " - " << averageCount(it->first)/lastStats.size() << std::endl;
+        if (it->second < currentCounts[it->first])
+        {
+            maxStats[it->first] = currentCounts[it->first];
+        }
     }
-    std::cout << std::endl;
+}
+
+void LogVis::updateLast(LogVis::CategoryStats currentCounts)
+{
+    lastStats.push_back(currentCounts);
+    if (lastStats.size() > 5)
+        lastStats.pop_front();
 }
 
 int LogVis::averageCount(std::string category)
@@ -49,7 +78,7 @@ int LogVis::averageCount(std::string category)
     {
         count += stats[category];
     }
-    return count;
+    return static_cast<float>(count)/static_cast<float>(lastStats.size());
 }
 
 } // namespace logvis

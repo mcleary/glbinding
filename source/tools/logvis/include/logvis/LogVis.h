@@ -5,6 +5,8 @@
 #include <glbinding/Meta.h>
 #include <../../glbinding/source/RingBuffer.h>
 
+#include <list>
+
 namespace logvis
 {
 
@@ -17,6 +19,11 @@ public:
     void update();
 
 protected:
+    using CategoryStats = std::map<std::string, unsigned int>;
+
+    CategoryStats getCurrentLogPart();
+    void updateMax(CategoryStats currentCounts);
+    void updateLast(CategoryStats currentCounts);
     int averageCount(std::string category);
 
 protected:
@@ -24,7 +31,8 @@ protected:
 
     glbinding::Logging::FunctionCallBuffer& log;
     TailIdentifier tailId;
-    std::array<std::map<std::string, unsigned int>, 5> lastStats;
+    std::list<std::map<std::string, unsigned int>> lastStats;
+    std::map<std::string, unsigned int> maxStats;
     unsigned short head = 0;
 };
 
