@@ -26,11 +26,11 @@ void LogVis::update()
     updateMax(categoryCount);
     updateLast(categoryCount);
 
-    for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
-    {
-        std::cout << it->first << ": " << it->second << " - " << averageCount(it->first) << " - " << maxStats[it->first] << std::endl;
-    }
-    std::cout << std::endl;
+    // for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
+    // {
+    //     std::cout << it->first << ": " << it->second << " - " << averageCount(it->first) << " - " << maxStats[it->first] << std::endl;
+    // }
+    // std::cout << std::endl;
 }
 
 LogVis::CategoryStats LogVis::getCurrentLogPart()

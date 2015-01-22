@@ -89,6 +89,162 @@ std::string readFile(const std::string & filePath)
     return content;
 }
 
+gl::GLuint displayLogTexture()
+{
+    // Texture
+    gl::GLuint logTexture;
+    glGenTextures(1, &logTexture);
+    glBindTexture(GL_TEXTURE_2D, logTexture);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
+
+    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 150, 0, GL_RGB, GL_FLOAT, 0);
+
+    // Vertices
+    float vertices[] = {
+    //  Position      Texcoords
+        -1.0f,  1.0f, 0.0f, 0.0f, // Top-left
+         1.0f,  1.0f, 1.0f, 0.0f, // Top-right
+         1.0f, -1.0f, 1.0f, 1.0f, // Bottom-right
+        -1.0f, -1.0f, 0.0f, 1.0f  // Bottom-left
+    };
+
+    GLuint vbo;
+    glGenBuffers(1, &vbo); // Generate 1 buffer
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    GLuint elements[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    GLuint ebo;
+    glGenBuffers(1, &ebo);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+    // Shaders
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string vertexSource   = readFile("data/log/log.vert");
+    std::string fragmentSource = readFile("data/log/log.frag");
+
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
+
+    glShaderSource(vs, 1, &vertSource, nullptr);
+    glCompileShader(vs);
+    compile_info(vs);
+
+    glShaderSource(fs, 1, &fragSource, nullptr);
+    glCompileShader(fs);
+    compile_info(fs);
+
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vs);
+    glAttachShader(shaderProgram, fs);
+
+    glBindFragDataLocation(shaderProgram, 0, "outColor");
+
+    glLinkProgram(shaderProgram);
+    glUseProgram(shaderProgram);
+    
+    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
+    glEnableVertexAttribArray(posAttrib);
+
+    GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+    glEnableVertexAttribArray(texAttrib);
+    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
+
+    return logTexture;
+}
+
+GLuint renderLogTexture(GLuint logTexture)
+{   
+    // Framebuffer
+    GLuint frameBuffer;
+    glGenFramebuffers(1, &frameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
+
+    // Vertices
+    float vertices[] = {
+    //  Position
+        -0.5f,  0.5f, // Top-left
+         0.5f,  0.5f, // Top-right
+         0.5f, -0.5f, // Bottom-right
+        -0.5f, -0.5f  // Bottom-left
+    };
+
+    GLuint vbo;
+    glGenBuffers(1, &vbo); // Generate 1 buffer
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    GLuint elements[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    GLuint ebo;
+    glGenBuffers(1, &ebo);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+    // Shaders
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string vertexSource   = readFile("data/log/logvis.vert");
+    std::string fragmentSource = readFile("data/log/logvis.frag");
+
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
+
+    glShaderSource(vs, 1, &vertSource, nullptr);
+    glCompileShader(vs);
+    compile_info(vs);
+
+    glShaderSource(fs, 1, &fragSource, nullptr);
+    glCompileShader(fs);
+    compile_info(fs);
+
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vs);
+    glAttachShader(shaderProgram, fs);
+
+    glBindFragDataLocation(shaderProgram, 0, "outColor");
+
+    glLinkProgram(shaderProgram);
+    glUseProgram(shaderProgram);
+    
+    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(posAttrib);
+
+    // Draw
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    return frameBuffer;
+}
+
 
 int main(int, char *[])
 {
@@ -132,91 +288,12 @@ int main(int, char *[])
     // Create Texture for logvis and stuff
     // The texture we're going to render to
     glfwMakeContextCurrent(logWindow);
-    gl::GLuint logTexture;
-    glGenTextures(1, &logTexture);
-     
-    // "Bind" the newly created texture : all future texture functions will modify this texture
-    glBindTexture(GL_TEXTURE_2D, logTexture);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
-
-    // Give an empty image to OpenGL ( the last "0" )
-    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 150, 0, GL_RGB, GL_FLOAT, 0);
-    
-    float vertices[] = {
-    //  Position      Color             Texcoords
-        -1.0f,  1.0f, 0.0f, 0.0f, // Top-left
-         1.0f,  1.0f, 1.0f, 0.0f, // Top-right
-         1.0f, -1.0f, 1.0f, 1.0f, // Bottom-right
-        -1.0f, -1.0f, 0.0f, 1.0f  // Bottom-left
-    };
-
-    GLuint vbo;
-    glGenBuffers(1, &vbo); // Generate 1 buffer
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    GLuint elements[] = {
-        0, 1, 2,
-        2, 3, 0
-    };
-
-    GLuint ebo;
-    glGenBuffers(1, &ebo);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-    std::string vertexSource   = readFile("data/log/log.vert");
-    std::string fragmentSource = readFile("data/log/log.frag");
-
-    const char * vertSource = vertexSource.c_str();
-    const char * fragSource = fragmentSource.c_str();
-
-    glShaderSource(vs, 1, &vertSource, nullptr);
-    glCompileShader(vs);
-    compile_info(vs);
-
-    glShaderSource(fs, 1, &fragSource, nullptr);
-    glCompileShader(fs);
-    compile_info(fs);
-
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vs);
-    glAttachShader(shaderProgram, fs);
-
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
-
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
-    
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE,
-                       4*sizeof(float), 0);
-    glEnableVertexAttribArray(posAttrib);
-
-    GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-    glEnableVertexAttribArray(texAttrib);
-    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE,
-                           4*sizeof(float), (void*)(5*sizeof(float)));
-
-    
-
+    GLuint logTexture = displayLogTexture();
+    GLuint logFrambuffer = renderLogTexture(logTexture);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // Draw
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-    glfwSwapBuffers(logWindow);
-
     Logging::start();
     // Logging stuff end
 
@@ -245,12 +322,14 @@ int main(int, char *[])
         cubescape->draw();
         glfwSwapBuffers(window);
         visualiser.update();
-        // glfwSwapBuffers(logWindow);
+        glfwSwapBuffers(logWindow);
     }
 
     delete cubescape;
     cubescape = nullptr;
     Logging::stop();
+    glfwMakeContextCurrent(logWindow);
+    glDeleteFramebuffers(1, &logFrambuffer);
 
     glfwTerminate();
     return 0;
