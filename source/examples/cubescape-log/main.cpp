@@ -290,10 +290,7 @@ int main(int, char *[])
     glfwMakeContextCurrent(logWindow);
 
     GLuint logTexture = displayLogTexture();
-    GLuint logFrambuffer = renderLogTexture(logTexture);
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    // Draw
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
     Logging::start();
     // Logging stuff end
 
@@ -309,7 +306,7 @@ int main(int, char *[])
     std::cout << std::endl
         << "Press i or d to either increase or decrease number of cubes." << std::endl << std::endl;
 
-    logvis::LogVis visualiser;
+    logvis::LogVis visualiser(logTexture);
 
     cubescape = new CubeScape();
 
@@ -321,15 +318,18 @@ int main(int, char *[])
         glfwPollEvents();
         cubescape->draw();
         glfwSwapBuffers(window);
+
+        glfwMakeContextCurrent(logWindow);
         visualiser.update();
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(logWindow);
+        glfwMakeContextCurrent(window);
     }
 
     delete cubescape;
     cubescape = nullptr;
     Logging::stop();
     glfwMakeContextCurrent(logWindow);
-    glDeleteFramebuffers(1, &logFrambuffer);
 
     glfwTerminate();
     return 0;
