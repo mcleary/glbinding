@@ -33,11 +33,11 @@ void LogVis::update()
     updateMax(categoryCount);
     updateLast(categoryCount);
 
-    // for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
-    // {
-    //     std::cout << it->first << ": " << it->second << " - " << averageCount(it->first) << " - " << m_maxStats[it->first] << std::endl;
-    // }
-    // std::cout << std::endl;
+    for(auto it = categoryCount.cbegin(); it != categoryCount.cend(); ++it)
+    {
+        std::cout << it->first << ": " << it->second << " - " << averageCount(it->first) << " - " << m_maxStats[it->first] << std::endl;
+    }
+    std::cout << std::endl;
 
     renderLogTexture();
 }
@@ -131,7 +131,7 @@ void LogVis::renderLogTexture()
     glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
 
     // Draw
-    glDrawElements(GL_TRIANGLES, m_maxStats.size()*6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 22*18, GL_UNSIGNED_INT, 0);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::Logging::resume();
@@ -141,29 +141,55 @@ void LogVis::renderCats()
 {
     float margin = 0.025f;
     int catCount = m_maxStats.size();
-    float width = (2.0f - (margin * (catCount-1))) / catCount;
+    float width = (2.0f - (margin * (catCount+1))) / catCount;
 
-    float vertices[catCount*4*5];
-    // GLuint elements[catCount * 6];
+    int numVerts = 4 * 5 * 3;
+    int numElem = 6 * 3;
+
+    float vertices[catCount * numVerts];
+    GLuint elements[catCount * numElem];
 
     int catNumber = 0;
     for (std::string category : glbinding::Meta::getCategories())
     {
-        int avg = 10;
-        float height = -1.0f + avg * 0.08f;
+        int now = m_lastStats.back().at(category);
+        int avg = averageCount(category);
+        int max = m_maxStats.at(category);
 
-        float start = -1.0f + catNumber * (width + margin);
-        float end = -1.0f + catNumber * (width + margin) + width;
+        float height = -1.0f + now * 0.08f;
+        float heightAvg = -1.0f + avg * 0.08f;
+        float heightMax = -1.0f + max * 0.08f;
+
+        float start = -1.0f + margin + catNumber * (width + margin);
+        float end = -1.0f + margin + catNumber * (width + margin) + width;
 
         std::vector<float> color = ColorByCategory.at(category);
 
-        vertices[0+(catNumber * 4*5)] = start; vertices[1+(catNumber * 4*5)] = height; vertices[2+(catNumber * 4*5)] = color[0]; vertices[3+(catNumber * 4*5)] = color[1]; vertices[4+(catNumber * 4*5)] = color[2];
-        vertices[5+(catNumber * 4*5)] =  end; vertices[6+(catNumber * 4*5)] = height; vertices[7+(catNumber * 4*5)] = color[0]; vertices[8+(catNumber * 4*5)] = color[1]; vertices[9+(catNumber * 4*5)] = color[2];
-        vertices[10+(catNumber * 4*5)] =  end; vertices[11+(catNumber * 4*5)] = -1.0f; vertices[12+(catNumber * 4*5)] = color[0]; vertices[13+(catNumber * 4*5)] = color[1]; vertices[14+(catNumber * 4*5)] = color[2];
-        vertices[15+(catNumber * 4*5)] = start; vertices[16+(catNumber * 4*5)] = -1.0f; vertices[17+(catNumber * 4*5)] = color[0]; vertices[18+(catNumber * 4*5)] = color[1]; vertices[19+(catNumber * 4*5)] = color[2];
+        vertices[0+(catNumber * numVerts)] = start; vertices[1+(catNumber * numVerts)] = height; vertices[2+(catNumber * numVerts)] = color[0]; vertices[3+(catNumber * numVerts)] = color[1]; vertices[4+(catNumber * numVerts)] = color[2];
+        vertices[5+(catNumber * numVerts)] = end; vertices[6+(catNumber * numVerts)] = height; vertices[7+(catNumber * numVerts)] = color[0]; vertices[8+(catNumber * numVerts)] = color[1]; vertices[9+(catNumber * numVerts)] = color[2];
+        vertices[10+(catNumber * numVerts)] = end; vertices[11+(catNumber * numVerts)] = -1.0f; vertices[12+(catNumber * numVerts)] = color[0]; vertices[13+(catNumber * numVerts)] = color[1]; vertices[14+(catNumber * numVerts)] = color[2];
+        vertices[15+(catNumber * numVerts)] = start; vertices[16+(catNumber * numVerts)] = -1.0f; vertices[17+(catNumber * numVerts)] = color[0]; vertices[18+(catNumber * numVerts)] = color[1]; vertices[19+(catNumber * numVerts)] = color[2];
 
-        // elements[0+(catNumber * 6)] = static_cast<GLuint>(0+(catNumber * 4)); elements[1+(catNumber * 6)] = static_cast<GLuint>(1+(catNumber * 4)); elements[2+(catNumber * 6)] = static_cast<GLuint>(2+(catNumber * 4));
-        // elements[3+(catNumber * 6)] = static_cast<GLuint>(2+(catNumber * 4)); elements[4+(catNumber * 6)] = static_cast<GLuint>(3+(catNumber * 4)); elements[5+(catNumber * 6)] = static_cast<GLuint>(0+(catNumber * 4));
+        vertices[20+(catNumber * numVerts)] = start - 0.005; vertices[21+(catNumber * numVerts)] = heightAvg + 0.1; vertices[22+(catNumber * numVerts)] = color[0]; vertices[23+(catNumber * numVerts)] = color[1]; vertices[24+(catNumber * numVerts)] = color[2];
+        vertices[25+(catNumber * numVerts)] = end + 0.005; vertices[26+(catNumber * numVerts)] = heightAvg + 0.1; vertices[27+(catNumber * numVerts)] = color[0]; vertices[28+(catNumber * numVerts)] = color[1]; vertices[29+(catNumber * numVerts)] = color[2];
+        vertices[30+(catNumber * numVerts)] = end + 0.005; vertices[31+(catNumber * numVerts)] = heightAvg - 0.1; vertices[32+(catNumber * numVerts)] = color[0]; vertices[33+(catNumber * numVerts)] = color[1]; vertices[34+(catNumber * numVerts)] = color[2];
+        vertices[35+(catNumber * numVerts)] = start - 0.005; vertices[36+(catNumber * numVerts)] = heightAvg - 0.1; vertices[37+(catNumber * numVerts)] = color[0]; vertices[38+(catNumber * numVerts)] = color[1]; vertices[39+(catNumber * numVerts)] = color[2];
+
+        vertices[40+(catNumber * numVerts)] = start; vertices[41+(catNumber * numVerts)] = heightMax + 0.1; vertices[42+(catNumber * numVerts)] = color[0]; vertices[43+(catNumber * numVerts)] = color[1]; vertices[44+(catNumber * numVerts)] = color[2];
+        vertices[45+(catNumber * numVerts)] = end; vertices[46+(catNumber * numVerts)] = heightMax + 0.1; vertices[47+(catNumber * numVerts)] = color[0]; vertices[48+(catNumber * numVerts)] = color[1]; vertices[49+(catNumber * numVerts)] = color[2];
+        vertices[50+(catNumber * numVerts)] = end; vertices[51+(catNumber * numVerts)] = heightMax - 0.1; vertices[52+(catNumber * numVerts)] = color[0]; vertices[53+(catNumber * numVerts)] = color[1]; vertices[54+(catNumber * numVerts)] = color[2];
+        vertices[55+(catNumber * numVerts)] = start; vertices[56+(catNumber * numVerts)] = heightMax - 0.1; vertices[57+(catNumber * numVerts)] = color[0]; vertices[58+(catNumber * numVerts)] = color[1]; vertices[59+(catNumber * numVerts)] = color[2];
+
+
+        elements[0+(catNumber * numElem)] = static_cast<GLuint>(0+(catNumber * 4 * 3)); elements[1+(catNumber * numElem)] = static_cast<GLuint>(1+(catNumber * 4 * 3)); elements[2+(catNumber * numElem)] = static_cast<GLuint>(2+(catNumber * 4 * 3));
+        elements[3+(catNumber * numElem)] = static_cast<GLuint>(2+(catNumber * 4 * 3)); elements[4+(catNumber * numElem)] = static_cast<GLuint>(3+(catNumber * 4 * 3)); elements[5+(catNumber * numElem)] = static_cast<GLuint>(0+(catNumber * 4 * 3));
+
+        elements[6+(catNumber * numElem)] = static_cast<GLuint>(4+(catNumber * 4 * 3)); elements[7+(catNumber * numElem)] = static_cast<GLuint>(5+(catNumber * 4 * 3)); elements[8+(catNumber * numElem)] = static_cast<GLuint>(6+(catNumber * 4 * 3));
+        elements[9+(catNumber * numElem)] = static_cast<GLuint>(6+(catNumber * 4 * 3)); elements[10+(catNumber * numElem)] = static_cast<GLuint>(7+(catNumber * 4 * 3)); elements[11+(catNumber * numElem)] = static_cast<GLuint>(4+(catNumber * 4 * 3));
+
+        elements[12+(catNumber * numElem)] = static_cast<GLuint>(8+(catNumber * 4 * 3)); elements[13+(catNumber * numElem)] = static_cast<GLuint>(9+(catNumber * 4 * 3)); elements[14+(catNumber * numElem)] = static_cast<GLuint>(10+(catNumber * 4 * 3));
+        elements[15+(catNumber * numElem)] = static_cast<GLuint>(10+(catNumber * 4 * 3)); elements[16+(catNumber * numElem)] = static_cast<GLuint>(11+(catNumber * 4 * 3)); elements[17+(catNumber * numElem)] = static_cast<GLuint>(8+(catNumber * 4 * 3));
+
         catNumber++;
     };
 
@@ -175,53 +201,6 @@ void LogVis::renderCats()
     GLuint vao;
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
-
-    GLuint elements[] = {
-        0, 1, 2,
-        2, 3, 0,
-        4, 5, 6,
-        6, 7, 4,
-        8, 9, 10,
-        10, 11, 8,
-        12, 13, 14,
-        14, 15, 12,
-        16, 17, 18,
-        18, 19, 16,
-        20, 21, 22,
-        22, 23, 20,
-        24, 25, 26,
-        26, 27, 24,
-        28, 29, 30,
-        30, 31, 28,
-        32, 33, 34,
-        34, 35, 32,
-        36, 37, 38,
-        38, 39, 36,
-        40, 41, 42,
-        42, 43, 40,
-        44, 45, 46,
-        46, 47, 44,
-        48, 49, 50,
-        50, 51, 48,
-        52, 53, 54,
-        54, 55, 52,
-        56, 57, 58,
-        58, 59, 56,
-        60, 61, 62,
-        62, 63, 60,
-        64, 65, 66,
-        66, 67, 64,
-        68, 69, 70,
-        70, 71, 68,
-        72, 73, 74,
-        74, 75, 72,
-        76, 77, 78,
-        78, 79, 76,
-        80, 81, 82,
-        82, 83, 80,
-        84, 85, 86,
-        86, 87, 84
-    };
 
     GLuint ebo;
     glGenBuffers(1, &ebo);
