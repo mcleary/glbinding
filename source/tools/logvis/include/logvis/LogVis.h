@@ -41,7 +41,7 @@ protected:
     bool readFile(const std::string & filePath, std::string & content);
     std::string readFile(const std::string & filePath);
 
-    const std::map<std::string, std::list<float>> ColorByCategory
+    const std::map<std::string, std::vector<float>> ColorByCategory
     {
         { "Program Pipelines", {102.0f/255.0f,194.0f/255.0f,165.0f/255.0f}},
         { "Debug", {252.0f/255.0f,141.0f/255.0f,98.0f/255.0f}},

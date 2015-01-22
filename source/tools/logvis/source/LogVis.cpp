@@ -121,10 +121,14 @@ void LogVis::renderLogTexture()
 
     glLinkProgram(shaderProgram);
     glUseProgram(shaderProgram);
-    
+
     GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
     glEnableVertexAttribArray(posAttrib);
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
+
+    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+    glEnableVertexAttribArray(colAttrib);
+    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
 
     // Draw
     glDrawElements(GL_TRIANGLES, m_maxStats.size()*6, GL_UNSIGNED_INT, 0);
@@ -139,7 +143,7 @@ void LogVis::renderCats()
     int catCount = m_maxStats.size();
     float width = (2.0f - (margin * (catCount-1))) / catCount;
 
-    float vertices[catCount*4*2];
+    float vertices[catCount*4*5];
     // GLuint elements[catCount * 6];
 
     int catNumber = 0;
@@ -151,10 +155,12 @@ void LogVis::renderCats()
         float start = -1.0f + catNumber * (width + margin);
         float end = -1.0f + catNumber * (width + margin) + width;
 
-        vertices[0+(catNumber * 8)] = start; vertices[1+(catNumber * 8)] = height;
-        vertices[2+(catNumber * 8)] =  end; vertices[3+(catNumber * 8)] = height;
-        vertices[4+(catNumber * 8)] =  end; vertices[5+(catNumber * 8)] = -1.0f;
-        vertices[6+(catNumber * 8)] = start; vertices[7+(catNumber * 8)] = -1.0f;
+        std::vector<float> color = ColorByCategory.at(category);
+
+        vertices[0+(catNumber * 4*5)] = start; vertices[1+(catNumber * 4*5)] = height; vertices[2+(catNumber * 4*5)] = color[0]; vertices[3+(catNumber * 4*5)] = color[1]; vertices[4+(catNumber * 4*5)] = color[2];
+        vertices[5+(catNumber * 4*5)] =  end; vertices[6+(catNumber * 4*5)] = height; vertices[7+(catNumber * 4*5)] = color[0]; vertices[8+(catNumber * 4*5)] = color[1]; vertices[9+(catNumber * 4*5)] = color[2];
+        vertices[10+(catNumber * 4*5)] =  end; vertices[11+(catNumber * 4*5)] = -1.0f; vertices[12+(catNumber * 4*5)] = color[0]; vertices[13+(catNumber * 4*5)] = color[1]; vertices[14+(catNumber * 4*5)] = color[2];
+        vertices[15+(catNumber * 4*5)] = start; vertices[16+(catNumber * 4*5)] = -1.0f; vertices[17+(catNumber * 4*5)] = color[0]; vertices[18+(catNumber * 4*5)] = color[1]; vertices[19+(catNumber * 4*5)] = color[2];
 
         // elements[0+(catNumber * 6)] = static_cast<GLuint>(0+(catNumber * 4)); elements[1+(catNumber * 6)] = static_cast<GLuint>(1+(catNumber * 4)); elements[2+(catNumber * 6)] = static_cast<GLuint>(2+(catNumber * 4));
         // elements[3+(catNumber * 6)] = static_cast<GLuint>(2+(catNumber * 4)); elements[4+(catNumber * 6)] = static_cast<GLuint>(3+(catNumber * 4)); elements[5+(catNumber * 6)] = static_cast<GLuint>(0+(catNumber * 4));
@@ -169,74 +175,6 @@ void LogVis::renderCats()
     GLuint vao;
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
-
-    // GLuint elements[] = {
-    //     //1
-    //     0, 1, 2,
-    //     2, 3, 0
-        //2
-        // 4, 5, 6,
-        // 6, 7, 4,
-        // //3
-        // 8, 9, 10,
-        // 10, 11, 8,
-        // //4
-        // 12, 13, 14,
-        // 14, 15, 12,
-        // //5
-        // 16, 17, 18,
-        // 18, 19, 16,
-        // //6
-        // 20, 21, 22,
-        // 22, 23, 20,
-        // //7
-        // 24, 25, 26,
-        // 26, 27, 24,
-        // //8
-        // 28, 29, 30,
-        // 30, 31, 28,
-        // //9
-        // 32, 33, 34,
-        // 34, 35, 32,
-        // //10
-        // 36, 37, 38,
-        // 38, 39, 36,
-        // //11
-        // 40, 41, 42,
-        // 42, 43, 40,
-        // //12
-        // 44, 45, 46,
-        // 46, 47, 44,
-        // //13
-        // 48, 49, 50,
-        // 50, 51, 48,
-        // //14
-        // 52, 53, 54,
-        // 54, 55, 52,
-        // //15
-        // 56, 57, 58,
-        // 58, 59, 56,
-        // //16
-        // 60, 61, 62,
-        // 62, 63, 60,
-        // //17
-        // 64, 65, 66,
-        // 66, 67, 64,
-        // //18
-        // 68, 69, 70,
-        // 70, 71, 68,
-        // //19
-        // 72, 73, 74,
-        // 74, 75, 72,
-        // //20
-        // 76, 77, 78,
-        // 78, 79, 76,
-        // //21
-        // 80, 81, 82,
-        // 82, 83, 80,
-        // //22
-        // 84, 85, 86,
-        // 86, 87, 84
 
     GLuint elements[] = {
         0, 1, 2,
