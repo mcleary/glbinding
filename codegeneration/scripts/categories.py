@@ -623,12 +623,25 @@ categories_command = {
   ],
 }
 
-command_categories = swap(categories_command)
-
-categories_command2 = {
-  "Render Target": [],
-  "Program": [],
-  "ROP": [],
+categories_command = {
+  "Render Target": [
+    "glBindFramebuffer",
+    "glFramebufferTexture2D"
+    "glGenFramebuffers",
+  ],
+  "Program": [
+    "glAttachShader",
+    "glCompileShader",
+    "glCreateProgram",
+    "glCreateShader",
+    "glGetAttribLocation"
+    "glGetShaderiv",
+    "glLinkProgram",
+    "glShaderSource",
+  ],
+  "ROP": [
+    "glClearColor"
+  ],
   "Texture": [
     "glActiveTexture",
     "glBindImageTexture",
@@ -686,7 +699,9 @@ categories_command2 = {
     "glTexSubImage3D",
     "glTextureView",
   ],
-  "UBO Binding": [],
+  "UBO Binding": [
+    "glEnableVertexAttribArray"
+  ],
   "Vertex Format": [
     "glVertexAttrib1d",
     "glVertexAttrib1dv",
@@ -706,6 +721,12 @@ categories_command2 = {
     "glVertexAttrib3fv",
     "glVertexAttrib3s",
     "glVertexAttrib3sv",
+    "glVertexAttrib4bv",
+    "glVertexAttrib4d",
+    "glVertexAttrib4dv",
+    "glVertexAttrib4f",
+    "glVertexAttrib4fv",
+    "glVertexAttrib4iv",
     "glVertexAttrib4Nbv",
     "glVertexAttrib4Niv",
     "glVertexAttrib4Nsv",
@@ -713,12 +734,6 @@ categories_command2 = {
     "glVertexAttrib4Nubv",
     "glVertexAttrib4Nuiv",
     "glVertexAttrib4Nusv",
-    "glVertexAttrib4bv",
-    "glVertexAttrib4d",
-    "glVertexAttrib4dv",
-    "glVertexAttrib4f",
-    "glVertexAttrib4fv",
-    "glVertexAttrib4iv",
     "glVertexAttrib4s",
     "glVertexAttrib4sv",
     "glVertexAttrib4ubv",
@@ -748,6 +763,7 @@ categories_command2 = {
     "glVertexAttribPointer",
   ],
   "Uniform Updates": [
+    "glGetUniformLocation"
     "glUniform1f",
     "glUniform1fv",
     "glUniform1i",
@@ -783,7 +799,19 @@ categories_command2 = {
     "glUniformMatrix4x2fv",
     "glUniformMatrix4x3fv",
   ],
-  "Draw": []
+  "Draw": [
+    "glDrawElements",
+    "glDrawElementsInstanced",
+  ],
+  "Utility": [
+    "glClear"
+    "glEnable",
+    "glGetString",
+  ]
 }
+
+command_categories = swap(categories_command)
+
+
 
 
