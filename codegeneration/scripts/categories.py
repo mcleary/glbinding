@@ -628,6 +628,7 @@ categories_command = {
     "glBindFramebuffer",
     "glFramebufferTexture2D"
     "glGenFramebuffers",
+    "glGenFramebuffers"
   ],
   "Program": [
     "glAttachShader",
@@ -638,11 +639,15 @@ categories_command = {
     "glGetShaderiv",
     "glLinkProgram",
     "glShaderSource",
+    "glGetShaderiv",
+    "glUseProgram"
   ],
   "ROP": [
-    "glClearColor"
+    "glClearColor",
+    "glGetAttribLocation"
   ],
   "Texture": [
+    "glFramebufferTexture2D",
     "glActiveTexture",
     "glBindImageTexture",
     "glBindImageTextures",
@@ -700,9 +705,12 @@ categories_command = {
     "glTextureView",
   ],
   "UBO Binding": [
-    "glEnableVertexAttribArray"
+    "glEnableVertexAttribArray",
+    "glGetUniformLocation"
   ],
   "Vertex Format": [
+    "glGenVertexArrays",
+    "glBindVertexArray",
     "glVertexAttrib1d",
     "glVertexAttrib1dv",
     "glVertexAttrib1f",
@@ -763,7 +771,7 @@ categories_command = {
     "glVertexAttribPointer",
   ],
   "Uniform Updates": [
-    "glGetUniformLocation"
+    "glGetUniformLocation",
     "glUniform1f",
     "glUniform1fv",
     "glUniform1i",
@@ -804,9 +812,13 @@ categories_command = {
     "glDrawElementsInstanced",
   ],
   "Utility": [
-    "glClear"
+    "glClear",
     "glEnable",
     "glGetString",
+    "glViewport",
+    "glGenBuffers",
+    "glBindBuffer",
+    "glBufferData",
   ]
 }
 

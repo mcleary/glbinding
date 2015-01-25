@@ -25,7 +25,7 @@ protected:
     CategoryStats getCurrentLogPart();
     void updateMax(CategoryStats currentCounts);
     void updateLast(CategoryStats currentCounts);
-    int averageCount(std::string category);
+    unsigned int averageCount(std::string category);
     void renderLogTexture();
     void renderCats();
 
@@ -40,6 +40,20 @@ protected:
 
     bool readFile(const std::string & filePath, std::string & content);
     std::string readFile(const std::string & filePath);
+
+    const std::list<std::string> m_categories
+    {
+        "Draw",
+        "Render Target",
+        "Texture",
+        "UBO Binding",
+        "Program",
+        "Uniform Updates",
+        "ROP",
+        "Vertex Format",
+        "Utility",
+        "Uncategorized"
+    };
 
     const std::map<std::string, std::vector<float>> ColorByCategory
     {
