@@ -182,81 +182,6 @@ gl::GLuint displayLogTexture()
     return logTexture;
 }
 
-GLuint renderLogTexture(GLuint logTexture)
-{   
-    // Framebuffer
-    GLuint frameBuffer;
-    glGenFramebuffers(1, &frameBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
-
-    // Vertices
-    float vertices[] = {
-    //  Position
-        -0.5f,  0.5f, // Top-left
-         0.5f,  0.5f, // Top-right
-         0.5f, -0.5f, // Bottom-right
-        -0.5f, -0.5f  // Bottom-left
-    };
-
-    GLuint vbo;
-    glGenBuffers(1, &vbo); // Generate 1 buffer
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    GLuint elements[] = {
-        0, 1, 2,
-        2, 3, 0
-    };
-
-    GLuint ebo;
-    glGenBuffers(1, &ebo);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-    // Shaders
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-    std::string vertexSource   = readFile("data/log/logvis.vert");
-    std::string fragmentSource = readFile("data/log/logvis.frag");
-
-    const char * vertSource = vertexSource.c_str();
-    const char * fragSource = fragmentSource.c_str();
-
-    glShaderSource(vs, 1, &vertSource, nullptr);
-    glCompileShader(vs);
-    compile_info(vs);
-
-    glShaderSource(fs, 1, &fragSource, nullptr);
-    glCompileShader(fs);
-    compile_info(fs);
-
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vs);
-    glAttachShader(shaderProgram, fs);
-
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
-
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
-    
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    glEnableVertexAttribArray(posAttrib);
-
-    // Draw
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-    return frameBuffer;
-}
-
 
 int main(int, char *[])
 {
@@ -341,7 +266,6 @@ int main(int, char *[])
     delete cubescape;
     cubescape = nullptr;
     Logging::stop();
-    glfwMakeContextCurrent(logWindow);
 
     glfwTerminate();
     return 0;
