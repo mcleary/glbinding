@@ -41,21 +41,14 @@ void Logging::start(const std::string & filepath)
 
         while(!s_stop || (s_buffer.sizeTail(key) != 0))
         {
-            std::vector<BufferType*> entries = s_buffer.pullTail(key);
-            if (entries.size() != 0)
+            auto i = s_buffer.cbegin(key);
+            while(s_buffer.valid(key, i))
             {
-                for (BufferType* entry : entries)
-                {
-                    logfile << entry->toString();
-                };
-                logfile.flush();
+                logfile << i->toString();
+                i = s_buffer.next(key, i);
             }
-            else
-            {
-                std::chrono::milliseconds dura( 10 );
-                std::this_thread::sleep_for( dura );
-            }
-
+            std::chrono::milliseconds dura( 10 );
+            std::this_thread::sleep_for( dura );
         }
 
         logfile.close();
@@ -105,24 +98,24 @@ void Logging::removeTail(TailIdentifier key)
     removeTail(key);
 }
 
-Logging::BufferType* Logging::pull(TailIdentifier key, bool & ok)
+const std::vector<Logging::BufferType>::const_iterator Logging::cbegin(TailIdentifier key)
 {
-    return pull(key, ok);
+    return cbegin(key);
 }
 
-Logging::BufferType* Logging::pull(TailIdentifier key)
+bool Logging::valid(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
 {
-    return pull(key);
+    return valid(key, it);
 }
 
-std::vector<Logging::BufferType*> Logging::pullTail(TailIdentifier key, uint64_t length)
+const std::vector<Logging::BufferType>::const_iterator Logging::next(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
 {
-    return pullTail(key, length);
+    return next(key, it);
 }
 
-std::vector<Logging::BufferType*> Logging::pullTail(TailIdentifier key)
+void Logging::release(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
 {
-    return pullTail(key);
+    release(key, it);
 }
 
 uint64_t Logging::sizeTail(TailIdentifier key)

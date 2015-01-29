@@ -30,10 +30,10 @@ public:
     using TailIdentifier = unsigned int;
     static TailIdentifier addTail();
     static void removeTail(TailIdentifier);
-    static BufferType* pull(TailIdentifier key, bool & ok);
-    static BufferType* pull(TailIdentifier key);
-    static std::vector<BufferType*> pullTail(TailIdentifier key, uint64_t length);
-    static std::vector<BufferType*> pullTail(TailIdentifier key);
+    static const std::vector<BufferType>::const_iterator cbegin(TailIdentifier key);
+    static bool valid(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
+    static const std::vector<BufferType>::const_iterator next(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
+    static void release(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
     static uint64_t sizeTail(TailIdentifier key);
 
 private:

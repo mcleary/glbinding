@@ -1,5 +1,6 @@
 #pragma once
 #include <atomic>
+#include <iterator>
 #include <map>
 #include <vector>
 
@@ -19,10 +20,10 @@ public:
 
     TailIdentifier addTail();
     void removeTail(TailIdentifier);
-    T* pull(TailIdentifier, bool& ok);
-    T* pull(TailIdentifier);
-    std::vector<T*> pullTail(TailIdentifier, uint64_t length);
-    std::vector<T*> pullTail(TailIdentifier);
+    const typename std::vector<T>::const_iterator cbegin(TailIdentifier key);
+    bool valid(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
+    const typename std::vector<T>::const_iterator next(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
+    void release(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
     uint64_t sizeTail(TailIdentifier);
 
     unsigned int maxSize();

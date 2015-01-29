@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <thread>
+#include <iterator>
 
 #include "RingBuffer.h"
 
@@ -62,43 +63,43 @@ void RingBuffer<T>::removeTail(TailIdentifier key)
 }
 
 template <typename T>
-T* RingBuffer<T>::pull(TailIdentifier key, bool & ok)
+const typename std::vector<T>::const_iterator RingBuffer<T>::cbegin(TailIdentifier key)
 {
     uint64_t tail = m_tails[key].load(std::memory_order_relaxed);
-    if (tail == m_head.load(std::memory_order_acquire) % m_size) {
-        ok = false;
-        return 0;
-    }
-    T object = m_buffer.at(tail % m_size);
-    m_tails[key].store(next(tail), std::memory_order_release);
-    updateTail();
-    ok = true;
-    return object;
+    auto i = m_buffer.cbegin();
+    std::advance(i, tail);
+    return i;
 }
 
 template <typename T>
-T* RingBuffer<T>::pull(TailIdentifier key)
+bool RingBuffer<T>::valid(TailIdentifier key, const typename std::vector<T>::const_iterator & it)
 {
-    bool ok;
-    return pull(key, ok);
+    uint64_t tail = std::distance(m_buffer.cbegin(), it);
+    uint64_t head = m_head.load(std::memory_order_acquire);
+    return tail != head;
 }
 
+// Invalidates the old task
 template <typename T>
-std::vector<T*> RingBuffer<T>::pullTail(TailIdentifier key, uint64_t length)
+const typename std::vector<T>::const_iterator RingBuffer<T>::next(TailIdentifier key, const typename std::vector<T>::const_iterator & it)
 {
-    uint64_t tail = m_tails[key].load(std::memory_order_relaxed);
-    uint64_t newTail = tail + length;
-    std::vector<T*> result = pullBlock(tail, newTail);
+    uint64_t newTail = std::distance(m_buffer.cbegin(), it);
     m_tails[key].store(newTail, std::memory_order_release);
     updateTail();
-    return result;
+
+    if (next(newTail) == 0)
+        return m_buffer.cbegin();
+    auto i = it;
+    std::advance(i, 1);
+    return i;
 }
 
 template <typename T>
-std::vector<T*> RingBuffer<T>::pullTail(TailIdentifier key)
+void RingBuffer<T>::release(TailIdentifier key, const typename std::vector<T>::const_iterator & it)
 {
-    uint64_t size = sizeTail(key);
-    return pullTail(key, size);
+    uint64_t newTail = std::distance(m_buffer.begin(), it);
+    m_tails[key].store(newTail, std::memory_order_release);
+    updateTail();    
 }
 
 template <typename T>

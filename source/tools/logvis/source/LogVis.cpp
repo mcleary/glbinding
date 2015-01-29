@@ -50,16 +50,17 @@ LogVis::CategoryStats LogVis::getCurrentLogPart()
         categoryCount[category] = 0;
     };
 
-    std::vector<glbinding::Logging::BufferType*> logEntries = glbinding::Logging::pullTail(m_tailId);
-    for (auto entry : logEntries)
+    auto i = glbinding::Logging::cbegin(m_tailId);
+    while(glbinding::Logging::valid(m_tailId, i))
     {
-        std::string command = entry->function->name();
+        std::string command = i->function->name();
         std::string category = glbinding::Meta::getCategory(command);
         if (category == "Uncategorized") {
             std::cout << command << std::endl;
         }
         ++categoryCount[category];
 
+        i = glbinding::Logging::next(m_tailId, i);
     }
 
     return categoryCount;
