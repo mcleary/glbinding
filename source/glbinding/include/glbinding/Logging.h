@@ -10,11 +10,7 @@
 namespace glbinding 
 {
 
-//ToDo: Comment why array and not vector
-//ToDo: Reason why 1000
-static const int LOG_BUFFER_SIZE = 1000000;
-
-template <typename T, uint64_t n>
+template <typename T>
 class RingBuffer;
 
 
@@ -23,16 +19,22 @@ class GLBINDING_API Logging
 
 public:
     static void start();
-    static void start(std::string filepath);
+    static void start(const std::string & filepath);
     static void stop();
     static void pause();
     static void resume();
 
-    static void log(const FunctionCall & call);
+    static void log(FunctionCall && call);
 
-    using BufferType = std::string;
-    using FunctionCallBuffer = glbinding::RingBuffer<BufferType, LOG_BUFFER_SIZE>;
-    static FunctionCallBuffer& getBuffer();
+    using BufferType = FunctionCall;
+    using TailIdentifier = unsigned int;
+    static TailIdentifier addTail();
+    static void removeTail(TailIdentifier);
+    static BufferType* pull(TailIdentifier key, bool & ok);
+    static BufferType* pull(TailIdentifier key);
+    static std::vector<BufferType*> pullTail(TailIdentifier key, uint64_t length);
+    static std::vector<BufferType*> pullTail(TailIdentifier key);
+    static uint64_t sizeTail(TailIdentifier key);
 
 private:
     Logging() = delete;
@@ -44,6 +46,8 @@ private:
     static std::mutex s_lockfinish;
     static std::condition_variable s_finishcheck;
 
+
+    using FunctionCallBuffer = glbinding::RingBuffer<BufferType>;
     static FunctionCallBuffer s_buffer;
 
 

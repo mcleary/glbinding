@@ -1,14 +1,21 @@
 #include <glbinding/Logging.h>
+
+#include <cassert>
+
 #include <glbinding/callbacks.h>
 #include "RingBuffer.h"
 
 namespace glbinding
 {
+//ToDo: Comment why array and not vector
+//ToDo: Reason why 1000
+static const unsigned int LOG_BUFFER_SIZE = 1000000;
+
 bool Logging::s_stop = false;
 bool Logging::s_persisted = false;
 std::mutex Logging::s_lockfinish;
 std::condition_variable Logging::s_finishcheck;
-Logging::FunctionCallBuffer Logging::s_buffer;
+Logging::FunctionCallBuffer Logging::s_buffer(LOG_BUFFER_SIZE);
 
 void Logging::start()
 {
@@ -20,7 +27,7 @@ void Logging::start()
         start(logname);
 };
 
-void Logging::start(std::string filepath)
+void Logging::start(const std::string & filepath)
 {
     addCallbackMask(CallbackMask::Logging);
     s_stop = false;
@@ -34,12 +41,12 @@ void Logging::start(std::string filepath)
 
         while(!s_stop || (s_buffer.sizeTail(key) != 0))
         {
-            std::vector<BufferType> entries = s_buffer.pullTail(key);
+            std::vector<BufferType*> entries = s_buffer.pullTail(key);
             if (entries.size() != 0)
             {
-                for (BufferType entry : entries)
+                for (BufferType* entry : entries)
                 {
-                    logfile << entry;
+                    logfile << entry->toString();
                 };
                 logfile.flush();
             }
@@ -82,15 +89,45 @@ void Logging::resume()
     addCallbackMask(CallbackMask::Logging);
 };
 
-Logging::FunctionCallBuffer& Logging::getBuffer()
+void Logging::log(FunctionCall && call)
 {
-    return s_buffer;
+    while(!s_buffer.push(std::forward<FunctionCall>(call)));
+    // s_buffer.push(call.toString());
 }
 
-void Logging::log(const FunctionCall & call)
+Logging::TailIdentifier Logging::addTail()
 {
-    while(!s_buffer.push(call.toString()));
-    // s_buffer.push(call.toString());
-};
+    return addTail();
+}
+
+void Logging::removeTail(TailIdentifier key)
+{
+    removeTail(key);
+}
+
+Logging::BufferType* Logging::pull(TailIdentifier key, bool & ok)
+{
+    return pull(key, ok);
+}
+
+Logging::BufferType* Logging::pull(TailIdentifier key)
+{
+    return pull(key);
+}
+
+std::vector<Logging::BufferType*> Logging::pullTail(TailIdentifier key, uint64_t length)
+{
+    return pullTail(key, length);
+}
+
+std::vector<Logging::BufferType*> Logging::pullTail(TailIdentifier key)
+{
+    return pullTail(key);
+}
+
+uint64_t Logging::sizeTail(TailIdentifier key)
+{
+    return sizeTail(key);
+}
 
 } // namespace glbinding

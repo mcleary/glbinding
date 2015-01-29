@@ -43,7 +43,7 @@ struct FunctionHelper
             function->after(functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(functionCall);
+            glbinding::Logging::log(std::move(functionCall));
 
         return value;
     }
@@ -83,7 +83,7 @@ struct FunctionHelper<void, Arguments...>
             function->after(functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(functionCall);
+            glbinding::Logging::log(std::move(functionCall));
     }
 
     void basicCall(const glbinding::Function<void, Arguments...> * function, Arguments&&... arguments) const

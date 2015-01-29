@@ -17,8 +17,15 @@ namespace
 namespace glbinding 
 {
 
+// FunctionCall::FunctionCall()
+// : function(nullptr)
+// , timestamp(std::chrono::high_resolution_clock::now())
+// , returnValue(nullptr)
+// {
+// }
+
 FunctionCall::FunctionCall(const AbstractFunction * _function)
-: function(*_function)
+: function(_function)
 , timestamp(std::chrono::high_resolution_clock::now())
 , returnValue(nullptr)
 {
@@ -72,7 +79,7 @@ std::string FunctionCall::toString() const
     std::chrono::high_resolution_clock::duration time_span = timestamp.time_since_epoch();
     std::string timest = std::to_string(time_span.count());
     os << timest << ": ";
-    os << function.name() << "(";
+    os << function->name() << "(";
 
     for (unsigned i = 0; i < parameters.size(); ++i)
     {

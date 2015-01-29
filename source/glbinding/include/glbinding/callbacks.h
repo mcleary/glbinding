@@ -16,16 +16,16 @@ class AbstractValue;
 
 struct GLBINDING_API FunctionCall
 {
-    FunctionCall(const AbstractFunction * _function);
+    FunctionCall(const AbstractFunction * _function = nullptr);
     ~FunctionCall();
 
-    FunctionCall & operator=(const FunctionCall &) = delete;
+    // FunctionCall & operator=(const FunctionCall &) = delete;
+    // FunctionCall(const FunctionCall &) = delete;
 
     std::string toString() const;
 
-
-    const AbstractFunction & function;
-    const std::chrono::high_resolution_clock::time_point timestamp;
+    const AbstractFunction * function;
+    std::chrono::high_resolution_clock::time_point timestamp;
 
     std::vector<AbstractValue *> parameters;
     AbstractValue * returnValue;

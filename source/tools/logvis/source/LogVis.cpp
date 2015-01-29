@@ -8,9 +8,8 @@ namespace logvis
 {
 
 LogVis::LogVis(gl::GLuint logTexture)
-: m_log(glbinding::Logging::getBuffer())
 {
-    m_tailId = m_log.addTail();
+    m_tailId = glbinding::Logging::addTail();
     for (std::string category : glbinding::Meta::getCategories())
     {
         m_maxStats[category] = 0;
@@ -24,7 +23,7 @@ LogVis::LogVis(gl::GLuint logTexture)
 
 LogVis::~LogVis()
 {
-    m_log.removeTail(m_tailId);
+    glbinding::Logging::removeTail(m_tailId);
 }
 
 void LogVis::update()
@@ -51,12 +50,10 @@ LogVis::CategoryStats LogVis::getCurrentLogPart()
         categoryCount[category] = 0;
     };
 
-    std::vector<glbinding::Logging::BufferType> logEntries = m_log.pullTail(m_tailId);
+    std::vector<glbinding::Logging::BufferType*> logEntries = glbinding::Logging::pullTail(m_tailId);
     for (auto entry : logEntries)
     {
-        int begin = entry.find(" ") + 1;
-        int end = entry.find("(");
-        std::string command = entry.substr(begin, end - begin);
+        std::string command = entry->function->name();
         std::string category = glbinding::Meta::getCategory(command);
         if (category == "Uncategorized") {
             std::cout << command << std::endl;
@@ -82,7 +79,7 @@ void LogVis::updateMax(LogVis::CategoryStats currentCounts)
 void LogVis::updateLast(LogVis::CategoryStats currentCounts)
 {
     m_lastStats.push_back(currentCounts);
-    if (m_lastStats.size() > 5)
+    if (m_lastStats.size() > 500)
         m_lastStats.pop_front();
 }
 

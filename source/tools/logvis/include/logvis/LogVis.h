@@ -32,7 +32,6 @@ protected:
 protected:
     using TailIdentifier = unsigned int;
 
-    glbinding::Logging::FunctionCallBuffer& m_log;
     TailIdentifier m_tailId;
     std::list<std::map<std::string, unsigned int>> m_lastStats;
     std::map<std::string, unsigned int> m_maxStats;
