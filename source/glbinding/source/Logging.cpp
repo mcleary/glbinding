@@ -39,12 +39,12 @@ void Logging::start(const std::string & filepath)
         std::ofstream logfile;
         logfile.open (filepath, std::ios::out);
 
-        while(!s_stop || (s_buffer.sizeTail(key) != 0))
+        while(!s_stop || (s_buffer.size(key) != 0))
         {
             auto i = s_buffer.cbegin(key);
             while(s_buffer.valid(key, i))
             {
-                logfile << i->toString();
+                logfile << (*i)->toString();
                 i = s_buffer.next(key, i);
             }
             std::chrono::milliseconds dura( 10 );
@@ -91,27 +91,27 @@ void Logging::log(FunctionCall * call)
 
 Logging::TailIdentifier Logging::addTail()
 {
-    return addTail();
+    return s_buffer.addTail();
 }
 
 void Logging::removeTail(TailIdentifier key)
 {
-    removeTail(key);
+    s_buffer.removeTail(key);
 }
 
 const std::vector<Logging::BufferType>::const_iterator Logging::cbegin(TailIdentifier key)
 {
-    return cbegin(key);
+    return s_buffer.cbegin(key);
 }
 
 bool Logging::valid(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
 {
-    return valid(key, it);
+    return s_buffer.valid(key, it);
 }
 
 const std::vector<Logging::BufferType>::const_iterator Logging::next(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
 {
-    return next(key, it);
+    return s_buffer.next(key, it);
 }
 
 void Logging::release(TailIdentifier key, const std::vector<Logging::BufferType>::const_iterator & it)
@@ -119,9 +119,9 @@ void Logging::release(TailIdentifier key, const std::vector<Logging::BufferType>
     release(key, it);
 }
 
-unsigned int Logging::sizeTail(TailIdentifier key)
+unsigned int Logging::size(TailIdentifier key)
 {
-    return sizeTail(key);
+    return s_buffer.size(key);
 }
 
 } // namespace glbinding

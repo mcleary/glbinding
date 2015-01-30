@@ -35,7 +35,7 @@ public:
     static bool valid(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
     static const std::vector<BufferType>::const_iterator next(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
     static void release(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
-    static unsigned int sizeTail(TailIdentifier key);
+    static unsigned int size(TailIdentifier key);
 
 private:
     Logging() = delete;
