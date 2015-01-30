@@ -79,21 +79,21 @@ int main()
 
     setCallbackMask(CallbackMask::After | CallbackMask::ParametersAndReturnValue);
 
-    setAfterCallback([](const FunctionCall & call) {
-        std::cout << call.function->name() << "(";
+    setAfterCallback([](std::unique_ptr<FunctionCall> const & call) {
+        std::cout << call->function->name() << "(";
 
-        for (unsigned i = 0; i < call.parameters.size(); ++i)
+        for (unsigned i = 0; i < call->parameters.size(); ++i)
         {
-            std::cout << call.parameters[i]->asString();
-            if (i < call.parameters.size() - 1)
+            std::cout << call->parameters[i]->asString();
+            if (i < call->parameters.size() - 1)
                 std::cout << ", ";
         }
 
         std::cout << ")";
 
-        if (call.returnValue)
+        if (call->returnValue)
         {
-            std::cout << " -> " << call.returnValue->asString();
+            std::cout << " -> " << call->returnValue->asString();
         }
 
         std::cout << std::endl;

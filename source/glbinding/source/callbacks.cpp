@@ -17,13 +17,6 @@ namespace
 namespace glbinding 
 {
 
-// FunctionCall::FunctionCall()
-// : function(nullptr)
-// , timestamp(std::chrono::high_resolution_clock::now())
-// , returnValue(nullptr)
-// {
-// }
-
 FunctionCall::FunctionCall(const AbstractFunction * _function)
 : function(_function)
 , timestamp(std::chrono::high_resolution_clock::now())
@@ -40,7 +33,6 @@ FunctionCall::~FunctionCall()
         delete value;
     }
 }
-
 
 CallbackMask operator|(const CallbackMask a, const CallbackMask b)
 {
@@ -145,12 +137,12 @@ void unresolved(const AbstractFunction * function)
     g_unresolvedCallback(*function);
 }
 
-void before(const FunctionCall & call)
+void before(std::unique_ptr<FunctionCall> const & call)
 {
     g_beforeCallback(call);
 }
 
-void after(const FunctionCall & call)
+void after(std::unique_ptr<FunctionCall> const & call)
 {
     g_afterCallback(call);
 }

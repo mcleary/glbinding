@@ -16,10 +16,10 @@ struct FunctionHelper
 {
     ReturnType call(const glbinding::Function<ReturnType, Arguments...> * function, Arguments&&... arguments) const
     {
-        glbinding::FunctionCall functionCall(function);
+        std::unique_ptr<glbinding::FunctionCall> functionCall(new glbinding::FunctionCall(function));
 
         if (function->isAnyEnabled(glbinding::CallbackMask::Parameters | glbinding::CallbackMask::Logging))
-            functionCall.parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
+            functionCall->parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
 
         if (function->isEnabled(glbinding::CallbackMask::Before))
             function->before(functionCall);
@@ -37,13 +37,13 @@ struct FunctionHelper
         }
 
         if (function->isAnyEnabled(glbinding::CallbackMask::ReturnValue | glbinding::CallbackMask::Logging))
-            functionCall.returnValue = glbinding::createValue(value);
+            functionCall->returnValue = glbinding::createValue(value);
 
         if (function->isEnabled(glbinding::CallbackMask::After))
             function->after(functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(std::move(functionCall));
+            glbinding::Logging::log(functionCall.release());
 
         return value;
     }
@@ -59,10 +59,10 @@ struct FunctionHelper<void, Arguments...>
 {
     void call(const glbinding::Function<void, Arguments...> * function, Arguments&&... arguments) const
     {
-        glbinding::FunctionCall functionCall(function);
+        std::unique_ptr<glbinding::FunctionCall> functionCall(new glbinding::FunctionCall(function));
 
         if (function->isAnyEnabled(glbinding::CallbackMask::Parameters | glbinding::CallbackMask::Logging))
-            functionCall.parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
+            functionCall->parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
 
         if (function->isEnabled(glbinding::CallbackMask::Before))
             function->before(functionCall);
@@ -83,7 +83,7 @@ struct FunctionHelper<void, Arguments...>
             function->after(functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(std::move(functionCall));
+            glbinding::Logging::log(functionCall.release());
     }
 
     void basicCall(const glbinding::Function<void, Arguments...> * function, Arguments&&... arguments) const

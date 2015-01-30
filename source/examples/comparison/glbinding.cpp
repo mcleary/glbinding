@@ -37,7 +37,7 @@ void glbinding_error(bool enable)
     {
         glbinding::setCallbackMaskExcept(glbinding::CallbackMask::After, { "glGetError" });
 
-        glbinding::setAfterCallback([](const glbinding::FunctionCall &)
+        glbinding::setAfterCallback([](std::unique_ptr<glbinding::FunctionCall> const &)
         {
             gl::GLenum error = gl::glGetError();
             if (error != gl::GL_NO_ERROR)
