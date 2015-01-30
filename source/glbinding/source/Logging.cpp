@@ -82,9 +82,10 @@ void Logging::resume()
     addCallbackMask(CallbackMask::Logging);
 };
 
-void Logging::log(FunctionCall && call)
+void Logging::log(FunctionCall * call)
 {
-    while(!s_buffer.push(std::forward<FunctionCall>(call)));
+    delete s_buffer.hat();
+    while(!s_buffer.push(call));
     // s_buffer.push(call.toString());
 }
 
@@ -118,7 +119,7 @@ void Logging::release(TailIdentifier key, const std::vector<Logging::BufferType>
     release(key, it);
 }
 
-uint64_t Logging::sizeTail(TailIdentifier key)
+unsigned int Logging::sizeTail(TailIdentifier key)
 {
     return sizeTail(key);
 }

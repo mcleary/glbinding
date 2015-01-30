@@ -12,9 +12,13 @@ class RingBuffer
 {
 
 public:
-    RingBuffer(unsigned int maxSize);
+    // Buffer is limited to (maxValue(sizeType)/2 - 1) entries
+    using sizeType = unsigned int;
+    RingBuffer(sizeType maxSize);
 
+    T hat();
     bool push(T &&);
+    bool push(T &);
 
     using TailIdentifier = unsigned int;
 
@@ -24,18 +28,17 @@ public:
     bool valid(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
     const typename std::vector<T>::const_iterator next(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
     void release(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
-    uint64_t sizeTail(TailIdentifier);
+    sizeType size(TailIdentifier);
 
-    unsigned int maxSize();
-    unsigned int size();
+    sizeType maxSize();
+    sizeType size();
     bool isFull();
     bool isEmpty();
 
 protected:
-    uint64_t next(uint64_t current);
+    sizeType next(sizeType current);
     void updateTail();
-    uint64_t size(uint64_t, uint64_t);
-    std::vector<T*> pullBlock(uint64_t, uint64_t);
+    sizeType size(sizeType, sizeType);
 
 protected:
     std::vector<T> m_buffer;

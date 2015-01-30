@@ -24,9 +24,10 @@ public:
     static void pause();
     static void resume();
 
-    static void log(FunctionCall && call);
+    using BufferType = FunctionCall*;
+    static void log(BufferType  call);
 
-    using BufferType = FunctionCall;
+
     using TailIdentifier = unsigned int;
     static TailIdentifier addTail();
     static void removeTail(TailIdentifier);
@@ -34,7 +35,7 @@ public:
     static bool valid(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
     static const std::vector<BufferType>::const_iterator next(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
     static void release(TailIdentifier key, const std::vector<BufferType>::const_iterator & it);
-    static uint64_t sizeTail(TailIdentifier key);
+    static unsigned int sizeTail(TailIdentifier key);
 
 private:
     Logging() = delete;
