@@ -56,7 +56,7 @@ GLBINDING_API void addCallbackMask(CallbackMask mask);
 GLBINDING_API void removeCallbackMask(CallbackMask mask);
 
 using SimpleFunctionCallback = std::function<void(const AbstractFunction &)>;
-using FunctionCallback = std::function<void(std::unique_ptr<FunctionCall> const &)>;
+using FunctionCallback = std::function<void(const FunctionCall &)>;
 
 GLBINDING_API void setUnresolvedCallback(SimpleFunctionCallback callback);
 

@@ -180,13 +180,13 @@ void AbstractFunction::unresolved() const
     glbinding::unresolved(this);
 }
 
-void AbstractFunction::before(std::unique_ptr<FunctionCall> const & call) const
+void AbstractFunction::before(const FunctionCall & call) const
 {
     glbinding::before(call);
 }
 
 
-void AbstractFunction::after(std::unique_ptr<FunctionCall> const & call) const
+void AbstractFunction::after(const FunctionCall & call) const
 {
     glbinding::after(call);
 }

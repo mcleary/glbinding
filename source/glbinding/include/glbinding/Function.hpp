@@ -22,7 +22,7 @@ struct FunctionHelper
             functionCall->parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
 
         if (function->isEnabled(glbinding::CallbackMask::Before))
-            function->before(functionCall);
+            function->before(*functionCall);
 
         if (function->m_beforeCallback)
         {
@@ -40,7 +40,7 @@ struct FunctionHelper
             functionCall->returnValue = glbinding::createValue(value);
 
         if (function->isEnabled(glbinding::CallbackMask::After))
-            function->after(functionCall);
+            function->after(*functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
             glbinding::Logging::log(functionCall.release());
@@ -65,7 +65,7 @@ struct FunctionHelper<void, Arguments...>
             functionCall->parameters = glbinding::createValues(std::forward<Arguments>(arguments)...);
 
         if (function->isEnabled(glbinding::CallbackMask::Before))
-            function->before(functionCall);
+            function->before(*functionCall);
 
         if (function->m_beforeCallback)
         {
@@ -80,7 +80,7 @@ struct FunctionHelper<void, Arguments...>
         }
 
         if (function->isEnabled(glbinding::CallbackMask::After))
-            function->after(functionCall);
+            function->after(*functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
             glbinding::Logging::log(functionCall.release());

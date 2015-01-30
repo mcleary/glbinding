@@ -34,6 +34,7 @@ FunctionCall::~FunctionCall()
     }
 }
 
+
 CallbackMask operator|(const CallbackMask a, const CallbackMask b)
 {
     using callback_mask_t = std::underlying_type<CallbackMask>::type;
@@ -137,12 +138,12 @@ void unresolved(const AbstractFunction * function)
     g_unresolvedCallback(*function);
 }
 
-void before(std::unique_ptr<FunctionCall> const & call)
+void before(const FunctionCall & call)
 {
     g_beforeCallback(call);
 }
 
-void after(std::unique_ptr<FunctionCall> const & call)
+void after(const FunctionCall & call)
 {
     g_afterCallback(call);
 }

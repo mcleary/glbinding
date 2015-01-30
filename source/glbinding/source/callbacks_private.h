@@ -7,7 +7,7 @@ class AbstractFunction;
 struct FunctionCall;
 
 void unresolved(const AbstractFunction * function);
-void before(std::unique_ptr<FunctionCall> const & call);
-void after(std::unique_ptr<FunctionCall> const & call);
+void before(const FunctionCall & call);
+void after(const FunctionCall & call);
 
 } // namespace glbinding

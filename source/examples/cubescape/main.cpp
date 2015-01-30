@@ -89,7 +89,7 @@ int main(int, char *[])
 
     glfwMakeContextCurrent(window);
 
-    setAfterCallback([](std::unique_ptr<FunctionCall> const &)
+    setAfterCallback([](const FunctionCall &) 
     {
         gl::GLenum error = glGetError();
         if (error != GL_NO_ERROR)

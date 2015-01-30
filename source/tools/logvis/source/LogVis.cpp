@@ -49,8 +49,8 @@ LogVis::CategoryStats LogVis::getCurrentLogPart()
     {
         categoryCount[category] = 0;
     };
+
     auto i = glbinding::Logging::cbegin(m_tailId);
-    std::cout << "LogVis is: " << glbinding::Logging::valid(m_tailId, i) << std::endl;
     while(glbinding::Logging::valid(m_tailId, i))
     {
         std::string command = (*i)->function->name();

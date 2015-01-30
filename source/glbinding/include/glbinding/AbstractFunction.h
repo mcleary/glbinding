@@ -47,8 +47,8 @@ protected:
 
     void unresolved() const;
 
-    void before(std::unique_ptr<FunctionCall> const & call) const;
-    void after(std::unique_ptr<FunctionCall> const & call) const;
+    void before(const FunctionCall & call) const;
+    void after(const FunctionCall & call) const;
 
 protected:
 
