@@ -1,8 +1,8 @@
 #include <glbinding/Logging.h>
 
 #include <cassert>
+#include <sstream>
 
-#include <glbinding/callbacks.h>
 #include "RingBuffer.h"
 
 namespace glbinding
@@ -19,12 +19,29 @@ Logging::FunctionCallBuffer Logging::s_buffer(LOG_BUFFER_SIZE);
 
 void Logging::start()
 {
-        using milliseconds = std::chrono::milliseconds;
-        auto timestamp = milliseconds(std::time(0)).count();
+    using system_clock = std::chrono::system_clock;
+    using milliseconds = std::chrono::milliseconds;
+    // First part of timestamp
+    system_clock::time_point now = system_clock::now();
+    time_t now_c = system_clock::to_time_t(now);
 
-        std::string logname = "logs/log_";
-        logname += std::to_string(timestamp);
-        start(logname);
+    // Second part of timestamp
+    milliseconds now_ms = std::chrono::duration_cast<milliseconds>(now.time_since_epoch());
+    std::size_t ms = now_ms.count() % 1000;
+
+    std::ostringstream ms_os;
+    ms_os << std::setfill('0') << std::setw(3) << ms;
+
+    // std::cout << now_ms.count() << std::endl;
+    // std::cout << std::put_time(std::localtime(&now_c), "%F_%T") << ":" << ms << std::endl;
+
+    std::ostringstream os;
+    os << "logs/";
+    os << std::put_time(std::localtime(&now_c), "%F_%H-%M-%S") << ":" << ms_os.str();
+    os << ".log";
+    
+    std::string logname = os.str();
+    start(logname);
 };
 
 void Logging::start(const std::string & filepath)
