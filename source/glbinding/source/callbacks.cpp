@@ -2,6 +2,7 @@
 #include <glbinding/callbacks.h>
 
 #include <sstream>
+#include <iomanip>
 #include <type_traits>
 
 #include <glbinding/AbstractValue.h>
@@ -67,11 +68,33 @@ CallbackMask& operator&=(CallbackMask& a, CallbackMask b)
 
 std::string FunctionCall::toString() const
 {
+    
+
+    // std::chrono::high_resolution_clock::duration time_span = timestamp.time_since_epoch();
+    // std::string timest = std::to_string(time_span.count());
+
+    using hr_clock = std::chrono::system_clock;
+    using seconds = std::chrono::seconds;
+    using milliseconds = std::chrono::milliseconds;
+    using nanoseconds = std::chrono::nanoseconds;
+
+    nanoseconds now_ns = std::chrono::duration_cast<nanoseconds>(timestamp.time_since_epoch());
+    milliseconds now_ms = std::chrono::duration_cast<milliseconds>(now_ns);
+    seconds now_s = std::chrono::duration_cast<seconds>(now_ms);
+
+    std::time_t t = now_s.count();
+    std::size_t ms = now_ms.count() % 1000;
+    std::size_t ns = now_ns.count() % 1000;
+
+    std::ostringstream ms_os;
+    ms_os << std::setfill('0') << std::setw(3) << ms;
+
+    std::ostringstream ns_os;
+    ns_os << std::setfill('0') << std::setw(3) << ns;
+
     std::ostringstream os;
 
-    std::chrono::high_resolution_clock::duration time_span = timestamp.time_since_epoch();
-    std::string timest = std::to_string(time_span.count());
-    os << timest << ": ";
+    os << std::put_time(std::localtime(&t), "%F_%T") << ":" << ms_os.str() << ":" << ns_os.str() << " ";
     os << function->name() << "(";
 
     for (unsigned i = 0; i < parameters.size(); ++i)
