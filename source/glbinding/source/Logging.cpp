@@ -64,6 +64,7 @@ void Logging::start(const std::string & filepath)
                 logfile << (*i)->toString();
                 i = s_buffer.next(key, i);
             }
+            logfile.flush();
             std::chrono::milliseconds dura( 10 );
             std::this_thread::sleep_for( dura );
         }
