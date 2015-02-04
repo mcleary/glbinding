@@ -170,7 +170,6 @@ gl::GLuint displayLogTexture()
     return logTexture;
 }
 
-
 int main(int, char *[])
 {
     if (!glfwInit())
