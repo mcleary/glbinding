@@ -68,11 +68,6 @@ CallbackMask& operator&=(CallbackMask& a, CallbackMask b)
 
 std::string FunctionCall::toString() const
 {
-    
-
-    // std::chrono::high_resolution_clock::duration time_span = timestamp.time_since_epoch();
-    // std::string timest = std::to_string(time_span.count());
-
     using hr_clock = std::chrono::system_clock;
     using seconds = std::chrono::seconds;
     using milliseconds = std::chrono::milliseconds;

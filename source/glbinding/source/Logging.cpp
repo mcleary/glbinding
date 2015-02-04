@@ -7,8 +7,6 @@
 
 namespace glbinding
 {
-//ToDo: Comment why array and not vector
-//ToDo: Reason why 1000
 static const unsigned int LOG_BUFFER_SIZE = 1000000;
 
 bool Logging::s_stop = false;
@@ -21,19 +19,15 @@ void Logging::start()
 {
     using system_clock = std::chrono::system_clock;
     using milliseconds = std::chrono::milliseconds;
-    // First part of timestamp
+
     system_clock::time_point now = system_clock::now();
     time_t now_c = system_clock::to_time_t(now);
 
-    // Second part of timestamp
     milliseconds now_ms = std::chrono::duration_cast<milliseconds>(now.time_since_epoch());
     std::size_t ms = now_ms.count() % 1000;
 
     std::ostringstream ms_os;
     ms_os << std::setfill('0') << std::setw(3) << ms;
-
-    // std::cout << now_ms.count() << std::endl;
-    // std::cout << std::put_time(std::localtime(&now_c), "%F_%T") << ":" << ms << std::endl;
 
     std::ostringstream os;
     os << "logs/";
@@ -104,7 +98,6 @@ void Logging::log(FunctionCall * call)
 {
     delete s_buffer.hat();
     while(!s_buffer.push(call));
-    // s_buffer.push(call.toString());
 }
 
 Logging::TailIdentifier Logging::addTail()
