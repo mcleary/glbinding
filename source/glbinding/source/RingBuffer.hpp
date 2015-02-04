@@ -113,7 +113,6 @@ bool RingBuffer<T>::valid(TailIdentifier key, const typename std::vector<T>::con
     return (pos != head);
 }
 
-// Invalidates the old task
 template <typename T>
 const typename std::vector<T>::const_iterator RingBuffer<T>::next(TailIdentifier key, const typename std::vector<T>::const_iterator & it)
 {
