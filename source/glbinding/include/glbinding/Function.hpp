@@ -1,14 +1,15 @@
 #pragma once
 
 #include <glbinding/Function.h>
-#include <glbinding/Logging.h>
+#include <glbinding/logging.h>
 #include <glbinding/Value.h>
 
 #include <utility>
 #include <functional>
+#include <memory>
 
 
-namespace 
+namespace glbinding 
 {
 
 template <typename ReturnType, typename... Arguments>
@@ -43,7 +44,7 @@ struct FunctionHelper
             function->after(*functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(functionCall.release());
+            glbinding::logging::log(functionCall.release());
 
         return value;
     }
@@ -83,7 +84,7 @@ struct FunctionHelper<void, Arguments...>
             function->after(*functionCall);
 
         if(function->isEnabled(glbinding::CallbackMask::Logging))
-            glbinding::Logging::log(functionCall.release());
+            glbinding::logging::log(functionCall.release());
     }
 
     void basicCall(const glbinding::Function<void, Arguments...> * function, Arguments&&... arguments) const
@@ -92,11 +93,6 @@ struct FunctionHelper<void, Arguments...>
     }
 };
 
-}
-
-
-namespace glbinding 
-{
 
 template <typename ReturnType, typename... Arguments>
 Function<ReturnType, Arguments...>::Function(const char * _name)

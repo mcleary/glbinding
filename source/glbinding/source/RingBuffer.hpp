@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include <iomanip>
 #include <thread>
 #include <iterator>
@@ -106,7 +105,7 @@ const typename std::vector<T>::const_iterator RingBuffer<T>::cbegin(TailIdentifi
 }
 
 template <typename T>
-bool RingBuffer<T>::valid(TailIdentifier key, const typename std::vector<T>::const_iterator & it)
+bool RingBuffer<T>::valid(TailIdentifier /*key*/, const typename std::vector<T>::const_iterator & it)
 {
     sizeType pos = std::distance(m_buffer.cbegin(), it);
     sizeType head = m_head.load(std::memory_order_acquire);

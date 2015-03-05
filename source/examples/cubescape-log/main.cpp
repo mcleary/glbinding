@@ -7,14 +7,15 @@
 #include <glbinding/ContextInfo.h>
 #include <glbinding/Version.h>
 #include <glbinding/callbacks.h>
-#include <glbinding/Logging.h>
+#include <glbinding/logging.h>
 
 #include <glbinding/gl/gl.h>
 
 #include "CubeScape.h"
 #include <logvis/LogVis.h>
+#include "../cubescape/CubeScape.h"
 
-#include "glutils.h"
+#include "../cubescape/glutils.h"
 
 #include <thread>
 #include <fstream>
@@ -215,7 +216,7 @@ int main(int, char *[])
 
     GLuint logTexture = displayLogTexture();
 
-    Logging::start();
+    logging::start();
     // Logging stuff end
 
     glfwMakeContextCurrent(window);  
@@ -252,7 +253,9 @@ int main(int, char *[])
 
     delete cubescape;
     cubescape = nullptr;
-    Logging::stop();
+
+    // Logging end
+    logging::stop();
 
     glfwTerminate();
     return 0;
