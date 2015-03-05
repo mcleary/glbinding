@@ -1,6 +1,8 @@
 #include <logvis/LogVis.h>
 #include <iostream>
+#include <fstream>
 #include <math.h>
+#include <glbinding/Binding.h>
 
 using namespace gl;
 
@@ -9,7 +11,7 @@ namespace logvis
 
 LogVis::LogVis(gl::GLuint logTexture)
 {
-    m_tailId = glbinding::Logging::addTail();
+    m_tailId = glbinding::logging::addTail();
     for (std::string category : glbinding::Meta::getCategories())
     {
         m_maxStats[category] = 0;
@@ -23,7 +25,7 @@ LogVis::LogVis(gl::GLuint logTexture)
 
 LogVis::~LogVis()
 {
-    glbinding::Logging::removeTail(m_tailId);
+    glbinding::logging::removeTail(m_tailId);
 }
 
 void LogVis::update()
@@ -50,8 +52,8 @@ LogVis::CategoryStats LogVis::getCurrentLogPart()
         categoryCount[category] = 0;
     };
 
-    auto i = glbinding::Logging::cbegin(m_tailId);
-    while(glbinding::Logging::valid(m_tailId, i))
+    auto i = glbinding::logging::cbegin(m_tailId);
+    while(glbinding::logging::valid(m_tailId, i))
     {
         std::string command = (*i)->function->name();
         std::string category = glbinding::Meta::getCategory(command);
@@ -60,7 +62,7 @@ LogVis::CategoryStats LogVis::getCurrentLogPart()
         }
         ++categoryCount[category];
 
-        i = glbinding::Logging::next(m_tailId, i);
+        i = glbinding::logging::next(m_tailId, i);
     }
 
     return categoryCount;
@@ -96,7 +98,7 @@ unsigned int LogVis::averageCount(std::string category)
 
 void LogVis::renderLogTexture()
 {   
-    glbinding::Logging::pause();
+    glbinding::logging::pause();
     glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
 
     renderCats();
@@ -141,7 +143,7 @@ void LogVis::renderLogTexture()
     glDrawElements(GL_TRIANGLES, 22*18, GL_UNSIGNED_INT, 0);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glbinding::Logging::resume();
+    glbinding::logging::resume();
 }
 
 void LogVis::renderCats()
