@@ -50,22 +50,21 @@ protected:
         "Uniform Updates",
         "ROP",
         "Vertex Format",
-        "Utility",
-        "Uncategorized"
+        "Utility"
+        // "Uncategorized"
     };
 
     const std::map<std::string, std::vector<float>> ColorByCategory
     {
-        { "Draw", {141.0f/255.0f,211.0f/255.0f,199.0f/255.0f}},
-        { "Render Target", {255.0f/255.0f,255.0f/255.0f,179.0f/255.0f}},
-        { "Texture", {190.0f/255.0f,186.0f/255.0f,218.0f/255.0f}},
-        { "UBO Binding", {251.0f/255.0f,128.0f/255.0f,114.0f/255.0f}},
-        { "Program", {128.0f/255.0f,177.0f/255.0f,211.0f/255.0f}},
-        { "Uniform Updates", {253.0f/255.0f,180.0f/255.0f,98.0f/255.0f}},
-        { "ROP", {179.0f/255.0f,222.0f/255.0f,105.0f/255.0f}},
-        { "Vertex Format", {252.0f/255.0f,205.0f/255.0f,229.0f/255.0f}},
-        { "Utility", {217.0f/255.0f,217.0f/255.0f,217.0f/255.0f}},
-        { "Uncategorized", {188.0f/255.0f,128.0f/255.0f,189.0f/255.0f}}
+        { "Draw", { 228.0f/255.0f, 26.0f/255.0f, 28.0f/255.0f }},
+        { "Render Target", { 55.0f/255.0f, 126.0f/255.0f, 184.0f/255.0f }},
+        { "Texture", { 77.0f/255.0f, 175.0f/255.0f, 74.0f/255.0f }},
+        { "UBO Binding", { 152.0f/255.0f, 78.0f/255.0f, 163.0f/255.0f }},
+        { "Program", { 255.0f/255.0f, 127.0f/255.0f, 0.0f/255.0f }},
+        { "Uniform Updates", { 255.0f/255.0f, 255.0f/255.0f, 51.0f/255.0f }},
+        { "ROP", { 166.0f/255.0f, 86.0f/255.0f, 40.0f/255.0f }},
+        { "Vertex Format", { 247.0f/255.0f, 129.0f/255.0f, 191.0f/255.0f }},
+        { "Utility", { 153.0f/255.0f, 153.0f/255.0f, 153.0f/255.0f }}
     };
 
 };

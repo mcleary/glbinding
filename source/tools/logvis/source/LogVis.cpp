@@ -149,7 +149,7 @@ void LogVis::renderLogTexture()
 void LogVis::renderCats()
 {
     float margin = 0.025f;
-    int catCount = m_maxStats.size();
+    int catCount = m_categories.size();
     float width = (2.0f - (margin * (catCount+1))) / catCount;
 
     int numVerts = 4 * 5 * 3;
