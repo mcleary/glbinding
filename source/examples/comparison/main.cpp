@@ -104,38 +104,23 @@ void compare()
     glbinding::logging::start("logs/comparison2");
     timer.start("      glbinding ");
 
-
-    bool run = true;
-
-    std::thread writer([&run]()
-    {
-        int count = 0;
-        int tail = glbinding::logging::addTail();
-
-        while(run || glbinding::logging::size(tail) != 0)
-        {
-            auto i = glbinding::logging::cbegin(tail);
-            while(glbinding::logging::valid(tail, i))
-            {
-                count++;
-                i = glbinding::logging::next(tail, i);
-            }
-        }
-
-        glbinding::logging::removeTail(tail);
-
-        std::cout << "counted: " << count << std::endl;
-    });
-
+    int count = 0;
+    int tail = glbinding::logging::addTail();
 
     for (int i = 0; i < ITERATIONS; ++i)
+    {
         glbinding_test();
-    
-    run = false;
+        auto it = glbinding::logging::cbegin(tail);
+        while(glbinding::logging::valid(tail, it))
+        {
+            count++;
+            it = glbinding::logging::next(tail, it);
+        }
 
-    writer.join();
+    }
 
     long double glbinding_avg_rb = timer.stop();
+    std::cout << "Counted: " << count << std::endl;
     glbinding::logging::log(false);
 
 
@@ -143,7 +128,7 @@ void compare()
     glbinding::logging::start("logs/comparison3");
     timer.start("      glbinding ");
 
-    int count = 0;
+    count = 0;
 
     glbinding::addCallbackMask(glbinding::CallbackMask::After | glbinding::CallbackMask::ParametersAndReturnValue);
     glbinding::setAfterCallback([&count](const glbinding::FunctionCall & call)
@@ -153,10 +138,10 @@ void compare()
 
     for (int i = 0; i < ITERATIONS; ++i)
         glbinding_test();
-    
-    std::cout << "counted: " << count << std::endl;
+
     long double glbinding_avg_cb = timer.stop();
     glbinding::logging::log(false);
+
 
     std::cout << std::endl << "test: again, now callback logging ..." << std::endl;
     std::ofstream logfile;
@@ -178,10 +163,10 @@ void compare()
 
     std::cout << std::endl << "glbinding/glew decrease:                 " << (glbinding_avg / glew_avg - 1.0) * 100.0 << "%" << std::endl;
     std::cout << std::endl << "glbinding/glew decrease (error checks):  " << (glbinding_avg_err / glew_avg_err - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with logging:         " << (glbinding_avg / glbinding_avg_log - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with rb:         " << (glbinding_avg / glbinding_avg_rb - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with cb:         " << (glbinding_avg / glbinding_avg_cb - 1.0) * 100.0 << "%" << std::endl;
-    std::cout << std::endl << "glbinding decrease with cb logging:         " << (glbinding_avg / glbinding_avg_cb_log - 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with logging:         " << (glbinding_avg_log / glbinding_avg  - 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with rb:         " << (glbinding_avg_rb  / glbinding_avg- 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with cb:         " << (glbinding_avg_cb  / glbinding_avg- 1.0) * 100.0 << "%" << std::endl;
+    std::cout << std::endl << "glbinding decrease with cb logging:         " << (glbinding_avg_cb_log / glbinding_avg - 1.0) * 100.0 << "%" << std::endl;
 
 
     std::cout << std::endl << "finalizing ..." << std::endl;
