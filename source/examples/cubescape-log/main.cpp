@@ -9,6 +9,7 @@
 #include <glbinding/callbacks.h>
 #include <glbinding/Binding.h>
 #include <glbinding/logging.h>
+#include <glbinding/Binding.h>
 
 #include <glbinding/gl/gl.h>
 

@@ -1,7 +1,9 @@
 #pragma once
+
 #include <atomic>
 #include <iterator>
 #include <map>
+#include <mutex>
 #include <vector>
 
 namespace glbinding
@@ -13,8 +15,8 @@ class RingBuffer
 
 public:
     // Buffer is limited to (maxValue(sizeType)/2 - 1) entries
-    using sizeType = unsigned int;
-    RingBuffer(sizeType maxSize);
+    using SizeType = unsigned int;
+    RingBuffer(SizeType maxSize);
 
     T hat();
     bool push(T &&);
@@ -27,24 +29,24 @@ public:
     bool valid(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
     const typename std::vector<T>::const_iterator next(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
     void release(TailIdentifier key, const typename std::vector<T>::const_iterator & it);
-    sizeType size(TailIdentifier);
+    SizeType size(TailIdentifier);
 
-    sizeType maxSize();
-    sizeType size();
+    SizeType maxSize();
+    SizeType size();
     bool isFull();
     bool isEmpty();
 
 protected:
-    sizeType next(sizeType current);
+    SizeType next(SizeType current);
     void updateTail();
-    sizeType size(sizeType, sizeType);
+    SizeType size(SizeType, SizeType);
 
 protected:
     std::vector<T> m_buffer;
-    const uint64_t m_size;
-    std::atomic<uint64_t> m_head;
-    std::atomic<uint64_t> m_tail;
-    std::map<TailIdentifier, std::atomic<uint64_t>> m_tails;
+    const SizeType m_size;
+    std::atomic<SizeType> m_head;
+    std::atomic<SizeType> m_tail;
+    std::map<TailIdentifier, std::atomic<SizeType>> m_tails;
     std::mutex m_tail_mutex;
 };
 
