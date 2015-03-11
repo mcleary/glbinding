@@ -104,7 +104,7 @@ gl::GLuint displayLogTexture()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
 
-    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 150, 0, GL_RGB, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 200, 0, GL_RGB, GL_FLOAT, 0);
 
     // Vertices
     float vertices[] = {
@@ -197,7 +197,7 @@ int main(int, char *[])
     }
 
     glfwWindowHint(GLFW_RESIZABLE, 0);  
-    GLFWwindow * logWindow = glfwCreateWindow(600, 150, "LogVis", nullptr, nullptr);
+    GLFWwindow * logWindow = glfwCreateWindow(600, 200, "LogVis", nullptr, nullptr);
     if (!logWindow)
     {
         glfwTerminate();

@@ -49,6 +49,8 @@ set(api_includes
 
 set(sources
     ${source_path}/LogVis.cpp
+    ${source_path}/RawFile.h
+    ${source_path}/RawFile.cpp
 )
 
 # Group source files

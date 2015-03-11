@@ -1,8 +1,12 @@
 #include <logvis/LogVis.h>
+
 #include <iostream>
 #include <fstream>
 #include <math.h>
+
 #include <glbinding/Binding.h>
+
+#include "RawFile.h"
 
 using namespace gl;
 
@@ -101,46 +105,13 @@ void LogVis::renderLogTexture()
     glbinding::logging::pause();
     glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
 
-    renderCats();
-
-    // Shaders
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-    std::string vertexSource   = readFile("data/log/logvis.vert");
-    std::string fragmentSource = readFile("data/log/logvis.frag");
-
-    const char * vertSource = vertexSource.c_str();
-    const char * fragSource = fragmentSource.c_str();
-
-    glShaderSource(vs, 1, &vertSource, nullptr);
-    glCompileShader(vs);
-
-    glShaderSource(fs, 1, &fragSource, nullptr);
-    glCompileShader(fs);
-
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vs);
-    glAttachShader(shaderProgram, fs);
-
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
-
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
-
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glEnableVertexAttribArray(posAttrib);
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
-
-    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-    glEnableVertexAttribArray(colAttrib);
-    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
-
     // Draw
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glDrawElements(GL_TRIANGLES, 22*18, GL_UNSIGNED_INT, 0);
+    renderCats();
+    renderLabel();
+
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
@@ -159,20 +130,20 @@ void LogVis::renderCats()
     GLuint elements[catCount * numElem];
 
     int catNumber = 0;
+    unsigned int maxValue = 40;
+    unsigned int parts = 10;
+    float blockSize = 1.5f / parts;
     for (std::string category : m_categories)
     {
-        unsigned int maxValue = 40;
-        unsigned int parts = 10;
-        float blockSize = 2.0f / parts;
         int now = std::min(maxValue, m_lastStats.back().at(category));
         int avg = std::min(maxValue, averageCount(category));
         int max = std::min(maxValue, m_maxStats.at(category));
         // now = 4 + catNumber * 4;
-        // avg = 37;
+        // avg = 20;
         // max = 40;
-        float height = -1.0f + ceil(now / 4.0f) * blockSize;
-        float heightAvg = -1.0f + ceil(avg / 4.0f) * blockSize;
-        float heightMax = -1.0f + ceil(max / 4.0f) * blockSize;
+        float height = -0.5f + ceil(now / 4.0f) * blockSize;
+        float heightAvg = -0.5f + ceil(avg / 4.0f) * blockSize;
+        float heightMax = -0.5f + ceil(max / 4.0f) * blockSize;
 
         // std::cout << category << ": " << now << " - " << height << "      " << max << " - " << heightMax << std::endl;
 
@@ -184,8 +155,8 @@ void LogVis::renderCats()
 
         vertices[0+(catNumber * numVerts)] = start; vertices[1+(catNumber * numVerts)] = height; vertices[2+(catNumber * numVerts)] = color[0]; vertices[3+(catNumber * numVerts)] = color[1]; vertices[4+(catNumber * numVerts)] = color[2];
         vertices[5+(catNumber * numVerts)] = end; vertices[6+(catNumber * numVerts)] = height; vertices[7+(catNumber * numVerts)] = color[0]; vertices[8+(catNumber * numVerts)] = color[1]; vertices[9+(catNumber * numVerts)] = color[2];
-        vertices[10+(catNumber * numVerts)] = end; vertices[11+(catNumber * numVerts)] = -1.0f; vertices[12+(catNumber * numVerts)] = color[0]; vertices[13+(catNumber * numVerts)] = color[1]; vertices[14+(catNumber * numVerts)] = color[2];
-        vertices[15+(catNumber * numVerts)] = start; vertices[16+(catNumber * numVerts)] = -1.0f; vertices[17+(catNumber * numVerts)] = color[0]; vertices[18+(catNumber * numVerts)] = color[1]; vertices[19+(catNumber * numVerts)] = color[2];
+        vertices[10+(catNumber * numVerts)] = end; vertices[11+(catNumber * numVerts)] = -0.5f; vertices[12+(catNumber * numVerts)] = color[0]; vertices[13+(catNumber * numVerts)] = color[1]; vertices[14+(catNumber * numVerts)] = color[2];
+        vertices[15+(catNumber * numVerts)] = start; vertices[16+(catNumber * numVerts)] = -0.5f; vertices[17+(catNumber * numVerts)] = color[0]; vertices[18+(catNumber * numVerts)] = color[1]; vertices[19+(catNumber * numVerts)] = color[2];
 
         vertices[20+(catNumber * numVerts)] = start - 0.005; vertices[21+(catNumber * numVerts)] = heightAvg; vertices[22+(catNumber * numVerts)] = color[0]; vertices[23+(catNumber * numVerts)] = color[1]; vertices[24+(catNumber * numVerts)] = color[2];
         vertices[25+(catNumber * numVerts)] = end + 0.005; vertices[26+(catNumber * numVerts)] = heightAvg; vertices[27+(catNumber * numVerts)] = color[0]; vertices[28+(catNumber * numVerts)] = color[1]; vertices[29+(catNumber * numVerts)] = color[2];
@@ -224,6 +195,131 @@ void LogVis::renderCats()
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+    // Shaders
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string vertexSource   = readFile("data/log/logvis.vert");
+    std::string fragmentSource = readFile("data/log/logvis.frag");
+
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
+
+    glShaderSource(vs, 1, &vertSource, nullptr);
+    glCompileShader(vs);
+
+    glShaderSource(fs, 1, &fragSource, nullptr);
+    glCompileShader(fs);
+
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vs);
+    glAttachShader(shaderProgram, fs);
+
+    glBindFragDataLocation(shaderProgram, 0, "outColor");
+
+    glLinkProgram(shaderProgram);
+    glUseProgram(shaderProgram);
+
+    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+    glEnableVertexAttribArray(posAttrib);
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
+
+    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+    glEnableVertexAttribArray(colAttrib);
+    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
+
+    // 9 * 18: 9 categories * 3 values * 2 triangles * 3 vertices
+    glDrawElements(GL_TRIANGLES, 9*18, GL_UNSIGNED_INT, 0);
+
+}
+
+void LogVis::renderLabel()
+{
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    GLuint vbo;
+    glGenBuffers(1, &vbo); // Generate 1 buffer
+
+    float vertices[] = {
+    //  Position    Texcoords
+    -1.0f,  -0.5, 0.0f, 1.0f, // Top-left
+     1.0f,  -0.5f, 1.0f, 1.0f, // Top-right
+     1.0f, -1.0f, 1.0f, 0.0f, // Bottom-right
+    -1.0f, -1.0f, 0.0f, 0.0f  // Bottom-left
+    };
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    GLuint ebo;
+    glGenBuffers(1, &ebo);
+
+    GLuint elements[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+
+    // Shaders
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string vertexSource   = readFile("data/log/label.vert");
+    std::string fragmentSource = readFile("data/log/label.frag");
+
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
+
+    glShaderSource(vs, 1, &vertSource, nullptr);
+    glCompileShader(vs);
+
+    glShaderSource(fs, 1, &fragSource, nullptr);
+    glCompileShader(fs);
+
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vs);
+    glAttachShader(shaderProgram, fs);
+
+    glBindFragDataLocation(shaderProgram, 0, "outColor");
+
+    glLinkProgram(shaderProgram);
+    glUseProgram(shaderProgram);
+
+    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+    glEnableVertexAttribArray(posAttrib);
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
+
+    GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+    glEnableVertexAttribArray(texAttrib);
+    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
+
+    GLuint tex;
+    glGenTextures(1, &tex);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, tex);
+
+    glUniform1i(glGetUniformLocation(shaderProgram, "tex"), 0);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_LINEAR));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_LINEAR));
+
+    {
+        RawFile label("data/log/label.1200.100.rgb.ub.raw");
+        if (!label.isValid())
+            std::cout << "warning: loading texture from " << label.filePath() << " failed.";
+
+        glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 100, 0, GL_RGB, GL_UNSIGNED_BYTE, label.data());
+    }
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 bool LogVis::readFile(const std::string & filePath, std::string & content)

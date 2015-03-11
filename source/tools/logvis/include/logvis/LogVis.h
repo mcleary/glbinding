@@ -3,10 +3,11 @@
 #include <logvis/logvis_api.h>
 #include <glbinding/Logging.h>
 #include <glbinding/Meta.h>
-#include <../../glbinding/source/RingBuffer.h>
 #include <glbinding/gl/gl.h>
 
+#include <chrono>
 #include <list>
+#include <map>
 
 namespace logvis
 {
@@ -26,7 +27,9 @@ protected:
     void updateMax(CategoryStats currentCounts);
     void updateLast(CategoryStats currentCounts);
     unsigned int averageCount(std::string category);
+
     void renderLogTexture();
+    void renderLabel();
     void renderCats();
 
 protected:
