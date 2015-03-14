@@ -23,12 +23,75 @@ LogVis::LogVis(gl::GLuint logTexture)
     };
 
     glbinding::logging::pause();
-    // glGenFramebuffers(1, &m_logFrameBuffer);
-    // glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
-    // glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
+    glGenFramebuffers(1, &m_logFrameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
     
-    // Label set up
+    glGenVertexArrays(2, m_vaos);
+    glGenBuffers(2, m_vbos);
+    glGenBuffers(2, m_ebos);
 
+    // Cat set up
+    int catCount = m_categories.size();
+    int numVerts = 4 * 5 * 3;
+    int numElem = 6 * 3;
+
+    float cat_vertices[catCount * numVerts];
+    GLuint cat_elements[catCount * numElem];
+
+    for (int i = 0; i < catCount; ++i)
+    {
+        cat_elements[0+(i * numElem)] = static_cast<GLuint>(0+(i * 4 * 3)); cat_elements[1+(i * numElem)] = static_cast<GLuint>(1+(i * 4 * 3)); cat_elements[2+(i * numElem)] = static_cast<GLuint>(2+(i * 4 * 3));
+        cat_elements[3+(i * numElem)] = static_cast<GLuint>(2+(i * 4 * 3)); cat_elements[4+(i * numElem)] = static_cast<GLuint>(3+(i * 4 * 3)); cat_elements[5+(i * numElem)] = static_cast<GLuint>(0+(i * 4 * 3));
+
+        cat_elements[6+(i * numElem)] = static_cast<GLuint>(4+(i * 4 * 3)); cat_elements[7+(i * numElem)] = static_cast<GLuint>(5+(i * 4 * 3)); cat_elements[8+(i * numElem)] = static_cast<GLuint>(6+(i * 4 * 3));
+        cat_elements[9+(i * numElem)] = static_cast<GLuint>(6+(i * 4 * 3)); cat_elements[10+(i * numElem)] = static_cast<GLuint>(7+(i * 4 * 3)); cat_elements[11+(i * numElem)] = static_cast<GLuint>(4+(i * 4 * 3));
+
+        cat_elements[12+(i * numElem)] = static_cast<GLuint>(8+(i * 4 * 3)); cat_elements[13+(i * numElem)] = static_cast<GLuint>(9+(i * 4 * 3)); cat_elements[14+(i * numElem)] = static_cast<GLuint>(10+(i * 4 * 3));
+        cat_elements[15+(i * numElem)] = static_cast<GLuint>(10+(i * 4 * 3)); cat_elements[16+(i * numElem)] = static_cast<GLuint>(11+(i * 4 * 3)); cat_elements[17+(i * numElem)] = static_cast<GLuint>(8+(i * 4 * 3));        
+    }
+
+    glBindVertexArray(m_vaos[0]);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cat_vertices), cat_vertices, GL_DYNAMIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos[0]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cat_elements), cat_elements, GL_STATIC_DRAW);
+
+    // Shaders
+    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string cat_vertexSource   = readFile("data/log/logvis.vert");
+    std::string cat_fragmentSource = readFile("data/log/logvis.frag");
+
+    const char * cat_vertSource = cat_vertexSource.c_str();
+    const char * cat_fragSource = cat_fragmentSource.c_str();
+
+    glShaderSource(vs, 1, &cat_vertSource, nullptr);
+    glCompileShader(vs);
+
+    glShaderSource(fs, 1, &cat_fragSource, nullptr);
+    glCompileShader(fs);
+
+    m_cat_program = glCreateProgram();
+    glAttachShader(m_cat_program, vs);
+    glAttachShader(m_cat_program, fs);
+
+    glBindFragDataLocation(m_cat_program, 0, "outColor");
+
+    glLinkProgram(m_cat_program);
+
+    GLint cat_posAttrib = glGetAttribLocation(m_cat_program, "position");
+    glEnableVertexAttribArray(cat_posAttrib);
+    glVertexAttribPointer(cat_posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
+
+    GLint colAttrib = glGetAttribLocation(m_cat_program, "color");
+    glEnableVertexAttribArray(colAttrib);
+    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
+
+    // Label set up
     float label_vertices[] = {
     //  Position    Texcoords
     -1.0f,  -0.5, 0.0f, 1.0f, // Top-left
@@ -42,15 +105,12 @@ LogVis::LogVis(gl::GLuint logTexture)
         2, 3, 0
     };
 
-    glGenVertexArrays(1, &m_vaos);
-    glBindVertexArray(m_vaos);
+    glBindVertexArray(m_vaos[1]);
 
-    glGenBuffers(1, &m_vbos);
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbos);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos[1]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(label_vertices), label_vertices, GL_STATIC_DRAW);
 
-    glGenBuffers(1, &m_ebos);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos[1]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(label_elements), label_elements, GL_STATIC_DRAW);
 
     // Shaders
@@ -104,13 +164,23 @@ LogVis::LogVis(gl::GLuint logTexture)
         glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 100, 0, GL_RGB, GL_UNSIGNED_BYTE, label.data());
     }
 
-    // glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
 
 LogVis::~LogVis()
 {
     glbinding::logging::removeTail(m_tailId);
+    glDeleteFramebuffers(1, &m_logFrameBuffer);
+
+    glDeleteTextures(1, &m_textures);
+
+    glDeleteBuffers(2, m_vaos);
+    glDeleteBuffers(2, m_vbos);
+    glDeleteBuffers(2, m_ebos);
+
+    glDeleteProgram(m_cat_program);
+    glDeleteProgram(m_label_program);
 }
 
 void LogVis::update()
@@ -120,7 +190,7 @@ void LogVis::update()
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>( now - m_lastTime ).count();
 
     m_lastTimes.push_back(duration);
-    if (m_lastTimes.size() > 10)
+    if (m_lastTimes.size() > 100000)
         m_lastTimes.pop_front();
 
     long long summed_duration = 0;
@@ -130,7 +200,7 @@ void LogVis::update()
     }
     auto avg_duration = summed_duration/static_cast<long long>(m_lastTimes.size());
 
-    // std::cout << 1000000/avg_duration << " - duration: " << duration << std::endl;
+    std::cout << 1000000/avg_duration << " - duration: " << duration << std::endl;
 
     // Update categories
     LogVis::CategoryStats categoryCount = getCurrentLogPart();
@@ -204,7 +274,7 @@ unsigned int LogVis::averageCount(std::string category)
 void LogVis::renderLogTexture()
 {   
     glbinding::logging::pause();
-    // glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
 
     // Draw
     // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -214,8 +284,7 @@ void LogVis::renderLogTexture()
     // renderTime();
     renderLabel();
 
-
-    // glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
 
@@ -226,10 +295,8 @@ void LogVis::renderCats()
     float width = (2.0f - (margin * (catCount+1))) / catCount;
 
     int numVerts = 4 * 5 * 3;
-    int numElem = 6 * 3;
 
     float vertices[catCount * numVerts];
-    GLuint elements[catCount * numElem];
 
     int catNumber = 0;
     unsigned int maxValue = 40;
@@ -248,7 +315,6 @@ void LogVis::renderCats()
         float heightMax = -0.5f + ceil(max / 4.0f) * blockSize;
 
         // std::cout << category << ": " << now << " - " << height << "      " << max << " - " << heightMax << std::endl;
-
 
         float start = -1.0f + margin + catNumber * (width + margin);
         float end = -1.0f + margin + catNumber * (width + margin) + width;
@@ -270,66 +336,14 @@ void LogVis::renderCats()
         vertices[50+(catNumber * numVerts)] = end; vertices[51+(catNumber * numVerts)] = heightMax - blockSize; vertices[52+(catNumber * numVerts)] = color[0]; vertices[53+(catNumber * numVerts)] = color[1]; vertices[54+(catNumber * numVerts)] = color[2];
         vertices[55+(catNumber * numVerts)] = start; vertices[56+(catNumber * numVerts)] = heightMax - blockSize; vertices[57+(catNumber * numVerts)] = color[0]; vertices[58+(catNumber * numVerts)] = color[1]; vertices[59+(catNumber * numVerts)] = color[2];
 
-
-        elements[0+(catNumber * numElem)] = static_cast<GLuint>(0+(catNumber * 4 * 3)); elements[1+(catNumber * numElem)] = static_cast<GLuint>(1+(catNumber * 4 * 3)); elements[2+(catNumber * numElem)] = static_cast<GLuint>(2+(catNumber * 4 * 3));
-        elements[3+(catNumber * numElem)] = static_cast<GLuint>(2+(catNumber * 4 * 3)); elements[4+(catNumber * numElem)] = static_cast<GLuint>(3+(catNumber * 4 * 3)); elements[5+(catNumber * numElem)] = static_cast<GLuint>(0+(catNumber * 4 * 3));
-
-        elements[6+(catNumber * numElem)] = static_cast<GLuint>(4+(catNumber * 4 * 3)); elements[7+(catNumber * numElem)] = static_cast<GLuint>(5+(catNumber * 4 * 3)); elements[8+(catNumber * numElem)] = static_cast<GLuint>(6+(catNumber * 4 * 3));
-        elements[9+(catNumber * numElem)] = static_cast<GLuint>(6+(catNumber * 4 * 3)); elements[10+(catNumber * numElem)] = static_cast<GLuint>(7+(catNumber * 4 * 3)); elements[11+(catNumber * numElem)] = static_cast<GLuint>(4+(catNumber * 4 * 3));
-
-        elements[12+(catNumber * numElem)] = static_cast<GLuint>(8+(catNumber * 4 * 3)); elements[13+(catNumber * numElem)] = static_cast<GLuint>(9+(catNumber * 4 * 3)); elements[14+(catNumber * numElem)] = static_cast<GLuint>(10+(catNumber * 4 * 3));
-        elements[15+(catNumber * numElem)] = static_cast<GLuint>(10+(catNumber * 4 * 3)); elements[16+(catNumber * numElem)] = static_cast<GLuint>(11+(catNumber * 4 * 3)); elements[17+(catNumber * numElem)] = static_cast<GLuint>(8+(catNumber * 4 * 3));
-
         catNumber++;
     };
 
-    GLuint vbo;
-    glGenBuffers(1, &vbo); // Generate 1 buffer
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBindVertexArray(m_vaos[0]);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
 
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    GLuint ebo;
-    glGenBuffers(1, &ebo);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-
-    // Shaders
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-    std::string vertexSource   = readFile("data/log/logvis.vert");
-    std::string fragmentSource = readFile("data/log/logvis.frag");
-
-    const char * vertSource = vertexSource.c_str();
-    const char * fragSource = fragmentSource.c_str();
-
-    glShaderSource(vs, 1, &vertSource, nullptr);
-    glCompileShader(vs);
-
-    glShaderSource(fs, 1, &fragSource, nullptr);
-    glCompileShader(fs);
-
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vs);
-    glAttachShader(shaderProgram, fs);
-
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
-
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
-
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glEnableVertexAttribArray(posAttrib);
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), 0);
-
-    GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-    glEnableVertexAttribArray(colAttrib);
-    glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(2*sizeof(float)));
+    glUseProgram(m_cat_program);
 
     // 9 * 18: 9 categories * 3 values * 2 triangles * 3 vertices
     glDrawElements(GL_TRIANGLES, 9*18, GL_UNSIGNED_INT, 0);
@@ -342,12 +356,11 @@ void LogVis::renderTime()
 
 void LogVis::renderLabel()
 {
-    glBindVertexArray(m_vaos);
+    glBindVertexArray(m_vaos[1]);
     glUseProgram(m_label_program);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_textures);
-    glUniform1i(glGetUniformLocation(m_label_program, "tex"), 0);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

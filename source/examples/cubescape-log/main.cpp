@@ -92,7 +92,7 @@ std::string readFile(const std::string & filePath)
     return content;
 }
 
-void displayLogTexture(GLuint vao, GLuint program, GLuint texture)
+void displayLogTexture(GLuint &vao, GLuint &program, GLuint &texture)
 {
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -107,15 +107,15 @@ void displayLogTexture(GLuint vao, GLuint program, GLuint texture)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
 
-    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 200, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 400, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 
     // Vertices
     float vertices[] = {
     //  Position      Texcoords
-        -1.0f,  1.0f, 0.0f, 0.0f, // Top-left
-         1.0f,  1.0f, 1.0f, 0.0f, // Top-right
-         1.0f, -1.0f, 1.0f, 1.0f, // Bottom-right
-        -1.0f, -1.0f, 0.0f, 1.0f  // Bottom-left
+        -1.0f,  1.0f, 0.0f, 1.0f, // Top-left
+         1.0f,  1.0f, 1.0f, 1.0f, // Top-right
+         1.0f, -1.0f, 1.0f, 0.0f, // Bottom-right
+        -1.0f, -1.0f, 0.0f, 0.0f  // Bottom-left
     };
 
     GLuint vbo;
@@ -203,6 +203,10 @@ int main(int, char *[])
         return -1;
     }
 
+    int width2, height2;
+    glfwGetFramebufferSize(logWindow, &width2, &height2);
+    std::cout << width2 << " : " << height2 << std::endl;
+
     glfwSetKeyCallback(window, key_callback);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
@@ -215,10 +219,11 @@ int main(int, char *[])
     // The texture we're going to render to
     glfwMakeContextCurrent(logWindow);
 
-    // GLuint logTexture_vao = 0;
-    // GLuint logTexture_program = 0;
+    GLuint logTexture_vao = 0;
+    GLuint logTexture_program = 0;
     GLuint logTexture_tex = 0;
-    // displayLogTexture(logTexture_vao, logTexture_program, logTexture_tex);
+    displayLogTexture(logTexture_vao, logTexture_program, logTexture_tex);
+
 
     glfwMakeContextCurrent(window);
 
@@ -251,15 +256,20 @@ int main(int, char *[])
         glfwSwapBuffers(window);
  
         glfwMakeContextCurrent(logWindow);
+        glbinding::logging::pause();
+        glClear(GL_COLOR_BUFFER_BIT);
+
         visualiser.update();
 
-        // glBindVertexArray(logTexture_vao);
-        // glUseProgram(logTexture_program);
+        
+        glBindVertexArray(logTexture_vao);
+        glUseProgram(logTexture_program);
 
-        // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        // glClear(GL_COLOR_BUFFER_BIT);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, logTexture_tex);
 
-        // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glbinding::logging::resume();
         glfwSwapBuffers(logWindow);
         glfwMakeContextCurrent(window);
     }

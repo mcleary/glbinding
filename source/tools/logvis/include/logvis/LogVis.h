@@ -42,10 +42,11 @@ protected:
     CategoryStats m_maxStats;
 
     gl::GLuint m_logFrameBuffer;
-    gl::GLuint m_vaos;
-    gl::GLuint m_vbos;
-    gl::GLuint m_ebos;
+    gl::GLuint m_vaos[2];
+    gl::GLuint m_vbos[2];
+    gl::GLuint m_ebos[2];
     gl::GLuint m_textures;
+    gl::GLuint m_cat_program;
     gl::GLuint m_label_program;
 
     std::chrono::high_resolution_clock::time_point m_lastTime;
