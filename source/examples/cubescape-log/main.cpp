@@ -215,10 +215,10 @@ int main(int, char *[])
     // The texture we're going to render to
     glfwMakeContextCurrent(logWindow);
 
-    GLuint logTexture_vao = 0;
-    GLuint logTexture_program = 0;
+    // GLuint logTexture_vao = 0;
+    // GLuint logTexture_program = 0;
     GLuint logTexture_tex = 0;
-    displayLogTexture(logTexture_vao, logTexture_program, logTexture_tex);
+    // displayLogTexture(logTexture_vao, logTexture_program, logTexture_tex);
 
     glfwMakeContextCurrent(window);
 
@@ -235,9 +235,9 @@ int main(int, char *[])
     std::cout << std::endl
         << "Press i or d to either increase or decrease number of cubes." << std::endl << std::endl;
 
-    // glfwMakeContextCurrent(logWindow);
+    glfwMakeContextCurrent(logWindow);
     logvis::LogVis visualiser(logTexture_tex);
-    // glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window);
 
     cubescape = new CubeScape();
 
@@ -259,7 +259,7 @@ int main(int, char *[])
         // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         // glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        // glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(logWindow);
         glfwMakeContextCurrent(window);
     }

@@ -23,93 +23,88 @@ LogVis::LogVis(gl::GLuint logTexture)
     };
 
     glbinding::logging::pause();
-    glGenFramebuffers(1, &m_logFrameBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
-    glBindTexture(GL_TEXTURE_2D, logTexture);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
+    // glGenFramebuffers(1, &m_logFrameBuffer);
+    // glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
+    // glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
     
-    // glGenVertexArrays(2, m_vaos);
-    // glGenBuffers(2, m_vbos);
-    // glGenBuffers(2, m_ebos);
-    // glGenTextures(1, &m_textures);
+    // Label set up
 
-    // // Label set up
+    float label_vertices[] = {
+    //  Position    Texcoords
+    -1.0f,  -0.5, 0.0f, 1.0f, // Top-left
+     1.0f,  -0.5f, 1.0f, 1.0f, // Top-right
+     1.0f, -1.0f, 1.0f, 0.0f, // Bottom-right
+    -1.0f, -1.0f, 0.0f, 0.0f  // Bottom-left
+    };
 
-    // float label_vertices[] = {
-    // //  Position    Texcoords
-    // -1.0f,  -0.5, 0.0f, 1.0f, // Top-left
-    //  1.0f,  -0.5f, 1.0f, 1.0f, // Top-right
-    //  1.0f, -1.0f, 1.0f, 0.0f, // Bottom-right
-    // -1.0f, -1.0f, 0.0f, 0.0f  // Bottom-left
-    // };
+    GLuint label_elements[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
 
-    // GLuint label_elements[] = {
-    //     0, 1, 2,
-    //     2, 3, 0
-    // };
+    glGenVertexArrays(1, &m_vaos);
+    glBindVertexArray(m_vaos);
 
-    // glBindVertexArray(m_vaos[1]);
+    glGenBuffers(1, &m_vbos);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(label_vertices), label_vertices, GL_STATIC_DRAW);
 
-    // glBindBuffer(GL_ARRAY_BUFFER, m_vbos[1]);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(label_vertices), label_vertices, GL_STATIC_DRAW);
+    glGenBuffers(1, &m_ebos);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(label_elements), label_elements, GL_STATIC_DRAW);
 
-    // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos[1]);
-    // glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(label_elements), label_elements, GL_STATIC_DRAW);
+    // Shaders
+    GLuint label_vs = glCreateShader(GL_VERTEX_SHADER);
+    GLuint label_fs = glCreateShader(GL_FRAGMENT_SHADER);
 
-    // // Shaders
-    // GLuint label_vs = glCreateShader(GL_VERTEX_SHADER);
-    // GLuint label_fs = glCreateShader(GL_FRAGMENT_SHADER);
+    std::string vertexSource   = readFile("data/log/label.vert");
+    std::string fragmentSource = readFile("data/log/label.frag");
 
-    // std::string vertexSource   = readFile("data/log/label.vert");
-    // std::string fragmentSource = readFile("data/log/label.frag");
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
 
-    // const char * vertSource = vertexSource.c_str();
-    // const char * fragSource = fragmentSource.c_str();
+    glShaderSource(label_vs, 1, &vertSource, nullptr);
+    glCompileShader(label_vs);
 
-    // glShaderSource(label_vs, 1, &vertSource, nullptr);
-    // glCompileShader(label_vs);
+    glShaderSource(label_fs, 1, &fragSource, nullptr);
+    glCompileShader(label_fs);
 
-    // glShaderSource(label_fs, 1, &fragSource, nullptr);
-    // glCompileShader(label_fs);
+    m_label_program = glCreateProgram();
+    glAttachShader(m_label_program, label_vs);
+    glAttachShader(m_label_program, label_fs);
 
-    // GLuint m_label_program = glCreateProgram();
-    // glAttachShader(m_label_program, label_vs);
-    // glAttachShader(m_label_program, label_fs);
+    glBindFragDataLocation(m_label_program, 0, "outColor");
 
-    // glBindFragDataLocation(m_label_program, 0, "outColor");
+    glLinkProgram(m_label_program);
 
-    // glLinkProgram(m_label_program);
+    GLint posAttrib = glGetAttribLocation(m_label_program, "position");
+    glEnableVertexAttribArray(posAttrib);
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
 
-    // GLint posAttrib = glGetAttribLocation(m_label_program, "position");
-    // glEnableVertexAttribArray(posAttrib);
-    // glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
+    GLint texAttrib = glGetAttribLocation(m_label_program, "texcoord");
+    glEnableVertexAttribArray(texAttrib);
+    glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
 
-    // GLint texAttrib = glGetAttribLocation(m_label_program, "texcoord");
-    // glEnableVertexAttribArray(texAttrib);
-    // glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
+    // Texture
+    glGenTextures(1, &m_textures);
+    glBindTexture(GL_TEXTURE_2D, m_textures);
 
-    // // Texture
-    // glGenTextures(1, &m_textures);
+    glUniform1i(glGetUniformLocation(m_label_program, "tex"), 0);
 
-    // glActiveTexture(GL_TEXTURE1);
-    // glBindTexture(GL_TEXTURE_2D, m_textures);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_LINEAR));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_LINEAR));
 
-    // glUniform1i(glGetUniformLocation(m_label_program, "tex"), 1);
+    {
+        RawFile label("data/log/label.1200.100.rgb.ub.raw");
+        if (!label.isValid())
+            std::cout << "warning: loading texture from " << label.filePath() << " failed.";
 
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_LINEAR));
-    // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_LINEAR));
+        glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 100, 0, GL_RGB, GL_UNSIGNED_BYTE, label.data());
+    }
 
-    // {
-    //     RawFile label("data/log/label.1200.100.rgb.ub.raw");
-    //     if (!label.isValid())
-    //         std::cout << "warning: loading texture from " << label.filePath() << " failed.";
-
-    //     glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 100, 0, GL_RGB, GL_UNSIGNED_BYTE, label.data());
-    // }
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
 
@@ -209,18 +204,18 @@ unsigned int LogVis::averageCount(std::string category)
 void LogVis::renderLogTexture()
 {   
     glbinding::logging::pause();
-    glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
+    // glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
 
     // Draw
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     renderCats();
-    renderTime();
-    // renderLabel();
+    // renderTime();
+    renderLabel();
 
 
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    // glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
 
@@ -347,11 +342,12 @@ void LogVis::renderTime()
 
 void LogVis::renderLabel()
 {
-    glBindVertexArray(m_vaos[1]);
+    glBindVertexArray(m_vaos);
     glUseProgram(m_label_program);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_textures);
+    glUniform1i(glGetUniformLocation(m_label_program, "tex"), 0);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
