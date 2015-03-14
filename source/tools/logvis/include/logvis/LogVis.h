@@ -30,18 +30,29 @@ protected:
 
     void renderLogTexture();
     void renderLabel();
+    void renderTime();
     void renderCats();
-
-protected:
-    using TailIdentifier = unsigned int;
-
-    TailIdentifier m_tailId;
-    std::list<std::map<std::string, unsigned int>> m_lastStats;
-    std::map<std::string, unsigned int> m_maxStats;
-    gl::GLuint m_logFrameBuffer;
 
     bool readFile(const std::string & filePath, std::string & content);
     std::string readFile(const std::string & filePath);
+
+protected:
+    unsigned int m_tailId;
+    std::list<CategoryStats> m_lastStats;
+    CategoryStats m_maxStats;
+
+    gl::GLuint m_logFrameBuffer;
+    gl::GLuint m_vaos[2];
+    gl::GLuint m_vbos[2];
+    gl::GLuint m_ebos[2];
+    gl::GLuint m_textures;
+    gl::GLuint m_label_program;
+
+    std::chrono::high_resolution_clock::time_point m_lastTime;
+    std::list<long long> m_lastTimes;
+
+    std::chrono::high_resolution_clock::time_point m_lastUpdate;
+    int m_frames;
 
     const std::list<std::string> m_categories
     {

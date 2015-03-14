@@ -92,19 +92,22 @@ std::string readFile(const std::string & filePath)
     return content;
 }
 
-gl::GLuint displayLogTexture()
+void displayLogTexture(GLuint vao, GLuint program, GLuint texture)
 {
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
     // Texture
-    gl::GLuint logTexture;
-    glGenTextures(1, &logTexture);
-    glBindTexture(GL_TEXTURE_2D, logTexture);
+    glGenTextures(1, &texture);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
 
-    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 200, 0, GL_RGB, GL_FLOAT, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 200, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 
     // Vertices
     float vertices[] = {
@@ -119,10 +122,6 @@ gl::GLuint displayLogTexture()
     glGenBuffers(1, &vbo); // Generate 1 buffer
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    GLuint vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
 
     GLuint elements[] = {
         0, 1, 2,
@@ -153,24 +152,24 @@ gl::GLuint displayLogTexture()
     glCompileShader(fs);
     compile_info(fs);
 
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vs);
-    glAttachShader(shaderProgram, fs);
+    program = glCreateProgram();
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
 
-    glBindFragDataLocation(shaderProgram, 0, "outColor");
+    glBindFragDataLocation(program, 0, "outColor");
 
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
+    glLinkProgram(program);
+    glUseProgram(program);
     
-    GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
-    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
+    GLint posAttrib = glGetAttribLocation(program, "position");
     glEnableVertexAttribArray(posAttrib);
+    glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
 
-    GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+    GLint texAttrib = glGetAttribLocation(program, "texcoord");
     glEnableVertexAttribArray(texAttrib);
     glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
 
-    return logTexture;
+    glBindVertexArray(0);
 }
 
 int main(int, char *[])
@@ -216,12 +215,15 @@ int main(int, char *[])
     // The texture we're going to render to
     glfwMakeContextCurrent(logWindow);
 
-    GLuint logTexture = displayLogTexture();
+    GLuint logTexture_vao = 0;
+    GLuint logTexture_program = 0;
+    GLuint logTexture_tex = 0;
+    displayLogTexture(logTexture_vao, logTexture_program, logTexture_tex);
+
+    glfwMakeContextCurrent(window);
 
     logging::start();
-    // Logging stuff end
-
-    glfwMakeContextCurrent(window);  
+    // Logging stuff end  
 
     // print some gl infos (query)
     std::cout << std::endl
@@ -233,7 +235,9 @@ int main(int, char *[])
     std::cout << std::endl
         << "Press i or d to either increase or decrease number of cubes." << std::endl << std::endl;
 
-    logvis::LogVis visualiser(logTexture);
+    // glfwMakeContextCurrent(logWindow);
+    logvis::LogVis visualiser(logTexture_tex);
+    // glfwMakeContextCurrent(window);
 
     cubescape = new CubeScape();
 
@@ -245,9 +249,16 @@ int main(int, char *[])
         glfwPollEvents();
         cubescape->draw();
         glfwSwapBuffers(window);
-
+ 
         glfwMakeContextCurrent(logWindow);
         visualiser.update();
+
+        // glBindVertexArray(logTexture_vao);
+        // glUseProgram(logTexture_program);
+
+        // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        // glClear(GL_COLOR_BUFFER_BIT);
+
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(logWindow);
         glfwMakeContextCurrent(window);

@@ -1,4 +1,3 @@
-
 #include "RawFile.h"
 
 #include <fstream>
