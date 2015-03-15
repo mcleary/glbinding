@@ -5,6 +5,7 @@
 #include <glbinding/Meta.h>
 #include <glbinding/gl/gl.h>
 
+#include <array>
 #include <chrono>
 #include <list>
 #include <map>
@@ -29,10 +30,14 @@ protected:
     unsigned int averageCount(std::string category);
 
     void renderLogTexture();
+    void renderCats();
     void renderLabel();
     void renderTime();
-    void renderCats();
 
+    std::list<int> getAvgTime();
+    int getDigit(int number, int divisor);
+    std::array<float, 4> getNumberPosition(int number);
+    void createShaderProgram(const std::string vertSrcLocation, const std::string fragSrcLocation, gl::GLuint & vertexShader, gl::GLuint & fragmentShader, gl::GLuint & shaderProgram);
     bool readFile(const std::string & filePath, std::string & content);
     std::string readFile(const std::string & filePath);
 
@@ -42,11 +47,19 @@ protected:
     CategoryStats m_maxStats;
 
     gl::GLuint m_logFrameBuffer;
-    gl::GLuint m_vaos[2];
-    gl::GLuint m_vbos[2];
-    gl::GLuint m_ebos[2];
-    gl::GLuint m_textures;
+    gl::GLuint m_vaos[3];
+    gl::GLuint m_vbos[3];
+    gl::GLuint m_ebos[3];
+    gl::GLuint m_label_texture;
+    gl::GLuint m_time_texture;
+    gl::GLuint m_cat_vs;
+    gl::GLuint m_cat_fs;
     gl::GLuint m_cat_program;
+    gl::GLuint m_time_vs;
+    gl::GLuint m_time_fs;
+    gl::GLuint m_time_program;
+    gl::GLuint m_label_vs;
+    gl::GLuint m_label_fs;
     gl::GLuint m_label_program;
 
     std::chrono::high_resolution_clock::time_point m_lastTime;

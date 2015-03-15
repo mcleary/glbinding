@@ -261,7 +261,7 @@ int main(int, char *[])
 
         visualiser.update();
 
-        
+        // glbinding::logging::pause();
         glBindVertexArray(logTexture_vao);
         glUseProgram(logTexture_program);
 

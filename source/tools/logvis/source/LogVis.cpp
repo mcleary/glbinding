@@ -27,9 +27,9 @@ LogVis::LogVis(gl::GLuint logTexture)
     glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, logTexture, 0);
     
-    glGenVertexArrays(2, m_vaos);
-    glGenBuffers(2, m_vbos);
-    glGenBuffers(2, m_ebos);
+    glGenVertexArrays(3, m_vaos);
+    glGenBuffers(3, m_vbos);
+    glGenBuffers(3, m_ebos);
 
     // Cat set up
     int catCount = m_categories.size();
@@ -60,28 +60,8 @@ LogVis::LogVis(gl::GLuint logTexture)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cat_elements), cat_elements, GL_STATIC_DRAW);
 
     // Shaders
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
 
-    std::string cat_vertexSource   = readFile("data/log/logvis.vert");
-    std::string cat_fragmentSource = readFile("data/log/logvis.frag");
-
-    const char * cat_vertSource = cat_vertexSource.c_str();
-    const char * cat_fragSource = cat_fragmentSource.c_str();
-
-    glShaderSource(vs, 1, &cat_vertSource, nullptr);
-    glCompileShader(vs);
-
-    glShaderSource(fs, 1, &cat_fragSource, nullptr);
-    glCompileShader(fs);
-
-    m_cat_program = glCreateProgram();
-    glAttachShader(m_cat_program, vs);
-    glAttachShader(m_cat_program, fs);
-
-    glBindFragDataLocation(m_cat_program, 0, "outColor");
-
-    glLinkProgram(m_cat_program);
+    createShaderProgram("data/log/logvis.vert", "data/log/logvis.frag", m_cat_vs, m_cat_fs, m_cat_program);
 
     GLint cat_posAttrib = glGetAttribLocation(m_cat_program, "position");
     glEnableVertexAttribArray(cat_posAttrib);
@@ -114,28 +94,7 @@ LogVis::LogVis(gl::GLuint logTexture)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(label_elements), label_elements, GL_STATIC_DRAW);
 
     // Shaders
-    GLuint label_vs = glCreateShader(GL_VERTEX_SHADER);
-    GLuint label_fs = glCreateShader(GL_FRAGMENT_SHADER);
-
-    std::string vertexSource   = readFile("data/log/label.vert");
-    std::string fragmentSource = readFile("data/log/label.frag");
-
-    const char * vertSource = vertexSource.c_str();
-    const char * fragSource = fragmentSource.c_str();
-
-    glShaderSource(label_vs, 1, &vertSource, nullptr);
-    glCompileShader(label_vs);
-
-    glShaderSource(label_fs, 1, &fragSource, nullptr);
-    glCompileShader(label_fs);
-
-    m_label_program = glCreateProgram();
-    glAttachShader(m_label_program, label_vs);
-    glAttachShader(m_label_program, label_fs);
-
-    glBindFragDataLocation(m_label_program, 0, "outColor");
-
-    glLinkProgram(m_label_program);
+    createShaderProgram("data/log/label.vert", "data/log/label.frag", m_label_vs, m_label_fs, m_label_program);
 
     GLint posAttrib = glGetAttribLocation(m_label_program, "position");
     glEnableVertexAttribArray(posAttrib);
@@ -146,8 +105,8 @@ LogVis::LogVis(gl::GLuint logTexture)
     glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
 
     // Texture
-    glGenTextures(1, &m_textures);
-    glBindTexture(GL_TEXTURE_2D, m_textures);
+    glGenTextures(1, &m_label_texture);
+    glBindTexture(GL_TEXTURE_2D, m_label_texture);
 
     glUniform1i(glGetUniformLocation(m_label_program, "tex"), 0);
 
@@ -164,6 +123,54 @@ LogVis::LogVis(gl::GLuint logTexture)
         glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 100, 0, GL_RGB, GL_UNSIGNED_BYTE, label.data());
     }
 
+    // Number set up
+    float time_vertices[9 * 4 * 4];
+    GLuint time_elements[9 * 6];
+
+    for (int i = 0; i < 9; ++i)
+    {
+        time_elements[0+(i * 6)] = static_cast<GLuint>(0+(i * 4)); time_elements[1+(i * 6)] = static_cast<GLuint>(1+(i * 4)); time_elements[2+(i * 6)] = static_cast<GLuint>(2+(i * 4));
+        time_elements[3+(i * 6)] = static_cast<GLuint>(2+(i * 4)); time_elements[4+(i * 6)] = static_cast<GLuint>(3+(i * 4)); time_elements[5+(i * 6)] = static_cast<GLuint>(0+(i * 4));
+    }
+
+    glBindVertexArray(m_vaos[2]);
+
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(time_vertices), time_vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ebos[2]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(time_elements), time_elements, GL_STATIC_DRAW);
+
+    // Shaders
+    createShaderProgram("data/log/label.vert", "data/log/label.frag", m_time_vs, m_time_fs, m_time_program);
+
+    GLint time_posAttrib = glGetAttribLocation(m_time_program, "position");
+    glEnableVertexAttribArray(time_posAttrib);
+    glVertexAttribPointer(time_posAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), 0);
+
+    GLint time_texAttrib = glGetAttribLocation(m_time_program, "texcoord");
+    glEnableVertexAttribArray(time_texAttrib);
+    glVertexAttribPointer(time_texAttrib, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)(2*sizeof(float)));
+
+    // Texture
+    glGenTextures(1, &m_time_texture);
+    glBindTexture(GL_TEXTURE_2D, m_time_texture);
+
+    glUniform1i(glGetUniformLocation(m_time_program, "tex"), 0);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, static_cast<int>(GL_REPEAT));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_LINEAR));
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_LINEAR));
+
+    {
+        RawFile time("data/log/time.512.512.rgb.ub.raw");
+        if (!time.isValid())
+            std::cout << "warning: loading texture from " << time.filePath() << " failed.";
+
+        glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 512, 512, 0, GL_RGB, GL_UNSIGNED_BYTE, time.data());
+    }    
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
@@ -173,14 +180,22 @@ LogVis::~LogVis()
     glbinding::logging::removeTail(m_tailId);
     glDeleteFramebuffers(1, &m_logFrameBuffer);
 
-    glDeleteTextures(1, &m_textures);
+    glDeleteTextures(1, &m_label_texture);
+    glDeleteTextures(1, &m_time_texture);
 
-    glDeleteBuffers(2, m_vaos);
-    glDeleteBuffers(2, m_vbos);
-    glDeleteBuffers(2, m_ebos);
+    glDeleteBuffers(3, m_vaos);
+    glDeleteBuffers(3, m_vbos);
+    glDeleteBuffers(3, m_ebos);
 
     glDeleteProgram(m_cat_program);
+    glDeleteShader(m_cat_fs);
+    glDeleteShader(m_cat_vs);
     glDeleteProgram(m_label_program);
+    glDeleteShader(m_label_fs);
+    glDeleteShader(m_label_vs);
+    glDeleteProgram(m_time_program);
+    glDeleteShader(m_time_fs);
+    glDeleteShader(m_time_vs);
 }
 
 void LogVis::update()
@@ -190,17 +205,8 @@ void LogVis::update()
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>( now - m_lastTime ).count();
 
     m_lastTimes.push_back(duration);
-    if (m_lastTimes.size() > 100000)
+    if (m_lastTimes.size() > 60)
         m_lastTimes.pop_front();
-
-    long long summed_duration = 0;
-    for (auto time : m_lastTimes)
-    {
-        summed_duration += time;
-    }
-    auto avg_duration = summed_duration/static_cast<long long>(m_lastTimes.size());
-
-    std::cout << 1000000/avg_duration << " - duration: " << duration << std::endl;
 
     // Update categories
     LogVis::CategoryStats categoryCount = getCurrentLogPart();
@@ -277,12 +283,11 @@ void LogVis::renderLogTexture()
     glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
 
     // Draw
-    // glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     renderCats();
-    // renderTime();
     renderLabel();
+    renderTime();
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
@@ -350,19 +355,150 @@ void LogVis::renderCats()
 
 }
 
-void LogVis::renderTime()
-{
-}
-
 void LogVis::renderLabel()
 {
     glBindVertexArray(m_vaos[1]);
     glUseProgram(m_label_program);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_textures);
+    glBindTexture(GL_TEXTURE_2D, m_label_texture);
 
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void LogVis::renderTime()
+{
+    float a = 0.05f;
+    float time_vertices[9 * 4 * 4];
+
+    time_vertices[0] = 1.0f - 2 * a; time_vertices[1] = 1.0f; time_vertices[2] = 0.0f; time_vertices[3] = 0.38f;
+    time_vertices[4] = 1.0f; time_vertices[5] = 1.0f; time_vertices[6] = 0.5f; time_vertices[7] = 0.38f;
+    time_vertices[8] = 1.0f; time_vertices[9] = 0.98f - 3*a; time_vertices[10] = 0.5f; time_vertices[11] = 0.07f;
+    time_vertices[12] = 1.0f - 2 * a; time_vertices[13] = 0.98f - 3*a; time_vertices[14] = 0.0f; time_vertices[15] = 0.07f;       
+
+    auto digits = getAvgTime();
+
+    for (int i = 1; i < 9; ++i)
+    {
+        auto texPos = getNumberPosition(digits.front());
+        time_vertices[0+(i*16)] = 1.0f - (i+2) * a; time_vertices[1+(i*16)] = 1.0f; time_vertices[2+(i*16)] = texPos[0]; time_vertices[3+(i*16)] = texPos[2];
+        time_vertices[4+(i*16)] = 1.0f - (i+1) * a; time_vertices[5+(i*16)] = 1.0f; time_vertices[6+(i*16)] = texPos[1]; time_vertices[7+(i*16)] = texPos[2];
+        time_vertices[8+(i*16)] = 1.0f - (i+1) * a; time_vertices[9+(i*16)] = 1.0f - 3*a; time_vertices[10+(i*16)] = texPos[1]; time_vertices[11+(i*16)] = texPos[3];
+        time_vertices[12+(i*16)] = 1.0f - (i+2) * a; time_vertices[13+(i*16)] = 1.0f - 3*a; time_vertices[14+(i*16)] = texPos[0]; time_vertices[15+(i*16)] = texPos[3];       
+        digits.pop_front();
+    }
+
+    glBindVertexArray(m_vaos[2]);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vbos[2]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(time_vertices), time_vertices, GL_DYNAMIC_DRAW);
+
+    glUseProgram(m_time_program);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_time_texture);
+
+    glDrawElements(GL_TRIANGLES, 9*6, GL_UNSIGNED_INT, 0);
+}
+
+std::list<int> LogVis::getAvgTime()
+{
+    long long summed_duration = 0;
+    for (auto time : m_lastTimes)
+    {
+        summed_duration += time;
+    }
+    auto avg_duration = static_cast<int>(summed_duration)/m_lastTimes.size();
+    // std::cout << 1000000/avg_duration << " - duration: " << avg_duration << std::endl;
+
+    std::list<int> numbers;
+    numbers.push_back(getDigit(avg_duration, 1));
+    numbers.push_back(getDigit(avg_duration, 10));
+    numbers.push_back(getDigit(avg_duration, 100));
+    numbers.push_back(getDigit(avg_duration, 1000));
+    numbers.push_back(getDigit(avg_duration, 10000));
+    numbers.push_back(getDigit(avg_duration, 100000));
+    numbers.push_back(getDigit(avg_duration, 1000000));
+    numbers.push_back(getDigit(avg_duration, 10000000));
+
+    return numbers;
+}
+
+int LogVis::getDigit(int number, int divisor)
+{
+    if (divisor > number)
+        return -1;
+    else
+        return (number / divisor % 10);
+}
+
+std::array<float, 4> LogVis::getNumberPosition(int number)
+{
+    std::array<float, 4> vertices;
+    switch (number)
+    {
+        case 0:
+            vertices = {{0.0f, 0.2f, 1.0f, 0.74f}};
+            break;
+        case 1:
+            vertices = {{0.2f, 0.4f, 1.0f, 0.74f}};
+            break;
+        case 2:
+            vertices = {{0.4f, 0.6f, 1.0f, 0.74f}};
+            break;
+        case 3:
+            vertices = {{0.6f, 0.8f, 1.0f, 0.74f}};
+            break;
+        case 4:
+            vertices = {{0.8f, 1.0f, 1.0f, 0.74f}};
+            break;
+        case 5:
+            vertices = {{0.0f, 0.2f, 0.69f, 0.43f}};
+            break;
+        case 6:
+            vertices = {{0.2f, 0.4f, 0.69f, 0.43f}};
+            break;
+        case 7:
+            vertices = {{0.4f, 0.6f, 0.69f, 0.43f}};
+            break;
+        case 8:
+            vertices = {{0.6f, 0.8f, 0.69f, 0.43f}};
+            break;
+        case 9:
+            vertices = {{0.8f, 1.0f, 0.69f, 0.43f}};
+            break;
+        case 10:
+            vertices = {{0.0f, 0.5f, 0.4f, 0.0f}};
+            break;
+        default:
+            vertices = {{0.5f, 1.0f, 0.4f, 0.0f}};
+    }
+    return vertices;
+}
+
+void LogVis::createShaderProgram(const std::string vertSrcLocation, const std::string fragSrcLocation, GLuint & vertexShader, GLuint & fragmentShader, GLuint & shaderProgram)
+{
+    std::string vertexSource   = readFile(vertSrcLocation);
+    std::string fragmentSource = readFile(fragSrcLocation);
+
+    const char * vertSource = vertexSource.c_str();
+    const char * fragSource = fragmentSource.c_str();
+
+    // Create and compile the vertex shader
+    vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertSource, NULL);
+    glCompileShader(vertexShader);
+
+    // Create and compile the fragment shader
+    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragSource, NULL);
+    glCompileShader(fragmentShader);
+
+    // Link the vertex and fragment shader into a shader program
+    shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glBindFragDataLocation(shaderProgram, 0, "outColor");
+    glLinkProgram(shaderProgram);
 }
 
 bool LogVis::readFile(const std::string & filePath, std::string & content)
