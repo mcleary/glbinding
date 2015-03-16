@@ -64,9 +64,7 @@ protected:
 
     std::chrono::high_resolution_clock::time_point m_lastTime;
     std::list<long long> m_lastTimes;
-
     std::chrono::high_resolution_clock::time_point m_lastUpdate;
-    int m_frames;
 
     const std::list<std::string> m_categories
     {

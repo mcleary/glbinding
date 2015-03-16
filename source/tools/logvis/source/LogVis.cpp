@@ -263,7 +263,7 @@ void LogVis::updateMax(LogVis::CategoryStats currentCounts)
 void LogVis::updateLast(LogVis::CategoryStats currentCounts)
 {
     m_lastStats.push_back(currentCounts);
-    if (m_lastStats.size() > 500)
+    if (m_lastStats.size() > 60)
         m_lastStats.pop_front();
 }
 
@@ -281,21 +281,25 @@ void LogVis::renderLogTexture()
 {   
     glbinding::logging::pause();
     glBindFramebuffer(GL_FRAMEBUFFER, m_logFrameBuffer);
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( m_lastTime - m_lastUpdate  ).count();
+    if (duration >= 100000)
+    {
+        // Draw
+        glClear(GL_COLOR_BUFFER_BIT);
 
-    // Draw
-    glClear(GL_COLOR_BUFFER_BIT);
+        renderCats();
+        renderLabel();
+        renderTime();
 
-    renderCats();
-    renderLabel();
-    renderTime();
-
+        m_lastUpdate = m_lastTime;
+    }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glbinding::logging::resume();
 }
 
 void LogVis::renderCats()
 {
-    float margin = 0.025f;
+    float margin = 0.05f;
     int catCount = m_categories.size();
     float width = (2.0f - (margin * (catCount+1))) / catCount;
 
@@ -331,10 +335,10 @@ void LogVis::renderCats()
         vertices[10+(catNumber * numVerts)] = end; vertices[11+(catNumber * numVerts)] = -0.5f; vertices[12+(catNumber * numVerts)] = color[0]; vertices[13+(catNumber * numVerts)] = color[1]; vertices[14+(catNumber * numVerts)] = color[2];
         vertices[15+(catNumber * numVerts)] = start; vertices[16+(catNumber * numVerts)] = -0.5f; vertices[17+(catNumber * numVerts)] = color[0]; vertices[18+(catNumber * numVerts)] = color[1]; vertices[19+(catNumber * numVerts)] = color[2];
 
-        vertices[20+(catNumber * numVerts)] = start - 0.005; vertices[21+(catNumber * numVerts)] = heightAvg; vertices[22+(catNumber * numVerts)] = color[0]; vertices[23+(catNumber * numVerts)] = color[1]; vertices[24+(catNumber * numVerts)] = color[2];
-        vertices[25+(catNumber * numVerts)] = end + 0.005; vertices[26+(catNumber * numVerts)] = heightAvg; vertices[27+(catNumber * numVerts)] = color[0]; vertices[28+(catNumber * numVerts)] = color[1]; vertices[29+(catNumber * numVerts)] = color[2];
-        vertices[30+(catNumber * numVerts)] = end + 0.005; vertices[31+(catNumber * numVerts)] = heightAvg - blockSize; vertices[32+(catNumber * numVerts)] = color[0]; vertices[33+(catNumber * numVerts)] = color[1]; vertices[34+(catNumber * numVerts)] = color[2];
-        vertices[35+(catNumber * numVerts)] = start - 0.005; vertices[36+(catNumber * numVerts)] = heightAvg - blockSize; vertices[37+(catNumber * numVerts)] = color[0]; vertices[38+(catNumber * numVerts)] = color[1]; vertices[39+(catNumber * numVerts)] = color[2];
+        vertices[20+(catNumber * numVerts)] = start - 0.015; vertices[21+(catNumber * numVerts)] = heightAvg; vertices[22+(catNumber * numVerts)] = color[0]; vertices[23+(catNumber * numVerts)] = color[1]; vertices[24+(catNumber * numVerts)] = color[2];
+        vertices[25+(catNumber * numVerts)] = end + 0.015; vertices[26+(catNumber * numVerts)] = heightAvg; vertices[27+(catNumber * numVerts)] = color[0]; vertices[28+(catNumber * numVerts)] = color[1]; vertices[29+(catNumber * numVerts)] = color[2];
+        vertices[30+(catNumber * numVerts)] = end + 0.015; vertices[31+(catNumber * numVerts)] = heightAvg - blockSize; vertices[32+(catNumber * numVerts)] = color[0]; vertices[33+(catNumber * numVerts)] = color[1]; vertices[34+(catNumber * numVerts)] = color[2];
+        vertices[35+(catNumber * numVerts)] = start - 0.015; vertices[36+(catNumber * numVerts)] = heightAvg - blockSize; vertices[37+(catNumber * numVerts)] = color[0]; vertices[38+(catNumber * numVerts)] = color[1]; vertices[39+(catNumber * numVerts)] = color[2];
 
         vertices[40+(catNumber * numVerts)] = start; vertices[41+(catNumber * numVerts)] = heightMax; vertices[42+(catNumber * numVerts)] = color[0]; vertices[43+(catNumber * numVerts)] = color[1]; vertices[44+(catNumber * numVerts)] = color[2];
         vertices[45+(catNumber * numVerts)] = end; vertices[46+(catNumber * numVerts)] = heightMax; vertices[47+(catNumber * numVerts)] = color[0]; vertices[48+(catNumber * numVerts)] = color[1]; vertices[49+(catNumber * numVerts)] = color[2];

@@ -63,6 +63,13 @@ void key_callback(GLFWwindow * window, int key, int /*scancode*/, int action, in
         numCubesChanged = true;
     }
 
+    if (key == GLFW_KEY_C && (action == GLFW_PRESS || action == GLFW_REPEAT))
+    {
+        cubescape->changeChaos();
+        const bool c = cubescape->chaos();
+        std::cout << "Chaos: " << c << std::endl;
+    }
+
     if (numCubesChanged)
     {
         const int n = cubescape->numCubes();
@@ -107,7 +114,7 @@ void displayLogTexture(GLuint &vao, GLuint &program, GLuint &texture)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, static_cast<int>(GL_NEAREST));
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, static_cast<int>(GL_NEAREST));
 
-    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 600, 200, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, static_cast<int>(GL_RGB8), 1200, 400, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 
     // Vertices
     float vertices[] = {
