@@ -20,6 +20,19 @@ public:
     void setNumCubes(int numCubes);
     int numCubes() const;
 
+    void changeChaos();
+    bool chaos() const;
+
+protected:
+    void loadProgram();
+    void loadTexture0();
+    void loadTexture1();
+    void createCube();
+    void setupUniforms();
+    void bind();
+
+    void messAround();
+
 protected:
     gl::GLint a_vertex;
     gl::GLint u_transform;
@@ -42,4 +55,6 @@ protected:
 
     using clock = std::chrono::system_clock;
     clock::time_point m_time;
+
+    bool m_chaos;
 };
