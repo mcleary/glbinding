@@ -635,7 +635,8 @@ categories_command = {
     "glCompileShader",
     "glCreateProgram",
     "glCreateShader",
-    "glGetAttribLocation"
+    "glGetAttribLocation",
+    "glGetProgramiv",
     "glGetShaderiv",
     "glLinkProgram",
     "glShaderSource",
@@ -643,8 +644,7 @@ categories_command = {
     "glUseProgram"
   ],
   "ROP": [
-    "glClearColor",
-    "glGetAttribLocation"
+    "glCopyPixels"
   ],
   "Texture": [
     "glFramebufferTexture2D",
@@ -813,6 +813,7 @@ categories_command = {
   ],
   "Utility": [
     "glClear",
+    "glClearColor",
     "glEnable",
     "glGetString",
     "glViewport",
