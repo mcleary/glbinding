@@ -121,7 +121,9 @@ void compare()
 
     long double glbinding_avg_rb = timer.stop();
     std::cout << "Counted: " << count << std::endl;
+    glbinding::logging::removeTail(tail);
     glbinding::logging::log(false);
+
 
 
     std::cout << std::endl << "test: again, now log access by callback ..." << std::endl;

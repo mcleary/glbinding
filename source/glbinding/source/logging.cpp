@@ -1,6 +1,7 @@
 #include <glbinding/logging.h>
 
 #include <atomic>
+#include <cassert>
 #include <condition_variable>
 #include <fstream>
 #include <mutex>
@@ -128,11 +129,17 @@ void log(bool enable)
 
 void log(FunctionCall * call)
 {
-    delete g_buffer.nextHead();
-
-    while(!g_buffer.push(call))
+    bool available = false;
+    auto next = g_buffer.nextHead(available);
+    while (!available)
     {
+        next = g_buffer.nextHead(available);
     }
+
+    assert(!g_buffer.isFull());
+
+    delete next;
+    g_buffer.push(call);
 }
 
 TailIdentifier addTail()

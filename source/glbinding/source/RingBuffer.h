@@ -17,7 +17,7 @@ public:
     using SizeType = unsigned int;
     RingBuffer(SizeType maxSize);
 
-    T nextHead();
+    T nextHead(bool & available);
     bool push(T &&);
     bool push(T &);
 

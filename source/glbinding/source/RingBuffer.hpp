@@ -19,7 +19,7 @@ RingBuffer<T>::RingBuffer(const unsigned int maxSize)
 }
 
 template <typename T>
-T RingBuffer<T>::nextHead()
+T RingBuffer<T>::nextHead(bool & available)
 {
     auto head = m_head.load(std::memory_order_relaxed);
     auto nextHead = next(head);
@@ -28,7 +28,7 @@ T RingBuffer<T>::nextHead()
     {
         return nullptr;
     }
-
+    available = true;
     return m_buffer[nextHead];
 }
 

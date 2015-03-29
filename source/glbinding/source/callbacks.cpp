@@ -75,8 +75,8 @@ CallbackMask& operator&=(CallbackMask& a, CallbackMask b)
 
 std::string FunctionCall::toString() const
 {   
-    using nanoseconds = std::chrono::nanoseconds;
-    nanoseconds now_ns = std::chrono::duration_cast<nanoseconds>(timestamp.time_since_epoch());
+    using microseconds = std::chrono::microseconds;
+    microseconds now_ns = std::chrono::duration_cast<microseconds>(timestamp.time_since_epoch());
     std::size_t ns = now_ns.count() % 1000;
     std::ostringstream ns_os;
     ns_os << std::setfill('0') << std::setw(3) << ns;

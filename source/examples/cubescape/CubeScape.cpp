@@ -269,7 +269,7 @@ void CubeScape::bind()
 void CubeScape::messAround()
 {
     int r = rand() % 1024;
-    std::cout << "Random number is: " << r << " bits are: ";
+    // std::cout << "Random number is: " << r << " bits are: ";
 //    if (r % 100 == 4)
 //        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     if ((r >> 0) & 1)
