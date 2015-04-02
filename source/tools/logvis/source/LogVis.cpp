@@ -5,6 +5,7 @@
 #include <math.h>
 
 #include <glbinding/Binding.h>
+#include "../../glbinding/source/logging_private.h"
 
 #include "RawFile.h"
 

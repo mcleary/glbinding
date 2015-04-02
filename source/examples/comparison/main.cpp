@@ -16,6 +16,7 @@
 
 #include "glbinding.h"
 #include "glew.h"
+#include "../../glbinding/source/logging_private.h"
 
 
 
@@ -99,7 +100,6 @@ void compare()
     long double glbinding_avg_log = timer.stop();
     glbinding::logging::stop();
 
-
     std::cout << std::endl << "test: again, now log access by ringbuffer ..." << std::endl;
     glbinding::logging::start("logs/comparison2");
     timer.start("      glbinding ");
@@ -122,7 +122,7 @@ void compare()
     long double glbinding_avg_rb = timer.stop();
     std::cout << "Counted: " << count << std::endl;
     glbinding::logging::removeTail(tail);
-    glbinding::logging::log(false);
+    glbinding::logging::stop();
 
 
 
@@ -142,7 +142,7 @@ void compare()
         glbinding_test();
 
     long double glbinding_avg_cb = timer.stop();
-    glbinding::logging::log(false);
+    glbinding::logging::stop();
 
 
     std::cout << std::endl << "test: again, now callback logging ..." << std::endl;

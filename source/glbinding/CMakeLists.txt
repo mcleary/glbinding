@@ -114,6 +114,7 @@ set(sources
 
     ${source_path}/RingBuffer.h
     ${source_path}/RingBuffer.hpp
+    ${source_path}/logging_private.h
     ${source_path}/logging.cpp
 )
 

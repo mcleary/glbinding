@@ -1,7 +1,7 @@
 #pragma once
 
 #include <logvis/logvis_api.h>
-#include <glbinding/Logging.h>
+#include <glbinding/logging.h>
 #include <glbinding/Meta.h>
 #include <glbinding/gl/gl.h>
 
