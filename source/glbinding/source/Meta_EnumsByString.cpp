@@ -1,4 +1,3 @@
-#ifdef EXTENSIVE_META
 
 #include "Meta_Maps.h"
 
@@ -9,6 +8,7 @@ using namespace gl; // ToDo: multiple APIs?
 
 namespace glbinding
 {
+
 
 const std::unordered_map<std::string, GLenum> Meta_EnumsByString_0 =
 {
@@ -1724,7 +1724,7 @@ const std::unordered_map<std::string, GLenum> Meta_EnumsByString_I =
     { "GL_IUI_V3F_EXT", GLenum::GL_IUI_V3F_EXT }
 };
 
-const std::unordered_map<std::string, GLenum> Meta_EnumsByString_J;
+const std::unordered_map<std::string, GLenum> Meta_EnumsByString_J{};
 
 const std::unordered_map<std::string, GLenum> Meta_EnumsByString_K =
 {
@@ -4722,6 +4722,5 @@ const std::array<std::unordered_map<std::string, gl::GLenum>, 27> Meta_EnumsBySt
     Meta_EnumsByString_Z
 } };
 
-} // namespace glbinding
 
-#endif // EXTENSIVE_META
+} // namespace glbinding

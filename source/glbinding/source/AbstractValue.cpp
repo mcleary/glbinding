@@ -2,11 +2,11 @@
 #include <glbinding/AbstractValue.h>
 
 #include <sstream>
-#include <iostream>
 
 
 namespace glbinding
 {
+
 
 AbstractValue::AbstractValue()
 {
@@ -24,5 +24,6 @@ std::string AbstractValue::asString() const
 
     return ss.str();
 }
+
 
 } // namespace glbinding

@@ -13,10 +13,11 @@ namespace
     static const auto none = std::string{};
 }
 
+
 namespace glbinding
 {
 
-#ifdef EXTENSIVE_META
+
 
 const std::string & Meta::getString(const AttribMask glbitfield)
 {
@@ -28,16 +29,6 @@ const std::string & Meta::getString(const AttribMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const AttribMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const BufferAccessMask glbitfield)
 {
@@ -49,16 +40,6 @@ const std::string & Meta::getString(const BufferAccessMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const BufferAccessMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const BufferStorageMask glbitfield)
 {
@@ -70,16 +51,6 @@ const std::string & Meta::getString(const BufferStorageMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const BufferStorageMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const ClearBufferMask glbitfield)
 {
@@ -91,16 +62,6 @@ const std::string & Meta::getString(const ClearBufferMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const ClearBufferMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const ClientAttribMask glbitfield)
 {
@@ -112,16 +73,6 @@ const std::string & Meta::getString(const ClientAttribMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const ClientAttribMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const ContextFlagMask glbitfield)
 {
@@ -133,16 +84,6 @@ const std::string & Meta::getString(const ContextFlagMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const ContextFlagMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const ContextProfileMask glbitfield)
 {
@@ -154,16 +95,6 @@ const std::string & Meta::getString(const ContextProfileMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const ContextProfileMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const FfdMaskSGIX glbitfield)
 {
@@ -175,16 +106,6 @@ const std::string & Meta::getString(const FfdMaskSGIX glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const FfdMaskSGIX)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const FragmentShaderColorModMaskATI glbitfield)
 {
@@ -196,16 +117,6 @@ const std::string & Meta::getString(const FragmentShaderColorModMaskATI glbitfie
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const FragmentShaderColorModMaskATI)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const FragmentShaderDestMaskATI glbitfield)
 {
@@ -217,16 +128,6 @@ const std::string & Meta::getString(const FragmentShaderDestMaskATI glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const FragmentShaderDestMaskATI)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const FragmentShaderDestModMaskATI glbitfield)
 {
@@ -238,16 +139,6 @@ const std::string & Meta::getString(const FragmentShaderDestModMaskATI glbitfiel
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const FragmentShaderDestModMaskATI)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const MapBufferUsageMask glbitfield)
 {
@@ -259,16 +150,6 @@ const std::string & Meta::getString(const MapBufferUsageMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const MapBufferUsageMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const MemoryBarrierMask glbitfield)
 {
@@ -280,16 +161,6 @@ const std::string & Meta::getString(const MemoryBarrierMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const MemoryBarrierMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const PathFontStyle glbitfield)
 {
@@ -301,16 +172,6 @@ const std::string & Meta::getString(const PathFontStyle glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const PathFontStyle)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const PathRenderingMaskNV glbitfield)
 {
@@ -322,16 +183,6 @@ const std::string & Meta::getString(const PathRenderingMaskNV glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const PathRenderingMaskNV)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const PerformanceQueryCapsMaskINTEL glbitfield)
 {
@@ -343,16 +194,6 @@ const std::string & Meta::getString(const PerformanceQueryCapsMaskINTEL glbitfie
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const PerformanceQueryCapsMaskINTEL)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const SyncObjectMask glbitfield)
 {
@@ -364,16 +205,6 @@ const std::string & Meta::getString(const SyncObjectMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const SyncObjectMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const TextureStorageMaskAMD glbitfield)
 {
@@ -385,16 +216,6 @@ const std::string & Meta::getString(const TextureStorageMaskAMD glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const TextureStorageMaskAMD)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const UnusedMask glbitfield)
 {
@@ -406,16 +227,6 @@ const std::string & Meta::getString(const UnusedMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const UnusedMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const UseProgramStageMask glbitfield)
 {
@@ -427,16 +238,6 @@ const std::string & Meta::getString(const UseProgramStageMask glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const UseProgramStageMask)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
-
-#ifdef EXTENSIVE_META
 
 const std::string & Meta::getString(const VertexHintsMaskPGI glbitfield)
 {
@@ -448,13 +249,5 @@ const std::string & Meta::getString(const VertexHintsMaskPGI glbitfield)
     return none;
 }
 
-#else 
-
-const std::string & Meta::getString(const VertexHintsMaskPGI)
-{
-    return none;
-}
-
-#endif // EXTENSIVE_META
 
 } // namespace glbinding

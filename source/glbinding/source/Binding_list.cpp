@@ -1,15 +1,16 @@
 
 #include "Binding_pch.h"
 
-
 using namespace gl; // ToDo: multiple APIs?
 
-namespace glbinding 
+
+namespace glbinding
 {
 
-const Binding::array_t Binding::s_functions = 
+
+const Binding::array_t Binding::s_functions =
 {{
-	&Accum,
+    &Accum,
     &AccumxOES,
     &ActiveProgramEXT,
     &ActiveShaderProgram,
@@ -2858,5 +2859,6 @@ const Binding::array_t Binding::s_functions =
     &WindowPos4svMESA,
     &WriteMaskEXT
 }};
+
 
 } // namespace glbinding
