@@ -16,7 +16,6 @@
 #include <glbinding/gl/types.h>
 #include <glbinding/gl/enum.h>
 #include <glbinding/gl/functions.h>
-#include <glbinding/gl/boolean.h>
 
 
 using namespace gl;
@@ -121,7 +120,7 @@ namespace
 
         std::stringstream stream;
 
-        if (data.size() == 1)
+        if (count == 1)
         {
             stream << data[0];
 
@@ -130,7 +129,7 @@ namespace
 
         stream << "(";
 
-        for (size_t i = 0; i < data.size(); ++i)
+        for (size_t i = 0; i < count; ++i)
         {
             stream << data[i];
             if (i + 1 < count)
@@ -853,7 +852,7 @@ int main(int argc, const char * argv[])
     requestState<GLint    , 1>(GL_SECONDARY_COLOR_ARRAY_STRIDE, { { 0 } });
     requestState<GLenum   , 1>(GL_SECONDARY_COLOR_ARRAY_TYPE, { { GL_FLOAT } });
 
-    std::cout << std::endl << "Stencil Seperate States" << std::endl;
+    std::cout << std::endl << "Stencil Separate States" << std::endl;
     requestState<GLenum   , 1>(GL_STENCIL_BACK_FAIL, { { GL_KEEP } });
     requestState<GLenum   , 1>(GL_STENCIL_BACK_FUNC, { { GL_ALWAYS } });
     requestState<GLenum   , 1>(GL_STENCIL_BACK_PASS_DEPTH_FAIL, { { GL_KEEP } });

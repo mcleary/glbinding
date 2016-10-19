@@ -3,7 +3,7 @@
 
 #include <glbinding/gl/extension.h>
 
-using namespace gl; // ToDo: multiple APIs?
+using namespace gl;
 
 
 namespace glbinding
@@ -21,6 +21,7 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_AMD_depth_clamp_separate, "GL_AMD_depth_clamp_separate" },
     { GLextension::GL_AMD_draw_buffers_blend, "GL_AMD_draw_buffers_blend" },
     { GLextension::GL_AMD_gcn_shader, "GL_AMD_gcn_shader" },
+    { GLextension::GL_AMD_gpu_shader_half_float, "GL_AMD_gpu_shader_half_float" },
     { GLextension::GL_AMD_gpu_shader_int64, "GL_AMD_gpu_shader_int64" },
     { GLextension::GL_AMD_interleaved_elements, "GL_AMD_interleaved_elements" },
     { GLextension::GL_AMD_multi_draw_indirect, "GL_AMD_multi_draw_indirect" },
@@ -32,6 +33,8 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_AMD_sample_positions, "GL_AMD_sample_positions" },
     { GLextension::GL_AMD_seamless_cubemap_per_texture, "GL_AMD_seamless_cubemap_per_texture" },
     { GLextension::GL_AMD_shader_atomic_counter_ops, "GL_AMD_shader_atomic_counter_ops" },
+    { GLextension::GL_AMD_shader_ballot, "GL_AMD_shader_ballot" },
+    { GLextension::GL_AMD_shader_explicit_vertex_parameter, "GL_AMD_shader_explicit_vertex_parameter" },
     { GLextension::GL_AMD_shader_stencil_export, "GL_AMD_shader_stencil_export" },
     { GLextension::GL_AMD_shader_trinary_minmax, "GL_AMD_shader_trinary_minmax" },
     { GLextension::GL_AMD_sparse_texture, "GL_AMD_sparse_texture" },
@@ -341,6 +344,7 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_EXT_vertex_attrib_64bit, "GL_EXT_vertex_attrib_64bit" },
     { GLextension::GL_EXT_vertex_shader, "GL_EXT_vertex_shader" },
     { GLextension::GL_EXT_vertex_weighting, "GL_EXT_vertex_weighting" },
+    { GLextension::GL_EXT_window_rectangles, "GL_EXT_window_rectangles" },
     { GLextension::GL_EXT_x11_sync_object, "GL_EXT_x11_sync_object" },
     { GLextension::GL_GREMEDY_frame_terminator, "GL_GREMEDY_frame_terminator" },
     { GLextension::GL_GREMEDY_string_marker, "GL_GREMEDY_string_marker" },
@@ -357,6 +361,7 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_INGR_blend_func_separate, "GL_INGR_blend_func_separate" },
     { GLextension::GL_INGR_color_clamp, "GL_INGR_color_clamp" },
     { GLextension::GL_INGR_interlace_read, "GL_INGR_interlace_read" },
+    { GLextension::GL_INTEL_conservative_rasterization, "GL_INTEL_conservative_rasterization" },
     { GLextension::GL_INTEL_fragment_shader_ordering, "GL_INTEL_fragment_shader_ordering" },
     { GLextension::GL_INTEL_framebuffer_CMAA, "GL_INTEL_framebuffer_CMAA" },
     { GLextension::GL_INTEL_map_texture, "GL_INTEL_map_texture" },
@@ -385,11 +390,13 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_NV_blend_equation_advanced, "GL_NV_blend_equation_advanced" },
     { GLextension::GL_NV_blend_equation_advanced_coherent, "GL_NV_blend_equation_advanced_coherent" },
     { GLextension::GL_NV_blend_square, "GL_NV_blend_square" },
+    { GLextension::GL_NV_clip_space_w_scaling, "GL_NV_clip_space_w_scaling" },
     { GLextension::GL_NV_command_list, "GL_NV_command_list" },
     { GLextension::GL_NV_compute_program5, "GL_NV_compute_program5" },
     { GLextension::GL_NV_conditional_render, "GL_NV_conditional_render" },
     { GLextension::GL_NV_conservative_raster, "GL_NV_conservative_raster" },
     { GLextension::GL_NV_conservative_raster_dilate, "GL_NV_conservative_raster_dilate" },
+    { GLextension::GL_NV_conservative_raster_pre_snap_triangles, "GL_NV_conservative_raster_pre_snap_triangles" },
     { GLextension::GL_NV_copy_depth_to_color, "GL_NV_copy_depth_to_color" },
     { GLextension::GL_NV_copy_image, "GL_NV_copy_image" },
     { GLextension::GL_NV_deep_texture3D, "GL_NV_deep_texture3D" },
@@ -434,10 +441,12 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_NV_primitive_restart, "GL_NV_primitive_restart" },
     { GLextension::GL_NV_register_combiners, "GL_NV_register_combiners" },
     { GLextension::GL_NV_register_combiners2, "GL_NV_register_combiners2" },
+    { GLextension::GL_NV_robustness_video_memory_purge, "GL_NV_robustness_video_memory_purge" },
     { GLextension::GL_NV_sample_locations, "GL_NV_sample_locations" },
     { GLextension::GL_NV_sample_mask_override_coverage, "GL_NV_sample_mask_override_coverage" },
     { GLextension::GL_NV_shader_atomic_counters, "GL_NV_shader_atomic_counters" },
     { GLextension::GL_NV_shader_atomic_float, "GL_NV_shader_atomic_float" },
+    { GLextension::GL_NV_shader_atomic_float64, "GL_NV_shader_atomic_float64" },
     { GLextension::GL_NV_shader_atomic_fp16_vector, "GL_NV_shader_atomic_fp16_vector" },
     { GLextension::GL_NV_shader_atomic_int64, "GL_NV_shader_atomic_int64" },
     { GLextension::GL_NV_shader_buffer_load, "GL_NV_shader_buffer_load" },
@@ -445,6 +454,7 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_NV_shader_storage_buffer_object, "GL_NV_shader_storage_buffer_object" },
     { GLextension::GL_NV_shader_thread_group, "GL_NV_shader_thread_group" },
     { GLextension::GL_NV_shader_thread_shuffle, "GL_NV_shader_thread_shuffle" },
+    { GLextension::GL_NV_stereo_view_rendering, "GL_NV_stereo_view_rendering" },
     { GLextension::GL_NV_tessellation_program5, "GL_NV_tessellation_program5" },
     { GLextension::GL_NV_texgen_emboss, "GL_NV_texgen_emboss" },
     { GLextension::GL_NV_texgen_reflection, "GL_NV_texgen_reflection" },
@@ -473,6 +483,7 @@ const std::unordered_map<GLextension, std::string> Meta_StringsByExtension =
     { GLextension::GL_NV_vertex_program4, "GL_NV_vertex_program4" },
     { GLextension::GL_NV_video_capture, "GL_NV_video_capture" },
     { GLextension::GL_NV_viewport_array2, "GL_NV_viewport_array2" },
+    { GLextension::GL_NV_viewport_swizzle, "GL_NV_viewport_swizzle" },
     { GLextension::GL_OES_byte_coordinates, "GL_OES_byte_coordinates" },
     { GLextension::GL_OES_compressed_paletted_texture, "GL_OES_compressed_paletted_texture" },
     { GLextension::GL_OES_fixed_point, "GL_OES_fixed_point" },
