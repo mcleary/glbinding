@@ -6,8 +6,10 @@
 
 using namespace gl;
 
+
 namespace glbinding
 {
+
 
 const std::unordered_map<AttribMask, std::string> Meta_StringsByAttribMask =
 {
@@ -39,6 +41,7 @@ const std::unordered_map<AttribMask, std::string> Meta_StringsByAttribMask =
     { AttribMask::GL_ALL_ATTRIB_BITS, "GL_ALL_ATTRIB_BITS" }
 };
 
+
 const std::unordered_map<BufferAccessMask, std::string> Meta_StringsByBufferAccessMask =
 {
     { BufferAccessMask::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -52,6 +55,7 @@ const std::unordered_map<BufferAccessMask, std::string> Meta_StringsByBufferAcce
     { BufferAccessMask::GL_MAP_COHERENT_BIT, "GL_MAP_COHERENT_BIT" }
 };
 
+
 const std::unordered_map<BufferStorageMask, std::string> Meta_StringsByBufferStorageMask =
 {
     { BufferStorageMask::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -63,6 +67,7 @@ const std::unordered_map<BufferStorageMask, std::string> Meta_StringsByBufferSto
     { BufferStorageMask::GL_CLIENT_STORAGE_BIT, "GL_CLIENT_STORAGE_BIT" }
 };
 
+
 const std::unordered_map<ClearBufferMask, std::string> Meta_StringsByClearBufferMask =
 {
     { ClearBufferMask::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -73,6 +78,7 @@ const std::unordered_map<ClearBufferMask, std::string> Meta_StringsByClearBuffer
     { ClearBufferMask::GL_COVERAGE_BUFFER_BIT_NV, "GL_COVERAGE_BUFFER_BIT_NV" }
 };
 
+
 const std::unordered_map<ClientAttribMask, std::string> Meta_StringsByClientAttribMask =
 {
     { ClientAttribMask::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -81,6 +87,7 @@ const std::unordered_map<ClientAttribMask, std::string> Meta_StringsByClientAttr
     { ClientAttribMask::GL_CLIENT_ALL_ATTRIB_BITS, "GL_CLIENT_ALL_ATTRIB_BITS" }
 };
 
+
 const std::unordered_map<ContextFlagMask, std::string> Meta_StringsByContextFlagMask =
 {
     { ContextFlagMask::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -88,8 +95,10 @@ const std::unordered_map<ContextFlagMask, std::string> Meta_StringsByContextFlag
     { ContextFlagMask::GL_CONTEXT_FLAG_DEBUG_BIT, "GL_CONTEXT_FLAG_DEBUG_BIT" },
     { ContextFlagMask::GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT, "GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT" },
     { ContextFlagMask::GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB, "GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB" },
+    { ContextFlagMask::GL_CONTEXT_FLAG_NO_ERROR_BIT, "GL_CONTEXT_FLAG_NO_ERROR_BIT" },
     { ContextFlagMask::GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR, "GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR" }
 };
+
 
 const std::unordered_map<ContextProfileMask, std::string> Meta_StringsByContextProfileMask =
 {
@@ -98,12 +107,14 @@ const std::unordered_map<ContextProfileMask, std::string> Meta_StringsByContextP
     { ContextProfileMask::GL_CONTEXT_COMPATIBILITY_PROFILE_BIT, "GL_CONTEXT_COMPATIBILITY_PROFILE_BIT" }
 };
 
+
 const std::unordered_map<FfdMaskSGIX, std::string> Meta_StringsByFfdMaskSGIX =
 {
     { FfdMaskSGIX::GL_NONE_BIT, "GL_NONE_BIT" },
     { FfdMaskSGIX::GL_TEXTURE_DEFORMATION_BIT_SGIX, "GL_TEXTURE_DEFORMATION_BIT_SGIX" },
     { FfdMaskSGIX::GL_GEOMETRY_DEFORMATION_BIT_SGIX, "GL_GEOMETRY_DEFORMATION_BIT_SGIX" }
 };
+
 
 const std::unordered_map<FragmentShaderColorModMaskATI, std::string> Meta_StringsByFragmentShaderColorModMaskATI =
 {
@@ -113,6 +124,7 @@ const std::unordered_map<FragmentShaderColorModMaskATI, std::string> Meta_String
     { FragmentShaderColorModMaskATI::GL_BIAS_BIT_ATI, "GL_BIAS_BIT_ATI" }
 };
 
+
 const std::unordered_map<FragmentShaderDestMaskATI, std::string> Meta_StringsByFragmentShaderDestMaskATI =
 {
     { FragmentShaderDestMaskATI::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -120,6 +132,7 @@ const std::unordered_map<FragmentShaderDestMaskATI, std::string> Meta_StringsByF
     { FragmentShaderDestMaskATI::GL_GREEN_BIT_ATI, "GL_GREEN_BIT_ATI" },
     { FragmentShaderDestMaskATI::GL_BLUE_BIT_ATI, "GL_BLUE_BIT_ATI" }
 };
+
 
 const std::unordered_map<FragmentShaderDestModMaskATI, std::string> Meta_StringsByFragmentShaderDestModMaskATI =
 {
@@ -132,6 +145,7 @@ const std::unordered_map<FragmentShaderDestModMaskATI, std::string> Meta_Strings
     { FragmentShaderDestModMaskATI::GL_EIGHTH_BIT_ATI, "GL_EIGHTH_BIT_ATI" },
     { FragmentShaderDestModMaskATI::GL_SATURATE_BIT_ATI, "GL_SATURATE_BIT_ATI" }
 };
+
 
 const std::unordered_map<MapBufferUsageMask, std::string> Meta_StringsByMapBufferUsageMask =
 {
@@ -146,8 +160,11 @@ const std::unordered_map<MapBufferUsageMask, std::string> Meta_StringsByMapBuffe
     { MapBufferUsageMask::GL_MAP_COHERENT_BIT, "GL_MAP_COHERENT_BIT" },
     { MapBufferUsageMask::GL_DYNAMIC_STORAGE_BIT, "GL_DYNAMIC_STORAGE_BIT" },
     { MapBufferUsageMask::GL_CLIENT_STORAGE_BIT, "GL_CLIENT_STORAGE_BIT" },
-    { MapBufferUsageMask::GL_SPARSE_STORAGE_BIT_ARB, "GL_SPARSE_STORAGE_BIT_ARB" }
+    { MapBufferUsageMask::GL_SPARSE_STORAGE_BIT_ARB, "GL_SPARSE_STORAGE_BIT_ARB" },
+    { MapBufferUsageMask::GL_LGPU_SEPARATE_STORAGE_BIT_NVX, "GL_LGPU_SEPARATE_STORAGE_BIT_NVX" },
+    { MapBufferUsageMask::GL_PER_GPU_STORAGE_BIT_NV, "GL_PER_GPU_STORAGE_BIT_NV" }
 };
+
 
 const std::unordered_map<MemoryBarrierMask, std::string> Meta_StringsByMemoryBarrierMask =
 {
@@ -184,12 +201,14 @@ const std::unordered_map<MemoryBarrierMask, std::string> Meta_StringsByMemoryBar
     { MemoryBarrierMask::GL_ALL_BARRIER_BITS_EXT, "GL_ALL_BARRIER_BITS_EXT" }
 };
 
+
 const std::unordered_map<PathFontStyle, std::string> Meta_StringsByPathFontStyle =
 {
     { PathFontStyle::GL_NONE_BIT, "GL_NONE_BIT" },
     { PathFontStyle::GL_BOLD_BIT_NV, "GL_BOLD_BIT_NV" },
     { PathFontStyle::GL_ITALIC_BIT_NV, "GL_ITALIC_BIT_NV" }
 };
+
 
 const std::unordered_map<PathRenderingMaskNV, std::string> Meta_StringsByPathRenderingMaskNV =
 {
@@ -221,6 +240,7 @@ const std::unordered_map<PathRenderingMaskNV, std::string> Meta_StringsByPathRen
     { PathRenderingMaskNV::GL_GLYPH_VERTICAL_BEARING_ADVANCE_BIT_NV, "GL_GLYPH_VERTICAL_BEARING_ADVANCE_BIT_NV" }
 };
 
+
 const std::unordered_map<PerformanceQueryCapsMaskINTEL, std::string> Meta_StringsByPerformanceQueryCapsMaskINTEL =
 {
     { PerformanceQueryCapsMaskINTEL::GL_NONE_BIT, "GL_NONE_BIT" },
@@ -228,11 +248,13 @@ const std::unordered_map<PerformanceQueryCapsMaskINTEL, std::string> Meta_String
     { PerformanceQueryCapsMaskINTEL::GL_PERFQUERY_GLOBAL_CONTEXT_INTEL, "GL_PERFQUERY_GLOBAL_CONTEXT_INTEL" }
 };
 
+
 const std::unordered_map<SyncObjectMask, std::string> Meta_StringsBySyncObjectMask =
 {
     { SyncObjectMask::GL_NONE_BIT, "GL_NONE_BIT" },
     { SyncObjectMask::GL_SYNC_FLUSH_COMMANDS_BIT, "GL_SYNC_FLUSH_COMMANDS_BIT" }
 };
+
 
 const std::unordered_map<TextureStorageMaskAMD, std::string> Meta_StringsByTextureStorageMaskAMD =
 {
@@ -240,11 +262,13 @@ const std::unordered_map<TextureStorageMaskAMD, std::string> Meta_StringsByTextu
     { TextureStorageMaskAMD::GL_TEXTURE_STORAGE_SPARSE_BIT_AMD, "GL_TEXTURE_STORAGE_SPARSE_BIT_AMD" }
 };
 
+
 const std::unordered_map<UnusedMask, std::string> Meta_StringsByUnusedMask =
 {
     { UnusedMask::GL_NONE_BIT, "GL_NONE_BIT" },
     { UnusedMask::GL_UNUSED_BIT, "GL_UNUSED_BIT" }
 };
+
 
 const std::unordered_map<UseProgramStageMask, std::string> Meta_StringsByUseProgramStageMask =
 {
@@ -257,6 +281,7 @@ const std::unordered_map<UseProgramStageMask, std::string> Meta_StringsByUseProg
     { UseProgramStageMask::GL_COMPUTE_SHADER_BIT, "GL_COMPUTE_SHADER_BIT" },
     { UseProgramStageMask::GL_ALL_SHADER_BITS, "GL_ALL_SHADER_BITS" }
 };
+
 
 const std::unordered_map<VertexHintsMaskPGI, std::string> Meta_StringsByVertexHintsMaskPGI =
 {
@@ -280,5 +305,8 @@ const std::unordered_map<VertexHintsMaskPGI, std::string> Meta_StringsByVertexHi
     { VertexHintsMaskPGI::GL_TEXCOORD3_BIT_PGI, "GL_TEXCOORD3_BIT_PGI" },
     { VertexHintsMaskPGI::GL_TEXCOORD4_BIT_PGI, "GL_TEXCOORD4_BIT_PGI" }
 };
+
+
+
 
 } // namespace glbinding

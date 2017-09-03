@@ -50,15 +50,19 @@ endif()
 set(CPACK_COMPONENT_RUNTIME_DISPLAY_NAME "Library")
 set(CPACK_COMPONENT_RUNTIME_DESCRIPTION "Runtime components for ${META_PROJECT_NAME} library")
 
-set(CPACK_COMPONENT_TOOLS_DISPLAY_NAME "Tools")
-set(CPACK_COMPONENT_TOOLS_DESCRIPTION "Tools for ${META_PROJECT_NAME} library")
-set(CPACK_COMPONENT_TOOLS_DEPENDS runtime)
-
 set(CPACK_COMPONENT_DEV_DISPLAY_NAME "C/C++ development files")
 set(CPACK_COMPONENT_DEV_DESCRIPTION "Development files for ${META_PROJECT_NAME} library")
 set(CPACK_COMPONENT_DEV_DEPENDS runtime)
 
-set(CPACK_COMPONENTS_ALL runtime tools dev)
+set(CPACK_COMPONENTS_ALL runtime dev)
+
+if (OPTION_BUILD_TOOLS)
+    set(CPACK_COMPONENT_TOOLS_DISPLAY_NAME "Tools")
+    set(CPACK_COMPONENT_TOOLS_DESCRIPTION "Tools for ${META_PROJECT_NAME} library")
+    set(CPACK_COMPONENT_TOOLS_DEPENDS runtime)
+    
+    set(CPACK_COMPONENTS_ALL ${CPACK_COMPONENTS_ALL} tools)
+endif()
 
 if (OPTION_BUILD_EXAMPLES)
     set(CPACK_COMPONENT_EXAMPLES_DATA_DISPLAY_NAME "Example data")
@@ -265,7 +269,7 @@ include(CPack)
 # Create target
 add_custom_target(
     pack-${project_name}
-    COMMAND ${CPACK_COMMAND} --config ${PROJECT_BINARY_DIR}/CPackConfig-${project_name}.cmake
+    COMMAND ${CPACK_COMMAND} --config ${PROJECT_BINARY_DIR}/CPackConfig-${project_name}.cmake -C $<CONFIG>
     WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
 )
 set_target_properties(pack-${project_name} PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD 1)

@@ -1,8 +1,8 @@
 
 #include "../Binding_pch.h"
 
-
 #include <glbinding/gl/functions.h>
+
 
 using namespace glbinding;
 
@@ -246,9 +246,19 @@ void glReferencePlaneSGIX(const GLdouble * equation)
     return Binding::ReferencePlaneSGIX(equation);
 }
 
+GLboolean glReleaseKeyedMutexWin32EXT(GLuint memory, GLuint64 key)
+{
+    return Binding::ReleaseKeyedMutexWin32EXT(memory, key);
+}
+
 void glReleaseShaderCompiler()
 {
     return Binding::ReleaseShaderCompiler();
+}
+
+void glRenderGpuMaskNV(GLbitfield mask)
+{
+    return Binding::RenderGpuMaskNV(mask);
 }
 
 GLint glRenderMode(GLenum mode)
@@ -455,6 +465,7 @@ void glRotatexOES(GLfixed angle, GLfixed x, GLfixed y, GLfixed z)
 {
     return Binding::RotatexOES(angle, x, y, z);
 }
+
 
 
 

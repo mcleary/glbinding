@@ -1,8 +1,8 @@
 
 #include "../Binding_pch.h"
 
-
 #include <glbinding/gl/functions.h>
+
 
 using namespace glbinding;
 
@@ -39,6 +39,16 @@ void glNamedBufferStorage(GLuint buffer, GLsizeiptr size, const void * data, Buf
 void glNamedBufferStorageEXT(GLuint buffer, GLsizeiptr size, const void * data, BufferStorageMask flags)
 {
     return Binding::NamedBufferStorageEXT(buffer, size, data, flags);
+}
+
+void glNamedBufferStorageExternalEXT(GLuint buffer, GLintptr offset, GLsizeiptr size, GLeglClientBufferEXT clientBuffer, GLbitfield flags)
+{
+    return Binding::NamedBufferStorageExternalEXT(buffer, offset, size, clientBuffer, flags);
+}
+
+void glNamedBufferStorageMemEXT(GLuint buffer, GLsizeiptr size, GLuint memory, GLuint64 offset)
+{
+    return Binding::NamedBufferStorageMemEXT(buffer, size, memory, offset);
 }
 
 void glNamedBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data)
@@ -99,6 +109,11 @@ void glNamedFramebufferSampleLocationsfvARB(GLuint framebuffer, GLuint start, GL
 void glNamedFramebufferSampleLocationsfvNV(GLuint framebuffer, GLuint start, GLsizei count, const GLfloat * v)
 {
     return Binding::NamedFramebufferSampleLocationsfvNV(framebuffer, start, count, v);
+}
+
+void glNamedFramebufferSamplePositionsfvAMD(GLuint framebuffer, GLuint numsamples, GLuint pixelindex, const GLfloat * values)
+{
+    return Binding::NamedFramebufferSamplePositionsfvAMD(framebuffer, numsamples, pixelindex, values);
 }
 
 void glNamedFramebufferTexture(GLuint framebuffer, GLenum attachment, GLuint texture, GLint level)
@@ -405,6 +420,7 @@ void glNormalStream3svATI(GLenum stream, const GLshort * coords)
 {
     return Binding::NormalStream3svATI(stream, coords);
 }
+
 
 
 

@@ -6,6 +6,7 @@
 
 using namespace gl;
 
+
 namespace glbinding
 {
 
@@ -55,6 +56,7 @@ const std::unordered_map<std::string, GLbitfield> Meta_BitfieldsByString_C =
     { "GL_CONTEXT_CORE_PROFILE_BIT", static_cast<GLbitfield>(ContextProfileMask::GL_CONTEXT_CORE_PROFILE_BIT) },
     { "GL_CONTEXT_FLAG_DEBUG_BIT", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_DEBUG_BIT) },
     { "GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT) },
+    { "GL_CONTEXT_FLAG_NO_ERROR_BIT", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_NO_ERROR_BIT) },
     { "GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR) },
     { "GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT) },
     { "GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB", static_cast<GLbitfield>(ContextFlagMask::GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT_ARB) },
@@ -134,6 +136,7 @@ const std::unordered_map<std::string, GLbitfield> Meta_BitfieldsByString_K{};
 
 const std::unordered_map<std::string, GLbitfield> Meta_BitfieldsByString_L =
 {
+    { "GL_LGPU_SEPARATE_STORAGE_BIT_NVX", static_cast<GLbitfield>(MapBufferUsageMask::GL_LGPU_SEPARATE_STORAGE_BIT_NVX) },
     { "GL_LIGHTING_BIT", static_cast<GLbitfield>(AttribMask::GL_LIGHTING_BIT) },
     { "GL_LINE_BIT", static_cast<GLbitfield>(AttribMask::GL_LINE_BIT) },
     { "GL_LIST_BIT", static_cast<GLbitfield>(AttribMask::GL_LIST_BIT) }
@@ -175,6 +178,7 @@ const std::unordered_map<std::string, GLbitfield> Meta_BitfieldsByString_P =
 {
     { "GL_PERFQUERY_GLOBAL_CONTEXT_INTEL", static_cast<GLbitfield>(PerformanceQueryCapsMaskINTEL::GL_PERFQUERY_GLOBAL_CONTEXT_INTEL) },
     { "GL_PERFQUERY_SINGLE_CONTEXT_INTEL", static_cast<GLbitfield>(PerformanceQueryCapsMaskINTEL::GL_PERFQUERY_SINGLE_CONTEXT_INTEL) },
+    { "GL_PER_GPU_STORAGE_BIT_NV", static_cast<GLbitfield>(MapBufferUsageMask::GL_PER_GPU_STORAGE_BIT_NV) },
     { "GL_PIXEL_BUFFER_BARRIER_BIT", static_cast<GLbitfield>(MemoryBarrierMask::GL_PIXEL_BUFFER_BARRIER_BIT) },
     { "GL_PIXEL_BUFFER_BARRIER_BIT_EXT", static_cast<GLbitfield>(MemoryBarrierMask::GL_PIXEL_BUFFER_BARRIER_BIT_EXT) },
     { "GL_PIXEL_MODE_BIT", static_cast<GLbitfield>(AttribMask::GL_PIXEL_MODE_BIT) },

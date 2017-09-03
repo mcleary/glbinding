@@ -2,7 +2,15 @@
 #include <glbinding/Binding.h>
 
 #include <unordered_map>
+
+#ifdef GLBINDING_USE_BOOST_THREAD
+#include <boost/thread.hpp>
+namespace std_boost = boost;
+#else
 #include <mutex>
+namespace std_boost = std;
+#endif
+
 #include <cassert>
 
 #include "glbinding/glbinding_features.h"
@@ -13,7 +21,7 @@ namespace
 
 GLBINDING_THREAD_LOCAL glbinding::ContextHandle t_context = 0;
 
-std::recursive_mutex g_mutex;
+std_boost::recursive_mutex g_mutex;
 std::unordered_map<glbinding::ContextHandle, int> g_bindings;
 
 } // namespace
@@ -51,35 +59,30 @@ void Binding::initialize(
 ,   const bool _useContext
 ,   const bool _resolveFunctions)
 {
-    g_mutex.lock();
-    if (g_bindings.find(context) != g_bindings.cend())
-    {
-        g_mutex.unlock();
-        return;
-    }
-    g_mutex.unlock();
-
-    const auto pos = static_cast<int>(g_bindings.size());
-
-    g_mutex.lock();
-    g_bindings[context] = pos;
-    g_mutex.unlock();
-
-    g_mutex.lock();
-    AbstractFunction::provideState(pos);
-    g_mutex.unlock();
-
     const auto resolveWOUse = !_useContext & _resolveFunctions;
     const auto currentContext = resolveWOUse ? getCurrentContext() : static_cast<ContextHandle>(0);
 
-    if(_useContext)
-        useContext(context);
-
-    if (_resolveFunctions)
     {
-        g_mutex.lock();
-        resolveFunctions();
-        g_mutex.unlock();
+        std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+
+        if (g_bindings.find(context) != g_bindings.cend())
+        {
+            return;
+        }
+
+        const auto pos = static_cast<int>(g_bindings.size());
+
+        g_bindings[context] = pos;
+
+        AbstractFunction::provideState(pos);
+
+        if(_useContext)
+            useContext(context);
+
+        if (_resolveFunctions)
+        {
+            resolveFunctions();
+        }
     }
 
     // restore previous context
@@ -112,32 +115,23 @@ void Binding::useCurrentContext()
 
 void Binding::useContext(const ContextHandle context)
 {
+    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+
     t_context = context;
 
-    g_mutex.lock();
     if (g_bindings.find(t_context) == g_bindings.cend())
     {
-        g_mutex.unlock();
-
         initialize(t_context);
 
         return;
     }
-    else
-    {
-        g_mutex.unlock();
-    }
 
-    g_mutex.lock();
     AbstractFunction::setStatePos(g_bindings[t_context]);
-    g_mutex.unlock();
 
-    g_mutex.lock();
     for (const auto & callback : s_callbacks)
     {
         callback(t_context);
     }
-    g_mutex.unlock();
 }
 
 void Binding::releaseCurrentContext()
@@ -147,20 +141,18 @@ void Binding::releaseCurrentContext()
 
 void Binding::releaseContext(const ContextHandle context)
 {
-    g_mutex.lock();
-    AbstractFunction::neglectState(g_bindings[context]);
-    g_mutex.unlock();
+    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
 
-    g_mutex.lock();
+    AbstractFunction::neglectState(g_bindings[context]);
+
     g_bindings.erase(context);
-    g_mutex.unlock();
 }
 
 void Binding::addContextSwitchCallback(const ContextSwitchCallback callback)
 {
-    g_mutex.lock();
+    std_boost::lock_guard<std_boost::recursive_mutex> lock(g_mutex);
+
     s_callbacks.push_back(std::move(callback));
-    g_mutex.unlock();
 }
 
 

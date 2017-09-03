@@ -6,6 +6,7 @@
 
 using namespace gl;
 
+
 namespace glbinding
 {
 
@@ -15,6 +16,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_A =
 {
     { "glAccumxOES", { GLextension::GL_OES_fixed_point } },
+    { "glAcquireKeyedMutexWin32EXT", { GLextension::GL_EXT_win32_keyed_mutex } },
     { "glActiveProgramEXT", { GLextension::GL_EXT_separate_shader_objects } },
     { "glActiveShaderProgram", { GLextension::GL_ARB_separate_shader_objects } },
     { "glActiveStencilFaceEXT", { GLextension::GL_EXT_stencil_two_side } },
@@ -24,6 +26,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glAlphaFragmentOp2ATI", { GLextension::GL_ATI_fragment_shader } },
     { "glAlphaFragmentOp3ATI", { GLextension::GL_ATI_fragment_shader } },
     { "glAlphaFuncxOES", { GLextension::GL_OES_fixed_point } },
+    { "glAlphaToCoverageDitherControlNV", { GLextension::GL_NV_alpha_to_coverage_dither_control } },
     { "glApplyFramebufferAttachmentCMAAINTEL", { GLextension::GL_INTEL_framebuffer_CMAA } },
     { "glApplyTextureEXT", { GLextension::GL_EXT_light_texture } },
     { "glAreProgramsResidentNV", { GLextension::GL_NV_vertex_program } },
@@ -132,6 +135,8 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glBufferPageCommitmentARB", { GLextension::GL_ARB_sparse_buffer } },
     { "glBufferParameteriAPPLE", { GLextension::GL_APPLE_flush_buffer_range } },
     { "glBufferStorage", { GLextension::GL_ARB_buffer_storage } },
+    { "glBufferStorageExternalEXT", { GLextension::GL_EXT_external_buffer } },
+    { "glBufferStorageMemEXT", { GLextension::GL_EXT_memory_object } },
     { "glBufferSubDataARB", { GLextension::GL_ARB_vertex_buffer_object } }
 };
 
@@ -295,6 +300,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glCreateBuffers", { GLextension::GL_ARB_direct_state_access } },
     { "glCreateCommandListsNV", { GLextension::GL_NV_command_list } },
     { "glCreateFramebuffers", { GLextension::GL_ARB_direct_state_access } },
+    { "glCreateMemoryObjectsEXT", { GLextension::GL_EXT_memory_object } },
     { "glCreatePerfQueryINTEL", { GLextension::GL_INTEL_performance_query } },
     { "glCreateProgramObjectARB", { GLextension::GL_ARB_shader_objects } },
     { "glCreateProgramPipelines", { GLextension::GL_ARB_direct_state_access } },
@@ -336,6 +342,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glDeleteFragmentShaderATI", { GLextension::GL_ATI_fragment_shader } },
     { "glDeleteFramebuffers", { GLextension::GL_ARB_framebuffer_object } },
     { "glDeleteFramebuffersEXT", { GLextension::GL_EXT_framebuffer_object } },
+    { "glDeleteMemoryObjectsEXT", { GLextension::GL_EXT_memory_object } },
     { "glDeleteNamedStringARB", { GLextension::GL_ARB_shading_language_include } },
     { "glDeleteNamesAMD", { GLextension::GL_AMD_name_gen_delete } },
     { "glDeleteObjectARB", { GLextension::GL_ARB_shader_objects } },
@@ -347,9 +354,11 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glDeleteProgramsARB", { GLextension::GL_ARB_fragment_program, GLextension::GL_ARB_vertex_program } },
     { "glDeleteProgramsNV", { GLextension::GL_NV_vertex_program } },
     { "glDeleteQueriesARB", { GLextension::GL_ARB_occlusion_query } },
+    { "glDeleteQueryResourceTagNV", { GLextension::GL_NV_query_resource_tag } },
     { "glDeleteRenderbuffers", { GLextension::GL_ARB_framebuffer_object } },
     { "glDeleteRenderbuffersEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glDeleteSamplers", { GLextension::GL_ARB_sampler_objects } },
+    { "glDeleteSemaphoresEXT", { GLextension::GL_EXT_semaphore } },
     { "glDeleteStatesNV", { GLextension::GL_NV_command_list } },
     { "glDeleteSync", { GLextension::GL_ARB_sync } },
     { "glDeleteTexturesEXT", { GLextension::GL_EXT_texture_object } },
@@ -410,7 +419,8 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glDrawTransformFeedbackInstanced", { GLextension::GL_ARB_transform_feedback_instanced } },
     { "glDrawTransformFeedbackNV", { GLextension::GL_NV_transform_feedback2 } },
     { "glDrawTransformFeedbackStream", { GLextension::GL_ARB_transform_feedback3 } },
-    { "glDrawTransformFeedbackStreamInstanced", { GLextension::GL_ARB_transform_feedback_instanced } }
+    { "glDrawTransformFeedbackStreamInstanced", { GLextension::GL_ARB_transform_feedback_instanced } },
+    { "glDrawVkImageNV", { GLextension::GL_NV_draw_vulkan_image } }
 };
 
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_E =
@@ -506,6 +516,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glFramebufferRenderbufferEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glFramebufferSampleLocationsfvARB", { GLextension::GL_ARB_sample_locations } },
     { "glFramebufferSampleLocationsfvNV", { GLextension::GL_NV_sample_locations } },
+    { "glFramebufferSamplePositionsfvAMD", { GLextension::GL_AMD_framebuffer_sample_positions } },
     { "glFramebufferTexture1D", { GLextension::GL_ARB_framebuffer_object } },
     { "glFramebufferTexture1DEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glFramebufferTexture2D", { GLextension::GL_ARB_framebuffer_object } },
@@ -542,9 +553,11 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGenProgramsARB", { GLextension::GL_ARB_fragment_program, GLextension::GL_ARB_vertex_program } },
     { "glGenProgramsNV", { GLextension::GL_NV_vertex_program } },
     { "glGenQueriesARB", { GLextension::GL_ARB_occlusion_query } },
+    { "glGenQueryResourceTagNV", { GLextension::GL_NV_query_resource_tag } },
     { "glGenRenderbuffers", { GLextension::GL_ARB_framebuffer_object } },
     { "glGenRenderbuffersEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glGenSamplers", { GLextension::GL_ARB_sampler_objects } },
+    { "glGenSemaphoresEXT", { GLextension::GL_EXT_semaphore } },
     { "glGenSymbolsEXT", { GLextension::GL_EXT_vertex_shader } },
     { "glGenTexturesEXT", { GLextension::GL_EXT_texture_object } },
     { "glGenTransformFeedbacks", { GLextension::GL_ARB_transform_feedback2 } },
@@ -631,6 +644,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetFragmentMaterialivSGIX", { GLextension::GL_SGIX_fragment_lighting } },
     { "glGetFramebufferAttachmentParameteriv", { GLextension::GL_ARB_framebuffer_object } },
     { "glGetFramebufferAttachmentParameterivEXT", { GLextension::GL_EXT_framebuffer_object } },
+    { "glGetFramebufferParameterfvAMD", { GLextension::GL_AMD_framebuffer_sample_positions } },
     { "glGetFramebufferParameteriv", { GLextension::GL_ARB_framebuffer_no_attachments } },
     { "glGetFramebufferParameterivEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glGetGraphicsResetStatus", { GLextension::GL_KHR_robustness } },
@@ -673,6 +687,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetMapParameterivNV", { GLextension::GL_NV_evaluators } },
     { "glGetMapxvOES", { GLextension::GL_OES_fixed_point } },
     { "glGetMaterialxOES", { GLextension::GL_OES_fixed_point } },
+    { "glGetMemoryObjectParameterivEXT", { GLextension::GL_EXT_memory_object } },
     { "glGetMinmax", { GLextension::GL_ARB_imaging } },
     { "glGetMinmaxEXT", { GLextension::GL_EXT_histogram } },
     { "glGetMinmaxParameterfv", { GLextension::GL_ARB_imaging } },
@@ -703,6 +718,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetNamedBufferSubDataEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glGetNamedFramebufferAttachmentParameteriv", { GLextension::GL_ARB_direct_state_access } },
     { "glGetNamedFramebufferAttachmentParameterivEXT", { GLextension::GL_EXT_direct_state_access } },
+    { "glGetNamedFramebufferParameterfvAMD", { GLextension::GL_AMD_framebuffer_sample_positions } },
     { "glGetNamedFramebufferParameteriv", { GLextension::GL_ARB_direct_state_access } },
     { "glGetNamedFramebufferParameterivEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glGetNamedProgramLocalParameterIivEXT", { GLextension::GL_EXT_direct_state_access } },
@@ -804,6 +820,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetSamplerParameterIuiv", { GLextension::GL_ARB_sampler_objects } },
     { "glGetSamplerParameterfv", { GLextension::GL_ARB_sampler_objects } },
     { "glGetSamplerParameteriv", { GLextension::GL_ARB_sampler_objects } },
+    { "glGetSemaphoreParameterui64vEXT", { GLextension::GL_EXT_semaphore } },
     { "glGetSeparableFilter", { GLextension::GL_ARB_imaging } },
     { "glGetSeparableFilterEXT", { GLextension::GL_EXT_convolution } },
     { "glGetShaderPrecisionFormat", { GLextension::GL_ARB_ES2_compatibility } },
@@ -862,6 +879,8 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetUniformui64vARB", { GLextension::GL_ARB_gpu_shader_int64 } },
     { "glGetUniformui64vNV", { GLextension::GL_AMD_gpu_shader_int64, GLextension::GL_NV_shader_buffer_load } },
     { "glGetUniformuivEXT", { GLextension::GL_EXT_gpu_shader4 } },
+    { "glGetUnsignedBytei_vEXT", { GLextension::GL_EXT_memory_object, GLextension::GL_EXT_semaphore } },
+    { "glGetUnsignedBytevEXT", { GLextension::GL_EXT_memory_object, GLextension::GL_EXT_semaphore } },
     { "glGetVariantArrayObjectfvATI", { GLextension::GL_ATI_vertex_array_object } },
     { "glGetVariantArrayObjectivATI", { GLextension::GL_ATI_vertex_array_object } },
     { "glGetVariantBooleanvEXT", { GLextension::GL_EXT_vertex_shader } },
@@ -901,6 +920,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glGetVideoivNV", { GLextension::GL_NV_present_video } },
     { "glGetVideoui64vNV", { GLextension::GL_NV_present_video } },
     { "glGetVideouivNV", { GLextension::GL_NV_present_video } },
+    { "glGetVkProcAddrNV", { GLextension::GL_NV_draw_vulkan_image } },
     { "glGetnColorTableARB", { GLextension::GL_ARB_robustness } },
     { "glGetnCompressedTexImageARB", { GLextension::GL_ARB_robustness } },
     { "glGetnConvolutionFilterARB", { GLextension::GL_ARB_robustness } },
@@ -948,6 +968,12 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glImageTransformParameterfvHP", { GLextension::GL_HP_image_transform } },
     { "glImageTransformParameteriHP", { GLextension::GL_HP_image_transform } },
     { "glImageTransformParameterivHP", { GLextension::GL_HP_image_transform } },
+    { "glImportMemoryFdEXT", { GLextension::GL_EXT_memory_object_fd } },
+    { "glImportMemoryWin32HandleEXT", { GLextension::GL_EXT_memory_object_win32 } },
+    { "glImportMemoryWin32NameEXT", { GLextension::GL_EXT_memory_object_win32 } },
+    { "glImportSemaphoreFdEXT", { GLextension::GL_EXT_semaphore_fd } },
+    { "glImportSemaphoreWin32HandleEXT", { GLextension::GL_EXT_semaphore_win32 } },
+    { "glImportSemaphoreWin32NameEXT", { GLextension::GL_EXT_semaphore_win32 } },
     { "glImportSyncEXT", { GLextension::GL_EXT_x11_sync_object } },
     { "glIndexFormatNV", { GLextension::GL_NV_vertex_buffer_unified_memory } },
     { "glIndexFuncEXT", { GLextension::GL_EXT_index_func } },
@@ -979,6 +1005,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glIsFramebufferEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glIsImageHandleResidentARB", { GLextension::GL_ARB_bindless_texture } },
     { "glIsImageHandleResidentNV", { GLextension::GL_NV_bindless_texture } },
+    { "glIsMemoryObjectEXT", { GLextension::GL_EXT_memory_object } },
     { "glIsNameAMD", { GLextension::GL_AMD_name_gen_delete } },
     { "glIsNamedBufferResidentNV", { GLextension::GL_NV_shader_buffer_load } },
     { "glIsNamedStringARB", { GLextension::GL_ARB_shading_language_include } },
@@ -994,6 +1021,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glIsRenderbuffer", { GLextension::GL_ARB_framebuffer_object } },
     { "glIsRenderbufferEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glIsSampler", { GLextension::GL_ARB_sampler_objects } },
+    { "glIsSemaphoreEXT", { GLextension::GL_EXT_semaphore } },
     { "glIsStateNV", { GLextension::GL_NV_command_list } },
     { "glIsSync", { GLextension::GL_ARB_sync } },
     { "glIsTextureEXT", { GLextension::GL_EXT_texture_object } },
@@ -1013,6 +1041,9 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
 
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_L =
 {
+    { "glLGPUCopyImageSubDataNVX", { GLextension::GL_NVX_linked_gpu_multicast } },
+    { "glLGPUInterlockNVX", { GLextension::GL_NVX_linked_gpu_multicast } },
+    { "glLGPUNamedBufferSubDataNVX", { GLextension::GL_NVX_linked_gpu_multicast } },
     { "glLabelObjectEXT", { GLextension::GL_EXT_debug_label } },
     { "glLightEnviSGIX", { GLextension::GL_SGIX_fragment_lighting } },
     { "glLightModelxOES", { GLextension::GL_OES_fixed_point } },
@@ -1100,9 +1131,11 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glMatrixTranslatedEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glMatrixTranslatefEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glMaxShaderCompilerThreadsARB", { GLextension::GL_ARB_parallel_shader_compile } },
+    { "glMaxShaderCompilerThreadsKHR", { GLextension::GL_KHR_parallel_shader_compile } },
     { "glMemoryBarrier", { GLextension::GL_ARB_shader_image_load_store } },
     { "glMemoryBarrierByRegion", { GLextension::GL_ARB_ES3_1_compatibility } },
     { "glMemoryBarrierEXT", { GLextension::GL_EXT_shader_image_load_store } },
+    { "glMemoryObjectParameterivEXT", { GLextension::GL_EXT_memory_object } },
     { "glMinSampleShadingARB", { GLextension::GL_ARB_sample_shading } },
     { "glMinmax", { GLextension::GL_ARB_imaging } },
     { "glMinmaxEXT", { GLextension::GL_EXT_histogram } },
@@ -1215,7 +1248,18 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glMultiTexRenderbufferEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glMultiTexSubImage1DEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glMultiTexSubImage2DEXT", { GLextension::GL_EXT_direct_state_access } },
-    { "glMultiTexSubImage3DEXT", { GLextension::GL_EXT_direct_state_access } }
+    { "glMultiTexSubImage3DEXT", { GLextension::GL_EXT_direct_state_access } },
+    { "glMulticastBarrierNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastBlitFramebufferNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastBufferSubDataNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastCopyBufferSubDataNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastCopyImageSubDataNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastFramebufferSampleLocationsfvNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastGetQueryObjecti64vNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastGetQueryObjectivNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastGetQueryObjectui64vNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastGetQueryObjectuivNV", { GLextension::GL_NV_gpu_multicast } },
+    { "glMulticastWaitSyncNV", { GLextension::GL_NV_gpu_multicast } }
 };
 
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_N =
@@ -1226,6 +1270,8 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glNamedBufferPageCommitmentEXT", { GLextension::GL_ARB_sparse_buffer } },
     { "glNamedBufferStorage", { GLextension::GL_ARB_direct_state_access } },
     { "glNamedBufferStorageEXT", { GLextension::GL_EXT_direct_state_access } },
+    { "glNamedBufferStorageExternalEXT", { GLextension::GL_EXT_external_buffer } },
+    { "glNamedBufferStorageMemEXT", { GLextension::GL_EXT_memory_object } },
     { "glNamedBufferSubData", { GLextension::GL_ARB_direct_state_access } },
     { "glNamedBufferSubDataEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glNamedCopyBufferSubDataEXT", { GLextension::GL_EXT_direct_state_access } },
@@ -1238,6 +1284,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glNamedFramebufferRenderbufferEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glNamedFramebufferSampleLocationsfvARB", { GLextension::GL_ARB_sample_locations } },
     { "glNamedFramebufferSampleLocationsfvNV", { GLextension::GL_NV_sample_locations } },
+    { "glNamedFramebufferSamplePositionsfvAMD", { GLextension::GL_AMD_framebuffer_sample_positions } },
     { "glNamedFramebufferTexture", { GLextension::GL_ARB_direct_state_access } },
     { "glNamedFramebufferTexture1DEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glNamedFramebufferTexture2DEXT", { GLextension::GL_EXT_direct_state_access } },
@@ -1357,6 +1404,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glPointSizexOES", { GLextension::GL_OES_fixed_point } },
     { "glPollAsyncSGIX", { GLextension::GL_SGIX_async } },
     { "glPollInstrumentsSGIX", { GLextension::GL_SGIX_instruments } },
+    { "glPolygonOffsetClamp", { GLextension::GL_ARB_polygon_offset_clamp } },
     { "glPolygonOffsetClampEXT", { GLextension::GL_EXT_polygon_offset_clamp } },
     { "glPolygonOffsetEXT", { GLextension::GL_EXT_polygon_offset } },
     { "glPolygonOffsetxOES", { GLextension::GL_OES_fixed_point } },
@@ -1403,7 +1451,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glProgramParameter4dvNV", { GLextension::GL_NV_vertex_program } },
     { "glProgramParameter4fNV", { GLextension::GL_NV_vertex_program } },
     { "glProgramParameter4fvNV", { GLextension::GL_NV_vertex_program } },
-    { "glProgramParameteri", { GLextension::GL_ARB_get_program_binary } },
+    { "glProgramParameteri", { GLextension::GL_ARB_get_program_binary, GLextension::GL_ARB_separate_shader_objects } },
     { "glProgramParameteriARB", { GLextension::GL_ARB_geometry_shader4 } },
     { "glProgramParameteriEXT", { GLextension::GL_EXT_geometry_shader4 } },
     { "glProgramParameters4dvNV", { GLextension::GL_NV_vertex_program } },
@@ -1561,7 +1609,9 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
 {
     { "glQueryCounter", { GLextension::GL_ARB_timer_query } },
     { "glQueryMatrixxOES", { GLextension::GL_OES_query_matrix } },
-    { "glQueryObjectParameteruiAMD", { GLextension::GL_AMD_occlusion_query_event } }
+    { "glQueryObjectParameteruiAMD", { GLextension::GL_AMD_occlusion_query_event } },
+    { "glQueryResourceNV", { GLextension::GL_NV_query_resource } },
+    { "glQueryResourceTagNV", { GLextension::GL_NV_query_resource_tag } }
 };
 
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_R =
@@ -1579,7 +1629,9 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glRectxOES", { GLextension::GL_OES_fixed_point } },
     { "glRectxvOES", { GLextension::GL_OES_fixed_point } },
     { "glReferencePlaneSGIX", { GLextension::GL_SGIX_reference_plane } },
+    { "glReleaseKeyedMutexWin32EXT", { GLextension::GL_EXT_win32_keyed_mutex } },
     { "glReleaseShaderCompiler", { GLextension::GL_ARB_ES2_compatibility } },
+    { "glRenderGpuMaskNV", { GLextension::GL_NV_gpu_multicast } },
     { "glRenderbufferStorage", { GLextension::GL_ARB_framebuffer_object } },
     { "glRenderbufferStorageEXT", { GLextension::GL_EXT_framebuffer_object } },
     { "glRenderbufferStorageMultisample", { GLextension::GL_ARB_framebuffer_object } },
@@ -1664,6 +1716,7 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glSecondaryColorPointerEXT", { GLextension::GL_EXT_secondary_color } },
     { "glSecondaryColorPointerListIBM", { GLextension::GL_IBM_vertex_array_lists } },
     { "glSelectPerfMonitorCountersAMD", { GLextension::GL_AMD_performance_monitor } },
+    { "glSemaphoreParameterui64vEXT", { GLextension::GL_EXT_semaphore } },
     { "glSeparableFilter2D", { GLextension::GL_ARB_imaging } },
     { "glSeparableFilter2DEXT", { GLextension::GL_EXT_convolution } },
     { "glSetFenceAPPLE", { GLextension::GL_APPLE_fence } },
@@ -1679,6 +1732,10 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glShaderSourceARB", { GLextension::GL_ARB_shader_objects } },
     { "glShaderStorageBlockBinding", { GLextension::GL_ARB_shader_storage_buffer_object } },
     { "glSharpenTexFuncSGIS", { GLextension::GL_SGIS_sharpen_texture } },
+    { "glSignalSemaphoreEXT", { GLextension::GL_EXT_semaphore } },
+    { "glSignalVkFenceNV", { GLextension::GL_NV_draw_vulkan_image } },
+    { "glSignalVkSemaphoreNV", { GLextension::GL_NV_draw_vulkan_image } },
+    { "glSpecializeShaderARB", { GLextension::GL_ARB_gl_spirv } },
     { "glSpriteParameterfSGIX", { GLextension::GL_SGIX_sprite } },
     { "glSpriteParameterfvSGIX", { GLextension::GL_SGIX_sprite } },
     { "glSpriteParameteriSGIX", { GLextension::GL_SGIX_sprite } },
@@ -1801,6 +1858,11 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glTexStorage2DMultisample", { GLextension::GL_ARB_texture_storage_multisample } },
     { "glTexStorage3D", { GLextension::GL_ARB_texture_storage } },
     { "glTexStorage3DMultisample", { GLextension::GL_ARB_texture_storage_multisample } },
+    { "glTexStorageMem1DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTexStorageMem2DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTexStorageMem2DMultisampleEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTexStorageMem3DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTexStorageMem3DMultisampleEXT", { GLextension::GL_EXT_memory_object } },
     { "glTexStorageSparseAMD", { GLextension::GL_AMD_sparse_texture } },
     { "glTexSubImage1DEXT", { GLextension::GL_EXT_subtexture } },
     { "glTexSubImage2DEXT", { GLextension::GL_EXT_subtexture } },
@@ -1848,6 +1910,11 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
     { "glTextureStorage3DEXT", { GLextension::GL_EXT_direct_state_access } },
     { "glTextureStorage3DMultisample", { GLextension::GL_ARB_direct_state_access } },
     { "glTextureStorage3DMultisampleEXT", { GLextension::GL_EXT_direct_state_access } },
+    { "glTextureStorageMem1DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTextureStorageMem2DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTextureStorageMem2DMultisampleEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTextureStorageMem3DEXT", { GLextension::GL_EXT_memory_object } },
+    { "glTextureStorageMem3DMultisampleEXT", { GLextension::GL_EXT_memory_object } },
     { "glTextureStorageSparseAMD", { GLextension::GL_AMD_sparse_texture } },
     { "glTextureSubImage1D", { GLextension::GL_ARB_direct_state_access } },
     { "glTextureSubImage1DEXT", { GLextension::GL_EXT_direct_state_access } },
@@ -2266,7 +2333,9 @@ const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFu
 
 const std::unordered_map<std::string, std::set<GLextension>> Meta_ExtensionsByFunctionString_W =
 {
+    { "glWaitSemaphoreEXT", { GLextension::GL_EXT_semaphore } },
     { "glWaitSync", { GLextension::GL_ARB_sync } },
+    { "glWaitVkSemaphoreNV", { GLextension::GL_NV_draw_vulkan_image } },
     { "glWeightPathsNV", { GLextension::GL_NV_path_rendering } },
     { "glWeightPointerARB", { GLextension::GL_ARB_vertex_blend } },
     { "glWeightbvARB", { GLextension::GL_ARB_vertex_blend } },

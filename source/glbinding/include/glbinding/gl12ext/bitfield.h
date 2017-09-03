@@ -1,4 +1,6 @@
+
 #pragma once
+
 
 #include <glbinding/nogl.h>
 
@@ -43,6 +45,7 @@ using gl::GL_UNIFORM_BARRIER_BIT;
 using gl::GL_UNIFORM_BARRIER_BIT_EXT;
 using gl::GL_VERTEX23_BIT_PGI;
 using gl::GL_BIAS_BIT_ATI;
+using gl::GL_CONTEXT_FLAG_NO_ERROR_BIT;
 using gl::GL_CONTEXT_FLAG_NO_ERROR_BIT_KHR;
 using gl::GL_HALF_BIT_ATI;
 using gl::GL_TESS_CONTROL_SHADER_BIT;
@@ -114,6 +117,8 @@ using gl::GL_SPARSE_STORAGE_BIT_ARB;
 using gl::GL_FONT_UNDERLINE_POSITION_BIT_NV;
 using gl::GL_MAT_SPECULAR_BIT_PGI;
 using gl::GL_GLYPH_HORIZONTAL_BEARING_Y_BIT_NV;
+using gl::GL_LGPU_SEPARATE_STORAGE_BIT_NVX;
+using gl::GL_PER_GPU_STORAGE_BIT_NV;
 using gl::GL_FONT_UNDERLINE_THICKNESS_BIT_NV;
 using gl::GL_NORMAL_BIT_PGI;
 using gl::GL_GLYPH_HORIZONTAL_BEARING_ADVANCE_BIT_NV;
@@ -134,6 +139,7 @@ using gl::GL_TEXCOORD4_BIT_PGI;
 using gl::GL_ALL_BARRIER_BITS;
 using gl::GL_ALL_BARRIER_BITS_EXT;
 using gl::GL_ALL_SHADER_BITS;
+
 
 
 } // namespace gl12ext

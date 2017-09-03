@@ -1,6 +1,7 @@
 
 #include "Binding_pch.h"
 
+
 using namespace gl;
 
 
@@ -14,6 +15,8 @@ Function<void, GLuint, GLintptr, GLsizeiptr, GLboolean> Binding::NamedBufferPage
 Function<void, GLuint, GLintptr, GLsizeiptr, GLboolean> Binding::NamedBufferPageCommitmentEXT("glNamedBufferPageCommitmentEXT");
 Function<void, GLuint, GLsizeiptr, const void *, BufferStorageMask> Binding::NamedBufferStorage("glNamedBufferStorage");
 Function<void, GLuint, GLsizeiptr, const void *, BufferStorageMask> Binding::NamedBufferStorageEXT("glNamedBufferStorageEXT");
+Function<void, GLuint, GLintptr, GLsizeiptr, GLeglClientBufferEXT, GLbitfield> Binding::NamedBufferStorageExternalEXT("glNamedBufferStorageExternalEXT");
+Function<void, GLuint, GLsizeiptr, GLuint, GLuint64> Binding::NamedBufferStorageMemEXT("glNamedBufferStorageMemEXT");
 Function<void, GLuint, GLintptr, GLsizeiptr, const void *> Binding::NamedBufferSubData("glNamedBufferSubData");
 Function<void, GLuint, GLintptr, GLsizeiptr, const void *> Binding::NamedBufferSubDataEXT("glNamedBufferSubDataEXT");
 Function<void, GLuint, GLuint, GLintptr, GLintptr, GLsizeiptr> Binding::NamedCopyBufferSubDataEXT("glNamedCopyBufferSubDataEXT");
@@ -26,6 +29,7 @@ Function<void, GLuint, GLenum, GLenum, GLuint> Binding::NamedFramebufferRenderbu
 Function<void, GLuint, GLenum, GLenum, GLuint> Binding::NamedFramebufferRenderbufferEXT("glNamedFramebufferRenderbufferEXT");
 Function<void, GLuint, GLuint, GLsizei, const GLfloat *> Binding::NamedFramebufferSampleLocationsfvARB("glNamedFramebufferSampleLocationsfvARB");
 Function<void, GLuint, GLuint, GLsizei, const GLfloat *> Binding::NamedFramebufferSampleLocationsfvNV("glNamedFramebufferSampleLocationsfvNV");
+Function<void, GLuint, GLuint, GLuint, const GLfloat *> Binding::NamedFramebufferSamplePositionsfvAMD("glNamedFramebufferSamplePositionsfvAMD");
 Function<void, GLuint, GLenum, GLuint, GLint> Binding::NamedFramebufferTexture("glNamedFramebufferTexture");
 Function<void, GLuint, GLenum, GLenum, GLuint, GLint> Binding::NamedFramebufferTexture1DEXT("glNamedFramebufferTexture1DEXT");
 Function<void, GLuint, GLenum, GLenum, GLuint, GLint> Binding::NamedFramebufferTexture2DEXT("glNamedFramebufferTexture2DEXT");
@@ -87,6 +91,7 @@ Function<void, GLenum, GLint, GLint, GLint> Binding::NormalStream3iATI("glNormal
 Function<void, GLenum, const GLint *> Binding::NormalStream3ivATI("glNormalStream3ivATI");
 Function<void, GLenum, GLshort, GLshort, GLshort> Binding::NormalStream3sATI("glNormalStream3sATI");
 Function<void, GLenum, const GLshort *> Binding::NormalStream3svATI("glNormalStream3svATI");
+
 
 
 } // namespace glbinding

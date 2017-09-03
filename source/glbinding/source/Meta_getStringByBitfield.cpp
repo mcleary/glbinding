@@ -8,9 +8,10 @@
 
 using namespace gl;
 
+
 namespace
 {
-    static const auto none = std::string{};
+    const auto none = std::string{};
 }
 
 
@@ -248,6 +249,7 @@ const std::string & Meta::getString(const VertexHintsMaskPGI glbitfield)
     }
     return none;
 }
+
 
 
 } // namespace glbinding
